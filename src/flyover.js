@@ -118,6 +118,7 @@ export function createFlyover(cfg, W, H) {
 
   // ---- jet ----
   const jet = buildJet(cfg.jet);
+  jet.visible = !cfg.jet?.hidden; // {jet:{hidden:true}} for a pure landscape flight
   scene.add(jet);
 
   // Flight path: travels along -z, weaving gently left/right.

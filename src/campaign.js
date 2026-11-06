@@ -171,6 +171,8 @@ export async function createCampaign(cfg, W, H, u, assetUrl) {
       ctx.lineWidth = (r.km ?? 3) * pxPerKm;
       strokePath(ctx, r.path || r, P);
     }
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    drawRoutes(ctx, kfs, i, f, S, u, style);
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     drawCities(ctx, cfg.cities || [], S, u, style, day, W / view.s / (k / 360));
@@ -333,6 +335,17 @@ function drawUnits(ctx, units, factions, S, u, style) {
     const fac = factions[un.faction];
     if (!fac) continue;
     const [x, y] = S(un.at);
+    if (un.mini) {
+      // compact marker: small badge, no pole or text (totals still count in the legend)
+      const mw = fw * 0.55, mh = fh * 0.55;
+      ctx.globalAlpha = un.alpha * 0.9;
+      drawFlag(ctx, fac.flag, x - mw / 2, y - mh / 2, mw, mh);
+      ctx.strokeStyle = 'rgba(0,0,0,0.8)';
+      ctx.lineWidth = 1.5 * u;
+      ctx.strokeRect(x - mw / 2, y - mh / 2, mw, mh);
+      ctx.globalAlpha = 1;
+      continue;
+    }
     const fx = x - fw / 2, fy = y - pole - fh;
     ctx.globalAlpha = un.alpha;
     ctx.strokeStyle = 'rgba(0,0,0,0.85)';
@@ -349,7 +362,8 @@ function drawUnits(ctx, units, factions, S, u, style) {
     if (un.troops) {
       ctx.textAlign = 'left';
       ctx.textBaseline = 'middle';
-      outlinedText(ctx, un.troops.toLocaleString('en-US'), fx + fw + 6 * u, fy + fh / 2 + 1 * u, 24 * u, style);
+      const unit = un.unit ?? fac.unit;
+      outlinedText(ctx, un.troops.toLocaleString('en-US') + (unit ? ` ${unit}` : ''), fx + fw + 6 * u, fy + fh / 2 + 1 * u, 24 * u, style);
     }
     if (un.label) {
       ctx.textAlign = 'center';
@@ -444,7 +458,10 @@ function drawBattles(ctx, kfs, i, f, S, u, style, t) {
 function drawLegend(ctx, factions, units, W, H, u, style, cfg) {
   const totals = {};
   for (const un of units) totals[un.faction] = (totals[un.faction] || 0) + (un.troops || 0) * un.alpha;
-  const list = Object.values(factions);
+  // factions with nothing on the map are left out, unless marked legend:true
+  const present = new Set(units.map((un) => un.faction));
+  const list = Object.values(factions).filter((fc) => fc.legend || present.has(fc.id) || cfg.legendAll);
+  if (!list.length) return;
   const x = 36 * u;
   let y = H - (cfg.legendBottom ?? 300) * u - list.length * 58 * u;
   ctx.fillStyle = 'rgba(0,0,0,0.45)';
@@ -455,7 +472,7 @@ function drawLegend(ctx, factions, units, W, H, u, style, cfg) {
     drawFlag(ctx, fac.flag, x, y, 42 * u, 28 * u);
     outlinedText(ctx, fac.name, x + 56 * u, y + 8 * u, 24 * u, style, '#fff', 'rgba(0,0,0,0.8)', '700');
     const tot = Math.round(totals[fac.id] || 0);
-    if (tot) outlinedText(ctx, tot.toLocaleString('en-US'), x + 56 * u, y + 36 * u, 20 * u, style, '#ffd25a', 'rgba(0,0,0,0.8)', '700');
+    if (tot) outlinedText(ctx, tot.toLocaleString('en-US') + (fac.unit ? ` ${fac.unit}` : ''), x + 56 * u, y + 36 * u, 20 * u, style, '#ffd25a', 'rgba(0,0,0,0.8)', '700');
     y += 58 * u;
   }
 }
@@ -495,4 +512,75 @@ function drawStats(ctx, lines, W, u, style, alpha) {
   ctx.textBaseline = 'top';
   lines.forEach((ln, j) => outlinedText(ctx, ln, x + pad + 8 * u, y + pad + j * lh, 25 * u, style, '#fff', 'rgba(0,0,0,0.7)', '700'));
   ctx.restore();
+}
+
+// ---------- routes: infrastructure that builds itself and stays ----------
+// keyframe.routes: [{ path:[[lon,lat],...], kind, label, status }]
+//   kind: sea | river | road | rail | expressway   status: "stalled" | "planned"
+// Routes on keyframe k draw themselves while the map moves toward k, then
+// stay on the map for the rest of the segment.
+const ROUTE_STYLE = {
+  sea: { color: '#8fdcff', width: 5, dash: [14, 10] },
+  river: { color: '#5fe0ef', width: 5, dash: [8, 7] },
+  road: { color: '#ffd25a', width: 6 },
+  rail: { color: '#f2f2f2', width: 5, ties: true },
+  expressway: { color: '#ff8a3d', width: 9 },
+};
+
+function partialPath(pts, grow) {
+  const lens = [0];
+  for (let j = 1; j < pts.length; j++) lens.push(lens[j - 1] + Math.hypot(pts[j][0] - pts[j - 1][0], pts[j][1] - pts[j - 1][1]));
+  const target = lens[lens.length - 1] * grow;
+  const out = [pts[0]];
+  for (let j = 1; j < pts.length; j++) {
+    if (lens[j] <= target) out.push(pts[j]);
+    else {
+      const r = (target - lens[j - 1]) / (lens[j] - lens[j - 1] || 1);
+      out.push([lerp(pts[j - 1][0], pts[j][0], r), lerp(pts[j - 1][1], pts[j][1], r)]);
+      break;
+    }
+  }
+  return out;
+}
+
+function drawRoutes(ctx, kfs, i, f, S, u, style) {
+  const jobs = [];
+  for (let j = 0; j <= i; j++) for (const r of kfs[j].routes || []) jobs.push([r, 1]);
+  if (kfs[i + 1]) for (const r of kfs[i + 1].routes || []) jobs.push([r, smooth(clamp01(f / 0.85))]);
+  for (const [r, grow] of jobs) {
+    if (grow <= 0.001) continue;
+    const st = { ...ROUTE_STYLE[r.kind ?? 'road'], ...(r.color ? { color: r.color } : {}) };
+    const pts = partialPath(r.path.map(S), grow);
+    const line = (w, color, dash = []) => {
+      ctx.setLineDash(dash.map((d) => d * u));
+      ctx.strokeStyle = color;
+      ctx.lineWidth = w * u;
+      ctx.lineJoin = ctx.lineCap = 'round';
+      ctx.beginPath();
+      pts.forEach(([x, y], k) => (k ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));
+      ctx.stroke();
+    };
+    const dash = r.status ? [10, 9] : st.dash ?? [];
+    line(st.width + 5, 'rgba(0,0,0,0.55)', dash);
+    line(st.width, r.status === 'stalled' ? '#ff5a5a' : st.color, dash);
+    if (st.ties) line(st.width + 6, 'rgba(40,40,40,0.9)', [2, 10]);
+    if (r.kind === 'expressway') line(2, 'rgba(255,255,255,0.85)', [8, 8]);
+    // moving head while building
+    const [hx, hy] = pts[pts.length - 1];
+    if (grow < 1) {
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#fff';
+      ctx.beginPath(); ctx.arc(hx, hy, 6 * u, 0, Math.PI * 2); ctx.fill();
+    }
+    if (r.label && grow > 0.6) {
+      const mid = r.labelAt ? S(r.labelAt) : pts[Math.floor(pts.length / 2)];
+      ctx.setLineDash([]);
+      ctx.globalAlpha = clamp01((grow - 0.6) / 0.3);
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      outlinedText(ctx, r.label, mid[0], mid[1] - 18 * u, 20 * u, style, r.status === 'stalled' ? '#ffb0b0' : '#ffffff', 'rgba(0,0,0,0.85)', '800');
+      ctx.globalAlpha = 1;
+    }
+  }
+  ctx.setLineDash([]);
 }

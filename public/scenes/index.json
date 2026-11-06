@@ -18,5 +18,9 @@
   {
     "name": "Campaign map: Mizo insurgency, detailed (5 min)",
     "file": "scenes/mizo-insurgency-detailed.json"
+  },
+  {
+    "name": "Scenario: Mizoram 2047 (Kaladan gateway & development)",
+    "file": "scenes/mizoram-2047.json"
   }
 ]

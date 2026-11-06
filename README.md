@@ -5,7 +5,7 @@ Data-driven history videos for Reels / Shorts / TikTok (1080×1920). This repo p
 | Segment type | Look | Example |
 |---|---|---|
 | `flyover3d` | Cinematic 3D flight over golden-hour mountains, with a jet, a location/date title card and narration subtitles | `public/scenes/aizawl-1966.json` |
-| `campaign2d` | Animated campaign map with a running date counter, territory per faction, unit flags with troop counts, attack arrows, battles and a legend that sums each side's troops | `public/scenes/egypt-1798.json`, `public/scenes/northeast-burma-1824.json`, `public/scenes/mizo-insurgency-1966.json`, `public/scenes/mizo-insurgency-detailed.json` |
+| `campaign2d` | Animated campaign map with a running date counter, territory per faction, unit flags with troop counts, attack arrows, battles and a legend that sums each side's troops | `public/scenes/egypt-1798.json`, `public/scenes/northeast-burma-1824.json`, `public/scenes/mizo-insurgency-1966.json`, `public/scenes/mizo-insurgency-detailed.json`, `public/scenes/mizoram-2047.json` |
 
 You describe each video in a JSON **scene** file. The same file drives a live preview in the browser and a frame-accurate MP4 render.
 
@@ -102,11 +102,47 @@ Changing `terrain.seed` gives a different range. For desert or snow, change the 
 
 `fights` are animated while the map moves toward that keyframe: both sides fire unless `oneWay` is set, and `a`/`b` follow the units as they move (or take fixed `[lon,lat]` points). `airstrikes` show jets making passes over the target with bomb bursts. Like `fights`, they play while the map moves toward the keyframe that lists them, and they stop just before that keyframe's date.
 
+**Infrastructure and dashboards.**
+- `routes` on a keyframe (`{kind: sea|river|road|rail|expressway, path, label, status: "stalled"|"planned"}`) draw themselves while the map moves toward that keyframe, then stay on the map.
+- Factions can use icon badges: `{"type":"icon","glyph":"sun|house|leaf|chip|shield|anchor|road|rail|coin"}`.
+- Factions can set a `unit` (e.g. `"MW"`), so the legend works as a live dashboard of totals.
+- Units with `mini: true` shrink to a small icon.
+- The legend lists only the factions currently on the map.
+- `{"jet":{"hidden":true}}` makes a flyover with no aircraft.
+
 **Pacing.** Set `stepSeconds` on the segment, or `seconds` and `hold` on keyframes. `seconds` is the travel time into a keyframe and `hold` is how long the map rests on it. With paced timing, keyframes may also set `dateLabel` (e.g. `"1974"`) when the exact day isn't known, and `stats` (a list of short lines shown in a fact panel). City entries may set `maxView` (degrees across the frame) so neighbourhood labels only appear when zoomed in.
 
 Between keyframes, units with the same `id` glide to their new position while their troop count ticks up or down. A unit missing from the next keyframe fades out, a new one fades in, and territory cross-fades.
 
 ## Data accuracy
+
+### Mizoram 2047 (`mizoram-2047.json`): a scenario, not a forecast
+
+This is a 3-minute video: a 3D intro, then a map in two parts. Edit and regenerate it with `scripts/gen_mizoram_2047.py`; every projection is computed from the `ASSUMPTIONS` block in that file.
+
+**Part 1, sourced facts:**
+- Kaladan Multi-Modal corridor: Sittwe port is operational, the target is 2027 ([PIB](https://www.pib.gov.in/PressReleasePage.aspx?PRID=2142948)), and the ~109 km Paletwa–Zorinpui road is stalled by the Arakan conflict ([ORCA](https://orcasia.org/article/1159/indias-kaladan-conundrum), [Wikipedia](https://en.wikipedia.org/wiki/Kaladan_Multi-Modal_Transit_Transport_Project); the 109 km figure is from a secondary source).
+- The corridor saves ~700 km on the Kolkata–Mizoram journey.
+- Bairabi–Sairang rail: 51.38 km, opened 13 Sep 2025 ([Onmanorama](https://www.onmanorama.com/travel/travel-news/2025/09/11/india-railways-connects-mizoram-northeast.html)).
+- India–ASEAN trade: $123 bn in FY2024-25 ([MEA](https://www.mea.gov.in/Portal/ForeignRelation/India-ASEAN-july-2025.pdf)).
+- GSDP: ₹34,003 crore in 2024-25 (revised) and per-capita GSDP of ₹2,87,097 ([PRS](https://prsindia.org/files/budget/budget_state/mizoram/2025/Mizoram_Budget_Analysis_2025-26.pdf)); 9.36% compound growth from 2011-12 to 2024-25 ([Northeast Now](https://nenow.in/north-east-news/mizoram/mizoram-records-9-36-annual-gsdp-growth-over-13-years.html)).
+- Solar: 9.09 GW potential and 1.53 MW installed in 2021 (MNRE annual report 2021-22).
+- Jhum: 40,100 ha in 2005-06, down to 18,107 ha in 2022-23 ([LifeGate](https://www.lifegate.com/controversial-slash-and-burn-farming-method-destroys-green-cover-in-mizoram), state data).
+- Land ownership is restricted to tribals under Article 371G ([Drishti](https://www.drishtiias.com/daily-updates/daily-news-analysis/article-371/print_manually)).
+- The Lai, Mara and Chakma ADCs date from 1972 under the Sixth Schedule ([Wikipedia](https://en.wikipedia.org/wiki/Chakma_Autonomous_District_Council), [EastMojo](https://eastmojo.com/news/2022/05/01/explained-the-mara-autonomous-council-and-the-upcoming-elections/)).
+
+**Part 2, scenario:** a hypothetical new right-wing government programme. The default assumptions:
+- **Expressway:** the grid is the shortest network linking all 11 district HQs and 4 gates, with road length = straight line × 1.5. It costs ₹30 crore/km, 20% of that is wages at ₹3.6 lakh a year, and it takes 8 years to build. That gives about 21 jobs per km, 641 km and about 13,400 jobs a year.
+- **Housing:** 50,000 homes, 30% rented at ₹12,000/month, gives about ₹216 crore a year.
+- **Farms:** 18,000 ha converted from jhum.
+- **Mizo battalions:** 5 × 1,000. Defence is a Union subject, so in practice this would be done through the Territorial Army or India Reserve Battalions; the video says so.
+- **Solar and compute:** 1,000 MW of solar at 1,300 kWh/kWp gives 1.3 TWh a year. 30% of that used for compute gives about 45 MW.
+- **Trade:** 1% of India–ASEAN trade gives about $1.2 bn a year.
+- **GSDP in 2047:** about ₹2.4 lakh crore on trend (9.36%), or about ₹4.1 lakh crore at 12%.
+- **ADCs:** merging the councils would need Parliament to amend the Sixth Schedule; the video says so.
+
+**Geometry:** ADC boundaries, district HQ positions and routes are approximate.
+
 
 ### Mizo insurgency, detailed (`mizo-insurgency-detailed.json`)
 
