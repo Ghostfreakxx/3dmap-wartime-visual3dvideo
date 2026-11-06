@@ -99,6 +99,7 @@
   <button class="chip" id="m-arp" aria-pressed="false">Arp</button>
   <button class="chip" id="m-sound" aria-pressed="true">Sound on</button>
   <button class="chip rec" id="m-rec" aria-pressed="false">● Rec</button>
+  <button class="chip" id="m-view">View: Wide</button>
   <button class="chip" id="m-quality">Quality: Auto</button>
   <button class="chip" id="m-source">Touch</button>
 </div>
@@ -114,7 +115,7 @@
       <dt class="k-filt">FILTER</dt><dd>Pinch thumb and index on your right hand</dd>
       <dt class="k-liq">LIQUID</dt><dd>Distance between your two hands</dd>
       <dt class="k-drum">DRUMS</dt><dd>Fist = kick · quick pinch = hi-hat · clap = snare and cymbal</dd>
-      <dt class="k-fx">MAGIC</dt><dd>Spell circles, sparks, glitch blocks and lightning between your hands</dd>
+      <dt class="k-fx">MAGIC</dt><dd>Spell circles, sparks, glitch blocks and lightning between your hands. Flick a hand upward for a spiral of equations</dd>
     </dl>
     <div class="row">
       <button class="big primary" id="go-camera">Use camera</button>
@@ -159,7 +160,14 @@ function resize() {
 addEventListener("resize", resize); resize();
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const state = { source: null, synth: true, magic: true, sound: true, chord: false, arp: false };
+const state = { source: null, synth: true, magic: true, sound: true, chord: false, arp: false, fit: "wide" };
+// where the camera frame sits on screen: "wide" shows the whole field of view, "fill" crops to fill the screen
+function videoRect() {
+  const vw = video.videoWidth || 640, vh = video.videoHeight || 480;
+  const s = state.fit === "wide" ? Math.min(W / vw, H / vh) * 1.0 : Math.max(W / vw, H / vh);
+  const dw = vw * s, dh = vh * s;
+  return { x: (W - dw) / 2, y: (H - dh) / 2, w: dw, h: dh };
+}
 let statusTimer = 0;
 const status = (msg, ms = 0) => { $("status").textContent = msg || ""; clearTimeout(statusTimer); if (ms) statusTimer = setTimeout(() => ($("status").textContent = ""), ms); };
 const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
@@ -263,6 +271,16 @@ const drums = {
     hit("KICK", COL.joint);
   },
   hat() { if (!A || !state.sound) return; noiseBurst(0.06, 7000, 0.35, ac.currentTime); hit("HI-HAT", COL.filt); },
+  spell() {
+    if (!A || !state.sound) return;
+    const t = ac.currentTime, o = ac.createOscillator(), e = ac.createGain(), f = ac.createBiquadFilter();
+    o.type = "triangle"; o.frequency.setValueAtTime(hz(curIdx + 4), t); o.frequency.exponentialRampToValueAtTime(hz(curIdx + 4) * 4, t + 0.9);
+    f.type = "bandpass"; f.frequency.value = 2400; f.Q.value = 3;
+    e.gain.setValueAtTime(0.0001, t); e.gain.exponentialRampToValueAtTime(0.35, t + 0.08); e.gain.exponentialRampToValueAtTime(0.001, t + 1.2);
+    o.connect(f).connect(e); e.connect(A.bus); e.connect(A.verb); o.start(t); o.stop(t + 1.25);
+    noiseBurst(0.9, 6000, 0.12, t);
+    hit("SPELL", "#ffe7b0");
+  },
   clap() {
     if (!A || !state.sound) return;
     const t = ac.currentTime;
@@ -279,7 +297,68 @@ let hitText = null;
 const hit = (text, col) => { hitText = { text, col, life: 1 }; };
 
 // ================= effects =================
-const sparks = [], rings = [];
+const sparks = [], rings = [], spirals = [], eqs = [];
+const EQUATIONS = ["E = mc²", "e^iπ + 1 = 0", "∇·E = ρ/ε₀", "∮B·dl = μ₀I", "iħ ∂ψ/∂t = Ĥψ", "∫ e^(−x²) dx = √π",
+  "F = ma", "λ = h/p", "Σ 1/n² = π²/6", "∇×E = −∂B/∂t", "S = k ln W", "φ = (1+√5)/2", "Gμν = 8πTμν", "ΔxΔp ≥ ħ/2"];
+let eqIdx = 0;
+function castSpiral(x, y, up = 1) {
+  spirals.push({ x, y, born: performance.now(), hue: Math.random() < 0.5 ? "255,205,120" : "130,220,255" });
+  for (let k = 0; k < 3; k++) {
+    const a = Math.random() * Math.PI * 2;
+    eqs.push({ text: EQUATIONS[eqIdx++ % EQUATIONS.length], x: x + Math.cos(a) * 60, y: y - 20 - k * 30,
+      vx: Math.cos(a) * 0.6, vy: -1.2 - Math.random() * 0.8, rot: (Math.random() - 0.5) * 0.4, life: 1, size: 18 + Math.random() * 12 });
+  }
+  if (eqs.length > 24) eqs.splice(0, eqs.length - 24);
+  drums.spell();
+}
+function drawSpirals(now) {
+  g.save(); g.globalCompositeOperation = "lighter";
+  for (let i = spirals.length - 1; i >= 0; i--) {
+    const sp = spirals[i], age = (now - sp.born) / 1000;
+    if (age > 2.4) { spirals.splice(i, 1); continue; }
+    const grow = Math.min(1, age / 0.9), fade = Math.min(1, (2.4 - age) / 0.8);
+    const N = 90;
+    for (const [w, a] of [[6, 0.18], [2, 0.9]]) {
+      g.strokeStyle = `rgba(${sp.hue},${a * fade})`; g.lineWidth = w;
+      g.beginPath();
+      for (let k = 0; k <= N * grow; k++) {
+        const f = k / N, ang = f * Math.PI * 7 + age * 5, rad = 14 + f * 110;
+        const px = sp.x + Math.cos(ang) * rad, py = sp.y - f * 320 + Math.sin(ang) * rad * 0.28;
+        k ? g.lineTo(px, py) : g.moveTo(px, py);
+      }
+      g.stroke();
+    }
+    // sparkle at the spiral's leading tip
+    const f = grow, ang = f * Math.PI * 7 + age * 5, rad = 14 + f * 110;
+    if (age < 1.2) emit(sp.x + Math.cos(ang) * rad, sp.y - f * 320 + Math.sin(ang) * rad * 0.28, 0, -1, 2, sp.hue, 1.5);
+  }
+  g.restore();
+  g.save();
+  g.textAlign = "center"; g.textBaseline = "middle";
+  for (let i = eqs.length - 1; i >= 0; i--) {
+    const e = eqs[i];
+    e.x += e.vx; e.y += e.vy; e.vy *= 0.995; e.life -= 0.006;
+    if (e.life <= 0) { eqs.splice(i, 1); continue; }
+    g.save(); g.translate(e.x, e.y); g.rotate(e.rot * (1 - e.life));
+    g.globalAlpha = Math.min(1, e.life * 1.6);
+    g.font = `italic 500 ${e.size}px "Times New Roman", Georgia, serif`;
+    if (tier.glow) { g.shadowColor = "rgba(255,220,150,0.9)"; g.shadowBlur = 12; }
+    g.fillStyle = "#fff4dc"; g.fillText(e.text, 0, 0);
+    g.restore();
+  }
+  g.restore();
+}
+// upward-flick detector per hand / finger: fast rise over the last ~150 ms
+const rise = new Map();
+function checkRise(key, x, y, now) {
+  const r = rise.get(key) || { hist: [], cool: 0 };
+  r.hist.push({ y, t: now });
+  while (r.hist.length && now - r.hist[0].t > 160) r.hist.shift();
+  const first = r.hist[0];
+  const dy = first.y - y, dt = (now - first.t) / 1000;
+  if (now > r.cool && dt > 0.08 && dy > H * 0.16 && dy / dt > H * 1.1) { castSpiral(x, y); r.cool = now + 900; r.hist = []; }
+  rise.set(key, r);
+}
 function emit(x, y, vx, vy, n, col, power = 2.5) {
   if (reduced) n = Math.min(n, 1);
   for (let i = 0; i < n && sparks.length < tier.sparks; i++) {
@@ -367,9 +446,8 @@ const hstate = [{ fist: false, pinch: 1 }, { fist: false, pinch: 1 }];
 let lastPalmGap = Infinity, clapCool = 0;
 
 function toScreen(lms) {
-  const vw = video.videoWidth || 640, vh = video.videoHeight || 480;
-  const s = Math.max(W / vw, H / vh), dw = vw * s, dh = vh * s, ox = (W - dw) / 2, oy = (H - dh) / 2;
-  return lms.map((p) => ({ x: ox + (1 - p.x) * dw, y: oy + p.y * dh }));
+  const r = videoRect();
+  return lms.map((p) => ({ x: r.x + (1 - p.x) * r.w, y: r.y + p.y * r.h }));
 }
 function analyse(hands) {
   hands.sort((a, b) => a[0].x - b[0].x);
@@ -382,6 +460,7 @@ function analyse(hands) {
     if (fist && !st.fist) drums.kick();
     if (!fist && pinch < 0.08 && st.pinch > 0.3) drums.hat();
     st.fist = fist; st.pinch = pinch;
+    if (state.magic) checkRise(`h${i}`, (h[0].x + h[9].x) / 2, (h[0].y + h[9].y) / 2, performance.now());
     const xs = h.map((p) => p.x), ys = h.map((p) => p.y);
     return { h, size, pinch, fist, palm: { x: (h[0].x + h[9].x) / 2, y: (h[0].y + h[9].y) / 2 }, box: { x0: Math.min(...xs), x1: Math.max(...xs), y0: Math.min(...ys), y1: Math.max(...ys) } };
   });
@@ -463,7 +542,11 @@ cv.addEventListener("pointerdown", (e) => {
   lastTap = now;
   if (touches.size === 3) { drums.clap(); rings.push({ x: e.clientX, y: e.clientY, r: 20, life: 1 }); emit(e.clientX, e.clientY, 0, 0, 120, "255,230,160", 6); }
 });
-cv.addEventListener("pointermove", (e) => { const p = touches.get(e.pointerId); if (p) { p.px = p.x; p.py = p.y; p.x = e.clientX; p.y = e.clientY; } });
+cv.addEventListener("pointermove", (e) => {
+  const p = touches.get(e.pointerId); if (!p) return;
+  p.px = p.x; p.py = p.y; p.x = e.clientX; p.y = e.clientY;
+  if (state.magic) checkRise(`t${e.pointerId}`, p.x, p.y, performance.now());
+});
 for (const ev of ["pointerup", "pointercancel"]) cv.addEventListener(ev, (e) => touches.delete(e.pointerId));
 
 function touchBackdrop(t) {
@@ -531,6 +614,11 @@ async function startCamera() {
   const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user", width: { ideal: 640 }, height: { ideal: 480 }, frameRate: { ideal: 30, max: 30 } }, audio: false });
   video.srcObject = stream;
   await video.play();
+  // zoom the camera out as far as it allows (some phones expose this)
+  try {
+    const track = stream.getVideoTracks()[0], caps = track.getCapabilities?.() || {};
+    if (caps.zoom && caps.zoom.min < (track.getSettings().zoom ?? 1)) await track.applyConstraints({ advanced: [{ zoom: caps.zoom.min }] });
+  } catch {}
   status("Loading hand tracking…");
   try { await loadTracker(); }
   catch (e) { throw Object.assign(e, { kind: "tracker" }); }
@@ -550,9 +638,15 @@ async function loadTracker() {
 function drawCamera() {
   const vw = video.videoWidth, vh = video.videoHeight;
   if (!vw) { g.fillStyle = "#06070b"; g.fillRect(0, 0, W, H); return; }
-  const s = Math.max(W / vw, H / vh), dw = vw * s, dh = vh * s;
   g.save(); g.translate(W, 0); g.scale(-1, 1);                    // mirror like a selfie
-  g.drawImage(video, (W - dw) / 2, (H - dh) / 2, dw, dh);
+  if (state.fit === "wide") {
+    // dim, stretched copy behind fills the edges; the full camera frame sits on top
+    const c = Math.max(W / vw, H / vh);
+    g.globalAlpha = 0.35; g.drawImage(video, (W - vw * c) / 2, (H - vh * c) / 2, vw * c, vh * c); g.globalAlpha = 1;
+    g.fillStyle = "rgba(6,8,16,0.5)"; g.fillRect(0, 0, W, H);
+  }
+  const r = videoRect();
+  g.drawImage(video, r.x, r.y, r.w, r.h);
   g.restore();
   g.fillStyle = "rgba(6,8,16,0.38)"; g.fillRect(0, 0, W, H);       // cinematic darken
   const vg = g.createRadialGradient(W / 2, H / 2, H * 0.25, W / 2, H / 2, H * 0.75);
@@ -588,7 +682,7 @@ function frame(now) {
       drawHands(analyse(predict(lastHands, frac)), t);
     }
   } else { g.fillStyle = "#06070b"; g.fillRect(0, 0, W, H); }
-  if (state.magic) drawSparks();
+  if (state.magic) { drawSpirals(now); drawSparks(); }
   if (hitText && hitText.life > 0.03) {
     g.save(); g.globalAlpha = hitText.life;
     g.font = `700 ${W / 9}px "Chakra Petch", sans-serif`; g.textAlign = "center"; g.textBaseline = "middle";
@@ -673,6 +767,11 @@ $("go-camera").onclick = async () => {
       ? "Hand tracking couldn't load, so touch mode is on. Check your connection and reload the page."
       : "The camera isn't available here, so touch mode is on. Allow camera access, or open ghostfreakxx.github.io/3dmap-wartime-visual3dvideo/docs/hands in Safari or Chrome.", 9000);
   }
+};
+$("m-view").onclick = () => {
+  state.fit = state.fit === "wide" ? "fill" : "wide";
+  $("m-view").textContent = `View: ${state.fit === "wide" ? "Wide" : "Fill"}`;
+  filters[0] = []; filters[1] = []; vel[0] = []; vel[1] = [];
 };
 $("m-quality").onclick = () => {
   qualityMode = { auto: "fast", fast: "max", max: "auto" }[qualityMode];
