@@ -123,6 +123,37 @@ export function addFeatures(scene, f, { heightAt, pathAt, duration, seed = 5 }) 
       }
     });
     scene.add(lightPoints(marks, '#f5f1e0', 1.6));
+    // moving traffic: headlights one way, tail lights the other
+    if (r.traffic) {
+      const cum = [0];
+      for (let k = 1; k <= N; k++) cum.push(cum[k - 1] + Math.hypot(pts[k][0] - pts[k - 1][0], pts[k][1] - pts[k - 1][1]));
+      const L = cum[N];
+      const at = (d) => {
+        d = ((d % L) + L) % L;
+        let k = 0;
+        while (k < N - 1 && cum[k + 1] < d) k++;
+        const f = (d - cum[k]) / (cum[k + 1] - cum[k] || 1);
+        return [pts[k][0] + (pts[k + 1][0] - pts[k][0]) * f, deck[k] + (deck[k + 1] - deck[k]) * f + 1.5, pts[k][1] + (pts[k + 1][1] - pts[k][1]) * f, k];
+      };
+      for (const [dir, color, lane] of [[1, '#fff6dc', 3], [-1, '#ff4030', -3]]) {
+        const cars = r.traffic, seeds = Array.from({ length: cars }, () => rnd() * L), speeds = Array.from({ length: cars }, () => 22 + rnd() * 14);
+        const arr = new Float32Array(cars * 3);
+        const g = new THREE.BufferGeometry();
+        g.setAttribute('position', new THREE.BufferAttribute(arr, 3));
+        const ptsObj = new THREE.Points(g, new THREE.PointsMaterial({ color, size: 5, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, fog: false }));
+        ptsObj.frustumCulled = false;
+        scene.add(ptsObj);
+        updaters.push((t) => {
+          for (let c = 0; c < cars; c++) {
+            const [x, y, z, k] = at(seeds[c] + dir * speeds[c] * t);
+            const nx = pts[Math.min(k + 1, N)][0] - pts[k][0], nz = pts[Math.min(k + 1, N)][1] - pts[k][1];
+            const len = Math.hypot(nx, nz) || 1;
+            arr[c * 3] = x - nz / len * lane; arr[c * 3 + 1] = y; arr[c * 3 + 2] = z + nx / len * lane;
+          }
+          g.attributes.position.needsUpdate = true;
+        });
+      }
+    }
     if (lamps.length) scene.add(lightPoints(lamps, r.lightColor ?? '#ffb347', 4.5));
     // pillars where the deck flies over a valley
     const pillarGeo = new THREE.BoxGeometry(3, 1, 3);

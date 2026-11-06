@@ -1,0 +1,894 @@
+{
+ "title": "MIZO FIRST: The Manifesto",
+ "note": "Campaign-style manifesto (scenario). Context: MizoTaxi STA notice of 29 May 2026; ~1,570 vehicles registered by Sept 2026; RTE Act. Legal notes on screen for Art. 16(3), RBI licensing, conscription and national taxes.",
+ "width": 1080,
+ "height": 1920,
+ "fps": 30,
+ "audio": null,
+ "transition": 0.4,
+ "exposure": 1.08,
+ "segments": [
+  {
+   "type": "flyover3d",
+   "duration": 6,
+   "jet": {
+    "hidden": true
+   },
+   "camera": {
+    "mode": "chase",
+    "distance": 46,
+    "height": 36,
+    "fov": 55,
+    "lookDown": 55
+   },
+   "flight": {
+    "speed": 120,
+    "altitude": 470,
+    "weave": 50
+   },
+   "terrain": {
+    "seed": 33,
+    "height": 400,
+    "low": "#12300f",
+    "mid": "#2f6b2a",
+    "high": "#6e8c4c"
+   },
+   "sky": {
+    "zenith": "#22385a",
+    "horizon": "#ffc27a",
+    "sun": "#fff2cf",
+    "fog": "#9fb2a2",
+    "sunElevation": 3
+   },
+   "vignette": 0.5,
+   "fogNear": 300,
+   "fogFar": 3000,
+   "features": {
+    "mist": {
+     "layers": 3,
+     "opacity": 0.45,
+     "height": 150
+    }
+   },
+   "cards": [],
+   "title": {
+    "text": "MIZO FIRST",
+    "sub": "THE MANIFESTO",
+    "start": 0.4,
+    "end": 5.8,
+    "size": 120,
+    "subSize": 56,
+    "y": 360
+   }
+  },
+  {
+   "type": "flyover3d",
+   "duration": 11.5,
+   "jet": {
+    "hidden": true
+   },
+   "camera": {
+    "mode": "chase",
+    "distance": 46,
+    "height": 36,
+    "fov": 55,
+    "lookDown": 55
+   },
+   "flight": {
+    "speed": 120,
+    "altitude": 470,
+    "weave": 50
+   },
+   "terrain": {
+    "seed": 57,
+    "height": 400,
+    "low": "#12300f",
+    "mid": "#2f6b2a",
+    "high": "#6e8c4c"
+   },
+   "sky": {
+    "zenith": "#101a3c",
+    "horizon": "#b0607a",
+    "sun": "#ffc89a",
+    "fog": "#3a3550",
+    "sunElevation": 0.5
+   },
+   "vignette": 0.5,
+   "fogNear": 300,
+   "fogFar": 3000,
+   "features": {
+    "city": {
+     "at": 1.05,
+     "count": 3600,
+     "radius": 380,
+     "side": 1,
+     "dist": 50,
+     "lightSize": 4.5
+    },
+    "road": {
+     "offset": 30,
+     "traffic": 70
+    }
+   },
+   "cards": [],
+   "policy": {
+    "start": 0.2,
+    "end": 11.3,
+    "num": "01",
+    "icon": "car",
+    "color": "#ffcf3f",
+    "title": "Taxi drivers first",
+    "bullets": [
+     "A pension for every taxi, bike-taxi and auto driver",
+     "Hospital cover and education support for their families",
+     "MizoTaxi with no registration fee and lower fares",
+     "Drivers paid to promote the app they run on"
+    ],
+    "context": "Today: the MizoTaxi app is mandatory, and drivers carry the costs",
+    "note": "Est. Rs 10 crore a year for 8,000 drivers at Rs 1,000/month (assumed). ~1,570 vehicles had registered by Sept 2026."
+   }
+  },
+  {
+   "type": "flyover3d",
+   "duration": 10,
+   "jet": {
+    "hidden": true
+   },
+   "camera": {
+    "mode": "chase",
+    "distance": 46,
+    "height": 36,
+    "fov": 55,
+    "lookDown": 55
+   },
+   "flight": {
+    "speed": 120,
+    "altitude": 470,
+    "weave": 50
+   },
+   "terrain": {
+    "seed": 63,
+    "height": 400,
+    "low": "#12300f",
+    "mid": "#2f6b2a",
+    "high": "#6e8c4c"
+   },
+   "sky": {
+    "zenith": "#2a5f9e",
+    "horizon": "#cfe3f0",
+    "sun": "#fffbe8",
+    "fog": "#a9c0c8",
+    "sunElevation": 22
+   },
+   "vignette": 0.5,
+   "fogNear": 300,
+   "fogFar": 3000,
+   "features": {
+    "city": {
+     "at": 1.05,
+     "count": 3600,
+     "radius": 380,
+     "side": 1,
+     "dist": 50,
+     "lightSize": 4.5
+    }
+   },
+   "cards": [],
+   "policy": {
+    "start": 0.2,
+    "end": 9.8,
+    "num": "02",
+    "icon": "people",
+    "color": "#5fd38a",
+    "title": "Security for every worker",
+    "bullets": [
+     "The same pension and health cover for every sector",
+     "Shopkeepers, farmers, builders, domestic workers",
+     "No Mizo worker without a safety net"
+    ]
+   }
+  },
+  {
+   "type": "flyover3d",
+   "duration": 10,
+   "jet": {
+    "hidden": true
+   },
+   "camera": {
+    "mode": "chase",
+    "distance": 46,
+    "height": 36,
+    "fov": 55,
+    "lookDown": 55
+   },
+   "flight": {
+    "speed": 120,
+    "altitude": 470,
+    "weave": 50
+   },
+   "terrain": {
+    "seed": 41,
+    "height": 400,
+    "low": "#12300f",
+    "mid": "#2f6b2a",
+    "high": "#6e8c4c"
+   },
+   "sky": {
+    "zenith": "#29507e",
+    "horizon": "#ffd59a",
+    "sun": "#fff4d8",
+    "fog": "#b0b9a6",
+    "sunElevation": 8
+   },
+   "vignette": 0.5,
+   "fogNear": 300,
+   "fogFar": 3000,
+   "features": {
+    "road": {
+     "offset": 0,
+     "traffic": 30
+    }
+   },
+   "cards": [],
+   "policy": {
+    "start": 0.2,
+    "end": 9.8,
+    "num": "03",
+    "icon": "road",
+    "color": "#ff9a4d",
+    "title": "A PWD that builds for Mizos",
+    "bullets": [
+     "A bigger Public Works Department, building the 641 km grid",
+     "Local workers and contractors first",
+     "Insurance and site safety for every worker"
+    ]
+   }
+  },
+  {
+   "type": "flyover3d",
+   "duration": 10,
+   "jet": {
+    "hidden": true
+   },
+   "camera": {
+    "mode": "chase",
+    "distance": 46,
+    "height": 36,
+    "fov": 55,
+    "lookDown": 55
+   },
+   "flight": {
+    "speed": 120,
+    "altitude": 470,
+    "weave": 50
+   },
+   "terrain": {
+    "seed": 81,
+    "height": 400,
+    "low": "#12300f",
+    "mid": "#2f6b2a",
+    "high": "#6e8c4c",
+    "flatten": [
+     {
+      "at": 1.0,
+      "side": 1,
+      "dist": 0,
+      "radius": 470,
+      "level": 150
+     }
+    ]
+   },
+   "sky": {
+    "zenith": "#2a5f9e",
+    "horizon": "#cfe3f0",
+    "sun": "#fffbe8",
+    "fog": "#a9c0c8",
+    "sunElevation": 22
+   },
+   "vignette": 0.5,
+   "fogNear": 300,
+   "fogFar": 3000,
+   "features": {
+    "planned": {
+     "at": 1.0,
+     "side": 1,
+     "dist": 0,
+     "blocks": 9,
+     "block": 70
+    }
+   },
+   "cards": [],
+   "policy": {
+    "start": 0.2,
+    "end": 9.8,
+    "num": "04",
+    "icon": "wrench",
+    "color": "#7fd0ff",
+    "title": "Mizoram Skills Institute",
+    "bullets": [
+     "One large institution for skilled trades",
+     "Construction, electrical, solar, IT, nursing",
+     "Trained here, hired here"
+    ]
+   }
+  },
+  {
+   "type": "flyover3d",
+   "duration": 10,
+   "jet": {
+    "hidden": true
+   },
+   "camera": {
+    "mode": "chase",
+    "distance": 46,
+    "height": 36,
+    "fov": 55,
+    "lookDown": 55
+   },
+   "flight": {
+    "speed": 120,
+    "altitude": 470,
+    "weave": 50
+   },
+   "terrain": {
+    "seed": 33,
+    "height": 400,
+    "low": "#12300f",
+    "mid": "#2f6b2a",
+    "high": "#6e8c4c"
+   },
+   "sky": {
+    "zenith": "#22385a",
+    "horizon": "#ffc27a",
+    "sun": "#fff2cf",
+    "fog": "#9fb2a2",
+    "sunElevation": 3
+   },
+   "vignette": 0.5,
+   "fogNear": 300,
+   "fogFar": 3000,
+   "features": {
+    "city": {
+     "at": 1.05,
+     "count": 3600,
+     "radius": 380,
+     "side": 1,
+     "dist": 50,
+     "lightSize": 4.5
+    },
+    "mist": {
+     "layers": 2,
+     "opacity": 0.35,
+     "height": 120
+    }
+   },
+   "cards": [],
+   "policy": {
+    "start": 0.2,
+    "end": 9.8,
+    "num": "05",
+    "icon": "book",
+    "color": "#c59bff",
+    "title": "Teachers from Mizoram",
+    "bullets": [
+     "Teaching posts filled by the people of Mizoram",
+     "More posts in every district"
+    ],
+    "note": "Residence rules for public jobs need a law by Parliament (Art. 16(3)); ST reservation and local-language requirements are the usual route."
+   }
+  },
+  {
+   "type": "flyover3d",
+   "duration": 10,
+   "jet": {
+    "hidden": true
+   },
+   "camera": {
+    "mode": "chase",
+    "distance": 46,
+    "height": 36,
+    "fov": 55,
+    "lookDown": 55
+   },
+   "flight": {
+    "speed": 120,
+    "altitude": 470,
+    "weave": 50
+   },
+   "terrain": {
+    "seed": 72,
+    "height": 400,
+    "low": "#12300f",
+    "mid": "#2f6b2a",
+    "high": "#6e8c4c"
+   },
+   "sky": {
+    "zenith": "#22385a",
+    "horizon": "#ffc27a",
+    "sun": "#fff2cf",
+    "fog": "#9fb2a2",
+    "sunElevation": 3
+   },
+   "vignette": 0.5,
+   "fogNear": 300,
+   "fogFar": 3000,
+   "features": {
+    "mist": {
+     "layers": 3,
+     "opacity": 0.4,
+     "height": 120
+    }
+   },
+   "cards": [],
+   "policy": {
+    "start": 0.2,
+    "end": 9.8,
+    "num": "06",
+    "icon": "percent",
+    "color": "#ffd25a",
+    "title": "Recover first, tax later",
+    "bullets": [
+     "State taxes and fees paused until household incomes recover",
+     "Small businesses get the same breathing room"
+    ],
+    "note": "Income tax and GST are national; the state can waive its own taxes, fees and charges."
+   }
+  },
+  {
+   "type": "flyover3d",
+   "duration": 10,
+   "jet": {
+    "hidden": true
+   },
+   "camera": {
+    "mode": "chase",
+    "distance": 46,
+    "height": 36,
+    "fov": 55,
+    "lookDown": 55
+   },
+   "flight": {
+    "speed": 120,
+    "altitude": 470,
+    "weave": 50
+   },
+   "terrain": {
+    "seed": 57,
+    "height": 400,
+    "low": "#12300f",
+    "mid": "#2f6b2a",
+    "high": "#6e8c4c"
+   },
+   "sky": {
+    "zenith": "#1b1e3f",
+    "horizon": "#ff8f5a",
+    "sun": "#ffd7a0",
+    "fog": "#6c5a6a",
+    "sunElevation": 1.5
+   },
+   "vignette": 0.5,
+   "fogNear": 300,
+   "fogFar": 3000,
+   "features": {
+    "city": {
+     "at": 1.05,
+     "count": 3600,
+     "radius": 380,
+     "side": 1,
+     "dist": 50,
+     "lightSize": 4.5
+    }
+   },
+   "cards": [],
+   "policy": {
+    "start": 0.2,
+    "end": 9.8,
+    "num": "07",
+    "icon": "heart",
+    "color": "#ff7f9e",
+    "title": "Stronger families",
+    "bullets": [
+     "A stricter marriage law that protects spouses and children",
+     "State aid and security for every single parent",
+     "No citizen left behind"
+    ]
+   }
+  },
+  {
+   "type": "flyover3d",
+   "duration": 10,
+   "jet": {
+    "hidden": true
+   },
+   "camera": {
+    "mode": "chase",
+    "distance": 46,
+    "height": 36,
+    "fov": 55,
+    "lookDown": 55
+   },
+   "flight": {
+    "speed": 120,
+    "altitude": 470,
+    "weave": 50
+   },
+   "terrain": {
+    "seed": 64,
+    "height": 400,
+    "low": "#12300f",
+    "mid": "#2f6b2a",
+    "high": "#6e8c4c"
+   },
+   "sky": {
+    "zenith": "#29507e",
+    "horizon": "#ffd59a",
+    "sun": "#fff4d8",
+    "fog": "#b0b9a6",
+    "sunElevation": 8
+   },
+   "vignette": 0.5,
+   "fogNear": 300,
+   "fogFar": 3000,
+   "features": {
+    "city": {
+     "at": 1.05,
+     "count": 3600,
+     "radius": 380,
+     "side": 1,
+     "dist": 50,
+     "lightSize": 4.5
+    }
+   },
+   "cards": [],
+   "policy": {
+    "start": 0.2,
+    "end": 9.8,
+    "num": "08",
+    "icon": "house",
+    "color": "#ff9a4d",
+    "title": "Support for big families",
+    "bullets": [
+     "Interest-free loans for families with 4 or more children",
+     "Loans written off for families of 5 or more",
+     "Homes in the new urban plan (see New Aizawl)"
+    ]
+   }
+  },
+  {
+   "type": "flyover3d",
+   "duration": 10,
+   "jet": {
+    "hidden": true
+   },
+   "camera": {
+    "mode": "chase",
+    "distance": 46,
+    "height": 36,
+    "fov": 55,
+    "lookDown": 55
+   },
+   "flight": {
+    "speed": 120,
+    "altitude": 470,
+    "weave": 50
+   },
+   "terrain": {
+    "seed": 81,
+    "height": 400,
+    "low": "#12300f",
+    "mid": "#2f6b2a",
+    "high": "#6e8c4c",
+    "flatten": [
+     {
+      "at": 1.0,
+      "side": 1,
+      "dist": 0,
+      "radius": 470,
+      "level": 150
+     }
+    ]
+   },
+   "sky": {
+    "zenith": "#1b1e3f",
+    "horizon": "#ff8f5a",
+    "sun": "#ffd7a0",
+    "fog": "#6c5a6a",
+    "sunElevation": 1.5
+   },
+   "vignette": 0.5,
+   "fogNear": 300,
+   "fogFar": 3000,
+   "features": {
+    "planned": {
+     "at": 1.0,
+     "side": 1,
+     "dist": 0,
+     "blocks": 9,
+     "block": 70
+    }
+   },
+   "cards": [],
+   "policy": {
+    "start": 0.2,
+    "end": 9.8,
+    "num": "09",
+    "icon": "bank",
+    "color": "#4fc3ff",
+    "title": "The Mizoram People's Bank",
+    "bullets": [
+     "A big state bank owned by Mizoram's people and government",
+     "Profits stay in Mizoram",
+     "Loans for Mizo homes, farms and businesses"
+    ],
+    "note": "Every bank in India needs an RBI licence; the bank can be state- and people-owned, but not outside RBI rules."
+   }
+  },
+  {
+   "type": "flyover3d",
+   "duration": 10,
+   "jet": {
+    "hidden": true
+   },
+   "camera": {
+    "mode": "chase",
+    "distance": 46,
+    "height": 36,
+    "fov": 55,
+    "lookDown": 55
+   },
+   "flight": {
+    "speed": 120,
+    "altitude": 470,
+    "weave": 50
+   },
+   "terrain": {
+    "seed": 72,
+    "height": 400,
+    "low": "#12300f",
+    "mid": "#2f6b2a",
+    "high": "#6e8c4c"
+   },
+   "sky": {
+    "zenith": "#22385a",
+    "horizon": "#ffc27a",
+    "sun": "#fff2cf",
+    "fog": "#9fb2a2",
+    "sunElevation": 3
+   },
+   "vignette": 0.5,
+   "fogNear": 300,
+   "fogFar": 3000,
+   "features": {
+    "mist": {
+     "layers": 2,
+     "opacity": 0.35,
+     "height": 120
+    }
+   },
+   "cards": [],
+   "policy": {
+    "start": 0.2,
+    "end": 9.8,
+    "num": "10",
+    "icon": "shield",
+    "color": "#c9d37a",
+    "title": "Service for the youth",
+    "bullets": [
+     "A year of service for young Mizos",
+     "Training, discipline and a stipend",
+     "Disaster response and border duty"
+    ],
+    "note": "States cannot conscript; delivered through NCC, the Territorial Army and a voluntary state service corps."
+   }
+  },
+  {
+   "type": "flyover3d",
+   "duration": 10,
+   "jet": {
+    "hidden": true
+   },
+   "camera": {
+    "mode": "chase",
+    "distance": 46,
+    "height": 36,
+    "fov": 55,
+    "lookDown": 55
+   },
+   "flight": {
+    "speed": 120,
+    "altitude": 470,
+    "weave": 50
+   },
+   "terrain": {
+    "seed": 81,
+    "height": 400,
+    "low": "#12300f",
+    "mid": "#2f6b2a",
+    "high": "#6e8c4c",
+    "flatten": [
+     {
+      "at": 1.0,
+      "side": 1,
+      "dist": 0,
+      "radius": 470,
+      "level": 150
+     }
+    ]
+   },
+   "sky": {
+    "zenith": "#2a5f9e",
+    "horizon": "#cfe3f0",
+    "sun": "#fffbe8",
+    "fog": "#a9c0c8",
+    "sunElevation": 22
+   },
+   "vignette": 0.5,
+   "fogNear": 300,
+   "fogFar": 3000,
+   "features": {
+    "planned": {
+     "at": 1.0,
+     "side": 1,
+     "dist": 0,
+     "blocks": 9,
+     "block": 70
+    }
+   },
+   "cards": [],
+   "policy": {
+    "start": 0.2,
+    "end": 9.8,
+    "num": "11",
+    "icon": "book",
+    "color": "#6ee08a",
+    "title": "Free, compulsory education",
+    "bullets": [
+     "Free and compulsory from 6 to 18",
+     "Free college for every Mizo student"
+    ],
+    "note": "Today the RTE Act makes school free and compulsory from 6 to 14."
+   }
+  },
+  {
+   "type": "flyover3d",
+   "duration": 9,
+   "jet": {
+    "hidden": true
+   },
+   "camera": {
+    "mode": "chase",
+    "distance": 46,
+    "height": 36,
+    "fov": 55,
+    "lookDown": 55
+   },
+   "flight": {
+    "speed": 120,
+    "altitude": 470,
+    "weave": 50
+   },
+   "terrain": {
+    "seed": 57,
+    "height": 400,
+    "low": "#12300f",
+    "mid": "#2f6b2a",
+    "high": "#6e8c4c"
+   },
+   "sky": {
+    "zenith": "#1b1e3f",
+    "horizon": "#ff8f5a",
+    "sun": "#ffd7a0",
+    "fog": "#6c5a6a",
+    "sunElevation": 1.5
+   },
+   "vignette": 0.5,
+   "fogNear": 300,
+   "fogFar": 3000,
+   "features": {
+    "city": {
+     "at": 1.05,
+     "count": 3600,
+     "radius": 380,
+     "side": 1,
+     "dist": 50,
+     "lightSize": 4.5
+    },
+    "road": {
+     "offset": 40,
+     "traffic": 50
+    }
+   },
+   "cards": [
+    {
+     "start": 2.5,
+     "end": 8.6,
+     "value": 11,
+     "label": "POLICIES FOR MIZORAM",
+     "sub": "Scenario manifesto built on public data",
+     "color": "#ffd25a",
+     "y": 0.52
+    }
+   ],
+   "title": {
+    "text": "NO CITIZEN",
+    "sub": "LEFT BEHIND · MIZO FIRST",
+    "start": 0.4,
+    "end": 8.8,
+    "size": 120,
+    "subSize": 50,
+    "y": 360
+   }
+  }
+ ],
+ "subtitles": [
+  {
+   "start": 0.5,
+   "end": 5.7,
+   "text": "*Mizo first.* A manifesto for every family"
+  },
+  {
+   "start": 6.5,
+   "end": 17.2,
+   "text": "Those who drive Mizoram deserve a *pension*"
+  },
+  {
+   "start": 18.0,
+   "end": 27.2,
+   "text": "*Every* worker gets the same security"
+  },
+  {
+   "start": 28.0,
+   "end": 37.2,
+   "text": "Mizo hands build Mizoram's *roads*"
+  },
+  {
+   "start": 38.0,
+   "end": 47.2,
+   "text": "Skills trained *here*, jobs kept *here*"
+  },
+  {
+   "start": 48.0,
+   "end": 57.2,
+   "text": "Mizoram's teachers for Mizoram's children"
+  },
+  {
+   "start": 58.0,
+   "end": 67.2,
+   "text": "Recovery *first*, then taxes"
+  },
+  {
+   "start": 68.0,
+   "end": 77.2,
+   "text": "No single parent stands *alone*"
+  },
+  {
+   "start": 78.0,
+   "end": 87.2,
+   "text": "Bigger families, *lighter* loans"
+  },
+  {
+   "start": 88.0,
+   "end": 97.2,
+   "text": "A bank that *belongs* to Mizoram"
+  },
+  {
+   "start": 98.0,
+   "end": 107.2,
+   "text": "Young Mizos *serve* their state"
+  },
+  {
+   "start": 108.0,
+   "end": 117.2,
+   "text": "Education, *free* for every child"
+  },
+  {
+   "start": 118.0,
+   "end": 126.2,
+   "text": "*No citizen left behind*"
+  }
+ ],
+ "subtitleStyle": {
+  "size": 50,
+  "y": 0.9
+ }
+}

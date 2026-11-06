@@ -113,7 +113,7 @@ function star(ctx, cx, cy, r, color, rot = 0) {
   ctx.fill();
 }
 
-function glyph(ctx, g, cx, cy, r, color) {
+export function glyph(ctx, g, cx, cy, r, color) {
   ctx.save();
   ctx.fillStyle = ctx.strokeStyle = color;
   ctx.lineWidth = Math.max(1.2, r * 0.22);
@@ -185,6 +185,43 @@ function glyph(ctx, g, cx, cy, r, color) {
     case 'tree':
       ctx.moveTo(cx, cy - r); ctx.lineTo(cx + r * 0.7, cy + r * 0.4); ctx.lineTo(cx - r * 0.7, cy + r * 0.4); ctx.closePath(); ctx.fill();
       ctx.fillRect(cx - r * 0.12, cy + r * 0.4, r * 0.24, r * 0.55);
+      break;
+    case 'car':
+      ctx.fillRect(cx - r, cy - r * 0.1, r * 2, r * 0.6);
+      ctx.moveTo(cx - r * 0.6, cy - r * 0.1); ctx.lineTo(cx - r * 0.35, cy - r * 0.6); ctx.lineTo(cx + r * 0.35, cy - r * 0.6);
+      ctx.lineTo(cx + r * 0.6, cy - r * 0.1); ctx.closePath(); ctx.fill();
+      ctx.beginPath(); ctx.arc(cx - r * 0.55, cy + r * 0.55, r * 0.25, 0, Math.PI * 2); ctx.arc(cx + r * 0.55, cy + r * 0.55, r * 0.25, 0, Math.PI * 2); ctx.fill();
+      break;
+    case 'people':
+      for (const [ox, s] of [[-0.5, 0.8], [0.5, 0.8], [0, 1]]) {
+        ctx.beginPath(); ctx.arc(cx + ox * r, cy - r * 0.45 * s, r * 0.28 * s, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc(cx + ox * r, cy + r * 0.5, r * 0.5 * s, Math.PI, 0); ctx.fill();
+      }
+      break;
+    case 'book':
+      ctx.moveTo(cx, cy - r * 0.6); ctx.lineTo(cx - r, cy - r * 0.8); ctx.lineTo(cx - r, cy + r * 0.6); ctx.lineTo(cx, cy + r * 0.8); ctx.closePath(); ctx.fill();
+      ctx.beginPath(); ctx.moveTo(cx, cy - r * 0.6); ctx.lineTo(cx + r, cy - r * 0.8); ctx.lineTo(cx + r, cy + r * 0.6); ctx.lineTo(cx, cy + r * 0.8); ctx.closePath(); ctx.fill();
+      break;
+    case 'bank':
+      ctx.moveTo(cx - r, cy - r * 0.35); ctx.lineTo(cx, cy - r); ctx.lineTo(cx + r, cy - r * 0.35); ctx.closePath(); ctx.fill();
+      for (let k = -2; k <= 2; k++) ctx.fillRect(cx + k * r * 0.4 - r * 0.1, cy - r * 0.2, r * 0.2, r * 0.8);
+      ctx.fillRect(cx - r, cy + r * 0.65, r * 2, r * 0.25);
+      break;
+    case 'heart':
+      ctx.moveTo(cx, cy + r * 0.85);
+      ctx.bezierCurveTo(cx - r * 1.3, cy - r * 0.1, cx - r * 0.5, cy - r * 1.1, cx, cy - r * 0.35);
+      ctx.bezierCurveTo(cx + r * 0.5, cy - r * 1.1, cx + r * 1.3, cy - r * 0.1, cx, cy + r * 0.85); ctx.fill();
+      break;
+    case 'wrench':
+      ctx.lineWidth = r * 0.35;
+      ctx.moveTo(cx - r * 0.7, cy + r * 0.7); ctx.lineTo(cx + r * 0.25, cy - r * 0.25); ctx.stroke();
+      ctx.beginPath(); ctx.lineWidth = r * 0.22; ctx.arc(cx + r * 0.45, cy - r * 0.45, r * 0.42, Math.PI * 0.95, Math.PI * 2.55); ctx.stroke();
+      break;
+    case 'percent':
+      ctx.lineWidth = r * 0.2;
+      ctx.moveTo(cx + r * 0.7, cy - r * 0.8); ctx.lineTo(cx - r * 0.7, cy + r * 0.8); ctx.stroke();
+      ctx.beginPath(); ctx.arc(cx - r * 0.5, cy - r * 0.5, r * 0.28, 0, Math.PI * 2); ctx.stroke();
+      ctx.beginPath(); ctx.arc(cx + r * 0.5, cy + r * 0.5, r * 0.28, 0, Math.PI * 2); ctx.stroke();
       break;
     case 'coin':
       ctx.arc(cx, cy, r * 0.85, 0, Math.PI * 2); ctx.stroke();
