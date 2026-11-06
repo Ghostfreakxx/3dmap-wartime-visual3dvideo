@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import { createFlyover } from './flyover.js';
 import { createCampaign } from './campaign.js';
 import { createMotion } from './motion.js';
+import { createBattle3D } from './battle3d.js';
 import { drawTitle, drawSubtitle, drawCard, drawPolicy, fadeAlpha } from './overlay.js';
 
 const params = new URLSearchParams(location.search);
@@ -52,6 +53,7 @@ for (const seg of spec.segments) {
   if (seg.type === 'flyover3d') { getRenderer(); impl = createFlyover(seg, W, H); }
   else if (seg.type === 'campaign2d') impl = await createCampaign(seg, W, H, u, assetUrl);
   else if (seg.type === 'motion') impl = createMotion(seg, W, H, u, font);
+  else if (seg.type === 'battle3d') impl = createBattle3D(seg, W, H, u, font, getRenderer());
   else throw new Error(`unknown segment type: ${seg.type}`);
   segments.push({ ...seg, impl, start, end: start + seg.duration });
   start += seg.duration;
@@ -66,7 +68,7 @@ function locate(t) {
 function seek(t) {
   t = Math.max(0, Math.min(duration - 1e-6, t));
   const { seg, local } = locate(t);
-  const is3d = seg.type === 'flyover3d';
+  const is3d = seg.type === 'flyover3d' || seg.type === 'battle3d';
   glCanvas.style.display = is3d ? 'block' : 'none';
   mapCanvas.style.display = is3d ? 'none' : 'block';
   if (is3d) {
@@ -85,6 +87,7 @@ function seek(t) {
   ovCtx.fillStyle = g;
   ovCtx.fillRect(0, 0, W, H);
 
+  seg.impl.overlay?.(ovCtx, local);
   if (seg.title) {
     const ti = seg.title;
     drawTitle(ovCtx, ti, fadeAlpha(local, ti.start ?? 0, ti.end ?? seg.duration), W, u, font);
