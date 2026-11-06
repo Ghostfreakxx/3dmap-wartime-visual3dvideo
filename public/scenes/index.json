@@ -42,5 +42,9 @@
   {
     "name": "Motion graphics: MIZO FIRST \u00b7 Culture & Sport",
     "file": "scenes/mizo-first-culture-sport.json"
+  },
+  {
+    "name": "War map: The Fall of Berlin, 1945",
+    "file": "scenes/fall-of-berlin-1945.json"
   }
 ]

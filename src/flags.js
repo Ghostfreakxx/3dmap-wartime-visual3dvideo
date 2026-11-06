@@ -52,6 +52,29 @@ export function drawFlag(ctx, flag = { type: 'solid', color: '#888' }, x, y, w, 
       star(ctx, x + w * 0.66, cy, h * 0.12, flag.fg ?? '#fff');
       break;
     }
+    case 'bicolor-h':
+      ctx.fillStyle = flag.colors[0]; ctx.fillRect(x, y, w, h / 2 + 0.5);
+      ctx.fillStyle = flag.colors[1]; ctx.fillRect(x, y + h / 2, w, h / 2);
+      break;
+    case 'cross': {
+      // military cross insignia (Balkenkreuz-style) on a field colour
+      ctx.fillStyle = flag.bg ?? '#5f6368'; ctx.fillRect(x, y, w, h);
+      const cx = x + w / 2, cy = y + h / 2, L = h * 0.42, T = h * 0.16, O = h * 0.07;
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(cx - T / 2 - O, cy - L - O, T + 2 * O, 2 * L + 2 * O);
+      ctx.fillRect(cx - L - O, cy - T / 2 - O, 2 * L + 2 * O, T + 2 * O);
+      ctx.fillStyle = '#111111';
+      ctx.fillRect(cx - T / 2, cy - L, T, 2 * L);
+      ctx.fillRect(cx - L, cy - T / 2, 2 * L, T);
+      break;
+    }
+    case 'usa': {
+      for (let k = 0; k < 7; k++) { ctx.fillStyle = k % 2 ? '#ffffff' : '#b22234'; ctx.fillRect(x, y + (h * k) / 7, w, h / 7 + 0.5); }
+      ctx.fillStyle = '#3c3b6e'; ctx.fillRect(x, y, w * 0.42, h * 4 / 7);
+      ctx.fillStyle = '#ffffff';
+      for (let i = 0; i < 3; i++) for (let j = 0; j < 4; j++) ctx.fillRect(x + w * 0.05 + j * w * 0.09, y + h * 0.08 + i * h * 0.16, w * 0.03, w * 0.03);
+      break;
+    }
     case 'union': {
       // Union Flag (simplified proportions)
       ctx.beginPath(); ctx.rect(x, y, w, h); ctx.clip();
