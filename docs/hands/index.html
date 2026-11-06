@@ -129,7 +129,7 @@
     <video id="clip" playsinline controls></video>
     <div class="row">
       <button class="big primary" id="share">Share</button>
-      <a class="big" id="save" download="hand-synth.mp4">Save video</a>
+      <button class="big" id="save">Save video</button>
     </div>
     <button class="big" id="close-done">Back to playing</button>
     <p class="note" id="done-note"></p>
@@ -549,7 +549,7 @@ function frame(now) {
 requestAnimationFrame(frame);
 
 // ================= recording =================
-let rec = null, recStart = 0, chunks = [], clipURL = null, clipFile = null;
+let rec = null, recStart = 0, chunks = [], clipURL = null, clipFile = null, clipBlob = null;
 function drawRecBadge(now) {
   const s = ((now - recStart) / 1000) | 0;
   g.fillStyle = "rgba(255,59,78,0.9)"; g.beginPath(); g.arc(W - 30, H - 120, 7, 0, Math.PI * 2); g.fill();
@@ -579,7 +579,7 @@ function toggleRec() {
     if (clipURL) URL.revokeObjectURL(clipURL);
     clipURL = URL.createObjectURL(blob);
     clipFile = new File([blob], `hand-synth.${ext}`, { type: mime.split(";")[0] });
-    $("clip").src = clipURL; $("save").href = clipURL; $("save").download = clipFile.name;
+    $("clip").src = clipURL; clipBlob = blob;
     $("share").hidden = !(navigator.canShare && navigator.canShare({ files: [clipFile] }));
     $("done-note").textContent = ext === "webm" ? "Saved as WebM. Instagram may need it converted to MP4." : "";
     $("done").hidden = false;
@@ -591,6 +591,17 @@ function toggleRec() {
 $("m-rec").onclick = toggleRec;
 $("share").onclick = async () => { try { await navigator.share({ files: [clipFile], title: "Hand Synth" }); } catch {} };
 $("close-done").onclick = () => { $("done").hidden = true; };
+// Save: inside claude.ai use the downloads capability (asks the viewer); on a normal website use a plain download
+$("save").onclick = async () => {
+  const dl = window.claude?.use ? await window.claude.use("downloads").catch(() => null) : null;
+  if (dl) {
+    try { await dl.save({ filename: clipFile.name, data: clipBlob }); $("done-note").textContent = "Saved."; }
+    catch (e) { $("done-note").textContent = e?.code === "declined" ? "Not saved." : "Saving isn't available here. Use Share, or open the GitHub Pages version."; }
+    return;
+  }
+  const a = document.createElement("a");
+  a.href = clipURL; a.download = clipFile.name; document.body.appendChild(a); a.click(); a.remove();
+};
 
 // ================= controls =================
 function begin(source) {
