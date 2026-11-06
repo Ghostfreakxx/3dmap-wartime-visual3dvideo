@@ -5,10 +5,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
 <style>
-  /* Layout: full-screen stage (camera or black), HUD bar on top, start sheet over it. Single dark look by design. */
+  /* Layout: full-screen canvas stage (camera frame + effects), HUD on top, sheets over it. Single dark look by design. */
   :root {
     --ink: #06070b;
-    --panel: rgba(12, 14, 22, 0.78);
+    --panel: rgba(12, 14, 22, 0.8);
     --line: rgba(255, 255, 255, 0.14);
     --text: #eef1f6;
     --muted: #9aa3b5;
@@ -16,7 +16,7 @@
     --joint: #ff3b4e;
     --osc: #ffd23f;
     --filt: #3fd8ff;
-    --gold: #ffb347;
+    --rec: #ff3b4e;
     --display: "Chakra Petch", "Arial Narrow", system-ui, sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
     color-scheme: dark;
@@ -25,24 +25,28 @@
   html, body { height: 100%; }
   body { margin: 0; background: var(--ink); color: var(--text); font-family: var(--mono); overflow: hidden; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
   #stage { position: fixed; inset: 0; }
-  #video, #fx { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  #video { transform: scaleX(-1); opacity: 0.85; }
+  #fx { position: absolute; inset: 0; width: 100%; height: 100%; }
+  /* the camera feed is drawn into the canvas; the video element only supplies frames */
+  #video { position: absolute; width: 2px; height: 2px; opacity: 0; pointer-events: none; }
   #hud {
     position: fixed; top: 0; left: 0; right: 0; z-index: 5;
     display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
-    padding-block: calc(env(safe-area-inset-top, 0px) + 10px) 10px;
+    padding-block: calc(env(safe-area-inset-top, 0px) + 10px) 14px;
     padding-left: max(16px, env(safe-area-inset-left, 0px));
     padding-right: max(16px, env(safe-area-inset-right, 0px));
     background: linear-gradient(var(--panel), transparent);
   }
-  #hud h1 { font: 700 20px/1 var(--display); letter-spacing: 0.06em; margin: 0 auto 0 0; text-transform: uppercase; }
+  #hud h1 { font: 700 20px/1 var(--display); letter-spacing: 0.06em; margin: 0 auto 0 0; text-transform: uppercase; flex-basis: 100%; }
   #hud h1 span { color: var(--bone); }
   .chip {
     font: 600 12px/1 var(--mono); color: var(--text); background: rgba(255,255,255,0.06);
-    border: 1px solid var(--line); border-radius: 999px; padding: 8px 12px; cursor: pointer;
-    letter-spacing: 0.04em; text-transform: uppercase;
+    border: 1px solid var(--line); border-radius: 999px; padding: 9px 12px; cursor: pointer;
+    letter-spacing: 0.04em; text-transform: uppercase; font-variant-numeric: tabular-nums;
   }
   .chip[aria-pressed="true"] { background: var(--text); color: var(--ink); border-color: var(--text); }
+  .chip.rec { border-color: var(--rec); color: var(--rec); }
+  .chip.rec[aria-pressed="true"] { background: var(--rec); color: #fff; animation: pulse 1s infinite; }
+  @keyframes pulse { 50% { opacity: 0.65; } }
   .chip:focus-visible, .big:focus-visible { outline: 2px solid var(--filt); outline-offset: 2px; }
   #readout {
     position: fixed; z-index: 5; left: max(16px, env(safe-area-inset-left, 0px));
@@ -56,9 +60,9 @@
     bottom: calc(env(safe-area-inset-bottom, 0px) + 70px); max-width: min(80vw, 360px);
     font: 400 12px/1.5 var(--mono); color: var(--muted); text-align: right;
   }
-  #sheet {
-    position: fixed; inset: 0; z-index: 10; display: grid; place-items: center;
-    background: radial-gradient(circle at 50% 30%, rgba(61,255,110,0.10), transparent 55%), rgba(6,7,11,0.86);
+  .sheet {
+    position: fixed; inset: 0; z-index: 10; display: grid; place-items: center; overflow-y: auto;
+    background: radial-gradient(circle at 50% 30%, rgba(61,255,110,0.10), transparent 55%), rgba(6,7,11,0.88);
     padding-left: max(16px, env(safe-area-inset-left, 0px));
     padding-right: max(16px, env(safe-area-inset-right, 0px));
     padding-block: 24px;
@@ -67,22 +71,23 @@
   .card h2 { font: 700 clamp(34px, 9vw, 52px)/0.95 var(--display); margin: 0; text-transform: uppercase; text-wrap: balance; }
   .card h2 em { font-style: normal; color: var(--bone); }
   .card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
-  .map { display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; font-size: 12px; line-height: 1.4; }
+  .map { display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; font-size: 12px; line-height: 1.4; margin: 0; }
   .map dt { font-weight: 600; letter-spacing: 0.04em; }
   .map dd { margin: 0; color: var(--muted); }
-  .k-osc { color: var(--osc); } .k-filt { color: var(--filt); } .k-liq { color: var(--bone); } .k-drum { color: var(--joint); }
+  .k-osc { color: var(--osc); } .k-filt { color: var(--filt); } .k-liq { color: var(--bone); } .k-drum { color: var(--joint); } .k-fx { color: #ffc56b; }
   .row { display: flex; gap: 10px; flex-wrap: wrap; }
   .big {
     flex: 1 1 160px; font: 700 15px/1 var(--display); text-transform: uppercase; letter-spacing: 0.06em;
     padding: 16px; border-radius: 12px; cursor: pointer; border: 1px solid var(--line);
-    background: rgba(255,255,255,0.06); color: var(--text);
+    background: rgba(255,255,255,0.06); color: var(--text); text-align: center; text-decoration: none;
   }
   .big.primary { background: var(--bone); color: var(--ink); border-color: var(--bone); }
   .note { font-size: 11px; color: var(--muted); }
+  #clip { width: 100%; max-height: 52vh; border-radius: 12px; background: #000; }
 </style>
 
 <div id="stage">
-  <video id="video" playsinline muted hidden></video>
+  <video id="video" playsinline muted></video>
   <canvas id="fx"></canvas>
 </div>
 
@@ -90,27 +95,44 @@
   <h1>Hand <span>Synth</span></h1>
   <button class="chip" id="m-synth" aria-pressed="true">Synth</button>
   <button class="chip" id="m-magic" aria-pressed="true">Magic</button>
+  <button class="chip" id="m-chord" aria-pressed="false">Chords</button>
+  <button class="chip" id="m-arp" aria-pressed="false">Arp</button>
   <button class="chip" id="m-sound" aria-pressed="true">Sound on</button>
+  <button class="chip rec" id="m-rec" aria-pressed="false">● Rec</button>
   <button class="chip" id="m-source">Touch</button>
 </div>
 <div id="readout" hidden></div>
 <div id="status" role="status"></div>
 
-<div id="sheet">
+<div class="sheet" id="sheet">
   <div class="card">
     <h2>Play music with your <em>hands</em></h2>
-    <p>Your hands become the instrument. Raise and lower one hand to change the note, pinch to open the filter, spread both hands to make it liquid, and close a fist for a drum hit. Sparks and spell circles follow your fingers.</p>
+    <p>Your hands become the instrument. Raise and lower one hand to change the note, pinch to open the filter, bring your hands together to charge an energy orb, and clap for a shockwave.</p>
     <dl class="map">
       <dt class="k-osc">OSC FREQ</dt><dd>Height of your left hand (or first finger)</dd>
       <dt class="k-filt">FILTER</dt><dd>Pinch thumb and index on your right hand</dd>
       <dt class="k-liq">LIQUID</dt><dd>Distance between your two hands</dd>
-      <dt class="k-drum">DRUM</dt><dd>Close a fist (or double-tap)</dd>
+      <dt class="k-drum">DRUMS</dt><dd>Fist = kick · quick pinch = hi-hat · clap = snare and cymbal</dd>
+      <dt class="k-fx">MAGIC</dt><dd>Spell circles, sparks, glitch blocks and lightning between your hands</dd>
     </dl>
     <div class="row">
       <button class="big primary" id="go-camera">Use camera</button>
       <button class="big" id="go-touch">Use touch</button>
     </div>
-    <p class="note" id="sheet-note">The camera needs a browser page you open directly, such as Safari or Chrome on your phone. Touch mode works everywhere.</p>
+    <p class="note">The camera works when you open this page directly in Safari or Chrome. Touch mode works everywhere. Press ● Rec to film a clip with sound.</p>
+  </div>
+</div>
+
+<div class="sheet" id="done" hidden>
+  <div class="card">
+    <h2>Your <em>clip</em></h2>
+    <video id="clip" playsinline controls></video>
+    <div class="row">
+      <button class="big primary" id="share">Share</button>
+      <a class="big" id="save" download="hand-synth.mp4">Save video</a>
+    </div>
+    <button class="big" id="close-done">Back to playing</button>
+    <p class="note" id="done-note"></p>
   </div>
 </div>
 
@@ -125,66 +147,133 @@ function resize() {
   g.setTransform(DPR, 0, 0, DPR, 0, 0);
 }
 addEventListener("resize", resize); resize();
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const state = { source: null, synth: true, magic: true, sound: true };
-const status = (msg) => { $("status").textContent = msg || ""; };
+const state = { source: null, synth: true, magic: true, sound: true, chord: false, arp: false };
+let statusTimer = 0;
+const status = (msg, ms = 0) => { $("status").textContent = msg || ""; clearTimeout(statusTimer); if (ms) statusTimer = setTimeout(() => ($("status").textContent = ""), ms); };
+const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const COL = {};
+for (const k of ["bone", "joint", "osc", "filt"]) COL[k] = css(`--${k}`);
 
-// ---------------- audio ----------------
-let ac = null, nodes = null;
+// ================= audio =================
+let ac = null, A = null;
 function audioStart() {
   if (ac) { ac.resume(); return; }
   ac = new (window.AudioContext || window.webkitAudioContext)();
+  const bus = ac.createGain(); bus.gain.value = 0.9;               // everything goes through here (speakers + recorder)
+  const comp = ac.createDynamicsCompressor(); comp.threshold.value = -14; comp.ratio.value = 4;
+  bus.connect(comp).connect(ac.destination);
+  // generated hall reverb
+  const verb = ac.createConvolver();
+  const len = ac.sampleRate * 2.6, ir = ac.createBuffer(2, len, ac.sampleRate);
+  for (let c = 0; c < 2; c++) { const d = ir.getChannelData(c); for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.6); }
+  verb.buffer = ir;
+  const verbWet = ac.createGain(); verbWet.gain.value = 0.32;
+  verb.connect(verbWet).connect(bus);
+  // synth voice chain: 3 voices -> env -> filter -> master
   const master = ac.createGain(); master.gain.value = 0;
+  const env = ac.createGain(); env.gain.value = 1;
   const filter = ac.createBiquadFilter(); filter.type = "lowpass"; filter.frequency.value = 800; filter.Q.value = 4;
-  const o1 = ac.createOscillator(); o1.type = "sawtooth";
-  const o2 = ac.createOscillator(); o2.type = "square"; o2.detune.value = 7;
-  const mix = ac.createGain(); mix.gain.value = 0.22;
+  const voices = [0, 1, 2].map((k) => {
+    const a = ac.createOscillator(); a.type = "sawtooth";
+    const b = ac.createOscillator(); b.type = "square"; b.detune.value = 7 + k * 3;
+    const gn = ac.createGain(); gn.gain.value = k === 0 ? 0.2 : 0;
+    a.connect(gn); b.connect(gn); gn.connect(env); a.start(); b.start();
+    return { a, b, gn };
+  });
   const lfo = ac.createOscillator(); lfo.frequency.value = 3; const lfoAmt = ac.createGain(); lfoAmt.gain.value = 0;
-  lfo.connect(lfoAmt).connect(filter.frequency);
-  const delay = ac.createDelay(1); delay.delayTime.value = 0.28;
-  const fb = ac.createGain(); fb.gain.value = 0.32; const wet = ac.createGain(); wet.gain.value = 0.28;
-  o1.connect(mix); o2.connect(mix); mix.connect(filter); filter.connect(master);
-  filter.connect(delay); delay.connect(fb).connect(delay); delay.connect(wet).connect(master);
-  master.connect(ac.destination);
-  for (const o of [o1, o2, lfo]) o.start();
-  nodes = { master, filter, o1, o2, lfoAmt };
+  lfo.connect(lfoAmt).connect(filter.frequency); lfo.start();
+  const delay = ac.createDelay(1); delay.delayTime.value = 0.375;
+  const fb = ac.createGain(); fb.gain.value = 0.3; const dwet = ac.createGain(); dwet.gain.value = 0.22;
+  env.connect(filter); filter.connect(master);
+  master.connect(bus); master.connect(verb);
+  master.connect(delay); delay.connect(fb).connect(delay); delay.connect(dwet).connect(bus);
+  const recDest = ac.createMediaStreamDestination(); comp.connect(recDest);
+  A = { bus, verb, master, env, filter, voices, lfoAmt, recDest };
+  setInterval(arpTick, 25);
 }
-const SCALE = [0, 3, 5, 7, 10, 12, 15, 17, 19, 22, 24, 27, 29];   // minor pentatonic, 2+ octaves
-function setSynth({ active, pitchY, pinch, spread }) {
-  if (!nodes) return;
-  const t = ac.currentTime, on = active && state.sound && state.synth;
-  nodes.master.gain.setTargetAtTime(on ? 0.5 : 0, t, 0.05);
-  if (!active) return;
-  const idx = Math.round((1 - Math.min(1, Math.max(0, pitchY))) * (SCALE.length - 1));
-  const f = 110 * Math.pow(2, SCALE[idx] / 12);
-  nodes.o1.frequency.setTargetAtTime(f, t, 0.03);
-  nodes.o2.frequency.setTargetAtTime(f / 2, t, 0.03);
-  const cut = 180 * Math.pow(2, Math.min(1, Math.max(0, pinch)) * 6.2);
-  nodes.filter.frequency.setTargetAtTime(cut, t, 0.04);
-  nodes.filter.Q.setTargetAtTime(2 + spread * 16, t, 0.08);
-  nodes.lfoAmt.gain.setTargetAtTime(spread * cut * 0.6, t, 0.1);
-  readout.freq = f; readout.cut = cut; readout.q = 2 + spread * 16;
-}
-function drum() {
-  if (!ac || !state.sound) return;
+const SCALE = [0, 3, 5, 7, 10, 12, 15, 17, 19, 22, 24, 27, 29, 31, 34];   // minor pentatonic
+let curIdx = 4, active = false;
+const hz = (idx) => 110 * Math.pow(2, SCALE[Math.max(0, Math.min(SCALE.length - 1, idx))] / 12);
+function setSynth({ on, pitchY, pinch, spread }) {
+  if (!A) return;
   const t = ac.currentTime;
-  const o = ac.createOscillator(), env = ac.createGain();
-  o.frequency.setValueAtTime(160, t); o.frequency.exponentialRampToValueAtTime(42, t + 0.16);
-  env.gain.setValueAtTime(0.9, t); env.gain.exponentialRampToValueAtTime(0.001, t + 0.4);
-  o.connect(env).connect(ac.destination); o.start(t); o.stop(t + 0.42);
-  const n = ac.createBufferSource(), buf = ac.createBuffer(1, ac.sampleRate * 0.05, ac.sampleRate);
-  const d = buf.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / d.length);
-  const ng = ac.createGain(); ng.gain.value = 0.25; n.buffer = buf; n.connect(ng).connect(ac.destination); n.start(t);
-  drumFlash = 1;
+  active = on && state.sound && state.synth;
+  A.master.gain.setTargetAtTime(active ? 0.55 : 0, t, 0.06);
+  if (!on) return;
+  curIdx = Math.round((1 - Math.min(1, Math.max(0, pitchY))) * (SCALE.length - 5));
+  if (!state.arp) {
+    A.voices.forEach((v, k) => {
+      const f = hz(curIdx + k * 2);
+      v.a.frequency.setTargetAtTime(f, t, 0.03); v.b.frequency.setTargetAtTime(f / 2, t, 0.03);
+      v.gn.gain.setTargetAtTime(k === 0 ? 0.2 : state.chord ? 0.13 : 0, t, 0.05);
+    });
+    A.env.gain.setTargetAtTime(1, t, 0.02);
+  }
+  const cut = 180 * Math.pow(2, Math.min(1, Math.max(0, pinch)) * 6.2);
+  A.filter.frequency.setTargetAtTime(cut, t, 0.04);
+  A.filter.Q.setTargetAtTime(2 + spread * 14, t, 0.08);
+  A.lfoAmt.gain.setTargetAtTime(spread * cut * 0.6, t, 0.1);
+  readout.freq = hz(curIdx); readout.cut = cut; readout.q = 2 + spread * 14;
 }
+// 120 BPM eighth-note arpeggiator, scheduled slightly ahead of time
+let nextArp = 0, arpStep = 0;
+function arpTick() {
+  if (!A || !state.arp) return;
+  const step = 0.25;
+  if (nextArp < ac.currentTime) nextArp = ac.currentTime + 0.05;
+  while (nextArp < ac.currentTime + 0.1) {
+    const pat = [0, 2, 4, 7, 4, 2], f = hz(curIdx + pat[arpStep % pat.length]);
+    A.voices.forEach((v, k) => {
+      v.a.frequency.setValueAtTime(f * (k === 2 ? 2 : 1), nextArp); v.b.frequency.setValueAtTime(f / 2, nextArp);
+      v.gn.gain.setValueAtTime(k === 0 ? 0.22 : state.chord && k === 1 ? 0.1 : 0, nextArp);
+    });
+    A.env.gain.cancelScheduledValues(nextArp);
+    A.env.gain.setValueAtTime(1, nextArp);
+    A.env.gain.exponentialRampToValueAtTime(0.05, nextArp + step * 0.9);
+    arpStep++; nextArp += step;
+  }
+}
+function noiseBurst(dur, hp, gain, t) {
+  const n = ac.createBufferSource(), buf = ac.createBuffer(1, Math.ceil(ac.sampleRate * dur), ac.sampleRate);
+  const d = buf.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+  const f = ac.createBiquadFilter(); f.type = "highpass"; f.frequency.value = hp;
+  const e = ac.createGain(); e.gain.setValueAtTime(gain, t); e.gain.exponentialRampToValueAtTime(0.001, t + dur);
+  n.buffer = buf; n.connect(f).connect(e); e.connect(A.bus); e.connect(A.verb); n.start(t);
+}
+const drums = {
+  kick() {
+    if (!A || !state.sound) return;
+    const t = ac.currentTime, o = ac.createOscillator(), e = ac.createGain();
+    o.frequency.setValueAtTime(160, t); o.frequency.exponentialRampToValueAtTime(42, t + 0.16);
+    e.gain.setValueAtTime(1, t); e.gain.exponentialRampToValueAtTime(0.001, t + 0.42);
+    o.connect(e).connect(A.bus); o.start(t); o.stop(t + 0.45);
+    noiseBurst(0.02, 2000, 0.3, t);
+    hit("KICK", COL.joint);
+  },
+  hat() { if (!A || !state.sound) return; noiseBurst(0.06, 7000, 0.35, ac.currentTime); hit("HI-HAT", COL.filt); },
+  clap() {
+    if (!A || !state.sound) return;
+    const t = ac.currentTime;
+    noiseBurst(0.18, 1200, 0.8, t); noiseBurst(1.6, 5000, 0.35, t + 0.01);     // snare + cymbal
+    const o = ac.createOscillator(), e = ac.createGain();
+    o.frequency.setValueAtTime(220, t); o.frequency.exponentialRampToValueAtTime(120, t + 0.1);
+    e.gain.setValueAtTime(0.5, t); e.gain.exponentialRampToValueAtTime(0.001, t + 0.2);
+    o.connect(e).connect(A.bus); o.start(t); o.stop(t + 0.22);
+    hit("CLAP", "#ffffff");
+  },
+};
 const readout = { freq: 0, cut: 0, q: 0 };
-let drumFlash = 0;
+let hitText = null;
+const hit = (text, col) => { hitText = { text, col, life: 1 }; };
 
-// ---------------- magic particles ----------------
-const sparks = [];
-function emit(x, y, vx, vy, n, col) {
-  for (let i = 0; i < n && sparks.length < 900; i++) {
-    const a = Math.random() * Math.PI * 2, s = 0.5 + Math.random() * 2.5;
+// ================= effects =================
+const sparks = [], rings = [];
+function emit(x, y, vx, vy, n, col, power = 2.5) {
+  if (reduced) n = Math.min(n, 1);
+  for (let i = 0; i < n && sparks.length < 1400; i++) {
+    const a = Math.random() * Math.PI * 2, s = 0.5 + Math.random() * power;
     sparks.push({ x, y, vx: vx * 0.4 + Math.cos(a) * s, vy: vy * 0.4 + Math.sin(a) * s - 0.6, life: 1, col });
   }
 }
@@ -192,68 +281,116 @@ function drawSparks() {
   g.globalCompositeOperation = "lighter";
   for (let i = sparks.length - 1; i >= 0; i--) {
     const p = sparks[i];
-    p.x += p.vx; p.y += p.vy; p.vy += 0.06; p.vx *= 0.98; p.life -= 0.022;
+    p.x += p.vx; p.y += p.vy; p.vy += 0.06; p.vx *= 0.98; p.life -= 0.02;
     if (p.life <= 0) { sparks.splice(i, 1); continue; }
-    g.strokeStyle = `rgba(${p.col},${p.life})`;
-    g.lineWidth = 1.6;
+    g.strokeStyle = `rgba(${p.col},${p.life})`; g.lineWidth = 1.7;
     g.beginPath(); g.moveTo(p.x, p.y); g.lineTo(p.x - p.vx * 3, p.y - p.vy * 3); g.stroke();
+  }
+  for (let i = rings.length - 1; i >= 0; i--) {
+    const r = rings[i]; r.r += 14; r.life -= 0.035;
+    if (r.life <= 0) { rings.splice(i, 1); continue; }
+    g.strokeStyle = `rgba(255,255,255,${r.life})`; g.lineWidth = 6 * r.life;
+    g.beginPath(); g.arc(r.x, r.y, r.r, 0, Math.PI * 2); g.stroke();
   }
   g.globalCompositeOperation = "source-over";
 }
 function spellCircle(x, y, r, t, hue = "255,236,200") {
-  g.save();
-  g.globalCompositeOperation = "lighter";
-  g.translate(x, y);
-  g.shadowColor = `rgba(${hue},0.9)`; g.shadowBlur = 14;
-  g.strokeStyle = `rgba(${hue},0.9)`;
+  g.save(); g.globalCompositeOperation = "lighter"; g.translate(x, y);
+  g.shadowColor = `rgba(${hue},0.9)`; g.shadowBlur = 14; g.strokeStyle = `rgba(${hue},0.9)`;
   for (const [rr, w, sp, dash] of [[r, 2.2, 0.8, []], [r * 0.72, 1.4, -1.3, [6, 5]], [r * 0.42, 1.8, 2, []]]) {
-    g.save(); g.rotate(t * sp); g.lineWidth = w; g.setLineDash(dash);
-    g.beginPath(); g.arc(0, 0, rr, 0, Math.PI * 2); g.stroke(); g.restore();
+    g.save(); g.rotate(t * sp); g.lineWidth = w; g.setLineDash(dash); g.beginPath(); g.arc(0, 0, rr, 0, Math.PI * 2); g.stroke(); g.restore();
   }
-  g.setLineDash([]);
-  g.save(); g.rotate(-t * 0.6);
-  for (let k = 0; k < 12; k++) {           // tick marks and little runes on the outer ring
+  g.setLineDash([]); g.save(); g.rotate(-t * 0.6);
+  for (let k = 0; k < 12; k++) {
     const a = (k / 12) * Math.PI * 2;
     g.beginPath(); g.moveTo(Math.cos(a) * r * 0.86, Math.sin(a) * r * 0.86); g.lineTo(Math.cos(a) * r * 0.98, Math.sin(a) * r * 0.98); g.stroke();
     if (k % 3 === 0) { g.save(); g.translate(Math.cos(a) * r * 1.16, Math.sin(a) * r * 1.16); g.rotate(a); g.strokeRect(-3, -3, 6, 6); g.restore(); }
   }
-  g.restore();
+  g.restore(); g.restore();
+}
+function lightning(p, q, t, k) {
+  g.save(); g.globalCompositeOperation = "lighter";
+  for (const [w, c] of [[7, "rgba(80,190,255,0.35)"], [2, "rgba(225,245,255,0.95)"]]) {
+    g.strokeStyle = c; g.lineWidth = w; g.beginPath(); g.moveTo(p.x, p.y);
+    const n = 9, dx = q.x - p.x, dy = q.y - p.y, len = Math.hypot(dx, dy) || 1, nx = -dy / len, ny = dx / len;
+    for (let i = 1; i < n; i++) {
+      const j = (Math.sin(t * 40 + i * 7.3 + k * 3.1) + Math.sin(t * 23 + i * 2.1)) * len * 0.05;
+      g.lineTo(p.x + (dx * i) / n + nx * j, p.y + (dy * i) / n + ny * j);
+    }
+    g.lineTo(q.x, q.y); g.stroke();
+  }
   g.restore();
 }
+function orb(x, y, r, t) {
+  if (r < 4) return;
+  g.save(); g.globalCompositeOperation = "lighter";
+  const pr = r * (1 + 0.08 * Math.sin(t * 9));
+  const gr = g.createRadialGradient(x, y, 0, x, y, pr * 1.8);
+  gr.addColorStop(0, "rgba(255,255,255,0.95)"); gr.addColorStop(0.25, "rgba(120,220,255,0.75)"); gr.addColorStop(0.6, "rgba(90,80,255,0.25)"); gr.addColorStop(1, "rgba(0,0,0,0)");
+  g.fillStyle = gr; g.beginPath(); g.arc(x, y, pr * 1.8, 0, Math.PI * 2); g.fill();
+  g.restore();
+}
+// pixel-glitch blocks around a hand, sampled from the frame already drawn
+const tmp = document.createElement("canvas"); tmp.width = tmp.height = 8;
+const tctx = tmp.getContext("2d");
+function glitch(box) {
+  if (reduced) return;
+  for (let i = 0; i < 9; i++) {
+    const s = 22 + Math.random() * 46;
+    const x = box.x0 - 30 + Math.random() * (box.x1 - box.x0 + 60), y = box.y0 - 30 + Math.random() * (box.y1 - box.y0 + 60);
+    tctx.clearRect(0, 0, 8, 8);
+    tctx.drawImage(cv, x * DPR, y * DPR, s * DPR, s * DPR, 0, 0, 8, 8);
+    g.imageSmoothingEnabled = false;
+    g.globalAlpha = 0.85;
+    g.drawImage(tmp, 0, 0, 8, 8, x + (Math.random() - 0.5) * 18, y, s, s);
+    g.globalAlpha = 1; g.imageSmoothingEnabled = true;
+  }
+}
 
-// ---------------- hand model ----------------
+// ================= hands =================
 const BONES = [[0,1],[1,2],[2,3],[3,4],[0,5],[5,6],[6,7],[7,8],[5,9],[9,10],[10,11],[11,12],[9,13],[13,14],[14,15],[15,16],[13,17],[17,18],[18,19],[19,20],[0,17]];
 const TIPS = [4, 8, 12, 16, 20];
 const dist = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
 const prevTips = new Map();
-const fistState = [false, false];
+const hstate = [{ fist: false, pinch: 1 }, { fist: false, pinch: 1 }];
+let lastPalmGap = Infinity, clapCool = 0;
 
 function toScreen(lms) {
-  // video is mirrored and object-fit: cover — map normalized landmarks onto the canvas
   const vw = video.videoWidth || 640, vh = video.videoHeight || 480;
   const s = Math.max(W / vw, H / vh), dw = vw * s, dh = vh * s, ox = (W - dw) / 2, oy = (H - dh) / 2;
   return lms.map((p) => ({ x: ox + (1 - p.x) * dw, y: oy + p.y * dh }));
 }
-
 function analyse(hands) {
-  // hands: arrays of 21 screen points; sort left-to-right on screen
   hands.sort((a, b) => a[0].x - b[0].x);
   const info = hands.map((h, i) => {
     const size = dist(h[0], h[9]) || 1;
     const pinch = Math.min(1, Math.max(0, (dist(h[4], h[8]) / size - 0.15) / 1.1));
     const curl = TIPS.slice(1).reduce((s, k) => s + dist(h[k], h[0]), 0) / 4 / size;
     const fist = curl < 1.15;
-    if (fist && !fistState[i]) drum();
-    fistState[i] = fist;
-    return { h, size, pinch, fist };
+    const st = hstate[i];
+    if (fist && !st.fist) drums.kick();
+    if (!fist && pinch < 0.08 && st.pinch > 0.3) drums.hat();
+    st.fist = fist; st.pinch = pinch;
+    const xs = h.map((p) => p.x), ys = h.map((p) => p.y);
+    return { h, size, pinch, fist, palm: { x: (h[0].x + h[9].x) / 2, y: (h[0].y + h[9].y) / 2 }, box: { x0: Math.min(...xs), x1: Math.max(...xs), y0: Math.min(...ys), y1: Math.max(...ys) } };
   });
-  for (let i = hands.length; i < 2; i++) fistState[i] = false;
-  const A = info[0], B = info[1] ?? info[0];
-  const spread = info.length > 1 ? Math.min(1, dist(info[0].h[8], info[1].h[8]) / (W * 0.8)) : 0;
-  setSynth({ active: info.length > 0, pitchY: A ? A.h[8].y / H : 0.5, pinch: B ? B.pinch : 0.5, spread });
+  for (let i = hands.length; i < 2; i++) hstate[i] = { fist: false, pinch: 1 };
+  let spread = 0;
+  if (info.length > 1) {
+    const gap = dist(info[0].palm, info[1].palm);
+    spread = Math.min(1, dist(info[0].h[8], info[1].h[8]) / (W * 0.8));
+    if (clapCool <= 0 && lastPalmGap > W * 0.3 && gap < W * 0.16) {
+      drums.clap(); clapCool = 30;
+      const m = { x: (info[0].palm.x + info[1].palm.x) / 2, y: (info[0].palm.y + info[1].palm.y) / 2 };
+      rings.push({ x: m.x, y: m.y, r: 20, life: 1 }); emit(m.x, m.y, 0, 0, 160, "255,230,160", 7);
+    }
+    lastPalmGap = gap;
+  } else lastPalmGap = Infinity;
+  clapCool--;
+  const L = info[0], R = info[1] ?? info[0];
+  setSynth({ on: info.length > 0, pitchY: L ? L.h[8].y / H : 0.5, pinch: R ? R.pinch : 0.5, spread });
   return { info, spread };
 }
-
 function label(text, x, y, col) {
   g.font = `600 ${Math.max(12, W / 36)}px "IBM Plex Mono", monospace`;
   g.textAlign = "center"; g.textBaseline = "middle";
@@ -266,150 +403,220 @@ function knobLine(p, q, col, text) {
   for (const pt of [p, q]) { g.fillStyle = col; g.beginPath(); g.arc(pt.x, pt.y, 8, 0, Math.PI * 2); g.fill(); }
   label(text, (p.x + q.x) / 2, (p.y + q.y) / 2 - 18, col);
 }
-
-function drawHands(an, t) {
-  const { info, spread } = an;
-  for (const { h, pinch, fist } of info) {
+function drawHands({ info, spread }, t) {
+  if (state.magic) for (const hd of info) glitch(hd.box);
+  if (state.magic && info.length > 1) {
+    const near = 1 - spread;
+    if (spread < 0.75) [8, 12, 16].forEach((k, i) => lightning(info[0].h[k], info[1].h[k], t, i));
+    const m = { x: (info[0].palm.x + info[1].palm.x) / 2, y: (info[0].palm.y + info[1].palm.y) / 2 };
+    orb(m.x, m.y, Math.max(0, near - 0.3) * 120, t);
+  }
+  info.forEach(({ h, pinch, fist, palm }, idx) => {
     if (state.synth) {
-      g.strokeStyle = getVar("--bone"); g.lineWidth = 3;
+      g.strokeStyle = COL.bone; g.lineWidth = 3;
       for (const [a, b] of BONES) { g.beginPath(); g.moveTo(h[a].x, h[a].y); g.lineTo(h[b].x, h[b].y); g.stroke(); }
-      g.fillStyle = getVar("--joint");
+      g.fillStyle = COL.joint;
       for (const p of h) { g.beginPath(); g.arc(p.x, p.y, 4.5, 0, Math.PI * 2); g.fill(); }
     }
     if (state.magic) {
-      const palm = { x: (h[0].x + h[9].x) / 2, y: (h[0].y + h[9].y) / 2 };
       spellCircle(palm.x, palm.y, dist(h[0], h[9]) * (0.7 + pinch * 0.5), t);
       spellCircle(h[8].x, h[8].y, 18 + pinch * 26, t * 1.4, "255,200,120");
       for (const k of TIPS) {
-        const key = `${info.indexOf(info.find((x) => x.h === h))}-${k}`, prev = prevTips.get(key) || h[k];
-        const vx = h[k].x - prev.x, vy = h[k].y - prev.y, sp = Math.hypot(vx, vy);
-        emit(h[k].x, h[k].y, vx, vy, Math.min(6, 1 + sp / 6), k === 8 ? "255,190,80" : "255,150,60");
+        const key = `${idx}-${k}`, prev = prevTips.get(key) || h[k];
+        const vx = h[k].x - prev.x, vy = h[k].y - prev.y;
+        emit(h[k].x, h[k].y, vx, vy, Math.min(6, 1 + Math.hypot(vx, vy) / 6), k === 8 ? "255,190,80" : "255,150,60");
         prevTips.set(key, { x: h[k].x, y: h[k].y });
       }
-      if (fist) emit(h[9].x, h[9].y, 0, -2, 30, "255,120,40");
+      if (fist) emit(h[9].x, h[9].y, 0, -2, 24, "255,120,40");
     }
-  }
+  });
   if (state.synth && info.length) {
-    const A = info[0], B = info[1];
-    knobLine(A.h[4], A.h[8], getVar("--osc"), `OSC FREQ ${Math.round(readout.freq)} Hz`);
-    if (B) {
-      knobLine(B.h[4], B.h[8], getVar("--filt"), `FILTER ${Math.round(readout.cut)} Hz`);
-      g.setLineDash([10, 8]);
-      knobLine(A.h[8], B.h[8], getVar("--bone"), `LIQUID ${(spread * 100) | 0}%`);
-      g.setLineDash([]);
-    }
-    if (drumFlash > 0.05) {
-      const c = info[0].h[9];
-      label("DRUM ATTACK", c.x, c.y + 60, `rgba(255,59,78,${drumFlash})`);
+    const L = info[0], R = info[1];
+    knobLine(L.h[4], L.h[8], COL.osc, `OSC FREQ ${Math.round(readout.freq)} Hz`);
+    if (R) {
+      knobLine(R.h[4], R.h[8], COL.filt, `FILTER ${Math.round(readout.cut)} Hz`);
+      g.setLineDash([10, 8]); knobLine(L.h[8], R.h[8], COL.bone, `LIQUID ${(spread * 100) | 0}%`); g.setLineDash([]);
     }
   }
 }
 
-// ---------------- touch mode ----------------
+// ================= touch mode =================
 const touches = new Map();
 let lastTap = 0;
 cv.addEventListener("pointerdown", (e) => {
   if (state.source !== "touch") return;
-  cv.setPointerCapture(e.pointerId);
+  try { cv.setPointerCapture(e.pointerId); } catch {}
   touches.set(e.pointerId, { x: e.clientX, y: e.clientY, px: e.clientX, py: e.clientY });
   const now = performance.now();
-  if (now - lastTap < 280) drum();
+  if (now - lastTap < 280) drums.kick();
   lastTap = now;
+  if (touches.size === 3) { drums.clap(); rings.push({ x: e.clientX, y: e.clientY, r: 20, life: 1 }); emit(e.clientX, e.clientY, 0, 0, 120, "255,230,160", 6); }
 });
-cv.addEventListener("pointermove", (e) => {
-  const p = touches.get(e.pointerId); if (!p) return;
-  p.px = p.x; p.py = p.y; p.x = e.clientX; p.y = e.clientY;
-});
+cv.addEventListener("pointermove", (e) => { const p = touches.get(e.pointerId); if (p) { p.px = p.x; p.py = p.y; p.x = e.clientX; p.y = e.clientY; } });
 for (const ev of ["pointerup", "pointercancel"]) cv.addEventListener(ev, (e) => touches.delete(e.pointerId));
 
+function touchBackdrop(t) {
+  g.fillStyle = "#06070b"; g.fillRect(0, 0, W, H);
+  const gr = g.createRadialGradient(W * (0.5 + 0.3 * Math.sin(t * 0.3)), H * 0.4, 0, W / 2, H * 0.4, H * 0.7);
+  gr.addColorStop(0, "rgba(61,255,110,0.10)"); gr.addColorStop(0.5, "rgba(63,120,255,0.06)"); gr.addColorStop(1, "rgba(0,0,0,0)");
+  g.fillStyle = gr; g.fillRect(0, 0, W, H);
+  g.strokeStyle = "rgba(255,255,255,0.05)"; g.lineWidth = 1;
+  const step = 40, off = (t * 12) % step;
+  for (let x = -off; x < W; x += step) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, H); g.stroke(); }
+  for (let y = -off; y < H; y += step) { g.beginPath(); g.moveTo(0, y); g.lineTo(W, y); g.stroke(); }
+}
 function drawTouch(t) {
+  touchBackdrop(t);
   const pts = [...touches.values()].sort((a, b) => a.x - b.x);
-  const spread = pts.length > 1 ? Math.min(1, Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y) / (W * 0.8)) : 0;
-  const pinch = pts.length > 1 ? 1 - Math.min(1, Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y) / Math.max(W, H)) : Math.min(1, pts[0] ? pts[0].x / W : 0.5);
-  setSynth({ active: pts.length > 0, pitchY: pts[0] ? pts[0].y / H : 0.5, pinch: pts.length > 1 ? 1 - pinch : pinch, spread });
-  for (const p of pts) {
-    if (state.magic) {
-      spellCircle(p.x, p.y, 46 + spread * 40, t);
-      emit(p.x, p.y, p.x - p.px, p.y - p.py, 5, "255,180,70");
-    }
+  const d = pts.length > 1 ? Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y) : 0;
+  const spread = pts.length > 1 ? Math.min(1, d / (W * 0.8)) : 0;
+  const pinch = pts.length > 1 ? Math.min(1, d / Math.max(W, H)) : (pts[0] ? pts[0].x / W : 0.5);
+  setSynth({ on: pts.length > 0, pitchY: pts[0] ? pts[0].y / H : 0.5, pinch, spread });
+  if (state.magic && pts.length > 1) {
+    lightning(pts[0], pts[1], t, 0);
+    orb((pts[0].x + pts[1].x) / 2, (pts[0].y + pts[1].y) / 2, Math.max(0, 0.7 - spread) * 110, t);
   }
+  for (const p of pts) if (state.magic) { spellCircle(p.x, p.y, 46 + spread * 40, t); emit(p.x, p.y, p.x - p.px, p.y - p.py, 5, "255,180,70"); }
   if (state.synth && pts.length) {
-    label(`OSC FREQ ${Math.round(readout.freq)} Hz`, pts[0].x, pts[0].y - 70, getVar("--osc"));
-    if (pts.length > 1) knobLine(pts[0], pts[1], getVar("--bone"), `LIQUID ${(spread * 100) | 0}%  ·  FILTER ${Math.round(readout.cut)} Hz`);
+    label(`OSC FREQ ${Math.round(readout.freq)} Hz`, pts[0].x, pts[0].y - 74, COL.osc);
+    if (pts.length > 1) knobLine(pts[0], pts[1], COL.bone, `LIQUID ${(spread * 100) | 0}% · FILTER ${Math.round(readout.cut)} Hz`);
   }
-  if (!pts.length && !state.idleShown) label("Touch and drag to play", W / 2, H / 2, "rgba(255,255,255,0.6)");
+  if (!pts.length) label("Touch and drag to play", W / 2, H / 2, "rgba(255,255,255,0.6)");
 }
 
-// ---------------- camera + MediaPipe ----------------
+// ================= camera =================
 let landmarker = null, lastVideoTime = -1, lastHands = [];
 async function startCamera() {
   status("Starting camera…");
+  if (!navigator.mediaDevices?.getUserMedia) throw Object.assign(new Error("no camera"), { kind: "camera" });
   const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user", width: { ideal: 1280 }, height: { ideal: 720 } }, audio: false });
-  video.srcObject = stream; video.hidden = false;
+  video.srcObject = stream;
   await video.play();
   status("Loading hand tracking…");
-  const vision = await import("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.21/vision_bundle.mjs");
-  const files = await vision.FilesetResolver.forVisionTasks("https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.21/wasm");
+  try { await loadTracker(); }
+  catch (e) { throw Object.assign(e, { kind: "tracker" }); }
+  status("Show your hands to the camera", 4000);
+}
+async function loadTracker() {
+  const base = "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.21";
+  const vision = await import(`${base}/vision_bundle.mjs`);
+  const files = await vision.FilesetResolver.forVisionTasks(`${base}/wasm`);
   const opts = (delegate) => ({
     baseOptions: { modelAssetPath: "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task", delegate },
     runningMode: "VIDEO", numHands: 2,
   });
   try { landmarker = await vision.HandLandmarker.createFromOptions(files, opts("GPU")); }
   catch { landmarker = await vision.HandLandmarker.createFromOptions(files, opts("CPU")); }
-  status("Show your hands to the camera");
-  setTimeout(() => status(""), 4000);
+}
+function drawCamera() {
+  const vw = video.videoWidth, vh = video.videoHeight;
+  if (!vw) { g.fillStyle = "#06070b"; g.fillRect(0, 0, W, H); return; }
+  const s = Math.max(W / vw, H / vh), dw = vw * s, dh = vh * s;
+  g.save(); g.translate(W, 0); g.scale(-1, 1);                    // mirror like a selfie
+  g.drawImage(video, (W - dw) / 2, (H - dh) / 2, dw, dh);
+  g.restore();
+  g.fillStyle = "rgba(6,8,16,0.38)"; g.fillRect(0, 0, W, H);       // cinematic darken
+  const vg = g.createRadialGradient(W / 2, H / 2, H * 0.25, W / 2, H / 2, H * 0.75);
+  vg.addColorStop(0, "rgba(0,0,0,0)"); vg.addColorStop(1, "rgba(0,0,0,0.55)");
+  g.fillStyle = vg; g.fillRect(0, 0, W, H);
 }
 
-function getVar(n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
-
-// ---------------- main loop ----------------
+// ================= loop =================
 function frame(now) {
   const t = now / 1000;
-  g.clearRect(0, 0, W, H);
-  if (state.source === "touch") {
-    g.fillStyle = "rgba(6,7,11,1)"; g.fillRect(0, 0, W, H);
-    drawTouch(t);
-  } else if (state.source === "camera" && landmarker && video.readyState >= 2) {
-    if (video.currentTime !== lastVideoTime) {
-      lastVideoTime = video.currentTime;
-      const res = landmarker.detectForVideo(video, now);
-      lastHands = (res.landmarks || []).map(toScreen);
+  if (state.source === "touch") drawTouch(t);
+  else if (state.source === "camera") {
+    drawCamera();
+    if (landmarker && video.readyState >= 2) {
+      if (video.currentTime !== lastVideoTime) {
+        lastVideoTime = video.currentTime;
+        lastHands = (landmarker.detectForVideo(video, now).landmarks || []).map(toScreen);
+      }
+      drawHands(analyse(lastHands.map((h) => h.slice())), t);
     }
-    const an = analyse(lastHands.map((h) => h.slice()));
-    drawHands(an, t);
-  }
+  } else { g.fillStyle = "#06070b"; g.fillRect(0, 0, W, H); }
   if (state.magic) drawSparks();
-  drumFlash *= 0.92;
-  if (state.source) {
-    $("readout").innerHTML = `OSC <b>${Math.round(readout.freq) || "—"} Hz</b> · FILTER <b>${Math.round(readout.cut) || "—"} Hz</b> · Q <b>${readout.q ? readout.q.toFixed(1) : "—"}</b>`;
+  if (hitText && hitText.life > 0.03) {
+    g.save(); g.globalAlpha = hitText.life;
+    g.font = `700 ${W / 9}px "Chakra Petch", sans-serif`; g.textAlign = "center"; g.textBaseline = "middle";
+    g.fillStyle = hitText.col; g.fillText(hitText.text, W / 2, H * 0.62 - (1 - hitText.life) * 40);
+    g.restore(); hitText.life *= 0.9;
   }
+  if (rec) drawRecBadge(now);
+  if (state.source) $("readout").innerHTML = `OSC <b>${Math.round(readout.freq) || "—"} Hz</b> · FILTER <b>${Math.round(readout.cut) || "—"} Hz</b> · Q <b>${readout.q ? readout.q.toFixed(1) : "—"}</b>`;
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
 
-// ---------------- controls ----------------
+// ================= recording =================
+let rec = null, recStart = 0, chunks = [], clipURL = null, clipFile = null;
+function drawRecBadge(now) {
+  const s = ((now - recStart) / 1000) | 0;
+  g.fillStyle = "rgba(255,59,78,0.9)"; g.beginPath(); g.arc(W - 30, H - 120, 7, 0, Math.PI * 2); g.fill();
+  g.font = `600 13px "IBM Plex Mono", monospace`; g.textAlign = "right"; g.fillStyle = "#fff";
+  g.fillText(`REC ${String((s / 60) | 0).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`, W - 44, H - 120);
+}
+function pickType() {
+  for (const t of ["video/mp4;codecs=avc1,mp4a", "video/mp4", "video/webm;codecs=vp9,opus", "video/webm"]) if (window.MediaRecorder && MediaRecorder.isTypeSupported(t)) return t;
+  return "";
+}
+function toggleRec() {
+  if (rec) { rec.stop(); return; }
+  if (!cv.captureStream || !window.MediaRecorder) { status("This browser can't record the canvas. Use your phone's screen recording instead.", 6000); return; }
+  audioStart();
+  const stream = cv.captureStream(30);
+  for (const tr of A.recDest.stream.getAudioTracks()) stream.addTrack(tr);
+  const type = pickType();
+  try { rec = new MediaRecorder(stream, type ? { mimeType: type, videoBitsPerSecond: 6e6 } : undefined); }
+  catch { status("Recording isn't supported here. Use your phone's screen recording instead.", 6000); return; }
+  chunks = []; recStart = performance.now();
+  rec.ondataavailable = (e) => e.data.size && chunks.push(e.data);
+  rec.onstop = () => {
+    const mime = rec.mimeType || type || "video/webm";
+    rec = null; $("m-rec").setAttribute("aria-pressed", "false"); $("m-rec").textContent = "● Rec";
+    const blob = new Blob(chunks, { type: mime });
+    const ext = mime.includes("mp4") ? "mp4" : "webm";
+    if (clipURL) URL.revokeObjectURL(clipURL);
+    clipURL = URL.createObjectURL(blob);
+    clipFile = new File([blob], `hand-synth.${ext}`, { type: mime.split(";")[0] });
+    $("clip").src = clipURL; $("save").href = clipURL; $("save").download = clipFile.name;
+    $("share").hidden = !(navigator.canShare && navigator.canShare({ files: [clipFile] }));
+    $("done-note").textContent = ext === "webm" ? "Saved as WebM. Instagram may need it converted to MP4." : "";
+    $("done").hidden = false;
+  };
+  rec.start(500);
+  setTimeout(() => rec && rec.state === "recording" && rec.stop(), 60000);
+  $("m-rec").setAttribute("aria-pressed", "true"); $("m-rec").textContent = "■ Stop";
+}
+$("m-rec").onclick = toggleRec;
+$("share").onclick = async () => { try { await navigator.share({ files: [clipFile], title: "Hand Synth" }); } catch {} };
+$("close-done").onclick = () => { $("done").hidden = true; };
+
+// ================= controls =================
 function begin(source) {
   audioStart();
   state.source = source;
   $("sheet").hidden = true; $("hud").hidden = false; $("readout").hidden = false;
   $("m-source").textContent = source === "camera" ? "Touch" : "Camera";
-  if (source === "touch") { video.hidden = true; status("Drag one finger to play, add a second to bend the filter, double-tap for a drum."); setTimeout(() => status(""), 5000); }
+  if (source === "touch") status("Drag one finger to play. Add a second finger to bend the filter. Double-tap for a kick, three fingers for a clap.", 6000);
 }
 $("go-touch").onclick = () => begin("touch");
 $("go-camera").onclick = async () => {
-  audioStart();
   try { begin("camera"); await startCamera(); }
   catch (err) {
     begin("touch");
-    status("The camera isn't available in this view, so touch mode is on. For the camera, open ghostfreakxx.github.io/3dmap-wartime-visual3dvideo/hands in Safari or Chrome.");
+    status(err?.kind === "tracker"
+      ? "Hand tracking couldn't load, so touch mode is on. Check your connection and reload the page."
+      : "The camera isn't available here, so touch mode is on. Allow camera access, or open ghostfreakxx.github.io/3dmap-wartime-visual3dvideo/hands in Safari or Chrome.", 9000);
   }
 };
 $("m-source").onclick = () => (state.source === "camera" ? begin("touch") : $("go-camera").onclick());
-for (const [id, key, on, off] of [["m-synth", "synth"], ["m-magic", "magic"], ["m-sound", "sound", "Sound on", "Sound off"]]) {
+for (const [id, key, on, off] of [["m-synth", "synth"], ["m-magic", "magic"], ["m-chord", "chord"], ["m-arp", "arp"], ["m-sound", "sound", "Sound on", "Sound off"]]) {
   $(id).onclick = () => {
     state[key] = !state[key];
     $(id).setAttribute("aria-pressed", String(state[key]));
     if (on) $(id).textContent = state[key] ? on : off;
+    if (key === "arp" && A && !state.arp) { A.env.gain.cancelScheduledValues(ac.currentTime); A.env.gain.setValueAtTime(1, ac.currentTime); }
   };
 }
 </script>
