@@ -2,6 +2,7 @@
 // flying through it (the Aizawl-style cinematic shot).
 import * as THREE from 'three';
 import { makeNoise } from './noise.js';
+import { addFeatures } from './features3d.js';
 
 const DEFAULT_SKY = {
   zenith: '#2b1d3a',
@@ -132,7 +133,12 @@ export function createFlyover(cfg, W, H) {
     return new THREE.Vector3(x, y, z);
   };
 
+  const updateFeatures = cfg.features
+    ? addFeatures(scene, cfg.features, { heightAt, pathAt, duration, seed: (tcfg.seed ?? 1) + 11 })
+    : () => {};
+
   function update(t) {
+    updateFeatures(t);
     const p = pathAt(t);
     const ahead = pathAt(t + 0.25);
     jet.position.copy(p);
@@ -143,7 +149,8 @@ export function createFlyover(cfg, W, H) {
     const sway = Math.sin(t * 0.3) * 6;
     if (cam.mode === 'chase') {
       camera.position.set(p.x + sway, p.y + cam.height + 6, p.z + cam.distance);
-      camera.lookAt(p.x, p.y + cam.height + 3, p.z - 80);
+      // lookDown tilts the drone camera toward the ground (world units at 80 ahead)
+      camera.lookAt(p.x, p.y + cam.height + 3 - (cam.lookDown ?? 0), p.z - 80);
     } else {
       // camera flies ahead of the jet, slowly letting it catch up
       const lead = cam.distance * (1.25 - 0.35 * Math.min(1, t / duration));

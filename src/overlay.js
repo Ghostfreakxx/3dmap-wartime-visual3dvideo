@@ -82,3 +82,47 @@ function stroked(ctx, text, x, y, size, font, fill, stroke) {
   ctx.fillStyle = fill;
   ctx.fillText(text, x, y);
 }
+
+/**
+ * Big-number card (campaign-ad style): the number counts up, with a label
+ * and a small source/assumption line. Times are local to the segment.
+ * { start, end, value, prefix, suffix, decimals, label, sub, color, y }
+ */
+export function drawCard(ctx, c, t, W, H, u, font) {
+  const a = fadeAlpha(t, c.start, c.end, 0.35);
+  if (a <= 0) return;
+  const p = Math.min(1, (t - c.start) / (c.count ?? 1.4));
+  const ease = 1 - Math.pow(1 - p, 3);
+  const v = (c.value ?? 0) * ease;
+  const num = v.toLocaleString('en-US', { minimumFractionDigits: c.decimals ?? 0, maximumFractionDigits: c.decimals ?? 0 });
+  const text = `${c.prefix ?? ''}${num}${c.suffix ?? ''}`;
+  const accent = c.color ?? '#ffd25a';
+  const y = H * (c.y ?? 0.42);
+  const slide = (1 - Math.min(1, (t - c.start) / 0.5)) * 40 * u;
+  ctx.save();
+  ctx.globalAlpha = a;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'alphabetic';
+  ctx.shadowColor = 'rgba(0,0,0,0.6)';
+  ctx.shadowBlur = 24 * u;
+  let size = (c.size ?? 150) * u;
+  ctx.font = `900 ${size}px ${font}`;
+  while (ctx.measureText(text).width > W - 100 * u && size > 40 * u) { size *= 0.92; ctx.font = `900 ${size}px ${font}`; }
+  ctx.fillStyle = accent;
+  ctx.fillText(text, W / 2, y + slide);
+  ctx.shadowBlur = 12 * u;
+  ctx.fillStyle = accent;
+  ctx.fillRect(W / 2 - 90 * u, y + 28 * u + slide, 180 * u, 6 * u);
+  if (c.label) {
+    ctx.font = `900 ${(c.labelSize ?? 50) * u}px ${font}`;
+    ctx.fillStyle = '#ffffff';
+    ctx.fillText(c.label, W / 2, y + 100 * u + slide);
+  }
+  if (c.sub) {
+    ctx.shadowBlur = 6 * u;
+    ctx.font = `600 ${26 * u}px ${font}`;
+    ctx.fillStyle = 'rgba(255,255,255,0.8)';
+    ctx.fillText(c.sub, W / 2, y + 150 * u + slide);
+  }
+  ctx.restore();
+}

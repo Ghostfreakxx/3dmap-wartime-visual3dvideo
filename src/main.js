@@ -3,7 +3,7 @@
 import * as THREE from 'three';
 import { createFlyover } from './flyover.js';
 import { createCampaign } from './campaign.js';
-import { drawTitle, drawSubtitle, fadeAlpha } from './overlay.js';
+import { drawTitle, drawSubtitle, drawCard, fadeAlpha } from './overlay.js';
 
 const params = new URLSearchParams(location.search);
 const sceneUrl = params.get('scene') || 'scenes/aizawl-1966.json';
@@ -37,6 +37,8 @@ const getRenderer = () => {
     renderer = new THREE.WebGLRenderer({ canvas: glCanvas, antialias: true, preserveDrawingBuffer: true });
     renderer.setPixelRatio(1);
     renderer.setSize(W, H, false);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping; // filmic grade
+    renderer.toneMappingExposure = spec.exposure ?? 1.05;
   }
   return renderer;
 };
@@ -85,6 +87,7 @@ function seek(t) {
     const ti = seg.title;
     drawTitle(ovCtx, ti, fadeAlpha(local, ti.start ?? 0, ti.end ?? seg.duration), W, u, font);
   }
+  for (const card of seg.cards || []) drawCard(ovCtx, card, local, W, H, u, font);
   for (const s of spec.subtitles || []) {
     const a = fadeAlpha(t, s.start, s.end, 0.2);
     if (a > 0) drawSubtitle(ovCtx, s.text, a, W, H, u, font, spec.subtitleStyle);

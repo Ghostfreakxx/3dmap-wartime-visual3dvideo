@@ -22,5 +22,9 @@
   {
     "name": "Scenario: Mizoram 2047 (Kaladan gateway & development)",
     "file": "scenes/mizoram-2047.json"
+  },
+  {
+    "name": "Promo: MIZO FIRST \u00b7 Mizoram 2047",
+    "file": "scenes/mizo-first-2047.json"
   }
 ]

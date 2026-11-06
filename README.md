@@ -5,7 +5,7 @@ Data-driven history videos for Reels / Shorts / TikTok (1080×1920). This repo p
 | Segment type | Look | Example |
 |---|---|---|
 | `flyover3d` | Cinematic 3D flight over golden-hour mountains, with a jet, a location/date title card and narration subtitles | `public/scenes/aizawl-1966.json` |
-| `campaign2d` | Animated campaign map with a running date counter, territory per faction, unit flags with troop counts, attack arrows, battles and a legend that sums each side's troops | `public/scenes/egypt-1798.json`, `public/scenes/northeast-burma-1824.json`, `public/scenes/mizo-insurgency-1966.json`, `public/scenes/mizo-insurgency-detailed.json`, `public/scenes/mizoram-2047.json` |
+| `campaign2d` | Animated campaign map with a running date counter, territory per faction, unit flags with troop counts, attack arrows, battles and a legend that sums each side's troops | `public/scenes/egypt-1798.json`, `public/scenes/northeast-burma-1824.json`, `public/scenes/mizo-insurgency-1966.json`, `public/scenes/mizo-insurgency-detailed.json`, `public/scenes/mizoram-2047.json`, `public/scenes/mizo-first-2047.json` (promo) |
 
 You describe each video in a JSON **scene** file. The same file drives a live preview in the browser and a frame-accurate MP4 render.
 
@@ -110,11 +110,24 @@ Changing `terrain.seed` gives a different range. For desert or snow, change the 
 - The legend lists only the factions currently on the map.
 - `{"jet":{"hidden":true}}` makes a flyover with no aircraft.
 
+**Cinematic 3D features** (`flyover3d`):
+- `features.mist`: drifting valley mist.
+- `features.city`: a ridge-top city of pastel houses with tin roofs and evening lights.
+- `features.road`: an expressway on viaducts, with pillars and lamps.
+- `features.solar`: rows of panels on the hillside.
+- `camera.lookDown`: tilts the drone camera toward the ground.
+- `cards` on any segment: big count-up numbers, campaign-ad style (`{start, end, value, prefix, suffix, label, sub, color}`).
+- Flyovers use ACES filmic tone mapping; set `exposure` on the scene.
+
 **Pacing.** Set `stepSeconds` on the segment, or `seconds` and `hold` on keyframes. `seconds` is the travel time into a keyframe and `hold` is how long the map rests on it. With paced timing, keyframes may also set `dateLabel` (e.g. `"1974"`) when the exact day isn't known, and `stats` (a list of short lines shown in a fact panel). City entries may set `maxView` (degrees across the frame) so neighbourhood labels only appear when zoomed in.
 
 Between keyframes, units with the same `id` glide to their new position while their troop count ticks up or down. A unit missing from the next keyframe fades out, a new one fades in, and territory cross-fades.
 
 ## Data accuracy
+
+### MIZO FIRST promo (`mizo-first-2047.json`)
+
+This is an 83-second, campaign-style cut of the Mizoram 2047 scenario. It has six drone shots (mist, expressway, city at dusk, solar belt, farms and battalions, final city) with count-up number cards, plus a short Kaladan and gateway map. All its numbers are imported from `scripts/gen_mizoram_2047.py`, so it always agrees with the explainer. Regenerate it with `python3 scripts/gen_mizo_first_promo.py public/scenes/mizo-first-2047.json` (run after the 2047 scene).
 
 ### Mizoram 2047 (`mizoram-2047.json`): a scenario, not a forecast
 

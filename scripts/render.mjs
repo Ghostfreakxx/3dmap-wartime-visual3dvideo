@@ -39,7 +39,8 @@ try {
   process.exit(1);
 }
 
-const server = await createServer({ root, logLevel: 'error', server: { port: 0 } });
+// no file watching / HMR: editing sources mid-render must not reload the page
+const server = await createServer({ root, logLevel: 'error', server: { port: 0, hmr: false, watch: null } });
 await server.listen();
 const base = server.resolvedUrls.local[0];
 
