@@ -41,11 +41,31 @@ export function createFlyover(cfg, W, H) {
 
   // ---- terrain ----
   const noise = makeNoise(tcfg.seed);
-  const heightAt = (x, z) => {
+  const baseHeight = (x, z) => {
     const nx = x / tcfg.scale, nz = z / tcfg.scale;
     const ridges = noise.ridged(nx, nz, 6);
     const massif = 0.35 + 0.65 * (0.5 + 0.5 * noise.fbm(nx * 0.25 + 11, nz * 0.25 - 7, 3));
     return Math.pow(ridges, 1.6) * massif * tcfg.height;
+  };
+  // terrain.flatten: [{ at, side, dist, radius, level }] levels a plateau for a
+  // planned city, `at` along the flight like features (path x/z without height)
+  const flatSpots = (tcfg.flatten || []).map((fl) => {
+    const T = duration * (fl.at ?? 0.5);
+    const x = Math.sin(T * 0.45) * (flight.weave ?? 60) + (fl.side ?? 1) * (fl.dist ?? 0);
+    const z = (flight.speed * duration) / 2 - flight.speed * T;
+    return { x, z, r: fl.radius ?? 400, level: fl.level ?? 120 };
+  });
+  const heightAt = (x, z) => {
+    let h = baseHeight(x, z);
+    for (const fs of flatSpots) {
+      const d = Math.hypot(x - fs.x, z - fs.z) / fs.r;
+      if (d < 1.6) {
+        const k = d < 1 ? 1 : 1 - (d - 1) / 0.6; // full plateau, then a soft shoulder
+        const w = k * k * (3 - 2 * k);
+        h = h * (1 - w) + fs.level * w;
+      }
+    }
+    return h;
   };
 
   const SIZE = 7000, SEG = 320;

@@ -5,7 +5,7 @@ Data-driven history videos for Reels / Shorts / TikTok (1080×1920). This repo p
 | Segment type | Look | Example |
 |---|---|---|
 | `flyover3d` | Cinematic 3D flight over golden-hour mountains, with a jet, a location/date title card and narration subtitles | `public/scenes/aizawl-1966.json` |
-| `campaign2d` | Animated campaign map with a running date counter, territory per faction, unit flags with troop counts, attack arrows, battles and a legend that sums each side's troops | `public/scenes/egypt-1798.json`, `public/scenes/northeast-burma-1824.json`, `public/scenes/mizo-insurgency-1966.json`, `public/scenes/mizo-insurgency-detailed.json`, `public/scenes/mizoram-2047.json`, `public/scenes/mizo-first-2047.json` (promo) |
+| `campaign2d` | Animated campaign map with a running date counter, territory per faction, unit flags with troop counts, attack arrows, battles and a legend that sums each side's troops | `public/scenes/egypt-1798.json`, `public/scenes/northeast-burma-1824.json`, `public/scenes/mizo-insurgency-1966.json`, `public/scenes/mizo-insurgency-detailed.json`, `public/scenes/mizoram-2047.json`, `public/scenes/mizo-first-2047.json` (promo), `public/scenes/new-aizawl.json` |
 
 You describe each video in a JSON **scene** file. The same file drives a live preview in the browser and a frame-accurate MP4 render.
 
@@ -115,6 +115,7 @@ Changing `terrain.seed` gives a different range. For desert or snow, change the 
 - `features.city`: a ridge-top city of pastel houses with tin roofs and evening lights.
 - `features.road`: an expressway on viaducts, with pillars and lamps.
 - `features.solar`: rows of panels on the hillside.
+- `features.planned` with `terrain.flatten`: a planned capital (tower grid that rises toward the centre, boulevards, parks, domed capitol) on a levelled plateau.
 - `camera.lookDown`: tilts the drone camera toward the ground.
 - `cards` on any segment: big count-up numbers, campaign-ad style (`{start, end, value, prefix, suffix, label, sub, color}`).
 - Flyovers use ACES filmic tone mapping; set `exposure` on the scene.
@@ -124,6 +125,25 @@ Changing `terrain.seed` gives a different range. For desert or snow, change the 
 Between keyframes, units with the same `id` glide to their new position while their troop count ticks up or down. A unit missing from the next keyframe fades out, a new one fades in, and territory cross-fades.
 
 ## Data accuracy
+
+### Old Aizawl, New Aizawl (`new-aizawl.json`)
+
+This is a 90-second twin-capital scenario:
+1. A dusk drone shot over Old Aizawl's ridge city.
+2. A local map: Old Aizawl, then the Sairang railhead (2025) and Lengpui airport in the Tlawng valley, then New Aizawl's zones (Capitol, business district, housing, tech park, logistics hub, green belt), then the rapid-transit link and ring road.
+3. A drone shot over the planned capital.
+4. A finale linking the two cities.
+
+**Facts:** Aizawl city had 293,416 people in the 2011 Census.
+
+**Scenario assumptions:**
+- 21,000 phase-1 homes, which is Aizawl's 42% share of the 2047 plan's 50,000.
+- 4.5 people per home.
+- A design capacity of 3 lakh people.
+- A 22 MW compute park.
+- The rapid-transit link is the straight-line distance × 1.4, at 60 km/h, which gives about 19.5 km and 19 minutes.
+
+Zone shapes and positions are illustrative, not a site plan. Regenerate with `python3 scripts/gen_new_aizawl.py public/scenes/new-aizawl.json`.
 
 ### MIZO FIRST promo (`mizo-first-2047.json`)
 

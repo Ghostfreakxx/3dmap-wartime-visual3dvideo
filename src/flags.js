@@ -170,6 +170,22 @@ function glyph(ctx, g, cx, cy, r, color) {
       for (let k = -2; k <= 2; k++) { ctx.moveTo(cx - r * 0.8, cy + k * r * 0.4); ctx.lineTo(cx + r * 0.8, cy + k * r * 0.4); }
       ctx.stroke();
       break;
+    case 'plane':
+      ctx.moveTo(cx, cy - r); ctx.lineTo(cx + r * 0.15, cy - r * 0.2); ctx.lineTo(cx + r, cy + r * 0.2);
+      ctx.lineTo(cx + r * 0.15, cy + r * 0.1); ctx.lineTo(cx + r * 0.1, cy + r * 0.7); ctx.lineTo(cx + r * 0.4, cy + r);
+      ctx.lineTo(cx - r * 0.4, cy + r); ctx.lineTo(cx - r * 0.1, cy + r * 0.7); ctx.lineTo(cx - r * 0.15, cy + r * 0.1);
+      ctx.lineTo(cx - r, cy + r * 0.2); ctx.lineTo(cx - r * 0.15, cy - r * 0.2); ctx.closePath(); ctx.fill();
+      break;
+    case 'dome':
+      ctx.arc(cx, cy, r * 0.55, Math.PI, 0); ctx.fill();
+      ctx.fillRect(cx - r * 0.75, cy, r * 1.5, r * 0.25);
+      for (let k = -2; k <= 2; k++) ctx.fillRect(cx + k * r * 0.3 - r * 0.07, cy + r * 0.25, r * 0.14, r * 0.5);
+      ctx.fillRect(cx - r * 0.85, cy + r * 0.75, r * 1.7, r * 0.2);
+      break;
+    case 'tree':
+      ctx.moveTo(cx, cy - r); ctx.lineTo(cx + r * 0.7, cy + r * 0.4); ctx.lineTo(cx - r * 0.7, cy + r * 0.4); ctx.closePath(); ctx.fill();
+      ctx.fillRect(cx - r * 0.12, cy + r * 0.4, r * 0.24, r * 0.55);
+      break;
     case 'coin':
       ctx.arc(cx, cy, r * 0.85, 0, Math.PI * 2); ctx.stroke();
       ctx.font = `900 ${r * 1.2}px sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';

@@ -8,6 +8,7 @@
 //   city:   { at: 0.55, count: 1800, radius: 260, side: 1, lights: true },
 //   road:   { offset: 70, lights: true },
 //   solar:  { at: 0.5, rows: 24, cols: 18, side: -1 },
+//   planned:{ at: 0.6, blocks: 9, block: 70, capitol: true },  // with terrain.flatten
 // }
 // `at` is the fraction of the segment's flight where the feature sits;
 // `side` puts it left (-1) or right (+1) of the flight line.
@@ -165,6 +166,72 @@ export function addFeatures(scene, f, { heightAt, pathAt, duration, seed = 5 }) 
       }
     }
     scene.add(mesh, legs);
+  }
+
+  // ---------- planned city (New Aizawl) ----------
+  // { at, side, dist, blocks: 9, block: 70, capitol: true }
+  if (f.planned) {
+    const pc = f.planned;
+    const [cx, cz] = anchor(pc.at ?? 0.6, pc.side ?? 1, pc.dist ?? 0);
+    const B = pc.blocks ?? 9, size = pc.block ?? 70, street = pc.street ?? 22;
+    const span = B * (size + street);
+    const geo = new THREE.BoxGeometry(1, 1, 1);
+    geo.translate(0, 0.5, 0);
+    const glass = new THREE.MeshStandardMaterial({ roughness: 0.3, metalness: 0.2, emissive: '#1a2a3a', emissiveIntensity: 0.35 });
+    const towers = new THREE.InstancedMesh(geo, glass, B * B * 4);
+    const parkMat = new THREE.MeshStandardMaterial({ color: '#3f8f45', roughness: 1 });
+    const parks = new THREE.InstancedMesh(geo, parkMat, B * B);
+    const roadMat = new THREE.MeshStandardMaterial({ color: '#2e3136', roughness: 0.95 });
+    const roads = new THREE.InstancedMesh(geo, roadMat, (B + 1) * 2);
+    const glassCols = ['#9fc4dd', '#b9d3e3', '#7fa8c8', '#d7e3ea', '#8cb6c9', '#c5cfd8'];
+    const m = new THREE.Matrix4(), q = new THREE.Quaternion(), col = new THREE.Color();
+    const lamps = [];
+    let nt = 0, np = 0, nr = 0;
+    const ground = heightAt(cx, cz);
+    for (let i = 0; i <= B; i++) {
+      const off = -span / 2 + i * (size + street) - street / 2;
+      m.compose(new THREE.Vector3(cx + off, ground - 0.5, cz), q, new THREE.Vector3(street * 0.8, 1.2, span));
+      roads.setMatrixAt(nr++, m);
+      m.compose(new THREE.Vector3(cx, ground - 0.5, cz + off), q, new THREE.Vector3(span, 1.2, street * 0.8));
+      roads.setMatrixAt(nr++, m);
+      for (let k = 0; k <= B; k++) lamps.push(cx + off, ground + 5, cz - span / 2 + k * (size + street));
+    }
+    const mid = (B - 1) / 2;
+    for (let i = 0; i < B; i++) {
+      for (let j = 0; j < B; j++) {
+        const bx = cx - span / 2 + i * (size + street) + size / 2, bz = cz - span / 2 + j * (size + street) + size / 2;
+        const dc = Math.hypot(i - mid, j - mid);
+        if (pc.capitol !== false && dc < 0.8) continue; // capitol square
+        if (rnd() < 0.16 || dc > mid + 0.4) {
+          m.compose(new THREE.Vector3(bx, ground - 0.2, bz), q, new THREE.Vector3(size, 1.2, size));
+          parks.setMatrixAt(np++, m);
+          continue;
+        }
+        // 4 towers per block, taller toward the centre (CBD skyline)
+        for (let k = 0; k < 4; k++) {
+          const ox = (k % 2 ? 1 : -1) * size / 4, oz = (k < 2 ? 1 : -1) * size / 4;
+          const tall = (25 + rnd() * 40) * (1 + 2.2 * Math.max(0, 1 - dc / (mid + 1))) * (pc.heightScale ?? 1);
+          const w = size * (0.28 + rnd() * 0.14);
+          m.compose(new THREE.Vector3(bx + ox, ground - 1, bz + oz), q, new THREE.Vector3(w, tall, w));
+          towers.setMatrixAt(nt, m);
+          towers.setColorAt(nt++, col.set(glassCols[Math.floor(rnd() * glassCols.length)]));
+          for (let l = 0; l < 3; l++) lamps.push(bx + ox + (rnd() - 0.5) * w, ground + tall * rnd(), bz + oz + (rnd() - 0.5) * w);
+        }
+      }
+    }
+    towers.count = nt; parks.count = np; roads.count = nr;
+    scene.add(towers, parks, roads, lightPoints(lamps, pc.lightColor ?? '#fff0c8', 3));
+    if (pc.capitol !== false) {
+      const stone = new THREE.MeshStandardMaterial({ color: '#f1ede4', roughness: 0.6 });
+      const base = new THREE.Mesh(new THREE.BoxGeometry(size * 1.6, 26, size * 1.1), stone);
+      base.position.set(cx, ground + 13, cz);
+      const drum = new THREE.Mesh(new THREE.CylinderGeometry(size * 0.32, size * 0.36, 22, 32), stone);
+      drum.position.set(cx, ground + 37, cz);
+      const dome = new THREE.Mesh(new THREE.SphereGeometry(size * 0.33, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2),
+        new THREE.MeshStandardMaterial({ color: pc.domeColor ?? '#c9a24a', metalness: 0.8, roughness: 0.3 }));
+      dome.position.set(cx, ground + 48, cz);
+      scene.add(base, drum, dome);
+    }
   }
 
   return (t) => updaters.forEach((fn) => fn(t));

@@ -1,0 +1,1909 @@
+{
+ "title": "Old Aizawl, New Aizawl (scenario)",
+ "note": "Twin-capital scenario. Facts: Census 2011, Sairang rail (2025), Lengpui airport. New Aizawl numbers come from gen_mizoram_2047.py plus the assumptions in this file.",
+ "width": 1080,
+ "height": 1920,
+ "fps": 30,
+ "audio": null,
+ "transition": 0.45,
+ "exposure": 1.08,
+ "segments": [
+  {
+   "type": "flyover3d",
+   "duration": 10,
+   "jet": {
+    "hidden": true
+   },
+   "camera": {
+    "mode": "chase",
+    "distance": 46,
+    "height": 34,
+    "fov": 55,
+    "lookDown": 65
+   },
+   "flight": {
+    "speed": 140,
+    "altitude": 470,
+    "weave": 50
+   },
+   "terrain": {
+    "seed": 57,
+    "height": 400,
+    "low": "#12300f",
+    "mid": "#2f6b2a",
+    "high": "#6e8c4c"
+   },
+   "sky": {
+    "zenith": "#1b1e3f",
+    "horizon": "#ff8f5a",
+    "sun": "#ffd7a0",
+    "fog": "#6c5a6a",
+    "sunElevation": 1.5
+   },
+   "vignette": 0.5,
+   "fogNear": 300,
+   "fogFar": 3000,
+   "features": {
+    "city": {
+     "at": 0.75,
+     "count": 4200,
+     "radius": 420,
+     "side": 1,
+     "dist": 40
+    },
+    "mist": {
+     "layers": 2,
+     "opacity": 0.3,
+     "height": 110
+    }
+   },
+   "cards": [
+    {
+     "start": 3.5,
+     "end": 9.6,
+     "value": 293416,
+     "label": "PEOPLE IN AIZAWL CITY",
+     "prefix": "",
+     "suffix": "",
+     "color": "#ff9a4d",
+     "y": 0.5,
+     "decimals": 0,
+     "sub": "Census 2011 · built along the ridges"
+    }
+   ],
+   "title": {
+    "text": "OLD AIZAWL",
+    "sub": "THE HERITAGE CAPITAL",
+    "start": 0.4,
+    "end": 9.8,
+    "size": 110,
+    "subSize": 48,
+    "y": 300
+   }
+  },
+  {
+   "type": "campaign2d",
+   "duration": 57.5,
+   "hold": 0,
+   "bbox": [
+    92.2,
+    23.4,
+    93.1,
+    24.2
+   ],
+   "view": [
+    92.45,
+    23.62,
+    92.86,
+    23.97
+   ],
+   "dateFormat": "YYYY",
+   "caption": "OLD AIZAWL · NEW AIZAWL",
+   "legendBottom": 390,
+   "footnote": "Aizawl facts: Census 2011, NFR. New Aizawl: scenario from stated assumptions, not a plan of record.",
+   "style": {
+    "land": [
+     "#6f7d4c",
+     "#94a066",
+     "#4f5c36"
+    ],
+    "water": "#1d4a86",
+    "river": "#3d6fb8",
+    "territoryAlpha": 0.55
+   },
+   "factions": [
+    {
+     "id": "old",
+     "name": "Old Aizawl",
+     "color": "#e07b39",
+     "flag": {
+      "type": "solid",
+      "color": "#e07b39"
+     }
+    },
+    {
+     "id": "gov",
+     "name": "Capitol district",
+     "color": "#d4af37",
+     "flag": {
+      "type": "solid",
+      "color": "#d4af37"
+     }
+    },
+    {
+     "id": "cbd",
+     "name": "Business district",
+     "color": "#3fa9ff",
+     "flag": {
+      "type": "solid",
+      "color": "#3fa9ff"
+     }
+    },
+    {
+     "id": "res",
+     "name": "Housing",
+     "color": "#e05a7a",
+     "flag": {
+      "type": "solid",
+      "color": "#e05a7a"
+     }
+    },
+    {
+     "id": "tech",
+     "name": "Tech park",
+     "color": "#8f74ff",
+     "flag": {
+      "type": "solid",
+      "color": "#8f74ff"
+     }
+    },
+    {
+     "id": "logi",
+     "name": "Logistics hub",
+     "color": "#9aa5b1",
+     "flag": {
+      "type": "solid",
+      "color": "#9aa5b1"
+     }
+    },
+    {
+     "id": "green",
+     "name": "Green belt",
+     "color": "#3fbf5f",
+     "flag": {
+      "type": "solid",
+      "color": "#3fbf5f"
+     }
+    },
+    {
+     "id": "heritage",
+     "name": "Old Aizawl (heritage)",
+     "unit": "people",
+     "color": "#e07b39",
+     "flag": {
+      "type": "icon",
+      "glyph": "house",
+      "bg": "#c2602a",
+      "fg": "#ffffff"
+     }
+    },
+    {
+     "id": "rail",
+     "name": "Railhead",
+     "color": "#dddddd",
+     "flag": {
+      "type": "icon",
+      "glyph": "rail",
+      "bg": "#555b63",
+      "fg": "#ffffff"
+     }
+    },
+    {
+     "id": "air",
+     "name": "Airport",
+     "color": "#7fd0ff",
+     "flag": {
+      "type": "icon",
+      "glyph": "plane",
+      "bg": "#2b6cb0",
+      "fg": "#ffffff"
+     }
+    },
+    {
+     "id": "capitol",
+     "name": "Capitol",
+     "color": "#d4af37",
+     "flag": {
+      "type": "icon",
+      "glyph": "dome",
+      "bg": "#a8862a",
+      "fg": "#ffffff"
+     }
+    },
+    {
+     "id": "homes",
+     "name": "New homes",
+     "unit": "homes",
+     "color": "#e05a7a",
+     "flag": {
+      "type": "icon",
+      "glyph": "house",
+      "bg": "#c23b5c",
+      "fg": "#ffffff"
+     }
+    },
+    {
+     "id": "compute",
+     "name": "Compute park",
+     "unit": "MW",
+     "color": "#8f74ff",
+     "flag": {
+      "type": "icon",
+      "glyph": "chip",
+      "bg": "#5b3fd6",
+      "fg": "#ffffff"
+     }
+    }
+   ],
+   "layers": {
+    "water": [],
+    "rivers": [
+     {
+      "km": 0.25,
+      "path": [
+       [
+        92.66,
+        23.55
+       ],
+       [
+        92.64,
+        23.66
+       ],
+       [
+        92.625,
+        23.74
+       ],
+       [
+        92.622,
+        23.8
+       ],
+       [
+        92.63,
+        23.86
+       ],
+       [
+        92.64,
+        23.95
+       ]
+      ]
+     }
+    ]
+   },
+   "cities": [
+    {
+     "name": "Aizawl",
+     "at": [
+      92.72,
+      23.73
+     ],
+     "size": 26
+    },
+    {
+     "name": "Sairang",
+     "at": [
+      92.655,
+      23.812
+     ],
+     "size": 20
+    },
+    {
+     "name": "Lengpui",
+     "at": [
+      92.608,
+      23.852
+     ],
+     "size": 20
+    },
+    {
+     "name": "Durtlang",
+     "at": [
+      92.735,
+      23.79
+     ],
+     "size": 17
+    },
+    {
+     "name": "Bawngkawn",
+     "at": [
+      92.74,
+      23.76
+     ],
+     "size": 17
+    },
+    {
+     "name": "Chanmari",
+     "at": [
+      92.724,
+      23.748
+     ],
+     "size": 17
+    },
+    {
+     "name": "Kolasib",
+     "at": [
+      92.68,
+      24.22
+     ]
+    },
+    {
+     "name": "Bairabi",
+     "at": [
+      92.55,
+      24.18
+     ]
+    },
+    {
+     "name": "OLD AIZAWL",
+     "at": [
+      92.79,
+      23.7
+     ],
+     "region": true,
+     "size": 22,
+     "since": "2028-01-01"
+    },
+    {
+     "name": "NEW AIZAWL",
+     "at": [
+      92.585,
+      23.87
+     ],
+     "region": true,
+     "size": 24,
+     "since": "2028-01-01"
+    },
+    {
+     "name": "CAPITOL",
+     "at": [
+      92.6,
+      23.789
+     ],
+     "region": true,
+     "size": 17,
+     "since": "2028-01-01"
+    },
+    {
+     "name": "CBD",
+     "at": [
+      92.628,
+      23.789
+     ],
+     "region": true,
+     "size": 17,
+     "since": "2028-01-01"
+    },
+    {
+     "name": "HOMES",
+     "at": [
+      92.6,
+      23.822
+     ],
+     "region": true,
+     "size": 17,
+     "since": "2028-01-01"
+    },
+    {
+     "name": "HOMES",
+     "at": [
+      92.6,
+      23.755
+     ],
+     "region": true,
+     "size": 17,
+     "since": "2028-01-01"
+    },
+    {
+     "name": "TECH PARK",
+     "at": [
+      92.555,
+      23.782
+     ],
+     "region": true,
+     "size": 17,
+     "since": "2028-01-01"
+    },
+    {
+     "name": "LOGISTICS",
+     "at": [
+      92.657,
+      23.822
+     ],
+     "region": true,
+     "size": 17,
+     "since": "2028-01-01"
+    }
+   ],
+   "keyframes": [
+    {
+     "date": "2026-01-01",
+     "hold": 4.5,
+     "view": [
+      92.45,
+      23.62,
+      92.86,
+      23.97
+     ],
+     "caption": "Old Aizawl today",
+     "territory": {
+      "old": [
+       [
+        [
+         92.7,
+         23.805
+        ],
+        [
+         92.735,
+         23.805
+        ],
+        [
+         92.758,
+         23.76
+        ],
+        [
+         92.748,
+         23.7
+        ],
+        [
+         92.722,
+         23.66
+        ],
+        [
+         92.7,
+         23.7
+        ],
+        [
+         92.706,
+         23.76
+        ]
+       ]
+      ]
+     },
+     "units": [
+      {
+       "id": "old",
+       "faction": "heritage",
+       "at": [
+        92.755,
+        23.722
+       ],
+       "troops": 293416,
+       "label": "Old Aizawl · Census 2011"
+      }
+     ],
+     "stats": [
+      "Aizawl city, Census 2011: 293,416",
+      "Built along ridges 1,000 m up",
+      "Room to grow: almost none"
+     ]
+    },
+    {
+     "date": "2026-01-01",
+     "seconds": 4.5,
+     "hold": 4.5,
+     "caption": "The valley has the rail and the airport",
+     "territory": {
+      "old": [
+       [
+        [
+         92.7,
+         23.805
+        ],
+        [
+         92.735,
+         23.805
+        ],
+        [
+         92.758,
+         23.76
+        ],
+        [
+         92.748,
+         23.7
+        ],
+        [
+         92.722,
+         23.66
+        ],
+        [
+         92.7,
+         23.7
+        ],
+        [
+         92.706,
+         23.76
+        ]
+       ]
+      ]
+     },
+     "routes": [
+      {
+       "kind": "rail",
+       "path": [
+        [
+         92.58,
+         23.98
+        ],
+        [
+         92.6,
+         23.9
+        ],
+        [
+         92.63,
+         23.85
+        ],
+        [
+         92.655,
+         23.812
+        ]
+       ],
+       "label": "Bairabi-Sairang rail",
+       "labelAt": [
+        92.55,
+        23.93
+       ]
+      }
+     ],
+     "units": [
+      {
+       "id": "old",
+       "faction": "heritage",
+       "at": [
+        92.755,
+        23.722
+       ],
+       "troops": 293416,
+       "label": "Old Aizawl · Census 2011",
+       "mini": true
+      },
+      {
+       "id": "rail",
+       "faction": "rail",
+       "at": [
+        92.675,
+        23.822000000000003
+       ],
+       "label": "Sairang railhead"
+      },
+      {
+       "id": "air",
+       "faction": "air",
+       "at": [
+        92.59,
+        23.852
+       ],
+       "label": "Lengpui airport"
+      }
+     ],
+     "stats": [
+      "Sairang: rail to Aizawl since Sept 2025",
+      "Lengpui: Mizoram's airport"
+     ]
+    },
+    {
+     "date": "2030-01-01",
+     "seconds": 5.5,
+     "hold": 5.5,
+     "caption": "SCENARIO: New Aizawl",
+     "territory": {
+      "old": [
+       [
+        [
+         92.7,
+         23.805
+        ],
+        [
+         92.735,
+         23.805
+        ],
+        [
+         92.758,
+         23.76
+        ],
+        [
+         92.748,
+         23.7
+        ],
+        [
+         92.722,
+         23.66
+        ],
+        [
+         92.7,
+         23.7
+        ],
+        [
+         92.706,
+         23.76
+        ]
+       ]
+      ],
+      "gov": [
+       [
+        [
+         92.585,
+         23.802
+        ],
+        [
+         92.615,
+         23.802
+        ],
+        [
+         92.615,
+         23.776
+        ],
+        [
+         92.585,
+         23.776
+        ]
+       ]
+      ],
+      "cbd": [
+       [
+        [
+         92.615,
+         23.802
+        ],
+        [
+         92.64,
+         23.802
+        ],
+        [
+         92.64,
+         23.776
+        ],
+        [
+         92.615,
+         23.776
+        ]
+       ]
+      ],
+      "res": [
+       [
+        [
+         92.565,
+         23.836
+        ],
+        [
+         92.64,
+         23.836
+        ],
+        [
+         92.64,
+         23.802
+        ],
+        [
+         92.565,
+         23.802
+        ]
+       ],
+       [
+        [
+         92.565,
+         23.776
+        ],
+        [
+         92.642,
+         23.776
+        ],
+        [
+         92.642,
+         23.74
+        ],
+        [
+         92.565,
+         23.74
+        ]
+       ]
+      ],
+      "tech": [
+       [
+        [
+         92.535,
+         23.802
+        ],
+        [
+         92.585,
+         23.802
+        ],
+        [
+         92.585,
+         23.762
+        ],
+        [
+         92.535,
+         23.762
+        ]
+       ]
+      ],
+      "logi": [
+       [
+        [
+         92.642,
+         23.83
+        ],
+        [
+         92.672,
+         23.83
+        ],
+        [
+         92.672,
+         23.802
+        ],
+        [
+         92.642,
+         23.802
+        ]
+       ]
+      ],
+      "green": [
+       {
+        "km": 0.7,
+        "path": [
+         [
+          92.66,
+          23.55
+         ],
+         [
+          92.64,
+          23.66
+         ],
+         [
+          92.625,
+          23.74
+         ],
+         [
+          92.622,
+          23.8
+         ],
+         [
+          92.63,
+          23.86
+         ],
+         [
+          92.64,
+          23.95
+         ]
+        ]
+       }
+      ]
+     },
+     "units": [
+      {
+       "id": "old",
+       "faction": "heritage",
+       "at": [
+        92.755,
+        23.722
+       ],
+       "troops": 293416,
+       "label": "Old Aizawl · Census 2011",
+       "mini": true
+      },
+      {
+       "id": "rail",
+       "faction": "rail",
+       "at": [
+        92.675,
+        23.822000000000003
+       ],
+       "label": "Sairang railhead",
+       "mini": true
+      },
+      {
+       "id": "air",
+       "faction": "air",
+       "at": [
+        92.59,
+        23.852
+       ],
+       "label": "Lengpui airport",
+       "mini": true
+      }
+     ],
+     "stats": [
+      "Capitol district · business district",
+      "housing · tech park · logistics hub",
+      "green belt along the Tlawng river"
+     ]
+    },
+    {
+     "date": "2033-01-01",
+     "seconds": 4.5,
+     "hold": 6,
+     "caption": "Government, homes and jobs move down",
+     "territory": {
+      "old": [
+       [
+        [
+         92.7,
+         23.805
+        ],
+        [
+         92.735,
+         23.805
+        ],
+        [
+         92.758,
+         23.76
+        ],
+        [
+         92.748,
+         23.7
+        ],
+        [
+         92.722,
+         23.66
+        ],
+        [
+         92.7,
+         23.7
+        ],
+        [
+         92.706,
+         23.76
+        ]
+       ]
+      ],
+      "gov": [
+       [
+        [
+         92.585,
+         23.802
+        ],
+        [
+         92.615,
+         23.802
+        ],
+        [
+         92.615,
+         23.776
+        ],
+        [
+         92.585,
+         23.776
+        ]
+       ]
+      ],
+      "cbd": [
+       [
+        [
+         92.615,
+         23.802
+        ],
+        [
+         92.64,
+         23.802
+        ],
+        [
+         92.64,
+         23.776
+        ],
+        [
+         92.615,
+         23.776
+        ]
+       ]
+      ],
+      "res": [
+       [
+        [
+         92.565,
+         23.836
+        ],
+        [
+         92.64,
+         23.836
+        ],
+        [
+         92.64,
+         23.802
+        ],
+        [
+         92.565,
+         23.802
+        ]
+       ],
+       [
+        [
+         92.565,
+         23.776
+        ],
+        [
+         92.642,
+         23.776
+        ],
+        [
+         92.642,
+         23.74
+        ],
+        [
+         92.565,
+         23.74
+        ]
+       ]
+      ],
+      "tech": [
+       [
+        [
+         92.535,
+         23.802
+        ],
+        [
+         92.585,
+         23.802
+        ],
+        [
+         92.585,
+         23.762
+        ],
+        [
+         92.535,
+         23.762
+        ]
+       ]
+      ],
+      "logi": [
+       [
+        [
+         92.642,
+         23.83
+        ],
+        [
+         92.672,
+         23.83
+        ],
+        [
+         92.672,
+         23.802
+        ],
+        [
+         92.642,
+         23.802
+        ]
+       ]
+      ],
+      "green": [
+       {
+        "km": 0.7,
+        "path": [
+         [
+          92.66,
+          23.55
+         ],
+         [
+          92.64,
+          23.66
+         ],
+         [
+          92.625,
+          23.74
+         ],
+         [
+          92.622,
+          23.8
+         ],
+         [
+          92.63,
+          23.86
+         ],
+         [
+          92.64,
+          23.95
+         ]
+        ]
+       }
+      ]
+     },
+     "units": [
+      {
+       "id": "old",
+       "faction": "heritage",
+       "at": [
+        92.755,
+        23.722
+       ],
+       "troops": 293416,
+       "label": "Old Aizawl · Census 2011",
+       "mini": true
+      },
+      {
+       "id": "rail",
+       "faction": "rail",
+       "at": [
+        92.675,
+        23.822000000000003
+       ],
+       "label": "Sairang railhead",
+       "mini": true
+      },
+      {
+       "id": "air",
+       "faction": "air",
+       "at": [
+        92.59,
+        23.852
+       ],
+       "label": "Lengpui airport",
+       "mini": true
+      },
+      {
+       "id": "cap",
+       "faction": "capitol",
+       "at": [
+        92.6,
+        23.792
+       ],
+       "label": "Assembly & Secretariat"
+      },
+      {
+       "id": "homes",
+       "faction": "homes",
+       "at": [
+        92.58,
+        23.822
+       ],
+       "troops": 21000,
+       "label": "New homes · phase 1"
+      },
+      {
+       "id": "tech",
+       "faction": "compute",
+       "at": [
+        92.545,
+        23.782
+       ],
+       "troops": 22,
+       "label": "Compute park"
+      }
+     ],
+     "stats": [
+      "Phase 1: 21,000 homes (~94,000 people)",
+      "Planned for 3 lakh people by 2047",
+      "(from the Mizoram 2047 scenario)"
+     ]
+    },
+    {
+     "date": "2036-01-01",
+     "seconds": 5,
+     "hold": 6,
+     "caption": "Two cities, one network",
+     "territory": {
+      "old": [
+       [
+        [
+         92.7,
+         23.805
+        ],
+        [
+         92.735,
+         23.805
+        ],
+        [
+         92.758,
+         23.76
+        ],
+        [
+         92.748,
+         23.7
+        ],
+        [
+         92.722,
+         23.66
+        ],
+        [
+         92.7,
+         23.7
+        ],
+        [
+         92.706,
+         23.76
+        ]
+       ]
+      ],
+      "gov": [
+       [
+        [
+         92.585,
+         23.802
+        ],
+        [
+         92.615,
+         23.802
+        ],
+        [
+         92.615,
+         23.776
+        ],
+        [
+         92.585,
+         23.776
+        ]
+       ]
+      ],
+      "cbd": [
+       [
+        [
+         92.615,
+         23.802
+        ],
+        [
+         92.64,
+         23.802
+        ],
+        [
+         92.64,
+         23.776
+        ],
+        [
+         92.615,
+         23.776
+        ]
+       ]
+      ],
+      "res": [
+       [
+        [
+         92.565,
+         23.836
+        ],
+        [
+         92.64,
+         23.836
+        ],
+        [
+         92.64,
+         23.802
+        ],
+        [
+         92.565,
+         23.802
+        ]
+       ],
+       [
+        [
+         92.565,
+         23.776
+        ],
+        [
+         92.642,
+         23.776
+        ],
+        [
+         92.642,
+         23.74
+        ],
+        [
+         92.565,
+         23.74
+        ]
+       ]
+      ],
+      "tech": [
+       [
+        [
+         92.535,
+         23.802
+        ],
+        [
+         92.585,
+         23.802
+        ],
+        [
+         92.585,
+         23.762
+        ],
+        [
+         92.535,
+         23.762
+        ]
+       ]
+      ],
+      "logi": [
+       [
+        [
+         92.642,
+         23.83
+        ],
+        [
+         92.672,
+         23.83
+        ],
+        [
+         92.672,
+         23.802
+        ],
+        [
+         92.642,
+         23.802
+        ]
+       ]
+      ],
+      "green": [
+       {
+        "km": 0.7,
+        "path": [
+         [
+          92.66,
+          23.55
+         ],
+         [
+          92.64,
+          23.66
+         ],
+         [
+          92.625,
+          23.74
+         ],
+         [
+          92.622,
+          23.8
+         ],
+         [
+          92.63,
+          23.86
+         ],
+         [
+          92.64,
+          23.95
+         ]
+        ]
+       }
+      ]
+     },
+     "routes": [
+      {
+       "kind": "rail",
+       "color": "#59d0ff",
+       "path": [
+        [
+         92.72,
+         23.735
+        ],
+        [
+         92.7,
+         23.76
+        ],
+        [
+         92.67,
+         23.785
+        ],
+        [
+         92.64,
+         23.79
+        ],
+        [
+         92.6,
+         23.789
+        ]
+       ],
+       "label": "Rapid transit",
+       "labelAt": [
+        92.7,
+        23.8
+       ]
+      },
+      {
+       "kind": "expressway",
+       "path": [
+        [
+         92.735,
+         23.7
+        ],
+        [
+         92.7,
+         23.72
+        ],
+        [
+         92.66,
+         23.75
+        ],
+        [
+         92.645,
+         23.768
+        ]
+       ]
+      },
+      {
+       "kind": "expressway",
+       "path": [
+        [
+         92.53,
+         23.74
+        ],
+        [
+         92.53,
+         23.845
+        ],
+        [
+         92.65,
+         23.845
+        ],
+        [
+         92.68,
+         23.8
+        ],
+        [
+         92.65,
+         23.74
+        ],
+        [
+         92.53,
+         23.74
+        ]
+       ],
+       "label": "Ring road",
+       "labelAt": [
+        92.5,
+        23.73
+       ]
+      }
+     ],
+     "units": [
+      {
+       "id": "old",
+       "faction": "heritage",
+       "at": [
+        92.755,
+        23.722
+       ],
+       "troops": 293416,
+       "label": "Old Aizawl · Census 2011",
+       "mini": true
+      },
+      {
+       "id": "rail",
+       "faction": "rail",
+       "at": [
+        92.675,
+        23.822000000000003
+       ],
+       "label": "Sairang railhead",
+       "mini": true
+      },
+      {
+       "id": "air",
+       "faction": "air",
+       "at": [
+        92.59,
+        23.852
+       ],
+       "label": "Lengpui airport",
+       "mini": true
+      },
+      {
+       "id": "cap",
+       "faction": "capitol",
+       "at": [
+        92.6,
+        23.792
+       ],
+       "label": "Assembly & Secretariat",
+       "mini": true
+      },
+      {
+       "id": "homes",
+       "faction": "homes",
+       "at": [
+        92.58,
+        23.822
+       ],
+       "troops": 21000,
+       "label": "New homes · phase 1",
+       "mini": true
+      },
+      {
+       "id": "tech",
+       "faction": "compute",
+       "at": [
+        92.545,
+        23.782
+       ],
+       "troops": 22,
+       "label": "Compute park",
+       "mini": true
+      }
+     ],
+     "stats": [
+      "Old - New link: ~19 km",
+      "~19 min at 60 km/h (assumed)"
+     ]
+    },
+    {
+     "date": "2047-01-01",
+     "seconds": 5,
+     "hold": 6.5,
+     "caption": "Old Aizawl and New Aizawl",
+     "territory": {
+      "old": [
+       [
+        [
+         92.7,
+         23.805
+        ],
+        [
+         92.735,
+         23.805
+        ],
+        [
+         92.758,
+         23.76
+        ],
+        [
+         92.748,
+         23.7
+        ],
+        [
+         92.722,
+         23.66
+        ],
+        [
+         92.7,
+         23.7
+        ],
+        [
+         92.706,
+         23.76
+        ]
+       ]
+      ],
+      "gov": [
+       [
+        [
+         92.585,
+         23.802
+        ],
+        [
+         92.615,
+         23.802
+        ],
+        [
+         92.615,
+         23.776
+        ],
+        [
+         92.585,
+         23.776
+        ]
+       ]
+      ],
+      "cbd": [
+       [
+        [
+         92.615,
+         23.802
+        ],
+        [
+         92.64,
+         23.802
+        ],
+        [
+         92.64,
+         23.776
+        ],
+        [
+         92.615,
+         23.776
+        ]
+       ]
+      ],
+      "res": [
+       [
+        [
+         92.565,
+         23.836
+        ],
+        [
+         92.64,
+         23.836
+        ],
+        [
+         92.64,
+         23.802
+        ],
+        [
+         92.565,
+         23.802
+        ]
+       ],
+       [
+        [
+         92.565,
+         23.776
+        ],
+        [
+         92.642,
+         23.776
+        ],
+        [
+         92.642,
+         23.74
+        ],
+        [
+         92.565,
+         23.74
+        ]
+       ]
+      ],
+      "tech": [
+       [
+        [
+         92.535,
+         23.802
+        ],
+        [
+         92.585,
+         23.802
+        ],
+        [
+         92.585,
+         23.762
+        ],
+        [
+         92.535,
+         23.762
+        ]
+       ]
+      ],
+      "logi": [
+       [
+        [
+         92.642,
+         23.83
+        ],
+        [
+         92.672,
+         23.83
+        ],
+        [
+         92.672,
+         23.802
+        ],
+        [
+         92.642,
+         23.802
+        ]
+       ]
+      ],
+      "green": [
+       {
+        "km": 0.7,
+        "path": [
+         [
+          92.66,
+          23.55
+         ],
+         [
+          92.64,
+          23.66
+         ],
+         [
+          92.625,
+          23.74
+         ],
+         [
+          92.622,
+          23.8
+         ],
+         [
+          92.63,
+          23.86
+         ],
+         [
+          92.64,
+          23.95
+         ]
+        ]
+       }
+      ]
+     },
+     "units": [
+      {
+       "id": "old",
+       "faction": "heritage",
+       "at": [
+        92.755,
+        23.722
+       ],
+       "troops": 293416,
+       "label": "Old Aizawl · Census 2011",
+       "mini": true
+      },
+      {
+       "id": "rail",
+       "faction": "rail",
+       "at": [
+        92.675,
+        23.822000000000003
+       ],
+       "label": "Sairang railhead",
+       "mini": true
+      },
+      {
+       "id": "air",
+       "faction": "air",
+       "at": [
+        92.59,
+        23.852
+       ],
+       "label": "Lengpui airport",
+       "mini": true
+      },
+      {
+       "id": "cap",
+       "faction": "capitol",
+       "at": [
+        92.6,
+        23.792
+       ],
+       "label": "Assembly & Secretariat",
+       "mini": true
+      },
+      {
+       "id": "homes",
+       "faction": "homes",
+       "at": [
+        92.58,
+        23.822
+       ],
+       "troops": 21000,
+       "label": "New homes · phase 1",
+       "mini": true
+      },
+      {
+       "id": "tech",
+       "faction": "compute",
+       "at": [
+        92.545,
+        23.782
+       ],
+       "troops": 22,
+       "label": "Compute park",
+       "mini": true
+      }
+     ],
+     "stats": [
+      "Old Aizawl: churches, markets, culture",
+      "New Aizawl: government, business, tech"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "flyover3d",
+   "duration": 12,
+   "jet": {
+    "hidden": true
+   },
+   "camera": {
+    "mode": "chase",
+    "distance": 46,
+    "height": 40,
+    "fov": 55,
+    "lookDown": 60
+   },
+   "flight": {
+    "speed": 140,
+    "altitude": 470,
+    "weave": 50
+   },
+   "terrain": {
+    "seed": 81,
+    "height": 400,
+    "low": "#12300f",
+    "mid": "#2f6b2a",
+    "high": "#6e8c4c",
+    "flatten": [
+     {
+      "at": 0.85,
+      "side": 1,
+      "dist": 0,
+      "radius": 470,
+      "level": 150
+     }
+    ]
+   },
+   "sky": {
+    "zenith": "#29507e",
+    "horizon": "#ffd59a",
+    "sun": "#fff4d8",
+    "fog": "#b0b9a6",
+    "sunElevation": 8
+   },
+   "vignette": 0.5,
+   "fogNear": 300,
+   "fogFar": 3000,
+   "features": {
+    "planned": {
+     "at": 0.85,
+     "side": 1,
+     "dist": 0,
+     "blocks": 9,
+     "block": 70
+    },
+    "road": {
+     "offset": 0
+    },
+    "mist": {
+     "layers": 1,
+     "opacity": 0.22,
+     "height": 90
+    }
+   },
+   "cards": [
+    {
+     "start": 2.5,
+     "end": 6.8,
+     "value": 21000,
+     "label": "NEW HOMES · PHASE 1",
+     "prefix": "",
+     "suffix": "",
+     "color": "#7fd0ff",
+     "y": 0.5,
+     "decimals": 0,
+     "sub": "from the Mizoram 2047 scenario"
+    },
+    {
+     "start": 7.0,
+     "end": 11.6,
+     "value": 300000,
+     "label": "PEOPLE BY 2047",
+     "prefix": "",
+     "suffix": "",
+     "color": "#7fd0ff",
+     "y": 0.5,
+     "decimals": 0,
+     "sub": "planned capacity (scenario)"
+    }
+   ],
+   "title": {
+    "text": "NEW AIZAWL",
+    "sub": "THE PLANNED CAPITAL",
+    "start": 0.4,
+    "end": 11.8,
+    "size": 110,
+    "subSize": 48,
+    "y": 300
+   }
+  },
+  {
+   "type": "flyover3d",
+   "duration": 10,
+   "jet": {
+    "hidden": true
+   },
+   "camera": {
+    "mode": "chase",
+    "distance": 46,
+    "height": 40,
+    "fov": 55,
+    "lookDown": 50
+   },
+   "flight": {
+    "speed": 140,
+    "altitude": 470,
+    "weave": 50
+   },
+   "terrain": {
+    "seed": 81,
+    "height": 400,
+    "low": "#12300f",
+    "mid": "#2f6b2a",
+    "high": "#6e8c4c",
+    "flatten": [
+     {
+      "at": 0.9,
+      "side": 1,
+      "dist": 0,
+      "radius": 470,
+      "level": 150
+     }
+    ]
+   },
+   "sky": {
+    "zenith": "#22385a",
+    "horizon": "#ffc27a",
+    "sun": "#fff2cf",
+    "fog": "#9fb2a2",
+    "sunElevation": 3
+   },
+   "vignette": 0.5,
+   "fogNear": 300,
+   "fogFar": 3000,
+   "features": {
+    "planned": {
+     "at": 0.9,
+     "side": 1,
+     "dist": 0,
+     "blocks": 9,
+     "block": 70
+    },
+    "city": {
+     "at": 0.2,
+     "count": 2600,
+     "radius": 360,
+     "side": -1,
+     "dist": 80
+    },
+    "road": {
+     "offset": 30
+    },
+    "mist": {
+     "layers": 2,
+     "opacity": 0.3,
+     "height": 100
+    }
+   },
+   "cards": [],
+   "title": {
+    "text": "TWO CITIES",
+    "sub": "ONE CAPITAL · MIZORAM 2047",
+    "start": 0.6,
+    "end": 9.8,
+    "size": 110,
+    "subSize": 46,
+    "y": 300
+   }
+  }
+ ],
+ "subtitles": [
+  {
+   "start": 0.8,
+   "end": 9.8,
+   "text": "Aizawl grew up along the *ridges*. Every house, road and market climbs the hill"
+  },
+  {
+   "start": 10.3,
+   "end": 14.5,
+   "text": "*Old Aizawl*: about 3 lakh people on steep ridges, with one road in and out"
+  },
+  {
+   "start": 16.52,
+   "end": 23.35,
+   "text": "Below it, the *Tlawng valley* already has the railhead at *Sairang* and *Lengpui* airport"
+  },
+  {
+   "start": 25.98,
+   "end": 34.35,
+   "text": "*Scenario*: a planned capital, *New Aizawl*, rises in the valley between them"
+  },
+  {
+   "start": 36.52,
+   "end": 44.85,
+   "text": "The *Assembly and Secretariat*, 21,000 new homes and a 22 MW *compute park*"
+  },
+  {
+   "start": 47.25,
+   "end": 55.85,
+   "text": "A *rapid transit line* joins Old and New Aizawl: about 19 km, 19 minutes"
+  },
+  {
+   "start": 58.25,
+   "end": 67.35,
+   "text": "*Old Aizawl* keeps the heritage. *New Aizawl* carries the future"
+  },
+  {
+   "start": 68.1,
+   "end": 79.3,
+   "text": "*New Aizawl*: wide boulevards, glass towers and a new *Capitol*"
+  },
+  {
+   "start": 80.1,
+   "end": 89.3,
+   "text": "*Old Aizawl* and *New Aizawl*: one capital for Mizoram"
+  }
+ ],
+ "subtitleStyle": {
+  "size": 50,
+  "y": 0.84
+ }
+}

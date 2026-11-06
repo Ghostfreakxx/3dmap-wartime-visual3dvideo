@@ -26,5 +26,9 @@
   {
     "name": "Promo: MIZO FIRST \u00b7 Mizoram 2047",
     "file": "scenes/mizo-first-2047.json"
+  },
+  {
+    "name": "Scenario: Old Aizawl, New Aizawl (twin capital)",
+    "file": "scenes/new-aizawl.json"
   }
 ]
