@@ -207,6 +207,67 @@
     "weave": 50
    },
    "terrain": {
+    "seed": 64,
+    "height": 400,
+    "low": "#12300f",
+    "mid": "#2f6b2a",
+    "high": "#6e8c4c"
+   },
+   "sky": {
+    "zenith": "#29507e",
+    "horizon": "#ffd59a",
+    "sun": "#fff4d8",
+    "fog": "#b0b9a6",
+    "sunElevation": 8
+   },
+   "vignette": 0.5,
+   "fogNear": 300,
+   "fogFar": 3000,
+   "features": {
+    "city": {
+     "at": 1.05,
+     "count": 3600,
+     "radius": 380,
+     "side": 1,
+     "dist": 50,
+     "lightSize": 4.5
+    }
+   },
+   "cards": [],
+   "policy": {
+    "start": 0.2,
+    "end": 9.8,
+    "num": "03",
+    "icon": "percent",
+    "color": "#ff8a65",
+    "title": "Benefits, not inflation",
+    "bullets": [
+     "Pension, hospital and education cover for every worker",
+     "So pay rises stay modest in every sector",
+     "More security for families, less pressure on prices"
+    ],
+    "note": "Keeps the wage bill in check while total compensation (pay + benefits) still rises."
+   }
+  },
+  {
+   "type": "flyover3d",
+   "duration": 10,
+   "jet": {
+    "hidden": true
+   },
+   "camera": {
+    "mode": "chase",
+    "distance": 46,
+    "height": 36,
+    "fov": 55,
+    "lookDown": 55
+   },
+   "flight": {
+    "speed": 120,
+    "altitude": 470,
+    "weave": 50
+   },
+   "terrain": {
     "seed": 41,
     "height": 400,
     "low": "#12300f",
@@ -233,7 +294,7 @@
    "policy": {
     "start": 0.2,
     "end": 9.8,
-    "num": "03",
+    "num": "04",
     "icon": "road",
     "color": "#ff9a4d",
     "title": "A PWD that builds for Mizos",
@@ -301,7 +362,7 @@
    "policy": {
     "start": 0.2,
     "end": 9.8,
-    "num": "04",
+    "num": "05",
     "icon": "wrench",
     "color": "#7fd0ff",
     "title": "Mizoram Skills Institute",
@@ -314,7 +375,7 @@
   },
   {
    "type": "flyover3d",
-   "duration": 10,
+   "duration": 11,
    "jet": {
     "hidden": true
    },
@@ -365,14 +426,15 @@
    "cards": [],
    "policy": {
     "start": 0.2,
-    "end": 9.8,
-    "num": "05",
+    "end": 10.8,
+    "num": "06",
     "icon": "book",
     "color": "#c59bff",
-    "title": "Teachers from Mizoram",
+    "title": "Mizo teachers and lecturers",
     "bullets": [
-     "Teaching posts filled by the people of Mizoram",
-     "More posts in every district"
+     "Skilled Mizo workers hired as instructors and lecturers at the Skills Institute",
+     "Free school, college and postgraduate study creates thousands of teaching posts",
+     "Local teachers and lecturers first"
     ],
     "note": "Residence rules for public jobs need a law by Parliament (Art. 16(3)); ST reservation and local-language requirements are the usual route."
    }
@@ -423,7 +485,7 @@
    "policy": {
     "start": 0.2,
     "end": 9.8,
-    "num": "06",
+    "num": "07",
     "icon": "percent",
     "color": "#ffd25a",
     "title": "Recover first, tax later",
@@ -483,7 +545,7 @@
    "policy": {
     "start": 0.2,
     "end": 9.8,
-    "num": "07",
+    "num": "08",
     "icon": "heart",
     "color": "#ff7f9e",
     "title": "Stronger families",
@@ -543,7 +605,7 @@
    "policy": {
     "start": 0.2,
     "end": 9.8,
-    "num": "08",
+    "num": "09",
     "icon": "house",
     "color": "#ff9a4d",
     "title": "Support for big families",
@@ -611,7 +673,7 @@
    "policy": {
     "start": 0.2,
     "end": 9.8,
-    "num": "09",
+    "num": "10",
     "icon": "bank",
     "color": "#4fc3ff",
     "title": "The Mizoram People's Bank",
@@ -669,7 +731,7 @@
    "policy": {
     "start": 0.2,
     "end": 9.8,
-    "num": "10",
+    "num": "11",
     "icon": "shield",
     "color": "#c9d37a",
     "title": "Service for the youth",
@@ -738,15 +800,81 @@
    "policy": {
     "start": 0.2,
     "end": 9.8,
-    "num": "11",
+    "num": "12",
     "icon": "book",
     "color": "#6ee08a",
-    "title": "Free, compulsory education",
+    "title": "Free education, school to postgraduate",
     "bullets": [
-     "Free and compulsory from 6 to 18",
-     "Free college for every Mizo student"
+     "Free and compulsory schooling from 6 to 18",
+     "Free college and postgraduate study for every Mizo student"
     ],
     "note": "Today the RTE Act makes school free and compulsory from 6 to 14."
+   }
+  },
+  {
+   "type": "flyover3d",
+   "duration": 12,
+   "jet": {
+    "hidden": true
+   },
+   "camera": {
+    "mode": "chase",
+    "distance": 46,
+    "height": 36,
+    "fov": 55,
+    "lookDown": 55
+   },
+   "flight": {
+    "speed": 120,
+    "altitude": 470,
+    "weave": 50
+   },
+   "terrain": {
+    "seed": 41,
+    "height": 400,
+    "low": "#12300f",
+    "mid": "#2f6b2a",
+    "high": "#6e8c4c"
+   },
+   "sky": {
+    "zenith": "#29507e",
+    "horizon": "#ffd59a",
+    "sun": "#fff4d8",
+    "fog": "#b0b9a6",
+    "sunElevation": 8
+   },
+   "vignette": 0.5,
+   "fogNear": 300,
+   "fogFar": 3000,
+   "features": {
+    "road": {
+     "offset": 0,
+     "traffic": 40
+    },
+    "city": {
+     "at": 1.05,
+     "count": 3600,
+     "radius": 380,
+     "side": 1,
+     "dist": 50,
+     "lightSize": 4.5
+    }
+   },
+   "cards": [],
+   "policy": {
+    "start": 0.2,
+    "end": 11.8,
+    "num": "13",
+    "icon": "rupee",
+    "color": "#ffd25a",
+    "title": "How we pay for it: spend to grow",
+    "bullets": [
+     "Keynes-style public spending, like America's New Deal in the Great Depression",
+     "Public works put idle hands to work",
+     "Wages spent in Mizo shops become other Mizos' income",
+     "Every Rs 1 spent can circulate to ~Rs 2.5 (the multiplier)"
+    ],
+    "note": "Illustrative: assumes 60% of each rupee is re-spent inside Mizoram. Works best with idle workers. States can't print money; funded by central transfers and borrowing within FRBM limits."
    }
   },
   {
@@ -802,7 +930,7 @@
     {
      "start": 2.5,
      "end": 8.6,
-     "value": 11,
+     "value": 13,
      "label": "POLICIES FOR MIZORAM",
      "sub": "Scenario manifesto built on public data",
      "color": "#ffd25a",
@@ -839,51 +967,61 @@
   {
    "start": 28.0,
    "end": 37.2,
-   "text": "Mizo hands build Mizoram's *roads*"
+   "text": "Security *instead* of runaway pay rises"
   },
   {
    "start": 38.0,
    "end": 47.2,
-   "text": "Skills trained *here*, jobs kept *here*"
+   "text": "Mizo hands build Mizoram's *roads*"
   },
   {
    "start": 48.0,
    "end": 57.2,
-   "text": "Mizoram's teachers for Mizoram's children"
+   "text": "Skills trained *here*, jobs kept *here*"
   },
   {
    "start": 58.0,
-   "end": 67.2,
+   "end": 68.2,
+   "text": "Mizo experts *teach* the next generation"
+  },
+  {
+   "start": 69.0,
+   "end": 78.2,
    "text": "Recovery *first*, then taxes"
   },
   {
-   "start": 68.0,
-   "end": 77.2,
+   "start": 79.0,
+   "end": 88.2,
    "text": "No single parent stands *alone*"
   },
   {
-   "start": 78.0,
-   "end": 87.2,
+   "start": 89.0,
+   "end": 98.2,
    "text": "Bigger families, *lighter* loans"
   },
   {
-   "start": 88.0,
-   "end": 97.2,
+   "start": 99.0,
+   "end": 108.2,
    "text": "A bank that *belongs* to Mizoram"
   },
   {
-   "start": 98.0,
-   "end": 107.2,
+   "start": 109.0,
+   "end": 118.2,
    "text": "Young Mizos *serve* their state"
   },
   {
-   "start": 108.0,
-   "end": 117.2,
-   "text": "Education, *free* for every child"
+   "start": 119.0,
+   "end": 128.2,
+   "text": "Education, *free* from school to postgraduate"
   },
   {
-   "start": 118.0,
-   "end": 126.2,
+   "start": 129.0,
+   "end": 140.2,
+   "text": "Money that *circulates* builds Mizoram"
+  },
+  {
+   "start": 141.0,
+   "end": 149.2,
    "text": "*No citizen left behind*"
   }
  ],

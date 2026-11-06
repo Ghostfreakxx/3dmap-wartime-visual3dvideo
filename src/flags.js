@@ -223,6 +223,11 @@ export function glyph(ctx, g, cx, cy, r, color) {
       ctx.beginPath(); ctx.arc(cx - r * 0.5, cy - r * 0.5, r * 0.28, 0, Math.PI * 2); ctx.stroke();
       ctx.beginPath(); ctx.arc(cx + r * 0.5, cy + r * 0.5, r * 0.28, 0, Math.PI * 2); ctx.stroke();
       break;
+    case 'rupee':
+      ctx.arc(cx, cy, r * 0.85, 0, Math.PI * 2); ctx.stroke();
+      ctx.font = `900 ${r * 1.15}px sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText('₹', cx, cy + r * 0.05);
+      break;
     case 'coin':
       ctx.arc(cx, cy, r * 0.85, 0, Math.PI * 2); ctx.stroke();
       ctx.font = `900 ${r * 1.2}px sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
