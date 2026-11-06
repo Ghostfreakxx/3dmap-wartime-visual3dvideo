@@ -1,0 +1,33 @@
+{
+  "title": "Aizawl, Mizo Hills — 5 March 1966",
+  "note": "Sample narration. Check facts and wording against your sources before publishing.",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "audio": null,
+  "segments": [
+    {
+      "type": "flyover3d",
+      "duration": 9,
+      "camera": { "mode": "headon", "distance": 75, "height": 12, "fov": 50 },
+      "flight": { "speed": 140, "altitude": 430, "weave": 50 },
+      "terrain": { "seed": 7, "height": 380 },
+      "sky": { "zenith": "#2b1d3a", "horizon": "#ffb347", "sun": "#fff1b0", "fog": "#b86a3a", "sunElevation": 2 },
+      "title": { "text": "AIZAWL, MIZO HILLS", "sub": "5 MARCH 1966", "start": 0.2, "end": 8.8 }
+    },
+    {
+      "type": "flyover3d",
+      "duration": 7,
+      "camera": { "mode": "chase", "distance": 55, "height": 10, "fov": 55 },
+      "flight": { "speed": 160, "altitude": 410, "weave": 80 },
+      "terrain": { "seed": 21, "height": 400 },
+      "sky": { "zenith": "#3a2340", "horizon": "#ff9d3d", "sun": "#ffe7a0", "fog": "#a95c34", "sunElevation": 4 }
+    }
+  ],
+  "subtitles": [
+    { "start": 0.6, "end": 4.4, "text": "March *1966.* Indian Air Force jets" },
+    { "start": 4.5, "end": 8.6, "text": "fly low over the *Mizo Hills*" },
+    { "start": 9.2, "end": 12.6, "text": "toward *Aizawl*, after the MNF uprising" },
+    { "start": 12.7, "end": 15.8, "text": "seized the town's government posts." }
+  ]
+}
