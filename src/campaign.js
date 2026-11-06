@@ -158,7 +158,7 @@ export async function createCampaign(cfg, W, H, u, assetUrl) {
     drawUnits(ctx, units, factions, S, u, style);
     if (cfg.legend !== false) drawLegend(ctx, factions, units, W, H, u, style, cfg);
     drawDate(ctx, day, W, u, style, cfg.dateFormat);
-    if (cfg.caption) drawCaption(ctx, cfg.caption, a.caption, W, u, style);
+    if (cfg.caption) drawCaption(ctx, cfg.caption, (f < 0.5 ? a : b).caption, W, u, style);
   }
 
   return { draw };
@@ -272,24 +272,38 @@ function interpolateUnits(a, b, f) {
   return out.filter((x) => x.alpha > 0.01);
 }
 
+// A unit is a flag on a short pole planted at its position, with the troop
+// count beside the flag and an optional commander label above, so the
+// city name under the point stays readable.
 function drawUnits(ctx, units, factions, S, u, style) {
-  const fw = 46 * u, fh = 30 * u;
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'top';
+  const fw = 46 * u, fh = 30 * u, pole = 14 * u;
   for (const un of units) {
     const fac = factions[un.faction];
     if (!fac) continue;
     const [x, y] = S(un.at);
+    const fx = x - fw / 2, fy = y - pole - fh;
     ctx.globalAlpha = un.alpha;
+    ctx.strokeStyle = 'rgba(0,0,0,0.85)';
+    ctx.lineWidth = 3 * u;
+    ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x, y - pole); ctx.stroke();
+    ctx.fillStyle = fac.color;
+    ctx.beginPath(); ctx.arc(x, y, 4.5 * u, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
     ctx.shadowColor = 'rgba(0,0,0,0.5)';
     ctx.shadowBlur = 6 * u;
-    drawFlag(ctx, fac.flag, x - fw / 2, y - fh / 2, fw, fh);
+    drawFlag(ctx, fac.flag, fx, fy, fw, fh);
     ctx.shadowBlur = 0;
-    ctx.strokeStyle = 'rgba(0,0,0,0.75)';
     ctx.lineWidth = 2 * u;
-    ctx.strokeRect(x - fw / 2, y - fh / 2, fw, fh);
-    if (un.troops) outlinedText(ctx, un.troops.toLocaleString('en-US'), x, y + fh / 2 + 4 * u, 22 * u, style);
-    if (un.label) outlinedText(ctx, un.label, x, y - fh / 2 - 26 * u, 18 * u, style, '#ffe9b0', 'rgba(0,0,0,0.8)', '700');
+    ctx.strokeRect(fx, fy, fw, fh);
+    if (un.troops) {
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'middle';
+      outlinedText(ctx, un.troops.toLocaleString('en-US'), fx + fw + 6 * u, fy + fh / 2 + 1 * u, 24 * u, style);
+    }
+    if (un.label) {
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'bottom';
+      outlinedText(ctx, un.label, x, fy - 4 * u, 18 * u, style, '#ffe9b0', 'rgba(0,0,0,0.8)', '700');
+    }
     ctx.globalAlpha = 1;
   }
 }

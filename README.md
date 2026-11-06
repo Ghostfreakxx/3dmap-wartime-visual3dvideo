@@ -5,7 +5,7 @@ Data-driven history videos for Reels / Shorts / TikTok (1080×1920). This repo p
 | Segment type | Look | Example |
 |---|---|---|
 | `flyover3d` | Cinematic 3D flight over golden-hour mountains, with a jet, a location/date title card and narration subtitles | `public/scenes/aizawl-1966.json` |
-| `campaign2d` | Animated campaign map with a running date counter, territory per faction, unit flags with troop counts, attack arrows, battles and a legend that sums each side's troops | `public/scenes/egypt-1798.json` |
+| `campaign2d` | Animated campaign map with a running date counter, territory per faction, unit flags with troop counts, attack arrows, battles and a legend that sums each side's troops | `public/scenes/egypt-1798.json`, `public/scenes/northeast-burma-1824.json` |
 
 You describe each video in a JSON **scene** file. The same file drives a live preview in the browser and a frame-accurate MP4 render.
 
@@ -99,6 +99,8 @@ Changing `terrain.seed` gives a different range. For desert or snow, change the 
 Between keyframes, units with the same `id` glide to their new position while their troop count ticks up or down. A unit missing from the next keyframe fades out, a new one fades in, and territory cross-fades.
 
 ## Data accuracy
+
+`northeast-burma-1824.json` covers British expansion into Assam, Manipur and the Lushai Hills (Mizoram), and the three Anglo-Burmese wars (1824–26, 1852, 1885), ending with the Lushai Hills district in 1898. Its borders are hand-traced approximations. These troop figures are **placeholders that need checking**: the Burmese garrisons in Assam and Manipur (1824), Maha Bandula's forces, both Lushai Expedition columns (1871), the Chin-Lushai columns (1889–90), the Manipur 1891 columns, and the Aizawl garrison. The Lushai and Chin chiefs have no number on purpose. The Burmese flag is a simplified stand-in for the Konbaung peacock banner; use `{"type":"image"}` for a proper one.
 
 The two sample scenes are **demonstrations**. The Egypt coastlines, territory and troop figures are rough approximations, and the narration has not been fact-checked. Replace them with figures from your own sources before you publish.
 

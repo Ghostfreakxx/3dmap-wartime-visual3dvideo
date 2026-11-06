@@ -24,7 +24,7 @@
    ],
    "defaultFaction": "ottoman",
    "caption": "NAPOLEON IN EGYPT",
-   "legendBottom": 330,
+   "legendBottom": 400,
    "factions": [
     {
      "id": "france",

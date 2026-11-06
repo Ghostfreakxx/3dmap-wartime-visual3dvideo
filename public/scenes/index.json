@@ -1,4 +1,14 @@
 [
-  { "name": "3D flyover: Aizawl 1966", "file": "scenes/aizawl-1966.json" },
-  { "name": "Campaign map: Egypt 1798-99", "file": "scenes/egypt-1798.json" }
+  {
+    "name": "3D flyover: Aizawl 1966",
+    "file": "scenes/aizawl-1966.json"
+  },
+  {
+    "name": "Campaign map: Egypt 1798-99",
+    "file": "scenes/egypt-1798.json"
+  },
+  {
+    "name": "Campaign map: Northeast India & Burma 1824-1898",
+    "file": "scenes/northeast-burma-1824.json"
+  }
 ]
