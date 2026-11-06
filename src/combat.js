@@ -14,9 +14,10 @@ const frac = (x) => x - Math.floor(x);
 const hash = (n) => frac(Math.sin(n * 127.1 + 311.7) * 43758.5453);
 
 /** Activity level for effects of keyframe k given the current interval. */
-function windows(kfs, i, f, key, { tail = true, stop = 1 } = {}) {
+function windows(kfs, i, f, key, { tail = true, stopKey = null } = {}) {
   const out = [];
   const next = kfs[i + 1];
+  const stop = (stopKey && next?.[stopKey]) ?? 1;
   if (next?.[key]) out.push([next, clamp01((f - 0.08) / 0.12) * clamp01((stop - f) / 0.1 + (stop >= 1 ? 1 : 0))]);
   if (tail && i > 0 && kfs[i]?.[key]) out.push([kfs[i], 1 - clamp01(f / 0.25)]);
   return out.filter(([, a]) => a > 0.01);
@@ -104,9 +105,10 @@ function volley(ctx, P, Q, color, n, t, seed, alpha, u) {
 }
 
 export function drawAirstrikes(ctx, kfs, i, f, t, S, u, outlinedText, style) {
-  // air strikes play only on the way into their keyframe and stop before it,
-  // so a strike dated between two keyframes doesn't leak past them
-  windows(kfs, i, f, 'airstrikes', { tail: false, stop: 0.85 }).forEach(([kf, alpha]) => {
+  // air strikes play on the way into their keyframe and while it is held;
+  // keyframe.airstrikeStop (0..1) ends them early, for strikes dated
+  // between two keyframes
+  windows(kfs, i, f, 'airstrikes', { tail: false, stopKey: 'airstrikeStop' }).forEach(([kf, alpha]) => {
     kf.airstrikes.forEach((st, si) => {
       const [fx, fy] = S(st.from);
       const [tx, ty] = S(st.at);

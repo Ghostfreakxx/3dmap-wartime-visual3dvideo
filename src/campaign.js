@@ -74,7 +74,28 @@ export async function createCampaign(cfg, W, H, u, assetUrl) {
   const terrLayer = canvas(W, H);
   const tctx = terrLayer.getContext('2d');
 
+  // Paced timing: each keyframe may set `seconds` (travel time into it) and
+  // `hold` (time the map rests on it so captions can be read). Enabled by
+  // cfg.stepSeconds or any keyframe carrying seconds/hold.
+  let schedule = null;
+  if (cfg.stepSeconds || kfs.some((k) => k.seconds != null || k.hold != null)) {
+    schedule = [];
+    let t0 = kfs[0].hold ?? 0;
+    for (let j = 1; j < kfs.length; j++) {
+      const mv = kfs[j].seconds ?? cfg.stepSeconds ?? 4;
+      const hd = kfs[j].hold ?? cfg.holdSeconds ?? 0;
+      schedule.push({ i: j - 1, t0, t1: t0 + mv, t2: t0 + mv + hd });
+      t0 += mv + hd;
+    }
+  }
+
   function locate(t) {
+    if (schedule) {
+      let e = schedule.find((s) => t < s.t2) ?? schedule[schedule.length - 1];
+      const a = kfs[e.i], b = kfs[e.i + 1];
+      const f = t < e.t0 ? 0 : clamp01((t - e.t0) / (e.t1 - e.t0));
+      return { day: lerp(a.day, b.day, smooth(f)), i: e.i, a, b, f };
+    }
     const p = clamp01(t / animDur);
     if (cfg.timing === 'keyframes') {
       // every keyframe interval gets equal screen time, whatever its length in days
@@ -152,7 +173,7 @@ export async function createCampaign(cfg, W, H, u, assetUrl) {
     }
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);
-    drawCities(ctx, cfg.cities || [], S, u, style, day);
+    drawCities(ctx, cfg.cities || [], S, u, style, day, W / view.s / (k / 360));
     drawArrows(ctx, kfs, i, f, factions, S, u);
     drawBattles(ctx, kfs, i, f, S, u, style, t);
     const units = interpolateUnits(a, b, f);
@@ -160,7 +181,11 @@ export async function createCampaign(cfg, W, H, u, assetUrl) {
     drawFights(ctx, kfs, i, f, t, units, factions, S, u);
     drawAirstrikes(ctx, kfs, i, f, t, S, u, outlinedText, style);
     if (cfg.legend !== false) drawLegend(ctx, factions, units, W, H, u, style, cfg);
-    drawDate(ctx, day, W, u, style, cfg.dateFormat);
+    // a keyframe whose exact day isn't known shows e.g. "1974" while resting on it
+    const label = f >= 1 ? b.dateLabel : f <= 0 ? a.dateLabel : null;
+    drawDate(ctx, day, W, u, style, cfg.dateFormat, label);
+    const statsKf = f < 0.5 ? a : b;
+    if (statsKf.stats) drawStats(ctx, statsKf.stats, W, u, style, 1 - Math.abs(f - (f < 0.5 ? 0 : 1)) * 2);
     if (cfg.footnote) {
       ctx.textAlign = 'center';
       ctx.textBaseline = 'bottom';
@@ -246,9 +271,11 @@ function outlinedText(ctx, text, x, y, size, style, fill = '#fff', stroke = 'rgb
  * Cities get a dot and a label. Entries with region:true are large spaced
  * labels for countries/districts. since/until (YYYY-MM-DD) limit when a
  * label is shown, e.g. "East Pakistan" until 1971-12-16, then "Bangladesh".
+ * maxView (degrees of longitude across the frame) hides small labels when zoomed out.
  */
-function drawCities(ctx, cities, S, u, style, day) {
+function drawCities(ctx, cities, S, u, style, day, viewDeg) {
   for (const c of cities) {
+    if (c.maxView && viewDeg > c.maxView) continue; // e.g. neighbourhoods only when zoomed in
     if (c.since && day < Date.parse(c.since + 'T00:00:00Z')) continue;
     if (c.until && day >= Date.parse(c.until + 'T00:00:00Z')) continue;
     const [x, y] = S(c.at);
@@ -433,10 +460,10 @@ function drawLegend(ctx, factions, units, W, H, u, style, cfg) {
   }
 }
 
-function drawDate(ctx, day, W, u, style, fmt = 'YYYY/MM/DD') {
+function drawDate(ctx, day, W, u, style, fmt = 'YYYY/MM/DD', label = null) {
   const d = new Date(Math.floor(day / DAY) * DAY);
   const pad = (n) => String(n).padStart(2, '0');
-  const text = fmt
+  const text = label ?? fmt
     .replace('YYYY', d.getUTCFullYear())
     .replace('MM', pad(d.getUTCMonth() + 1))
     .replace('DD', pad(d.getUTCDate()));
@@ -450,4 +477,22 @@ function drawCaption(ctx, title, kfCaption, W, u, style) {
   ctx.textBaseline = 'top';
   outlinedText(ctx, title, W / 2, 230 * u, 40 * u, style, '#ffd25a', '#000');
   if (kfCaption) outlinedText(ctx, kfCaption, W / 2, 285 * u, 30 * u, style, '#fff', '#000', '700');
+}
+
+/** Small fact panel (casualty tallies etc.) shown near its keyframe. */
+function drawStats(ctx, lines, W, u, style, alpha) {
+  if (alpha <= 0.01) return;
+  const lh = 34 * u, pad = 16 * u, w = 560 * u;
+  const h = lines.length * lh + pad * 2;
+  const x = (W - w) / 2, y = 340 * u;
+  ctx.save();
+  ctx.globalAlpha = Math.min(1, alpha * 1.5);
+  ctx.fillStyle = 'rgba(0,0,0,0.6)';
+  ctx.fillRect(x, y, w, h);
+  ctx.fillStyle = '#ffd25a';
+  ctx.fillRect(x, y, 6 * u, h);
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  lines.forEach((ln, j) => outlinedText(ctx, ln, x + pad + 8 * u, y + pad + j * lh, 25 * u, style, '#fff', 'rgba(0,0,0,0.7)', '700'));
+  ctx.restore();
 }

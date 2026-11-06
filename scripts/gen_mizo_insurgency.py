@@ -82,6 +82,7 @@ kfs = [
     dict(date="1966-03-07", caption="The army reaches Aizawl; the MNF falls back south",
          # strikes on 5-6 March: animated during the 5 -> 7 March interval
          airstrikes=[dict(**{"from": [92.98, 24.91]}, at=[92.72, 23.73], label="IAF air strikes", passes=2)],
+         airstrikeStop=0.85,
          territory=dict(mnf=[MIZO], india=[AIZAWL_HQ, ROAD]),
          arrows=[dict(faction="india", path=[[92.68, 24.22], [92.7, 23.95], [92.72, 23.78]]),
                  dict(faction="mnf", path=[[92.65, 23.78], [92.72, 23.5], [92.8, 23.25]])],
