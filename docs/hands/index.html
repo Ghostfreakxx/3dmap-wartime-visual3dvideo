@@ -618,7 +618,7 @@ $("go-camera").onclick = async () => {
     begin("touch");
     status(err?.kind === "tracker"
       ? "Hand tracking couldn't load, so touch mode is on. Check your connection and reload the page."
-      : "The camera isn't available here, so touch mode is on. Allow camera access, or open ghostfreakxx.github.io/3dmap-wartime-visual3dvideo/hands in Safari or Chrome.", 9000);
+      : "The camera isn't available here, so touch mode is on. Allow camera access, or open ghostfreakxx.github.io/3dmap-wartime-visual3dvideo/docs/hands in Safari or Chrome.", 9000);
   }
 };
 $("m-source").onclick = () => (state.source === "camera" ? begin("touch") : $("go-camera").onclick());
