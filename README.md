@@ -6,6 +6,7 @@ Data-driven history videos for Reels / Shorts / TikTok (1080×1920). This repo p
 |---|---|---|
 | `flyover3d` | Cinematic 3D flight over golden-hour mountains, with a jet, a location/date title card and narration subtitles | `public/scenes/aizawl-1966.json` |
 | `campaign2d` | Animated campaign map with a running date counter, territory per faction, unit flags with troop counts, attack arrows, battles and a legend that sums each side's troops | `public/scenes/egypt-1798.json`, `public/scenes/northeast-burma-1824.json`, `public/scenes/mizo-insurgency-1966.json`, `public/scenes/mizo-insurgency-detailed.json`, `public/scenes/mizoram-2047.json`, `public/scenes/mizo-first-2047.json` (promo), `public/scenes/new-aizawl.json`, `public/scenes/mizo-first-manifesto.json`, `public/scenes/promises-vs-reality.json` |
+| `motion` | Pure motion graphics: neon aurora, perspective grid, particles, light streaks, kinetic titles, glass bullet panels, film strips, equaliser, self-drawing pitch, honeycomb montage | `public/scenes/mizo-first-culture-sport.json` |
 
 You describe each video in a JSON **scene** file. The same file drives a live preview in the browser and a frame-accurate MP4 render.
 
@@ -115,6 +116,7 @@ Changing `terrain.seed` gives a different range. For desert or snow, change the 
 - `features.city`: a ridge-top city of pastel houses with tin roofs and evening lights.
 - `features.road`: an expressway on viaducts, with pillars and lamps.
 - `features.solar`: rows of panels on the hillside.
+- `features.stadium`: a floodlit football stadium with a striped pitch, tiered stands, a flickering crowd and light towers.
 - `features.planned` with `terrain.flatten`: a planned capital (tower grid that rises toward the centre, boulevards, parks, domed capitol) on a levelled plateau.
 - `features.road.traffic`: moving headlights and tail lights.
 - `policy` on a segment: a manifesto card (`{num, icon, color, title, context, bullets, note}`) whose bullets appear one at a time.
@@ -127,6 +129,22 @@ Changing `terrain.seed` gives a different range. For desert or snow, change the 
 Between keyframes, units with the same `id` glide to their new position while their troop count ticks up or down. A unit missing from the next keyframe fades out, a new one fades in, and territory cross-fades.
 
 ## Data accuracy
+
+### MIZO FIRST: Culture & Sport (`mizo-first-culture-sport.json`)
+
+This is a 44-second video in the new `motion` style, plus one night drone shot over a stadium.
+
+**Policies shown:**
+- Zo Cinema, a state studio and streaming platform.
+- No state censorship. An on-screen note says film certification is the central CBFC's job.
+- Take on Bollywood.
+- Music, gaming and creators.
+- Football academies and stadiums in all 11 districts.
+- A state-backed pro league.
+- Multi-sport investment.
+- A closing honeycomb montage of every MIZO FIRST policy.
+
+**Facts:** Aizawl FC won the I-League in 2016-17; Mizoram won the Santosh Trophy in 2014.
 
 ### Promises vs Reality (`promises-vs-reality.json`)
 

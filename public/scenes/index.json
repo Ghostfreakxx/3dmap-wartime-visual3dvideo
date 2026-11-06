@@ -38,5 +38,9 @@
   {
     "name": "Report card: Promises vs Reality (Congress, MNF, ZPM)",
     "file": "scenes/promises-vs-reality.json"
+  },
+  {
+    "name": "Motion graphics: MIZO FIRST \u00b7 Culture & Sport",
+    "file": "scenes/mizo-first-culture-sport.json"
   }
 ]

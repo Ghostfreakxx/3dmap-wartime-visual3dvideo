@@ -199,6 +199,81 @@ export function addFeatures(scene, f, { heightAt, pathAt, duration, seed = 5 }) 
     scene.add(mesh, legs);
   }
 
+  // ---------- floodlit football stadium ----------
+  // { at, side, dist, length: 210, width: 140, tiers: 12, crowd: true }
+  if (f.stadium) {
+    const st = f.stadium;
+    const [cx, cz] = anchor(st.at ?? 0.85, st.side ?? 1, st.dist ?? 0);
+    const g0 = heightAt(cx, cz);
+    const PL = st.length ?? 210, PW = st.width ?? 140;
+    // pitch with mowing stripes and lines
+    const c = document.createElement('canvas');
+    c.width = 512; c.height = 768;
+    const p = c.getContext('2d');
+    for (let k = 0; k < 12; k++) { p.fillStyle = k % 2 ? '#2f8f3a' : '#37a344'; p.fillRect(0, k * 64, 512, 64); }
+    p.strokeStyle = '#f4fff4'; p.lineWidth = 5;
+    p.strokeRect(24, 24, 464, 720); p.beginPath(); p.moveTo(24, 384); p.lineTo(488, 384); p.stroke();
+    p.beginPath(); p.arc(256, 384, 70, 0, Math.PI * 2); p.stroke();
+    p.strokeRect(136, 24, 240, 110); p.strokeRect(136, 634, 240, 110);
+    const pitchTex = new THREE.CanvasTexture(c);
+    pitchTex.colorSpace = THREE.SRGBColorSpace;
+    const pitch = new THREE.Mesh(new THREE.PlaneGeometry(PW, PL), new THREE.MeshStandardMaterial({ map: pitchTex, roughness: 0.9, emissive: '#ffffff', emissiveMap: pitchTex, emissiveIntensity: st.glow ?? 0.55 }));
+    pitch.rotation.x = -Math.PI / 2;
+    pitch.position.set(cx, g0 + 0.6, cz);
+    scene.add(pitch);
+    // oval tiered stands
+    const tiers = st.tiers ?? 12, seg = 120;
+    const standGeo = new THREE.BoxGeometry(1, 1, 1);
+    const stands = new THREE.InstancedMesh(standGeo, new THREE.MeshStandardMaterial({ roughness: 0.7, emissive: '#ffffff', emissiveIntensity: st.standGlow ?? 0.04 }), tiers * seg + seg);
+    const m = new THREE.Matrix4(), q = new THREE.Quaternion(), col = new THREE.Color();
+    const crowd = [];
+    let ns = 0;
+    const seatCols = st.colors ?? ['#d7263d', '#f4f4f4', '#1b998b', '#2e294e'];
+    for (let k = 0; k < tiers; k++) {
+      const ax = PW / 2 + 18 + k * 5, az = PL / 2 + 18 + k * 5;
+      for (let s = 0; s < seg; s++) {
+        const a = (s / seg) * Math.PI * 2;
+        const x = cx + Math.cos(a) * ax, z = cz + Math.sin(a) * az;
+        q.setFromAxisAngle(new THREE.Vector3(0, 1, 0), -a);
+        m.compose(new THREE.Vector3(x, g0 + k * 3.2, z), q, new THREE.Vector3(5.2, 3.2, (2 * Math.PI * Math.max(ax, az)) / seg + 0.6));
+        stands.setMatrixAt(ns, m);
+        stands.setColorAt(ns++, col.set(seatCols[Math.floor((s / seg) * seatCols.length * 2 + k / 4) % seatCols.length]).multiplyScalar(0.8 + 0.2 * rnd()));
+        if (st.crowd !== false && rnd() < 0.55) crowd.push(x, g0 + k * 3.2 + 2.2, z);
+      }
+    }
+    // roof ring
+    for (let s = 0; s < seg; s++) {
+      const a = (s / seg) * Math.PI * 2, ax = PW / 2 + 18 + tiers * 5 + 4, az = PL / 2 + 18 + tiers * 5 + 4;
+      q.setFromAxisAngle(new THREE.Vector3(0, 1, 0), -a);
+      m.compose(new THREE.Vector3(cx + Math.cos(a) * ax, g0 + tiers * 3.2 + 10, cz + Math.sin(a) * az), q, new THREE.Vector3(26, 1.5, (2 * Math.PI * Math.max(ax, az)) / seg + 0.6));
+      stands.setMatrixAt(ns, m);
+      stands.setColorAt(ns++, col.set('#d9dde3'));
+    }
+    stands.count = ns;
+    scene.add(stands);
+    if (crowd.length) {
+      const g = new THREE.BufferGeometry();
+      g.setAttribute('position', new THREE.Float32BufferAttribute(crowd, 3));
+      const mat = new THREE.PointsMaterial({ color: '#ffffff', size: 2.2, transparent: true, opacity: 0.8, depthWrite: false, blending: THREE.AdditiveBlending, fog: false });
+      scene.add(new THREE.Points(g, mat));
+      updaters.push((t) => { mat.opacity = 0.55 + 0.35 * Math.abs(Math.sin(t * 7)); }); // phone-light flicker
+    }
+    // floodlight towers
+    const towerMat = new THREE.MeshStandardMaterial({ color: '#9aa3ad', metalness: 0.6, roughness: 0.4 });
+    const lamps = [];
+    for (const [sx, sz] of [[1, 1], [-1, 1], [1, -1], [-1, -1]]) {
+      const x = cx + sx * (PW / 2 + tiers * 5 + 34), z = cz + sz * (PL / 2 + tiers * 5 + 34), h = 90;
+      const pole = new THREE.Mesh(new THREE.CylinderGeometry(1.4, 2.2, h, 8), towerMat);
+      pole.position.set(x, g0 + h / 2, z);
+      scene.add(pole);
+      for (let k = 0; k < 9; k++) lamps.push(x + ((k % 3) - 1) * 3, g0 + h + Math.floor(k / 3) * 3, z);
+      const spot = new THREE.PointLight('#fff6e0', 3, 420, 1.2);
+      spot.position.set(x, g0 + h, z);
+      scene.add(spot);
+    }
+    scene.add(lightPoints(lamps, '#fffbe8', 9));
+  }
+
   // ---------- planned city (New Aizawl) ----------
   // { at, side, dist, blocks: 9, block: 70, capitol: true }
   if (f.planned) {

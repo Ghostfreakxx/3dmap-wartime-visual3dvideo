@@ -3,6 +3,7 @@
 import * as THREE from 'three';
 import { createFlyover } from './flyover.js';
 import { createCampaign } from './campaign.js';
+import { createMotion } from './motion.js';
 import { drawTitle, drawSubtitle, drawCard, drawPolicy, fadeAlpha } from './overlay.js';
 
 const params = new URLSearchParams(location.search);
@@ -50,6 +51,7 @@ for (const seg of spec.segments) {
   let impl;
   if (seg.type === 'flyover3d') { getRenderer(); impl = createFlyover(seg, W, H); }
   else if (seg.type === 'campaign2d') impl = await createCampaign(seg, W, H, u, assetUrl);
+  else if (seg.type === 'motion') impl = createMotion(seg, W, H, u, font);
   else throw new Error(`unknown segment type: ${seg.type}`);
   segments.push({ ...seg, impl, start, end: start + seg.duration });
   start += seg.duration;

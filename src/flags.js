@@ -223,6 +223,22 @@ export function glyph(ctx, g, cx, cy, r, color) {
       ctx.beginPath(); ctx.arc(cx - r * 0.5, cy - r * 0.5, r * 0.28, 0, Math.PI * 2); ctx.stroke();
       ctx.beginPath(); ctx.arc(cx + r * 0.5, cy + r * 0.5, r * 0.28, 0, Math.PI * 2); ctx.stroke();
       break;
+    case 'play':
+      ctx.moveTo(cx - r * 0.5, cy - r * 0.75); ctx.lineTo(cx + r * 0.8, cy); ctx.lineTo(cx - r * 0.5, cy + r * 0.75); ctx.closePath(); ctx.fill();
+      break;
+    case 'ball':
+      ctx.arc(cx, cy, r * 0.9, 0, Math.PI * 2); ctx.stroke();
+      ctx.beginPath();
+      for (let k = 0; k < 5; k++) { const a = -Math.PI / 2 + (k * 2 * Math.PI) / 5; k ? ctx.lineTo(cx + Math.cos(a) * r * 0.38, cy + Math.sin(a) * r * 0.38) : ctx.moveTo(cx + Math.cos(a) * r * 0.38, cy + Math.sin(a) * r * 0.38); }
+      ctx.closePath(); ctx.fill();
+      for (let k = 0; k < 5; k++) { const a = -Math.PI / 2 + (k * 2 * Math.PI) / 5; ctx.beginPath(); ctx.moveTo(cx + Math.cos(a) * r * 0.38, cy + Math.sin(a) * r * 0.38); ctx.lineTo(cx + Math.cos(a) * r * 0.9, cy + Math.sin(a) * r * 0.9); ctx.stroke(); }
+      break;
+    case 'music':
+      ctx.lineWidth = r * 0.2;
+      ctx.moveTo(cx - r * 0.3, cy + r * 0.55); ctx.lineTo(cx - r * 0.3, cy - r * 0.8); ctx.lineTo(cx + r * 0.7, cy - r); ctx.lineTo(cx + r * 0.7, cy + r * 0.35); ctx.stroke();
+      ctx.beginPath(); ctx.ellipse(cx - r * 0.55, cy + r * 0.6, r * 0.32, r * 0.24, -0.3, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(cx + r * 0.45, cy + r * 0.4, r * 0.32, r * 0.24, -0.3, 0, Math.PI * 2); ctx.fill();
+      break;
     case 'rupee':
       ctx.arc(cx, cy, r * 0.85, 0, Math.PI * 2); ctx.stroke();
       ctx.font = `900 ${r * 1.15}px sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
