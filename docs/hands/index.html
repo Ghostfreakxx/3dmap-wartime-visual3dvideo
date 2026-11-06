@@ -99,6 +99,7 @@
   <button class="chip" id="m-arp" aria-pressed="false">Arp</button>
   <button class="chip" id="m-sound" aria-pressed="true">Sound on</button>
   <button class="chip rec" id="m-rec" aria-pressed="false">● Rec</button>
+  <button class="chip" id="m-quality">Quality: Auto</button>
   <button class="chip" id="m-source">Touch</button>
 </div>
 <div id="readout" hidden></div>
@@ -140,8 +141,17 @@
 const $ = (id) => document.getElementById(id);
 const video = $("video"), cv = $("fx"), g = cv.getContext("2d");
 let W = 0, H = 0, DPR = 1;
+// quality tiers: canvas resolution and the expensive effects (glow blur, glitch blocks, spark count)
+const TIERS = {
+  max:  { dpr: 2,    glow: true,  glitch: true,  sparks: 1400, name: "Max" },
+  high: { dpr: 1.5,  glow: true,  glitch: true,  sparks: 900,  name: "Auto" },
+  mid:  { dpr: 1.25, glow: false, glitch: false, sparks: 600,  name: "Auto" },
+  low:  { dpr: 1,    glow: false, glitch: false, sparks: 300,  name: "Fast" },
+};
+let tierKey = matchMedia("(pointer: coarse)").matches ? "mid" : "high", tier = TIERS[tierKey], qualityMode = "auto";
+function setTier(k) { if (k === tierKey) return; tierKey = k; tier = TIERS[k]; resize(); }
 function resize() {
-  DPR = Math.min(2, window.devicePixelRatio || 1);
+  DPR = Math.min(tier.dpr, window.devicePixelRatio || 1);
   W = cv.clientWidth; H = cv.clientHeight;
   cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
   g.setTransform(DPR, 0, 0, DPR, 0, 0);
@@ -272,7 +282,7 @@ const hit = (text, col) => { hitText = { text, col, life: 1 }; };
 const sparks = [], rings = [];
 function emit(x, y, vx, vy, n, col, power = 2.5) {
   if (reduced) n = Math.min(n, 1);
-  for (let i = 0; i < n && sparks.length < 1400; i++) {
+  for (let i = 0; i < n && sparks.length < tier.sparks; i++) {
     const a = Math.random() * Math.PI * 2, s = 0.5 + Math.random() * power;
     sparks.push({ x, y, vx: vx * 0.4 + Math.cos(a) * s, vy: vy * 0.4 + Math.sin(a) * s - 0.6, life: 1, col });
   }
@@ -296,7 +306,8 @@ function drawSparks() {
 }
 function spellCircle(x, y, r, t, hue = "255,236,200") {
   g.save(); g.globalCompositeOperation = "lighter"; g.translate(x, y);
-  g.shadowColor = `rgba(${hue},0.9)`; g.shadowBlur = 14; g.strokeStyle = `rgba(${hue},0.9)`;
+  if (tier.glow) { g.shadowColor = `rgba(${hue},0.9)`; g.shadowBlur = 14; }
+  g.strokeStyle = `rgba(${hue},0.9)`;
   for (const [rr, w, sp, dash] of [[r, 2.2, 0.8, []], [r * 0.72, 1.4, -1.3, [6, 5]], [r * 0.42, 1.8, 2, []]]) {
     g.save(); g.rotate(t * sp); g.lineWidth = w; g.setLineDash(dash); g.beginPath(); g.arc(0, 0, rr, 0, Math.PI * 2); g.stroke(); g.restore();
   }
@@ -334,7 +345,7 @@ function orb(x, y, r, t) {
 const tmp = document.createElement("canvas"); tmp.width = tmp.height = 8;
 const tctx = tmp.getContext("2d");
 function glitch(box) {
-  if (reduced) return;
+  if (reduced || !tier.glitch) return;
   for (let i = 0; i < 9; i++) {
     const s = 22 + Math.random() * 46;
     const x = box.x0 - 30 + Math.random() * (box.x1 - box.x0 + 60), y = box.y0 - 30 + Math.random() * (box.y1 - box.y0 + 60);
@@ -424,7 +435,7 @@ function drawHands({ info, spread }, t) {
       for (const k of TIPS) {
         const key = `${idx}-${k}`, prev = prevTips.get(key) || h[k];
         const vx = h[k].x - prev.x, vy = h[k].y - prev.y;
-        emit(h[k].x, h[k].y, vx, vy, Math.min(6, 1 + Math.hypot(vx, vy) / 6), k === 8 ? "255,190,80" : "255,150,60");
+        if (k === 8 || tierKey !== "low") emit(h[k].x, h[k].y, vx, vy, Math.min(tierKey === "max" ? 6 : 3, 1 + Math.hypot(vx, vy) / 8), k === 8 ? "255,190,80" : "255,150,60");
         prevTips.set(key, { x: h[k].x, y: h[k].y });
       }
       if (fist) emit(h[9].x, h[9].y, 0, -2, 24, "255,120,40");
@@ -485,11 +496,39 @@ function drawTouch(t) {
 }
 
 // ================= camera =================
-let landmarker = null, lastVideoTime = -1, lastHands = [];
+let landmarker = null, lastVideoTime = -1, lastHands = [], lastDetect = 0;
+// One Euro filter: steady when still, responsive when moving (Casiez et al. 2012)
+function oneEuro(minCutoff = 1.6, beta = 0.02, dCutoff = 1.0) {
+  let x = null, dx = 0, t0 = 0;
+  const alpha = (cut, dt) => 1 / (1 + 1 / (2 * Math.PI * cut * dt));
+  return (v, t) => {
+    if (x === null) { x = v; t0 = t; return v; }
+    const dt = Math.max(1e-3, (t - t0) / 1000); t0 = t;
+    const d = (v - x) / dt; dx += alpha(dCutoff, dt) * (d - dx);
+    x += alpha(minCutoff + beta * Math.abs(dx), dt) * (v - x);
+    return x;
+  };
+}
+const filters = [[], []];               // per hand slot, per landmark, x and y
+const vel = [[], []];
+function smoothHands(raw, now) {
+  raw.sort((a, b) => a[0].x - b[0].x);
+  return raw.map((h, i) => h.map((p, j) => {
+    const f = (filters[i][j] ||= [oneEuro(), oneEuro()]);
+    const x = f[0](p.x, now), y = f[1](p.y, now);
+    const prev = vel[i][j] || { x, y, vx: 0, vy: 0 };
+    vel[i][j] = { x, y, vx: x - prev.x, vy: y - prev.y };
+    return { x, y };
+  }));
+}
+// between detections, nudge points along their last motion so drawing doesn't stall
+function predict(hands, frac) {
+  return hands.map((h, i) => h.map((p, j) => { const v = vel[i][j]; return v ? { x: p.x + v.vx * frac, y: p.y + v.vy * frac } : p; }));
+}
 async function startCamera() {
   status("Starting camera…");
   if (!navigator.mediaDevices?.getUserMedia) throw Object.assign(new Error("no camera"), { kind: "camera" });
-  const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user", width: { ideal: 1280 }, height: { ideal: 720 } }, audio: false });
+  const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user", width: { ideal: 640 }, height: { ideal: 480 }, frameRate: { ideal: 30, max: 30 } }, audio: false });
   video.srcObject = stream;
   await video.play();
   status("Loading hand tracking…");
@@ -522,17 +561,31 @@ function drawCamera() {
 }
 
 // ================= loop =================
+let lastFrame = 0, avgMs = 16, fps = 60, tierCool = 0;
+function adapt(now) {
+  const dt = lastFrame ? now - lastFrame : 16; lastFrame = now;
+  avgMs += (Math.min(dt, 200) - avgMs) * 0.05; fps = 1000 / avgMs;
+  if (qualityMode !== "auto" || --tierCool > 0) return;
+  const order = ["low", "mid", "high", "max"], i = order.indexOf(tierKey);
+  if (avgMs > 28 && i > 0) { setTier(order[i - 1]); tierCool = 90; }       // under ~36 fps: step down
+  else if (avgMs < 17.5 && i < 2) { setTier(order[i + 1]); tierCool = 240; } // smooth for a while: step up (auto stops at high)
+}
 function frame(now) {
+  adapt(now);
   const t = now / 1000;
   if (state.source === "touch") drawTouch(t);
   else if (state.source === "camera") {
     drawCamera();
     if (landmarker && video.readyState >= 2) {
-      if (video.currentTime !== lastVideoTime) {
-        lastVideoTime = video.currentTime;
-        lastHands = (landmarker.detectForVideo(video, now).landmarks || []).map(toScreen);
+      // track at most ~30 times a second; draw every frame
+      if (video.currentTime !== lastVideoTime && now - lastDetect > 30) {
+        lastVideoTime = video.currentTime; lastDetect = now;
+        const raw = (landmarker.detectForVideo(video, now).landmarks || []).map(toScreen);
+        if (raw.length !== lastHands.length) { filters[0] = []; filters[1] = []; vel[0] = []; vel[1] = []; }
+        lastHands = smoothHands(raw, now);
       }
-      drawHands(analyse(lastHands.map((h) => h.slice())), t);
+      const frac = Math.min(1, (now - lastDetect) / 33) * 0.6;
+      drawHands(analyse(predict(lastHands, frac)), t);
     }
   } else { g.fillStyle = "#06070b"; g.fillRect(0, 0, W, H); }
   if (state.magic) drawSparks();
@@ -543,7 +596,7 @@ function frame(now) {
     g.restore(); hitText.life *= 0.9;
   }
   if (rec) drawRecBadge(now);
-  if (state.source) $("readout").innerHTML = `OSC <b>${Math.round(readout.freq) || "—"} Hz</b> · FILTER <b>${Math.round(readout.cut) || "—"} Hz</b> · Q <b>${readout.q ? readout.q.toFixed(1) : "—"}</b>`;
+  if (state.source) $("readout").innerHTML = `OSC <b>${Math.round(readout.freq) || "—"} Hz</b> · FILTER <b>${Math.round(readout.cut) || "—"} Hz</b> · <b>${Math.round(fps)}</b> FPS`;
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
@@ -620,6 +673,11 @@ $("go-camera").onclick = async () => {
       ? "Hand tracking couldn't load, so touch mode is on. Check your connection and reload the page."
       : "The camera isn't available here, so touch mode is on. Allow camera access, or open ghostfreakxx.github.io/3dmap-wartime-visual3dvideo/docs/hands in Safari or Chrome.", 9000);
   }
+};
+$("m-quality").onclick = () => {
+  qualityMode = { auto: "fast", fast: "max", max: "auto" }[qualityMode];
+  $("m-quality").textContent = `Quality: ${qualityMode[0].toUpperCase()}${qualityMode.slice(1)}`;
+  if (qualityMode === "fast") setTier("low"); else if (qualityMode === "max") setTier("max"); else tierCool = 0;
 };
 $("m-source").onclick = () => (state.source === "camera" ? begin("touch") : $("go-camera").onclick());
 for (const [id, key, on, off] of [["m-synth", "synth"], ["m-magic", "magic"], ["m-chord", "chord"], ["m-arp", "arp"], ["m-sound", "sound", "Sound on", "Sound off"]]) {
