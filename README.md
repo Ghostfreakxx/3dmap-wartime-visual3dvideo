@@ -5,7 +5,7 @@ Data-driven history videos for Reels / Shorts / TikTok (1080×1920). This repo p
 | Segment type | Look | Example |
 |---|---|---|
 | `flyover3d` | Cinematic 3D flight over golden-hour mountains, with a jet, a location/date title card and narration subtitles | `public/scenes/aizawl-1966.json` |
-| `campaign2d` | Animated campaign map with a running date counter, territory per faction, unit flags with troop counts, attack arrows, battles and a legend that sums each side's troops | `public/scenes/egypt-1798.json`, `public/scenes/northeast-burma-1824.json`, `public/scenes/mizo-insurgency-1966.json`, `public/scenes/mizo-insurgency-detailed.json`, `public/scenes/mizoram-2047.json`, `public/scenes/mizo-first-2047.json` (promo), `public/scenes/new-aizawl.json`, `public/scenes/mizo-first-manifesto.json` |
+| `campaign2d` | Animated campaign map with a running date counter, territory per faction, unit flags with troop counts, attack arrows, battles and a legend that sums each side's troops | `public/scenes/egypt-1798.json`, `public/scenes/northeast-burma-1824.json`, `public/scenes/mizo-insurgency-1966.json`, `public/scenes/mizo-insurgency-detailed.json`, `public/scenes/mizoram-2047.json`, `public/scenes/mizo-first-2047.json` (promo), `public/scenes/new-aizawl.json`, `public/scenes/mizo-first-manifesto.json`, `public/scenes/promises-vs-reality.json` |
 
 You describe each video in a JSON **scene** file. The same file drives a live preview in the browser and a frame-accurate MP4 render.
 
@@ -127,6 +127,25 @@ Changing `terrain.seed` gives a different range. For desert or snow, change the 
 Between keyframes, units with the same `id` glide to their new position while their troop count ticks up or down. A unit missing from the next keyframe fades out, a new one fades in, and territory cross-fades.
 
 ## Data accuracy
+
+### Promises vs Reality (`promises-vs-reality.json`)
+
+This is a one-minute, neutral report card on Mizoram's last three governments' flagship schemes. It uses no party symbols and none of the MIZO FIRST policies. Each verdict summarises the sources below; none is an official evaluation.
+
+- **Congress, NLUP (2008–2018):**
+  - About 1.2 lakh households covered, at about ₹2,800–3,000 crore.
+  - Jhum families fell from 68,433 to 48,417 (2010–16), but studies found many beneficiaries still practised jhum.
+  - Sources: [Scroll](https://scroll.in/article/717758/how-the-congress-derailed-a-plan-to-stop-mizorams-farmers-burning-the-forests), [Senhri Journal](https://www.researchgate.net/publication/385812566_Senhri_Journal_of_Multidisciplinary_Studies_THE_NEW_LAND_USE_POLICY_A_PANACEA_FOR_SHIFTING_CULTIVATION_IN_MIZORAM), [land-use study](https://www.researchgate.net/publication/351969786_LAND_USE_POLICIES_IN_THE_STATE_OF_MIZORAM).
+- **MNF, SEDP (2018–2023):**
+  - 60,000 families got ₹50,000 each, paid in ₹25,000 instalments; ₹700 crore was budgeted for 2022-23.
+  - The third phase was halted by the 2023 election code.
+  - Liquor prohibition passed in 2019.
+  - Sources: [EastMojo](https://eastmojo.com/mizoram/2022/08/19/mizoram-mnf-launches-family-oriented-flagship-policy-amid-speculation/), [ThePrint/PTI](https://theprint.in/india/nearly-6000-sedp-beneficiaries-given-financial-assistance-for-projects-mizoram-cm/1364253/), [Outlook](https://www.outlookindia.com/amp/story/national/mizoram-deputy-chief-minister-assures-continuation-of-sedp-scheme-if-mnf-wins-assembly-polls-news-324244), [Business Standard](https://www.business-standard.com/amp/article/news-ians/alcohol-ban-in-mizoram-to-save-future-generations-119033100238_1.html).
+- **ZPM, Bana Kaih (2023–present):**
+  - Crops bought at 2026 support prices.
+  - ₹128.38 crore lost on ginger purchases in 2024-25.
+  - Phase I: 2,255 partners funded (₹18.33 crore); phase II: 2,135 applications pending.
+  - Sources: [India Today NE](https://www.indiatodayne.in/mizoram/story/mizoram-cm-lalduhoma-reviews-bana-kaih-scheme-roadmap-for-phase-iii-discussed-1437072-2026-08-12), [ThePrint/PTI](https://theprint.in/india/mizoram-govt-to-allocate-rs-150-cr-for-procurement-of-ginger-4-other-crops-minister/2864029), [The Week/PTI](https://www.theweek.in/wire-updates/national/2025/07/01/ces15-mz-crop-support-price.html), [Northeast Now](https://nenow.in/north-east-news/mizoram/mizoram-releases-rs-3-41-crore-to-683-beneficiaries-under-bana-kaih-scheme.html).
 
 ### MIZO FIRST manifesto (`mizo-first-manifesto.json`)
 

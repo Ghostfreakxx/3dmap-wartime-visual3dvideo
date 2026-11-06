@@ -34,5 +34,9 @@
   {
     "name": "Manifesto: MIZO FIRST (11 policies)",
     "file": "scenes/mizo-first-manifesto.json"
+  },
+  {
+    "name": "Report card: Promises vs Reality (Congress, MNF, ZPM)",
+    "file": "scenes/promises-vs-reality.json"
   }
 ]

@@ -1,0 +1,353 @@
+{
+ "title": "Promises vs Reality: Mizoram",
+ "note": "Neutral report card on flagship schemes of Congress (NLUP), MNF (SEDP) and ZPM (Bana Kaih). Verdicts summarise news and journal reports; not an official evaluation.",
+ "width": 1080,
+ "height": 1920,
+ "fps": 30,
+ "audio": null,
+ "transition": 0.35,
+ "exposure": 1.08,
+ "segments": [
+  {
+   "type": "flyover3d",
+   "duration": 5,
+   "jet": {
+    "hidden": true
+   },
+   "camera": {
+    "mode": "chase",
+    "distance": 46,
+    "height": 36,
+    "fov": 55,
+    "lookDown": 55
+   },
+   "flight": {
+    "speed": 120,
+    "altitude": 470,
+    "weave": 50
+   },
+   "terrain": {
+    "seed": 33,
+    "height": 400,
+    "low": "#12300f",
+    "mid": "#2f6b2a",
+    "high": "#6e8c4c"
+   },
+   "sky": {
+    "zenith": "#22385a",
+    "horizon": "#ffc27a",
+    "sun": "#fff2cf",
+    "fog": "#9fb2a2",
+    "sunElevation": 3
+   },
+   "vignette": 0.5,
+   "fogNear": 300,
+   "fogFar": 3000,
+   "features": {
+    "mist": {
+     "layers": 3,
+     "opacity": 0.45,
+     "height": 150
+    }
+   },
+   "cards": [],
+   "title": {
+    "text": "PROMISES",
+    "sub": "VS REALITY · MIZORAM",
+    "start": 0.3,
+    "end": 4.8,
+    "size": 130,
+    "subSize": 56,
+    "y": 380
+   }
+  },
+  {
+   "type": "flyover3d",
+   "duration": 16,
+   "jet": {
+    "hidden": true
+   },
+   "camera": {
+    "mode": "chase",
+    "distance": 46,
+    "height": 36,
+    "fov": 55,
+    "lookDown": 55
+   },
+   "flight": {
+    "speed": 120,
+    "altitude": 470,
+    "weave": 50
+   },
+   "terrain": {
+    "seed": 72,
+    "height": 400,
+    "low": "#12300f",
+    "mid": "#2f6b2a",
+    "high": "#6e8c4c"
+   },
+   "sky": {
+    "zenith": "#22385a",
+    "horizon": "#ffc27a",
+    "sun": "#fff2cf",
+    "fog": "#9fb2a2",
+    "sunElevation": 3
+   },
+   "vignette": 0.5,
+   "fogNear": 300,
+   "fogFar": 3000,
+   "features": {
+    "mist": {
+     "layers": 3,
+     "opacity": 0.4,
+     "height": 120
+    }
+   },
+   "cards": [],
+   "policy": {
+    "start": 0.2,
+    "end": 15.8,
+    "step": 1.1,
+    "label": "CONGRESS · 2008-2018",
+    "icon": "leaf",
+    "color": "#5fb3ff",
+    "title": "New Land Use Policy (NLUP)",
+    "context": "Promise: up to Rs 1 lakh per household to end jhum farming",
+    "bullets": [
+     "~1.2 lakh households covered",
+     "Cost: ~Rs 2,800-3,000 crore",
+     "Jhum families: 68,433 -> 48,417 (2010-16)",
+     "Studies: many beneficiaries kept on jhum"
+    ],
+    "verdict": {
+     "text": "PARTLY DELIVERED",
+     "color": "#ffb347"
+    },
+    "note": "Sources: Scroll; Senhri Journal; NLUP summary. Opposition alleged partisan beneficiary selection."
+   }
+  },
+  {
+   "type": "flyover3d",
+   "duration": 16,
+   "jet": {
+    "hidden": true
+   },
+   "camera": {
+    "mode": "chase",
+    "distance": 46,
+    "height": 36,
+    "fov": 55,
+    "lookDown": 55
+   },
+   "flight": {
+    "speed": 120,
+    "altitude": 470,
+    "weave": 50
+   },
+   "terrain": {
+    "seed": 64,
+    "height": 400,
+    "low": "#12300f",
+    "mid": "#2f6b2a",
+    "high": "#6e8c4c"
+   },
+   "sky": {
+    "zenith": "#29507e",
+    "horizon": "#ffd59a",
+    "sun": "#fff4d8",
+    "fog": "#b0b9a6",
+    "sunElevation": 8
+   },
+   "vignette": 0.5,
+   "fogNear": 300,
+   "fogFar": 3000,
+   "features": {
+    "city": {
+     "at": 1.05,
+     "count": 3600,
+     "radius": 380,
+     "side": 1,
+     "dist": 50,
+     "lightSize": 4.5
+    }
+   },
+   "cards": [],
+   "policy": {
+    "start": 0.2,
+    "end": 15.8,
+    "step": 1.1,
+    "label": "MNF · 2018-2023",
+    "icon": "people",
+    "color": "#ffb347",
+    "title": "Socio-Economic Development Policy (SEDP)",
+    "context": "Promise: family livelihood grants (critics recalled an earlier Rs 3 lakh pledge)",
+    "bullets": [
+     "60,000 families: Rs 50,000 each",
+     "Paid in Rs 25,000 instalments; Rs 700 cr budget (2022-23)",
+     "Third phase halted by the 2023 poll code",
+     "Liquor prohibition: passed in 2019"
+    ],
+    "verdict": {
+     "text": "PARTLY DELIVERED",
+     "color": "#ffb347"
+    },
+    "note": "Sources: EastMojo; PTI; Outlook; Business Standard. No published outcome evaluation found."
+   }
+  },
+  {
+   "type": "flyover3d",
+   "duration": 16,
+   "jet": {
+    "hidden": true
+   },
+   "camera": {
+    "mode": "chase",
+    "distance": 46,
+    "height": 36,
+    "fov": 55,
+    "lookDown": 55
+   },
+   "flight": {
+    "speed": 120,
+    "altitude": 470,
+    "weave": 50
+   },
+   "terrain": {
+    "seed": 63,
+    "height": 400,
+    "low": "#12300f",
+    "mid": "#2f6b2a",
+    "high": "#6e8c4c"
+   },
+   "sky": {
+    "zenith": "#2a5f9e",
+    "horizon": "#cfe3f0",
+    "sun": "#fffbe8",
+    "fog": "#a9c0c8",
+    "sunElevation": 22
+   },
+   "vignette": 0.5,
+   "fogNear": 300,
+   "fogFar": 3000,
+   "features": {
+    "city": {
+     "at": 1.05,
+     "count": 3600,
+     "radius": 380,
+     "side": 1,
+     "dist": 50,
+     "lightSize": 4.5
+    }
+   },
+   "cards": [],
+   "policy": {
+    "start": 0.2,
+    "end": 15.8,
+    "step": 1.1,
+    "label": "ZPM · 2023-PRESENT",
+    "icon": "percent",
+    "color": "#c59bff",
+    "title": "Bana Kaih (Hand-holding)",
+    "context": "Promise: buy key crops at support prices; loans for local enterprise",
+    "bullets": [
+     "Ginger Rs 50, broom Rs 80, chilli Rs 350 per kg (2026)",
+     "Ginger buying lost Rs 128 cr (2024-25)",
+     "Phase I: 2,255 partners, Rs 18.3 cr",
+     "Phase II: 2,135 applications pending"
+    ],
+    "verdict": {
+     "text": "IN PROGRESS, AT A COST",
+     "color": "#7fd0ff"
+    },
+    "note": "Sources: India Today NE; PTI via ThePrint and The Week; Northeast Now. Still running."
+   }
+  },
+  {
+   "type": "flyover3d",
+   "duration": 7,
+   "jet": {
+    "hidden": true
+   },
+   "camera": {
+    "mode": "chase",
+    "distance": 46,
+    "height": 36,
+    "fov": 55,
+    "lookDown": 55
+   },
+   "flight": {
+    "speed": 120,
+    "altitude": 470,
+    "weave": 50
+   },
+   "terrain": {
+    "seed": 57,
+    "height": 400,
+    "low": "#12300f",
+    "mid": "#2f6b2a",
+    "high": "#6e8c4c"
+   },
+   "sky": {
+    "zenith": "#1b1e3f",
+    "horizon": "#ff8f5a",
+    "sun": "#ffd7a0",
+    "fog": "#6c5a6a",
+    "sunElevation": 1.5
+   },
+   "vignette": 0.5,
+   "fogNear": 300,
+   "fogFar": 3000,
+   "features": {
+    "city": {
+     "at": 1.05,
+     "count": 3600,
+     "radius": 380,
+     "side": 1,
+     "dist": 50,
+     "lightSize": 4.5
+    }
+   },
+   "cards": [],
+   "title": {
+    "text": "3 GOVERNMENTS",
+    "sub": "3 FLAGSHIPS · JUDGE FOR YOURSELF",
+    "start": 0.3,
+    "end": 6.8,
+    "size": 110,
+    "subSize": 44,
+    "y": 380
+   }
+  }
+ ],
+ "subtitles": [
+  {
+   "start": 0.4,
+   "end": 4.7,
+   "text": "Three governments. Three *flagship* promises."
+  },
+  {
+   "start": 5.4,
+   "end": 20.7,
+   "text": "Congress paid farmers to leave *jhum*: results were mixed"
+  },
+  {
+   "start": 21.4,
+   "end": 36.7,
+   "text": "MNF's *SEDP* reached 60,000 families, then stalled at the polls"
+  },
+  {
+   "start": 37.4,
+   "end": 52.7,
+   "text": "ZPM buys crops at *support prices*, and lost Rs 128 crore on ginger"
+  },
+  {
+   "start": 53.4,
+   "end": 59.7,
+   "text": "Promises cost money. *Judge for yourself*"
+  }
+ ],
+ "subtitleStyle": {
+  "size": 48,
+  "y": 0.905
+ }
+}

@@ -164,7 +164,7 @@ export function drawPolicy(ctx, p, t, W, H, u, font) {
   ctx.fillStyle = accent;
   ctx.font = `800 ${32 * u}px ${font}`;
   ctx.letterSpacing = `${6 * u}px`;
-  ctx.fillText(`POLICY ${p.num ?? ''}`.trim(), W / 2, 490 * u);
+  ctx.fillText(p.label ?? `POLICY ${p.num ?? ''}`.trim(), W / 2, 490 * u);
   ctx.letterSpacing = '0px';
 
   ctx.fillStyle = '#ffffff';
@@ -200,6 +200,31 @@ export function drawPolicy(ctx, p, t, W, H, u, font) {
     bl.forEach((ln, j) => ctx.fillText(ln, left + slide, y + j * 46 * u));
     y += bl.length * 46 * u + 22 * u;
   });
+
+  // report-card verdict pill: { text, color }
+  if (p.verdict) {
+    const vt = clamp01((t0 - 0.8 - (p.bullets ?? []).length * (p.step ?? 0.7) - 0.3) / 0.4);
+    if (vt > 0) {
+      ctx.globalAlpha = a * vt;
+      ctx.font = `900 ${36 * u}px ${font}`;
+      ctx.textAlign = 'center';
+      const tw = ctx.measureText(p.verdict.text).width + 70 * u;
+      const vy = y + 20 * u, vh = 70 * u, sc = 0.85 + 0.15 * vt;
+      ctx.save();
+      ctx.translate(W / 2, vy + vh / 2);
+      ctx.scale(sc, sc);
+      ctx.fillStyle = p.verdict.color ?? '#ffd25a';
+      const r = vh / 2;
+      ctx.beginPath();
+      ctx.moveTo(-tw / 2 + r, -r); ctx.lineTo(tw / 2 - r, -r); ctx.arc(tw / 2 - r, 0, r, -Math.PI / 2, Math.PI / 2);
+      ctx.lineTo(-tw / 2 + r, r); ctx.arc(-tw / 2 + r, 0, r, Math.PI / 2, Math.PI * 1.5); ctx.fill();
+      ctx.fillStyle = '#0b0f17';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(p.verdict.text, 0, 2 * u);
+      ctx.restore();
+      ctx.textBaseline = 'alphabetic';
+    }
+  }
 
   if (p.note) {
     ctx.globalAlpha = a * clamp01((t0 - 1.5) / 0.6);
