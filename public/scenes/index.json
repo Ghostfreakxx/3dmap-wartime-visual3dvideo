@@ -10,5 +10,9 @@
   {
     "name": "Campaign map: Northeast India & Burma 1824-1898",
     "file": "scenes/northeast-burma-1824.json"
+  },
+  {
+    "name": "Campaign map: Mizo insurgency 1966-1987",
+    "file": "scenes/mizo-insurgency-1966.json"
   }
 ]

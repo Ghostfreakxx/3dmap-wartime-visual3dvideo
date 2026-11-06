@@ -3,6 +3,7 @@
 // battles, and a running date counter (the "every day" map style).
 import { makeNoise } from './noise.js';
 import { drawFlag, loadFlagImages } from './flags.js';
+import { drawFights, drawAirstrikes } from './combat.js';
 
 const TEX_W = 1600;
 const DAY = 86400000;
@@ -151,13 +152,20 @@ export async function createCampaign(cfg, W, H, u, assetUrl) {
     }
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);
-    drawCities(ctx, cfg.cities || [], S, u, style);
+    drawCities(ctx, cfg.cities || [], S, u, style, day);
     drawArrows(ctx, kfs, i, f, factions, S, u);
     drawBattles(ctx, kfs, i, f, S, u, style, t);
     const units = interpolateUnits(a, b, f);
     drawUnits(ctx, units, factions, S, u, style);
+    drawFights(ctx, kfs, i, f, t, units, factions, S, u);
+    drawAirstrikes(ctx, kfs, i, f, t, S, u, outlinedText, style);
     if (cfg.legend !== false) drawLegend(ctx, factions, units, W, H, u, style, cfg);
     drawDate(ctx, day, W, u, style, cfg.dateFormat);
+    if (cfg.footnote) {
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'bottom';
+      outlinedText(ctx, cfg.footnote, W / 2, H - 28 * u, 17 * u, style, 'rgba(255,255,255,0.85)', 'rgba(0,0,0,0.8)', '600');
+    }
     if (cfg.caption) drawCaption(ctx, cfg.caption, (f < 0.5 ? a : b).caption, W, u, style);
   }
 
@@ -234,11 +242,28 @@ function outlinedText(ctx, text, x, y, size, style, fill = '#fff', stroke = 'rgb
   ctx.fillText(text, x, y);
 }
 
-function drawCities(ctx, cities, S, u, style) {
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'top';
+/**
+ * Cities get a dot and a label. Entries with region:true are large spaced
+ * labels for countries/districts. since/until (YYYY-MM-DD) limit when a
+ * label is shown, e.g. "East Pakistan" until 1971-12-16, then "Bangladesh".
+ */
+function drawCities(ctx, cities, S, u, style, day) {
   for (const c of cities) {
+    if (c.since && day < Date.parse(c.since + 'T00:00:00Z')) continue;
+    if (c.until && day >= Date.parse(c.until + 'T00:00:00Z')) continue;
     const [x, y] = S(c.at);
+    if (c.region) {
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.globalAlpha = 0.75;
+      ctx.letterSpacing = `${4 * u}px`;
+      outlinedText(ctx, c.name, x, y, (c.size ?? 30) * u, style, 'rgba(255,255,255,0.9)', 'rgba(0,0,0,0.55)', '800');
+      ctx.letterSpacing = '0px';
+      ctx.globalAlpha = 1;
+      continue;
+    }
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
     ctx.fillStyle = '#fff';
     ctx.beginPath();
     ctx.arc(x, y, 4 * u, 0, Math.PI * 2);

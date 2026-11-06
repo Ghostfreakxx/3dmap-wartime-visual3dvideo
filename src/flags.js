@@ -1,6 +1,6 @@
 // Procedural flags so scenes work offline; use {type:"image", src} for real ones.
 //   {type:"tricolor-v", colors:[a,b,c]}   vertical bands (France, Italy, ...)
-//   {type:"tricolor-h", colors:[a,b,c]}   horizontal bands
+//   {type:"tricolor-h", colors:[a,b,c], wheel?, star?}   horizontal bands
 //   {type:"crescent", bg, fg}             crescent and star
 //   {type:"union"}                        Union Flag
 //   {type:"disc", bg, fg}                 plain field with a central disc
@@ -33,6 +33,12 @@ export function drawFlag(ctx, flag = { type: 'solid', color: '#888' }, x, y, w, 
       break;
     case 'tricolor-h':
       flag.colors.forEach((c, i) => { ctx.fillStyle = c; ctx.fillRect(x, y + (h * i) / 3, w, h / 3 + 0.5); });
+      if (flag.wheel) { // e.g. India's Ashoka Chakra
+        ctx.strokeStyle = flag.wheel;
+        ctx.lineWidth = Math.max(1, h * 0.04);
+        ctx.beginPath(); ctx.arc(x + w / 2, y + h / 2, h * 0.13, 0, Math.PI * 2); ctx.stroke();
+      }
+      if (flag.star) star(ctx, x + w * 0.2, y + h / 6, h * 0.12, flag.star, -Math.PI / 2);
       break;
     case 'crescent': {
       ctx.fillStyle = flag.bg ?? '#e30a17';
@@ -82,15 +88,16 @@ export function drawFlag(ctx, flag = { type: 'solid', color: '#888' }, x, y, w, 
     default:
       ctx.fillStyle = flag.color ?? '#888';
       ctx.fillRect(x, y, w, h);
+      if (flag.star) star(ctx, x + w / 2, y + h / 2, h * 0.32, flag.star, -Math.PI / 2);
   }
   ctx.restore();
 }
 
-function star(ctx, cx, cy, r, color) {
+function star(ctx, cx, cy, r, color, rot = 0) {
   ctx.fillStyle = color;
   ctx.beginPath();
   for (let i = 0; i < 10; i++) {
-    const a = -Math.PI / 2 + (i * Math.PI) / 5 + Math.PI / 2; // point to the left like the Turkish flag
+    const a = rot + (i * Math.PI) / 5; // rot=0 points right (Turkish flag style)
     const rr = i % 2 ? r * 0.42 : r;
     ctx.lineTo(cx + Math.cos(a) * rr, cy + Math.sin(a) * rr);
   }
