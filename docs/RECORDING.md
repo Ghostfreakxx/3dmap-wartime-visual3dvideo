@@ -11,7 +11,23 @@ npm start               # http://localhost:3000
 
 `public/geo/` (rivers and land) is committed. To refresh it, run `npm run fetch:geo`, which needs `nominatim.openstreetmap.org` to be reachable.
 
-## Record a reel (9:16, ~80 s)
+## Export an MP4 (recommended)
+
+With the app running (`npm start`):
+
+```bash
+npm run render -- 7
+```
+
+```bash
+npm run render -- 2 --fps 30 --format 9x16 --base http://localhost:3000
+```
+
+This writes `renders/ep07.mp4` at 1080×1920, H.264. Every frame is rendered exactly: the camera and animations are a pure function of time, so the file is smooth even on a slow machine (roughly 10 minutes per minute of video). The video is silent, so add narration and music in your editor. The narration text for each beat is in `data/episodes/epNN.json`.
+
+Built so far: Episode 1 (~52 s), Episode 2 (80 s), Episode 7 (~102 s).
+
+## Record a reel live (9:16)
 
 1. Open `http://localhost:3000/watch/2?present=1`. Presentation mode hides all controls.
 2. Use phone-shaped framing. The stage keeps a 9:16 box at any window size, so record a tall window or the iPad in portrait.

@@ -5,7 +5,7 @@ A source-first, animated historical map of the rise and decline of the Ahom king
 ## Status
 
 - **Research:** all 59 events cite OCR-verified pages (Gait 1906, Bhuyan 1947). Coordinates are checked against Wikidata and OpenStreetMap.
-- **App:** a Next.js 16 + MapLibre PWA. **Episode 2 ("Over the Patkai", 1215–1253)** is built as an ~80 s vertical map reel. The other episodes are researched but not yet animated.
+- **App:** a Next.js 16 + MapLibre PWA. Episodes **1** (the Tai world), **2** (over the Patkai) and **7** (Saraighat) are built as 50–100 s vertical map reels, exportable to MP4 with `npm run render -- <episode>`. The other episodes are researched but not yet animated.
 - **Record:** see [docs/RECORDING.md](docs/RECORDING.md).
 
 | Read first | |
