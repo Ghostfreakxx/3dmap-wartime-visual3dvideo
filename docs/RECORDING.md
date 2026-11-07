@@ -27,6 +27,14 @@ This writes `renders/ep07.mp4` at 1080×1920, H.264. Every frame is rendered exa
 
 Built so far: Episode 1 (~52 s), Episode 2 (80 s), Episode 7 (~102 s).
 
+## Add the synthetic narration
+
+```bash
+python3 scripts/narrate-videos.py
+```
+
+This voices every beat with Piper's free "Ryan" voice and writes `renders/narrated/`, including the complete narrated film. Setup is in the script header. Lines that run long are sped up slightly (at most 1.15×); if a line still doesn't fit, shorten its `narration` text.
+
 ## Record a reel live (9:16)
 
 1. Open `http://localhost:3000/watch/2?present=1`. Presentation mode hides all controls.
