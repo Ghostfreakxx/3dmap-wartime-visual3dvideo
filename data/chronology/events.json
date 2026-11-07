@@ -1,0 +1,4538 @@
+{
+  "$comment": "Draft chronology (Phase 1). Schema: src/domain/types.ts. Page numbers are null until verified in a named edition. Narration is pending. Edit this file directly; log corrections in editorLog.",
+  "version": "0.1.0-phase1",
+  "episodes": [
+    {
+      "number": 1,
+      "title": "Before 1228: Mong Mao and the Tai political world",
+      "range": {
+        "start": "1200",
+        "end": "1228"
+      },
+      "eventIds": [
+        "e01-origin-tradition",
+        "e01-tai-political-world",
+        "e01-sukaphaa-departs"
+      ],
+      "snapshotIds": []
+    },
+    {
+      "number": 2,
+      "title": "1228-1253: Sukaphaa's migration and Charaideo",
+      "range": {
+        "start": "1215",
+        "end": "1268"
+      },
+      "eventIds": [
+        "e02-patkai-crossing",
+        "e02-arrival-1228",
+        "e02-wandering-settlements",
+        "e02-moran-borahi",
+        "e02-charaideo-1253",
+        "e02-sukaphaa-death"
+      ],
+      "snapshotIds": [
+        "s1228",
+        "s1253"
+      ]
+    },
+    {
+      "number": 3,
+      "title": "1253-1497: Early consolidation",
+      "range": {
+        "start": "1253",
+        "end": "1497"
+      },
+      "eventIds": [
+        "e03-wet-rice-settlement",
+        "e03-chutia-conflict-early",
+        "e03-sudangphaa"
+      ],
+      "snapshotIds": []
+    },
+    {
+      "number": 4,
+      "title": "1497-1539: Suhungmung and expansion",
+      "range": {
+        "start": "1497",
+        "end": "1539"
+      },
+      "eventIds": [
+        "e04-suhungmung-accession",
+        "e04-chutia-annexation",
+        "e04-turbak-invasion",
+        "e04-dimapur-sacked",
+        "e04-suhungmung-death"
+      ],
+      "snapshotIds": [
+        "s1523",
+        "s1536"
+      ]
+    },
+    {
+      "number": 5,
+      "title": "1540-1639: Koch, Mughals and the Asurar Ali frontier",
+      "range": {
+        "start": "1540",
+        "end": "1639"
+      },
+      "eventIds": [
+        "e05-garhgaon-capital",
+        "e05-koch-invasion",
+        "e05-mughals-reach-frontier",
+        "e05-ahom-mughal-wars",
+        "e05-paik-reorganisation",
+        "e05-treaty-1639"
+      ],
+      "snapshotIds": [
+        "s1563",
+        "s1615",
+        "s1639"
+      ]
+    },
+    {
+      "number": 6,
+      "title": "1662-1663: Mir Jumla's invasion",
+      "range": {
+        "start": "1658",
+        "end": "1663"
+      },
+      "eventIds": [
+        "e06-ahoms-take-guwahati-1658",
+        "e06-mir-jumla-advance",
+        "e06-garhgaon-occupied",
+        "e06-monsoon-crisis",
+        "e06-ghilajharighat-treaty",
+        "e06-mughal-withdrawal"
+      ],
+      "snapshotIds": [
+        "s1658",
+        "s1662",
+        "s1663"
+      ]
+    },
+    {
+      "number": 7,
+      "title": "1667-1671: Guwahati and Saraighat",
+      "range": {
+        "start": "1663",
+        "end": "1672"
+      },
+      "eventIds": [
+        "e07-guwahati-recaptured",
+        "e07-ram-singh-arrives",
+        "e07-alaboi",
+        "e07-saraighat",
+        "e07-lachit-death"
+      ],
+      "snapshotIds": [
+        "s1667"
+      ]
+    },
+    {
+      "number": 8,
+      "title": "1682: Itakhuli and the western frontier",
+      "range": {
+        "start": "1679",
+        "end": "1682"
+      },
+      "eventIds": [
+        "e08-guwahati-lost-1679",
+        "e08-gadadhar-accession",
+        "e08-itakhuli"
+      ],
+      "snapshotIds": [
+        "s1679",
+        "s1682"
+      ]
+    },
+    {
+      "number": 9,
+      "title": "1681-1751: Consolidation, Rudra Singha and culture",
+      "range": {
+        "start": "1681",
+        "end": "1769"
+      },
+      "eventIds": [
+        "e09-rudra-singha",
+        "e09-kachari-jaintia-campaign",
+        "e09-rudra-death",
+        "e09-monuments",
+        "e09-religious-politics"
+      ],
+      "snapshotIds": [
+        "s1708"
+      ]
+    },
+    {
+      "number": 10,
+      "title": "1769-1805: Moamoria rebellion and British intervention",
+      "range": {
+        "start": "1769",
+        "end": "1805"
+      },
+      "eventIds": [
+        "e10-moamoria-first",
+        "e10-moamoria-second",
+        "e10-welsh-expedition",
+        "e10-jorhat-capital",
+        "e10-moamoria-end"
+      ],
+      "snapshotIds": [
+        "s1769",
+        "s1805"
+      ]
+    },
+    {
+      "number": 11,
+      "title": "1817-1824: Burmese invasions and occupation",
+      "range": {
+        "start": "1815",
+        "end": "1824"
+      },
+      "eventIds": [
+        "e11-badan-chandra-ava",
+        "e11-first-burmese-invasion",
+        "e11-second-burmese-invasion",
+        "e11-third-burmese-invasion",
+        "e11-occupation-hardship"
+      ],
+      "snapshotIds": [
+        "s1817",
+        "s1822"
+      ]
+    },
+    {
+      "number": 12,
+      "title": "1824-1826: First Anglo-Burmese War and Yandabo",
+      "range": {
+        "start": "1824",
+        "end": "1826"
+      },
+      "eventIds": [
+        "e12-war-declared",
+        "e12-british-advance",
+        "e12-yandabo"
+      ],
+      "snapshotIds": [
+        "s1825",
+        "s1826"
+      ]
+    },
+    {
+      "number": 13,
+      "title": "Epilogue: Purandar Singha, 1833-1838",
+      "range": {
+        "start": "1833",
+        "end": "1838"
+      },
+      "eventIds": [
+        "e13-purandar-restored",
+        "e13-annexation-1838"
+      ],
+      "snapshotIds": [
+        "s1833",
+        "s1838"
+      ]
+    }
+  ],
+  "events": [
+    {
+      "id": "e01-origin-tradition",
+      "episode": 1,
+      "title": "Ahom origin tradition: Khunlung and Khunlai",
+      "date": {
+        "start": null,
+        "precision": "undated",
+        "calendarNote": "Mythic; no historical date."
+      },
+      "summary": "Ahom chronicles open with a divine-descent tradition in which the ancestors Khunlung and Khunlai come down from heaven to found Tai ruling lineages. This is a dynastic legitimation tradition, not datable history.",
+      "participants": [
+        "ahom",
+        "mong-mao-polity"
+      ],
+      "persons": [
+        "Khunlung",
+        "Khunlai"
+      ],
+      "locations": [
+        "mong-mao"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "barua1930",
+          "pages": null,
+          "locator": "opening sections",
+          "supports": [
+            "context"
+          ]
+        },
+        {
+          "sourceId": "gogoi1968",
+          "pages": null,
+          "locator": "origin traditions",
+          "supports": [
+            "context"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "D",
+        "basis": "Chronicle origin myth; present explicitly as tradition."
+      },
+      "claimStatus": "traditional",
+      "eventType": "tradition",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          97.85,
+          24.0
+        ],
+        "zoom": 6.2,
+        "bearing": 0,
+        "pitch": 0,
+        "vertical": {
+          "center": [
+            97.85,
+            24.0
+          ],
+          "zoom": 5.6
+        }
+      },
+      "animationInstructions": [
+        {
+          "kind": "caption",
+          "text": "According to Ahom tradition",
+          "tag": "traditional"
+        }
+      ],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e01-tai-political-world",
+      "episode": 1,
+      "title": "The Tai political world of the upper Shweli (Mong Mao)",
+      "date": {
+        "start": "1200",
+        "precision": "decade",
+        "end": "1228",
+        "calendarNote": "Context window, not an event date."
+      },
+      "summary": "Tai-speaking principalities (mong) occupied valleys between the Irrawaddy and Yunnan. Mong Mao in the Shweli valley is the polity Ahom tradition links to Sukaphaa. Its 13th-century extent and institutions are poorly documented; its later expansion as Luchuan belongs to the 14th century and must not be projected backwards.",
+      "participants": [
+        "mong-mao-polity"
+      ],
+      "persons": [],
+      "locations": [
+        "mong-mao"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gogoi1968",
+          "pages": null,
+          "locator": "chapters on the Tai kingdoms",
+          "supports": [
+            "context"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "C",
+        "basis": "Thin evidence for the 13th century; reliant on later chronicles and secondary synthesis."
+      },
+      "claimStatus": "approximate",
+      "eventType": "socio-economic",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Extent and capital of Mong Mao c.1200 are not established.",
+        "Risk of anachronism: Luchuan's 14th-century power under Si Kefa should not be shown for 1215."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          97.0,
+          25.0
+        ],
+        "zoom": 5.4,
+        "bearing": 0,
+        "pitch": 0,
+        "vertical": {
+          "center": [
+            97.0,
+            25.0
+          ],
+          "zoom": 4.8
+        }
+      },
+      "animationInstructions": [
+        {
+          "kind": "pulseMarker",
+          "placeId": "mong-mao"
+        },
+        {
+          "kind": "caption",
+          "text": "Approximate area - borders unknown",
+          "tag": "approximate"
+        }
+      ],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e01-sukaphaa-departs",
+      "episode": 1,
+      "title": "Sukaphaa leaves the Tai homeland",
+      "date": {
+        "start": "1215",
+        "precision": "circa-year",
+        "calendarNote": "Chronicle-derived date reproduced by Gait; converted from Tai reckoning."
+      },
+      "summary": "Ahom chronicles describe the prince Sukaphaa departing his homeland with followers around 1215, beginning a journey of several years. The reasons given (a succession dispute is commonly mentioned) rest on tradition.",
+      "participants": [
+        "ahom",
+        "mong-mao-polity"
+      ],
+      "persons": [
+        "Sukaphaa"
+      ],
+      "locations": [
+        "maulung",
+        "mong-mao"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Sukapha",
+          "supports": [
+            "date"
+          ]
+        },
+        {
+          "sourceId": "barua1930",
+          "pages": null,
+          "locator": "Sukapha's journey",
+          "supports": [
+            "date",
+            "context"
+          ]
+        },
+        {
+          "sourceId": "gogoi1968",
+          "pages": null,
+          "locator": "Sukapha",
+          "supports": [
+            "context"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "C",
+        "basis": "Date is chronicle-derived; motive and homeland identification disputed."
+      },
+      "claimStatus": "disputed",
+      "eventType": "migration",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Homeland: 'Maulung' / Mong Mit / Mong Mao identifications differ.",
+        "Motive (succession dispute) is traditional."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          97.0,
+          25.4
+        ],
+        "zoom": 5.6,
+        "bearing": 0,
+        "pitch": 0,
+        "vertical": {
+          "center": [
+            97.0,
+            25.4
+          ],
+          "zoom": 5.0
+        }
+      },
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e02-patkai-crossing",
+      "episode": 2,
+      "title": "Crossing the Patkai",
+      "date": {
+        "start": "1215",
+        "precision": "circa-year",
+        "end": "1228"
+      },
+      "summary": "The chronicles describe Sukaphaa's party crossing the Patkai hills into the upper Brahmaputra valley, naming the lake Nong Nyang on the way. The precise path is not recorded; any drawn line is a schematic corridor.",
+      "participants": [
+        "ahom"
+      ],
+      "persons": [
+        "Sukaphaa"
+      ],
+      "locations": [
+        "hukawng",
+        "patkai",
+        "nong-nyang",
+        "namrup"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "barua1930",
+          "pages": null,
+          "locator": "Sukapha's journey",
+          "supports": [
+            "location"
+          ]
+        },
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Sukapha",
+          "supports": [
+            "location"
+          ]
+        },
+        {
+          "sourceId": "gogoi1968",
+          "pages": null,
+          "locator": "migration",
+          "supports": [
+            "location"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "C",
+        "basis": "Named waypoints from chronicles; route geometry reconstructed."
+      },
+      "claimStatus": "approximate",
+      "eventType": "migration",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          96.0,
+          26.9
+        ],
+        "zoom": 7.2,
+        "bearing": 0,
+        "pitch": 45,
+        "vertical": {
+          "center": [
+            96.0,
+            26.9
+          ],
+          "zoom": 6.6
+        }
+      },
+      "animationInstructions": [
+        {
+          "kind": "route",
+          "style": "schematic-corridor",
+          "via": [
+            "hukawng",
+            "nong-nyang",
+            "namrup"
+          ],
+          "label": "Route approximate"
+        },
+        {
+          "kind": "caption",
+          "text": "Exact route not recorded",
+          "tag": "approximate"
+        }
+      ],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e02-arrival-1228",
+      "episode": 2,
+      "title": "Arrival in the Brahmaputra valley (1228)",
+      "date": {
+        "start": "1228",
+        "precision": "year",
+        "calendarNote": "Conventional founding date of the Ahom kingdom; chronicle-derived."
+      },
+      "summary": "Sukaphaa's arrival in the upper Brahmaputra valley is conventionally dated to 1228, the date used for the start of Ahom rule.",
+      "participants": [
+        "ahom"
+      ],
+      "persons": [
+        "Sukaphaa"
+      ],
+      "locations": [
+        "namrup"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Sukapha",
+          "supports": [
+            "date"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2, Sukapha chapter",
+          "supports": [
+            "date"
+          ]
+        },
+        {
+          "sourceId": "baruah1985",
+          "pages": null,
+          "locator": "Ahom advent",
+          "supports": [
+            "date"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "foundation",
+      "territorialEffect": {
+        "type": "foundation",
+        "actor": "ahom",
+        "snapshotIds": [
+          "s1228"
+        ]
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          95.3,
+          27.2
+        ],
+        "zoom": 8.0,
+        "bearing": 0,
+        "pitch": 0,
+        "vertical": {
+          "center": [
+            95.3,
+            27.2
+          ],
+          "zoom": 7.4
+        }
+      },
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e02-wandering-settlements",
+      "episode": 2,
+      "title": "Search for a seat: Tipam, Abhaypur, Habung, Simaluguri",
+      "date": {
+        "start": "1228",
+        "precision": "decade",
+        "end": "1253"
+      },
+      "summary": "Over roughly a quarter-century the chronicles move Sukaphaa's group between several sites, abandoning some because of floods, before settling at Charaideo. Several of these places can only be located approximately.",
+      "participants": [
+        "ahom"
+      ],
+      "persons": [
+        "Sukaphaa"
+      ],
+      "locations": [
+        "tipam",
+        "abhaypur",
+        "habung",
+        "simaluguri",
+        "charaideo"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Sukapha",
+          "supports": [
+            "location"
+          ]
+        },
+        {
+          "sourceId": "barua1930",
+          "pages": null,
+          "locator": "Sukapha",
+          "supports": [
+            "location"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "C",
+        "basis": "Sequence is chronicle-derived; site identifications partly uncertain."
+      },
+      "claimStatus": "approximate",
+      "eventType": "migration",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          95.0,
+          27.1
+        ],
+        "zoom": 7.8,
+        "bearing": 0,
+        "pitch": 0,
+        "vertical": {
+          "center": [
+            95.0,
+            27.1
+          ],
+          "zoom": 7.2
+        }
+      },
+      "animationInstructions": [
+        {
+          "kind": "route",
+          "style": "schematic-corridor",
+          "via": [
+            "namrup",
+            "tipam",
+            "abhaypur",
+            "habung",
+            "simaluguri",
+            "charaideo"
+          ],
+          "label": "Sequence per chronicles; locations approximate"
+        }
+      ],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e02-moran-borahi",
+      "episode": 2,
+      "title": "Morans and Borahis incorporated",
+      "date": {
+        "start": "1228",
+        "precision": "decade",
+        "end": "1268"
+      },
+      "summary": "The newcomers subdued and incorporated the local Moran and Borahi communities, partly through intermarriage and assimilation. Their numbers and the exact area involved are not recorded.",
+      "participants": [
+        "ahom",
+        "moran",
+        "borahi"
+      ],
+      "persons": [],
+      "locations": [
+        "charaideo"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Sukapha",
+          "supports": [
+            "participants"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "participants"
+          ]
+        },
+        {
+          "sourceId": "guha1991",
+          "pages": null,
+          "locator": "state formation essay",
+          "supports": [
+            "context"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "conquest",
+      "territorialEffect": {
+        "type": "annexation",
+        "actor": "ahom",
+        "subject": "moran",
+        "notes": "Area unknown; show as influence zone only."
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          94.9,
+          27.0
+        ],
+        "zoom": 8.2,
+        "bearing": 0,
+        "pitch": 0,
+        "vertical": {
+          "center": [
+            94.9,
+            27.0
+          ],
+          "zoom": 7.6
+        }
+      },
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e02-charaideo-1253",
+      "episode": 2,
+      "title": "Charaideo becomes the seat of the kingdom",
+      "date": {
+        "start": "1253",
+        "precision": "year",
+        "calendarNote": "Chronicle-derived."
+      },
+      "summary": "Charaideo became the first established seat of Ahom rule. It later became the royal burial ground, whose moidams are now a UNESCO World Heritage property.",
+      "participants": [
+        "ahom"
+      ],
+      "persons": [
+        "Sukaphaa"
+      ],
+      "locations": [
+        "charaideo"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Sukapha",
+          "supports": [
+            "date",
+            "location"
+          ]
+        },
+        {
+          "sourceId": "unesco2024-moidams",
+          "pages": null,
+          "locator": "property description",
+          "supports": [
+            "location",
+            "context"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "foundation",
+      "territorialEffect": {
+        "type": "capital-moved",
+        "actor": "ahom",
+        "snapshotIds": [
+          "s1253"
+        ]
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          94.8,
+          26.94
+        ],
+        "zoom": 10.5,
+        "bearing": 0,
+        "pitch": 50,
+        "vertical": {
+          "center": [
+            94.8,
+            26.94
+          ],
+          "zoom": 9.9
+        }
+      },
+      "animationInstructions": [
+        {
+          "kind": "flyTo",
+          "durationMs": 6000,
+          "view": "event"
+        },
+        {
+          "kind": "pulseMarker",
+          "placeId": "charaideo"
+        }
+      ],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e02-sukaphaa-death",
+      "episode": 2,
+      "title": "Death of Sukaphaa",
+      "date": {
+        "start": "1268",
+        "precision": "year",
+        "calendarNote": "Chronicle-derived."
+      },
+      "summary": "Sukaphaa died in 1268 according to the standard chronology.",
+      "participants": [
+        "ahom"
+      ],
+      "persons": [
+        "Sukaphaa"
+      ],
+      "locations": [
+        "charaideo"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Sukapha",
+          "supports": [
+            "date"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "death",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e03-wet-rice-settlement",
+      "episode": 3,
+      "title": "Wet-rice settlement and the growth of a valley state",
+      "date": {
+        "start": "1253",
+        "precision": "decade",
+        "end": "1497"
+      },
+      "summary": "Over the following centuries the Ahom polity extended wet-rice cultivation and absorbed neighbouring groups, building the agrarian base of the later state. This is a long process, not a single event, and is shown as gradual settlement rather than a border.",
+      "participants": [
+        "ahom"
+      ],
+      "persons": [],
+      "locations": [
+        "charaideo"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "guha1991",
+          "pages": null,
+          "locator": "essays on Ahom polity and economy",
+          "supports": [
+            "context"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 3",
+          "supports": [
+            "context"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Interpretive synthesis in standard scholarship."
+      },
+      "claimStatus": "approximate",
+      "eventType": "socio-economic",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          94.6,
+          27.0
+        ],
+        "zoom": 7.6,
+        "bearing": 0,
+        "pitch": 0,
+        "vertical": {
+          "center": [
+            94.6,
+            27.0
+          ],
+          "zoom": 7.0
+        }
+      },
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e03-chutia-conflict-early",
+      "episode": 3,
+      "title": "Early Ahom-Chutia conflict",
+      "date": {
+        "start": "1376",
+        "precision": "circa-year",
+        "calendarNote": "Gait's chronology dates the killing of Sutuphaa to c.1376; verify."
+      },
+      "summary": "Relations with the Chutia kingdom to the north-east alternated between peace and war. Chronicles report that the Ahom king Sutuphaa was killed by the Chutia ruler, an episode followed by an interregnum.",
+      "participants": [
+        "ahom",
+        "chutia"
+      ],
+      "persons": [
+        "Sutuphaa"
+      ],
+      "locations": [
+        "sadiya"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Sutupha",
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "C",
+        "basis": "Single-tradition account; date and circumstances to be cross-checked."
+      },
+      "claimStatus": "disputed",
+      "eventType": "battle",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e03-sudangphaa",
+      "episode": 3,
+      "title": "Sudangphaa's reign",
+      "date": {
+        "start": "1397",
+        "precision": "year",
+        "end": "1407"
+      },
+      "summary": "Sudangphaa, remembered as Bamuni Konwar because tradition says he was raised in a Brahmin household, reigned around 1397-1407. His reign is associated with growing Brahmin influence at court.",
+      "participants": [
+        "ahom"
+      ],
+      "persons": [
+        "Sudangphaa"
+      ],
+      "locations": [],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Sudangpha",
+          "supports": [
+            "date"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "context"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "accession",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Upbringing story is traditional."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e04-suhungmung-accession",
+      "episode": 4,
+      "title": "Suhungmung (Dihingia Raja) becomes king",
+      "date": {
+        "start": "1497",
+        "precision": "year"
+      },
+      "summary": "Suhungmung, also known as Dihingia Raja, began a reign that saw a major territorial expansion of the kingdom.",
+      "participants": [
+        "ahom"
+      ],
+      "persons": [
+        "Suhungmung"
+      ],
+      "locations": [],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Suhungmung",
+          "supports": [
+            "date"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "date"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "accession",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e04-chutia-annexation",
+      "episode": 4,
+      "title": "Annexation of the Chutia kingdom",
+      "date": {
+        "start": "1523",
+        "precision": "year",
+        "alternatives": [
+          {
+            "value": "1524",
+            "sourceId": "wiki-finding-aids",
+            "note": "Some secondary works give 1524; resolve from Barpujari vol. 2."
+          }
+        ]
+      },
+      "summary": "The Ahoms conquered the Chutia kingdom and placed its territory under a new Ahom governor, the Sadiyakhowa Gohain. This moved the Ahom frontier north-east towards Sadiya.",
+      "participants": [
+        "ahom",
+        "chutia"
+      ],
+      "persons": [
+        "Suhungmung"
+      ],
+      "locations": [
+        "sadiya"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Suhungmung",
+          "supports": [
+            "date",
+            "outcome",
+            "territory"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "outcome"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "conquest",
+      "territorialEffect": {
+        "type": "annexation",
+        "actor": "ahom",
+        "subject": "chutia",
+        "snapshotIds": [
+          "s1523"
+        ]
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Year 1523 vs 1524."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          95.3,
+          27.5
+        ],
+        "zoom": 7.6,
+        "bearing": 0,
+        "pitch": 0,
+        "vertical": {
+          "center": [
+            95.3,
+            27.5
+          ],
+          "zoom": 7.0
+        }
+      },
+      "animationInstructions": [
+        {
+          "kind": "arrow",
+          "polity": "ahom",
+          "from": "garhgaon",
+          "to": "sadiya",
+          "style": "advance"
+        },
+        {
+          "kind": "showSnapshot",
+          "snapshotId": "s1523"
+        }
+      ],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e04-turbak-invasion",
+      "episode": 4,
+      "title": "Invasion from Bengal repulsed (Turbak)",
+      "date": {
+        "start": "1532",
+        "precision": "year",
+        "end": "1533"
+      },
+      "summary": "An army from the Bengal Sultanate under the commander Turbak advanced up the Brahmaputra and was eventually defeated; Turbak was killed. This is the first major clash with a Muslim power from Bengal in Ahom accounts.",
+      "participants": [
+        "ahom",
+        "bengal-sultanate"
+      ],
+      "persons": [
+        "Suhungmung",
+        "Turbak"
+      ],
+      "locations": [
+        "kaliabor"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Suhungmung",
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "invasion",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Battle locations and army sizes are not reliably recorded; do not display numbers."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e04-dimapur-sacked",
+      "episode": 4,
+      "title": "Ahoms sack the Kachari capital Dimapur",
+      "date": {
+        "start": "1536",
+        "precision": "year"
+      },
+      "summary": "After repeated conflict with the Kachari (Dimasa) kingdom, Ahom forces took Dimapur. The Kachari rulers later re-established their capital further south at Maibang. This was a military defeat of the Kacharis, not the annexation of their whole kingdom.",
+      "participants": [
+        "ahom",
+        "kachari"
+      ],
+      "persons": [
+        "Suhungmung"
+      ],
+      "locations": [
+        "dimapur",
+        "maibang"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Suhungmung; Kacharis",
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "outcome"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "conquest",
+      "territorialEffect": {
+        "type": "territory-recovered",
+        "actor": "ahom",
+        "subject": "kachari",
+        "notes": "Ahom gains in the Dhansiri area; the Kachari kingdom continues independently.",
+        "snapshotIds": [
+          "s1536"
+        ]
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          93.9,
+          26.2
+        ],
+        "zoom": 7.6,
+        "bearing": 0,
+        "pitch": 0,
+        "vertical": {
+          "center": [
+            93.9,
+            26.2
+          ],
+          "zoom": 7.0
+        }
+      },
+      "animationInstructions": [
+        {
+          "kind": "arrow",
+          "polity": "ahom",
+          "from": "garhgaon",
+          "to": "dimapur",
+          "style": "advance"
+        }
+      ],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e04-suhungmung-death",
+      "episode": 4,
+      "title": "Death of Suhungmung",
+      "date": {
+        "start": "1539",
+        "precision": "year"
+      },
+      "summary": "Suhungmung died in 1539; standard accounts say he was assassinated.",
+      "participants": [
+        "ahom"
+      ],
+      "persons": [
+        "Suhungmung"
+      ],
+      "locations": [],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Suhungmung",
+          "supports": [
+            "date"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "death",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e05-garhgaon-capital",
+      "episode": 5,
+      "title": "Capital moved to Garhgaon",
+      "date": {
+        "start": "1540",
+        "precision": "circa-year"
+      },
+      "summary": "Suklenmung moved the royal capital to Garhgaon, which remained the principal capital through the 17th century.",
+      "participants": [
+        "ahom"
+      ],
+      "persons": [
+        "Suklenmung"
+      ],
+      "locations": [
+        "garhgaon"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Suklenmung",
+          "supports": [
+            "date",
+            "location"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "administrative",
+      "territorialEffect": {
+        "type": "capital-moved",
+        "actor": "ahom"
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          94.74,
+          26.94
+        ],
+        "zoom": 10.0,
+        "bearing": 0,
+        "pitch": 0,
+        "vertical": {
+          "center": [
+            94.74,
+            26.94
+          ],
+          "zoom": 9.4
+        }
+      },
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e05-koch-invasion",
+      "episode": 5,
+      "title": "Koch invasion and temporary occupation of Garhgaon",
+      "date": {
+        "start": "1562",
+        "precision": "year",
+        "end": "1563"
+      },
+      "summary": "The Koch king Naranarayan and his brother and general Chilarai invaded, and the Ahom king withdrew to the hills near Namrup. The Koch occupied Garhgaon temporarily and withdrew after the Ahoms submitted terms that included hostages. This was an occupation, not a lasting annexation.",
+      "participants": [
+        "koch",
+        "ahom"
+      ],
+      "persons": [
+        "Naranarayan",
+        "Chilarai",
+        "Sukhaamphaa"
+      ],
+      "locations": [
+        "garhgaon",
+        "namrup",
+        "koch-bihar"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Sukhaamphaa (Khora Raja); Koch kings",
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "outcome"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "occupation",
+      "territorialEffect": {
+        "type": "occupation-begins",
+        "actor": "koch",
+        "subject": "ahom",
+        "snapshotIds": [
+          "s1563"
+        ],
+        "notes": "Must be paired with withdrawal in the same snapshot narrative."
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Terms of the settlement differ between accounts."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          92.5,
+          26.6
+        ],
+        "zoom": 6.6,
+        "bearing": 0,
+        "pitch": 0,
+        "vertical": {
+          "center": [
+            92.5,
+            26.6
+          ],
+          "zoom": 6.0
+        }
+      },
+      "animationInstructions": [
+        {
+          "kind": "arrow",
+          "polity": "koch",
+          "from": "koch-bihar",
+          "to": "garhgaon",
+          "style": "advance"
+        },
+        {
+          "kind": "occupationOverlay",
+          "polity": "koch",
+          "placeIds": [
+            "garhgaon"
+          ]
+        },
+        {
+          "kind": "arrow",
+          "polity": "koch",
+          "from": "garhgaon",
+          "to": "koch-bihar",
+          "style": "retreat"
+        }
+      ],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e05-mughals-reach-frontier",
+      "episode": 5,
+      "title": "Mughals absorb Koch Hajo and reach the Ahom frontier",
+      "date": {
+        "start": "1612",
+        "precision": "year",
+        "end": "1613"
+      },
+      "summary": "Mughal forces from Bengal defeated Parikshitnarayan of Koch Hajo, bringing the empire's frontier to the Barnadi area and into direct contact with the Ahom kingdom.",
+      "participants": [
+        "mughal",
+        "koch-hajo",
+        "ahom"
+      ],
+      "persons": [
+        "Parikshitnarayan"
+      ],
+      "locations": [
+        "hajo",
+        "guwahati"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Koch Hajo; Mughal conquest",
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "outcome"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "conquest",
+      "territorialEffect": {
+        "type": "annexation",
+        "actor": "mughal",
+        "subject": "koch-hajo",
+        "snapshotIds": [
+          "s1615"
+        ]
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e05-ahom-mughal-wars",
+      "episode": 5,
+      "title": "Ahom-Mughal frontier wars",
+      "date": {
+        "start": "1615",
+        "precision": "year",
+        "end": "1638"
+      },
+      "summary": "A series of campaigns followed on the western frontier, including Mughal expeditions up the Brahmaputra and Ahom counter-attacks, with fortunes changing several times. Individual engagements, routes and army sizes need case-by-case verification before they are animated.",
+      "participants": [
+        "ahom",
+        "mughal"
+      ],
+      "persons": [
+        "Pratap Singha"
+      ],
+      "locations": [
+        "kaliabor",
+        "samdhara",
+        "hajo",
+        "guwahati"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Pratap Singha",
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "outcome"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Overall phase is well documented; individual battles need separate records."
+      },
+      "claimStatus": "documented",
+      "eventType": "campaign",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          92.2,
+          26.4
+        ],
+        "zoom": 7.4,
+        "bearing": 0,
+        "pitch": 0,
+        "vertical": {
+          "center": [
+            92.2,
+            26.4
+          ],
+          "zoom": 6.8
+        }
+      },
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e05-paik-reorganisation",
+      "episode": 5,
+      "title": "Paik system reorganised (Pratap Singha and Momai Tamuli Borbarua)",
+      "date": {
+        "start": "1603",
+        "precision": "decade",
+        "end": "1641"
+      },
+      "summary": "During Pratap Singha's reign the paik system of compulsory service was reorganised into a more formal structure of units, an institutional backbone of the 17th-century state.",
+      "participants": [
+        "ahom"
+      ],
+      "persons": [
+        "Pratap Singha",
+        "Momai Tamuli Borbarua"
+      ],
+      "locations": [],
+      "sourceRefs": [
+        {
+          "sourceId": "guha1991",
+          "pages": null,
+          "locator": "essays on the paik system",
+          "supports": [
+            "context"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 3",
+          "supports": [
+            "context"
+          ]
+        },
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Pratap Singha",
+          "supports": [
+            "context"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "administrative",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Attribution of specific reforms to individuals varies between accounts."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e05-treaty-1639",
+      "episode": 5,
+      "title": "Peace of 1639: the Barnadi and Asurar Ali boundary",
+      "date": {
+        "start": "1639",
+        "precision": "year"
+      },
+      "summary": "A settlement between Momai Tamuli Borbarua and the Mughal commander Allah Yar Khan fixed a boundary: the Barnadi river on the north bank and the Asurar Ali embankment on the south bank, with Guwahati on the Mughal side.",
+      "participants": [
+        "ahom",
+        "mughal"
+      ],
+      "persons": [
+        "Momai Tamuli Borbarua",
+        "Allah Yar Khan"
+      ],
+      "locations": [
+        "barnadi-mouth",
+        "guwahati"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "treaty of 1639",
+          "supports": [
+            "date",
+            "territory"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "territory"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "treaty",
+      "territorialEffect": {
+        "type": "boundary-agreement",
+        "actor": "ahom",
+        "subject": "mughal",
+        "snapshotIds": [
+          "s1639"
+        ],
+        "notes": "Asurar Ali alignment not yet georeferenced: draw the south-bank segment as an approximate line."
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          91.9,
+          26.2
+        ],
+        "zoom": 9.0,
+        "bearing": 0,
+        "pitch": 0,
+        "vertical": {
+          "center": [
+            91.9,
+            26.2
+          ],
+          "zoom": 8.4
+        }
+      },
+      "animationInstructions": [
+        {
+          "kind": "showSnapshot",
+          "snapshotId": "s1639"
+        },
+        {
+          "kind": "caption",
+          "text": "South-bank line approximate",
+          "tag": "approximate"
+        }
+      ],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e06-ahoms-take-guwahati-1658",
+      "episode": 6,
+      "title": "Ahoms occupy Guwahati during the Mughal succession war",
+      "date": {
+        "start": "1658",
+        "precision": "year"
+      },
+      "summary": "While Shah Jahan's sons fought over the Mughal throne, Jayadhwaj Singha's forces pushed west and occupied Guwahati and Mughal-held Kamrup. This provoked the later Mughal response.",
+      "participants": [
+        "ahom",
+        "mughal"
+      ],
+      "persons": [
+        "Jayadhwaj Singha"
+      ],
+      "locations": [
+        "guwahati"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Jayadhwaj Singha",
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "outcome"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "conquest",
+      "territorialEffect": {
+        "type": "territory-recovered",
+        "actor": "ahom",
+        "subject": "mughal",
+        "snapshotIds": [
+          "s1658"
+        ]
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e06-mir-jumla-advance",
+      "episode": 6,
+      "title": "Mir Jumla's invasion begins",
+      "date": {
+        "start": "1661-11",
+        "precision": "month",
+        "end": "1662-03"
+      },
+      "summary": "Mir Jumla, the Mughal governor of Bengal, led an army and river fleet up the Brahmaputra. He retook Guwahati and pressed east into the Ahom heartland.",
+      "participants": [
+        "mughal",
+        "ahom"
+      ],
+      "persons": [
+        "Mir Jumla",
+        "Jayadhwaj Singha"
+      ],
+      "locations": [
+        "dhaka",
+        "guwahati",
+        "kaliabor",
+        "garhgaon"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Jayadhwaj Singha; Mir Jumla",
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "outcome"
+          ]
+        },
+        {
+          "sourceId": "talish-fathiyya",
+          "pages": null,
+          "locator": "eyewitness account",
+          "supports": [
+            "context"
+          ],
+          "note": "Edition not yet located - cannot be the sole support."
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "invasion",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Army and fleet sizes appear in sources but differ; NOT displayed until verified from Talish edition and Barpujari."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          92.5,
+          26.3
+        ],
+        "zoom": 6.6,
+        "bearing": 0,
+        "pitch": 0,
+        "vertical": {
+          "center": [
+            92.5,
+            26.3
+          ],
+          "zoom": 6.0
+        }
+      },
+      "animationInstructions": [
+        {
+          "kind": "arrow",
+          "polity": "mughal",
+          "from": "guwahati",
+          "to": "garhgaon",
+          "style": "naval"
+        }
+      ],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e06-garhgaon-occupied",
+      "episode": 6,
+      "title": "Mughal occupation of Garhgaon",
+      "date": {
+        "start": "1662-03",
+        "precision": "month",
+        "calendarNote": "Often given as 17 March 1662; day to be verified against Talish/Barpujari."
+      },
+      "summary": "The Mughal army entered the Ahom capital Garhgaon. Jayadhwaj Singha withdrew to the hills near Namrup. The capital was occupied, but the kingdom was not annexed.",
+      "participants": [
+        "mughal",
+        "ahom"
+      ],
+      "persons": [
+        "Mir Jumla",
+        "Jayadhwaj Singha"
+      ],
+      "locations": [
+        "garhgaon",
+        "namrup"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Mir Jumla",
+          "supports": [
+            "date",
+            "location"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "outcome"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "occupation",
+      "territorialEffect": {
+        "type": "occupation-begins",
+        "actor": "mughal",
+        "subject": "ahom",
+        "snapshotIds": [
+          "s1662"
+        ]
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          94.74,
+          26.94
+        ],
+        "zoom": 9.4,
+        "bearing": 0,
+        "pitch": 0,
+        "vertical": {
+          "center": [
+            94.74,
+            26.94
+          ],
+          "zoom": 8.8
+        }
+      },
+      "animationInstructions": [
+        {
+          "kind": "occupationOverlay",
+          "polity": "mughal",
+          "placeIds": [
+            "garhgaon"
+          ],
+          "endsWithEvent": "e06-mughal-withdrawal"
+        }
+      ],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e06-monsoon-crisis",
+      "episode": 6,
+      "title": "Monsoon, isolation and disease",
+      "date": {
+        "start": "1662",
+        "precision": "season"
+      },
+      "summary": "During the monsoon of 1662 the Mughal garrisons in upper Assam were cut off by floods and Ahom raids, and suffered heavily from disease and food shortage.",
+      "participants": [
+        "mughal",
+        "ahom"
+      ],
+      "persons": [],
+      "locations": [
+        "garhgaon"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Mir Jumla",
+          "supports": [
+            "outcome"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "outcome"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "campaign",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Casualty figures vary widely and are not displayed."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e06-ghilajharighat-treaty",
+      "episode": 6,
+      "title": "Treaty of Ghilajharighat",
+      "date": {
+        "start": "1663-01",
+        "precision": "month",
+        "calendarNote": "Commonly 23 January 1663; one secondary source gives February. Place sometimes given as Tipam.",
+        "alternatives": [
+          {
+            "value": "1663-02-23",
+            "sourceId": "wiki-finding-aids",
+            "note": "Likely a typographical variant; resolve from primary account."
+          }
+        ]
+      },
+      "summary": "Jayadhwaj Singha accepted harsh terms: an indemnity, hostages, and the cession of western territory to the Mughals. The Ahom kingdom became tributary on paper, and the terms were only partly carried out.",
+      "participants": [
+        "ahom",
+        "mughal"
+      ],
+      "persons": [
+        "Mir Jumla",
+        "Jayadhwaj Singha"
+      ],
+      "locations": [
+        "garhgaon",
+        "guwahati"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Mir Jumla; treaty",
+          "supports": [
+            "date",
+            "territory"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "territory"
+          ]
+        },
+        {
+          "sourceId": "wiki-finding-aids",
+          "pages": null,
+          "locator": "Treaty of Ghilajharighat",
+          "supports": [
+            "context"
+          ],
+          "note": "Finding aid only - lists the term discrepancies."
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Treaty is well attested; individual terms and the exact boundary are disputed."
+      },
+      "claimStatus": "disputed",
+      "eventType": "treaty",
+      "territorialEffect": {
+        "type": "tributary-relationship",
+        "actor": "mughal",
+        "subject": "ahom",
+        "snapshotIds": [
+          "s1663"
+        ],
+        "notes": "Western boundary commonly given as the Bharali (north bank) and Kalang (south bank) - VERIFY before drawing."
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Indemnity quantities differ across Persian and Assamese sources; not displayed.",
+        "Exact boundary line to be verified."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e06-mughal-withdrawal",
+      "episode": 6,
+      "title": "Mughal withdrawal and Mir Jumla's death",
+      "date": {
+        "start": "1663",
+        "precision": "year",
+        "calendarNote": "Mir Jumla died on the return journey in spring 1663 (commonly 30/31 March); verify day."
+      },
+      "summary": "The Mughal army withdrew from upper Assam. Mir Jumla fell ill and died on the way back to Dhaka. The occupation of the Ahom capital ended.",
+      "participants": [
+        "mughal",
+        "ahom"
+      ],
+      "persons": [
+        "Mir Jumla"
+      ],
+      "locations": [
+        "garhgaon",
+        "guwahati",
+        "dhaka"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Mir Jumla",
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "outcome"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "withdrawal",
+      "territorialEffect": {
+        "type": "occupation-ends",
+        "actor": "mughal",
+        "subject": "ahom",
+        "snapshotIds": [
+          "s1663"
+        ]
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [
+        {
+          "kind": "arrow",
+          "polity": "mughal",
+          "from": "garhgaon",
+          "to": "guwahati",
+          "style": "retreat"
+        }
+      ],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e07-guwahati-recaptured",
+      "episode": 7,
+      "title": "Guwahati recaptured; Lachit Borphukan in command",
+      "date": {
+        "start": "1667",
+        "precision": "year",
+        "calendarNote": "Recapture commonly placed in November 1667; verify month."
+      },
+      "summary": "Under Chakradhwaj Singha the Ahoms prepared a counter-offensive. Their commander Lachit, appointed Borphukan, retook Itakhuli and Guwahati from the Mughals.",
+      "participants": [
+        "ahom",
+        "mughal"
+      ],
+      "persons": [
+        "Chakradhwaj Singha",
+        "Lachit Borphukan"
+      ],
+      "locations": [
+        "guwahati",
+        "itakhuli"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "bhuyan1947",
+          "pages": null,
+          "locator": "1667 campaign",
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        },
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Chakradhwaj Singha",
+          "supports": [
+            "date"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "conquest",
+      "territorialEffect": {
+        "type": "territory-recovered",
+        "actor": "ahom",
+        "subject": "mughal",
+        "snapshotIds": [
+          "s1667"
+        ]
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          91.75,
+          26.19
+        ],
+        "zoom": 11.0,
+        "bearing": 0,
+        "pitch": 45,
+        "vertical": {
+          "center": [
+            91.75,
+            26.19
+          ],
+          "zoom": 10.4
+        }
+      },
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e07-ram-singh-arrives",
+      "episode": 7,
+      "title": "Raja Ram Singh's army arrives",
+      "date": {
+        "start": "1669",
+        "precision": "year",
+        "calendarNote": "Ram Singh appointed 1667-68, arrives in Kamrup early 1669 per standard accounts; verify."
+      },
+      "summary": "Aurangzeb sent Raja Ram Singh of Amber to recover Kamrup. His army reached the Guwahati front, where the Ahoms held fortified positions on both banks of the river.",
+      "participants": [
+        "mughal",
+        "ahom"
+      ],
+      "persons": [
+        "Ram Singh",
+        "Aurangzeb"
+      ],
+      "locations": [
+        "guwahati"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "bhuyan1947",
+          "pages": null,
+          "locator": "Ram Singh's expedition",
+          "supports": [
+            "date",
+            "participants"
+          ]
+        },
+        {
+          "sourceId": "indianculture-saraighat",
+          "pages": null,
+          "supports": [
+            "participants"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "invasion",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Mughal army size is often quoted but sources differ; not displayed."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e07-alaboi",
+      "episode": 7,
+      "title": "Battle of Alaboi",
+      "date": {
+        "start": "1669",
+        "precision": "year"
+      },
+      "summary": "At Alaboi on the north bank the Ahoms suffered a heavy defeat, but the Mughals were unable to turn it into the capture of Guwahati.",
+      "participants": [
+        "ahom",
+        "mughal"
+      ],
+      "persons": [],
+      "locations": [
+        "alaboi"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "bhuyan1947",
+          "pages": null,
+          "locator": "Alaboi",
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        },
+        {
+          "sourceId": "kamrup-alaboi-saraighat",
+          "pages": null,
+          "supports": [
+            "outcome"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "battle",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Casualty figures circulate widely in popular sources; unsourced - not displayed."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e07-saraighat",
+      "episode": 7,
+      "title": "Battle of Saraighat",
+      "date": {
+        "start": "1671",
+        "precision": "year",
+        "calendarNote": "Usually March 1671; one district government page gives 1672.",
+        "alternatives": [
+          {
+            "value": "1672",
+            "sourceId": "kamrup-alaboi-saraighat",
+            "note": "Minority dating."
+          }
+        ]
+      },
+      "summary": "In a river battle at the narrows of the Brahmaputra near Guwahati, Ahom boats under Lachit Borphukan defeated the Mughal fleet's attempt to break through. Mughal forces withdrew, and Guwahati stayed in Ahom hands.",
+      "participants": [
+        "ahom",
+        "mughal"
+      ],
+      "persons": [
+        "Lachit Borphukan",
+        "Ram Singh",
+        "Udayaditya Singha"
+      ],
+      "locations": [
+        "saraighat",
+        "guwahati",
+        "itakhuli"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "bhuyan1947",
+          "pages": null,
+          "locator": "Saraighat",
+          "supports": [
+            "date",
+            "outcome",
+            "location"
+          ]
+        },
+        {
+          "sourceId": "indianculture-saraighat",
+          "pages": null,
+          "supports": [
+            "date",
+            "participants"
+          ]
+        },
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Udayaditya Singha",
+          "supports": [
+            "date"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Battle and outcome are well attested; tactical details rely on chronicle narrative."
+      },
+      "claimStatus": "documented",
+      "eventType": "naval-battle",
+      "territorialEffect": {
+        "type": "none",
+        "notes": "Defensive victory; status quo of s1667 maintained."
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Lachit being ill and leading from a boat is tradition-heavy; tag as traditional.",
+        "The poppy-seed exchange is an anecdote; tag as traditional.",
+        "Do not quote 'My uncle is not greater than my country' as verified speech."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          91.7,
+          26.19
+        ],
+        "zoom": 12.0,
+        "bearing": 0,
+        "pitch": 55,
+        "vertical": {
+          "center": [
+            91.7,
+            26.19
+          ],
+          "zoom": 11.4
+        }
+      },
+      "animationInstructions": [
+        {
+          "kind": "battleSequence",
+          "phases": [
+            {
+              "label": "Mughal fleet advances upstream",
+              "tag": "documented"
+            },
+            {
+              "label": "Ahom boats engage in the river narrows",
+              "tag": "documented"
+            },
+            {
+              "label": "Lachit, ill, leads from a boat (tradition)",
+              "tag": "traditional"
+            },
+            {
+              "label": "Mughal fleet withdraws",
+              "tag": "documented"
+            }
+          ]
+        }
+      ],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e07-lachit-death",
+      "episode": 7,
+      "title": "Death of Lachit Borphukan",
+      "date": {
+        "start": "1672",
+        "precision": "circa-year"
+      },
+      "summary": "Lachit Borphukan died soon after the campaign, traditionally of illness. He is commemorated in Assam on Lachit Divas (24 November).",
+      "participants": [
+        "ahom"
+      ],
+      "persons": [
+        "Lachit Borphukan"
+      ],
+      "locations": [
+        "guwahati"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "bhuyan1947",
+          "pages": null,
+          "supports": [
+            "date"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "C",
+        "basis": "Date and cause given variously."
+      },
+      "claimStatus": "disputed",
+      "eventType": "death",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e08-guwahati-lost-1679",
+      "episode": 8,
+      "title": "Guwahati handed back to the Mughals",
+      "date": {
+        "start": "1679",
+        "precision": "year"
+      },
+      "summary": "During a period of court instability and short reigns, the Ahom governor Laluksola Borphukan surrendered Guwahati to the Mughals.",
+      "participants": [
+        "ahom",
+        "mughal"
+      ],
+      "persons": [
+        "Laluksola Borphukan"
+      ],
+      "locations": [
+        "guwahati"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "period of puppet kings",
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "outcome"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "diplomacy",
+      "territorialEffect": {
+        "type": "territory-lost",
+        "actor": "mughal",
+        "subject": "ahom",
+        "snapshotIds": [
+          "s1679"
+        ]
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e08-gadadhar-accession",
+      "episode": 8,
+      "title": "Gadadhar Singha becomes king",
+      "date": {
+        "start": "1681",
+        "precision": "year"
+      },
+      "summary": "Gadadhar Singha (Supatphaa) took the throne, ending a period of instability. He founded the Tungkhungia line of kings.",
+      "participants": [
+        "ahom"
+      ],
+      "persons": [
+        "Gadadhar Singha"
+      ],
+      "locations": [],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Gadadhar Singha",
+          "supports": [
+            "date"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "accession",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e08-itakhuli",
+      "episode": 8,
+      "title": "Battle of Itakhuli",
+      "date": {
+        "start": "1682-08",
+        "precision": "month",
+        "calendarNote": "Mid-August 1682 per standard accounts; pursuit continued into following weeks."
+      },
+      "summary": "Ahom forces retook Guwahati and the Itakhuli fort and pursued the Mughals west to the Manas river. The Manas then became the western limit of the Ahom kingdom for the rest of its history.",
+      "participants": [
+        "ahom",
+        "mughal"
+      ],
+      "persons": [
+        "Gadadhar Singha"
+      ],
+      "locations": [
+        "itakhuli",
+        "guwahati",
+        "manas-mouth"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Gadadhar Singha",
+          "supports": [
+            "date",
+            "territory"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "territory"
+          ]
+        },
+        {
+          "sourceId": "wiki-finding-aids",
+          "pages": null,
+          "locator": "Battle of Itakhuli",
+          "supports": [
+            "context"
+          ],
+          "note": "Finding aid only - notes Hadira/Goalpara alternative boundary statement."
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Event well attested; boundary description has minor variants."
+      },
+      "claimStatus": "documented",
+      "eventType": "battle",
+      "territorialEffect": {
+        "type": "territory-recovered",
+        "actor": "ahom",
+        "subject": "mughal",
+        "snapshotIds": [
+          "s1682"
+        ],
+        "notes": "Western boundary at the Manas; some accounts name Hadira opposite Goalpara."
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          91.2,
+          26.2
+        ],
+        "zoom": 8.2,
+        "bearing": 0,
+        "pitch": 0,
+        "vertical": {
+          "center": [
+            91.2,
+            26.2
+          ],
+          "zoom": 7.6
+        }
+      },
+      "animationInstructions": [
+        {
+          "kind": "pulseMarker",
+          "placeId": "itakhuli"
+        },
+        {
+          "kind": "arrow",
+          "polity": "ahom",
+          "from": "guwahati",
+          "to": "manas-mouth",
+          "style": "advance"
+        },
+        {
+          "kind": "showSnapshot",
+          "snapshotId": "s1682"
+        }
+      ],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e09-rudra-singha",
+      "episode": 9,
+      "title": "Reign of Rudra Singha",
+      "date": {
+        "start": "1696",
+        "precision": "year",
+        "end": "1714"
+      },
+      "summary": "Rudra Singha's reign is often treated as the height of Ahom power. He developed the capital at Rangpur, sponsored building works and courtly culture, and pursued diplomacy with neighbouring states.",
+      "participants": [
+        "ahom"
+      ],
+      "persons": [
+        "Rudra Singha"
+      ],
+      "locations": [
+        "rangpur"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Rudra Singha",
+          "supports": [
+            "date"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "context"
+          ]
+        },
+        {
+          "sourceId": "baruah1985",
+          "pages": null,
+          "locator": "Rudra Singha",
+          "supports": [
+            "context"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "accession",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          94.63,
+          26.98
+        ],
+        "zoom": 10.5,
+        "bearing": 0,
+        "pitch": 0,
+        "vertical": {
+          "center": [
+            94.63,
+            26.98
+          ],
+          "zoom": 9.9
+        }
+      },
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e09-kachari-jaintia-campaign",
+      "episode": 9,
+      "title": "Campaigns against the Kachari and Jaintia kingdoms",
+      "date": {
+        "start": "1706",
+        "precision": "year",
+        "end": "1708"
+      },
+      "summary": "Ahom armies entered the Kachari and Jaintia kingdoms. The outcome was submission and tribute, not lasting annexation; both kingdoms kept their own rulers.",
+      "participants": [
+        "ahom",
+        "kachari",
+        "jaintia"
+      ],
+      "persons": [
+        "Rudra Singha"
+      ],
+      "locations": [
+        "khaspur",
+        "jaintiapur"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Rudra Singha",
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "outcome"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "campaign",
+      "territorialEffect": {
+        "type": "tributary-relationship",
+        "actor": "ahom",
+        "subject": "kachari",
+        "snapshotIds": [
+          "s1708"
+        ],
+        "notes": "Render Kachari and Jaintia as tributary texture, temporary."
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [
+        {
+          "kind": "arrow",
+          "polity": "ahom",
+          "from": "rangpur",
+          "to": "khaspur",
+          "style": "advance"
+        },
+        {
+          "kind": "arrow",
+          "polity": "ahom",
+          "from": "guwahati",
+          "to": "jaintiapur",
+          "style": "advance"
+        }
+      ],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e09-rudra-death",
+      "episode": 9,
+      "title": "Death of Rudra Singha at Guwahati",
+      "date": {
+        "start": "1714",
+        "precision": "year"
+      },
+      "summary": "Rudra Singha died at Guwahati. Standard accounts say he was preparing a westward campaign towards Mughal Bengal, which never took place.",
+      "participants": [
+        "ahom"
+      ],
+      "persons": [
+        "Rudra Singha"
+      ],
+      "locations": [
+        "guwahati"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Rudra Singha",
+          "supports": [
+            "date"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "death",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Scale and seriousness of the planned Bengal campaign are interpretive."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e09-monuments",
+      "episode": 9,
+      "title": "Royal building programme: tanks, temples and palaces",
+      "date": {
+        "start": "1696",
+        "precision": "decade",
+        "end": "1769",
+        "calendarNote": "Individual construction dates (e.g. Sivadol, Rang Ghar) need official monument notices."
+      },
+      "summary": "18th-century kings built large water tanks, brick temples and palaces around Rangpur and Garhgaon, including the Rang Ghar pavilion, the Talatal Ghar palace complex and the Sivasagar temples. Exact construction years are given variously and will be shown only as reigns until verified.",
+      "participants": [
+        "ahom"
+      ],
+      "persons": [
+        "Rudra Singha",
+        "Siva Singha",
+        "Pramatta Singha",
+        "Rajeswar Singha"
+      ],
+      "locations": [
+        "rangpur",
+        "garhgaon"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "18th-century kings",
+          "supports": [
+            "context"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 3",
+          "supports": [
+            "context"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "C",
+        "basis": "Monuments are physical facts; individual dates and attributions need ASI/State Archaeology notices."
+      },
+      "claimStatus": "approximate",
+      "eventType": "construction",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e09-religious-politics",
+      "episode": 9,
+      "title": "Royal religion and satra politics",
+      "date": {
+        "start": "1681",
+        "precision": "decade",
+        "end": "1751"
+      },
+      "summary": "Royal policy towards Vaishnava monasteries (satras) varied by reign, from persecution under Gadadhar Singha to Shakta ascendancy at court under Siva Singha. This background mattered for the later Moamoria rebellion.",
+      "participants": [
+        "ahom"
+      ],
+      "persons": [
+        "Gadadhar Singha",
+        "Siva Singha"
+      ],
+      "locations": [],
+      "sourceRefs": [
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2-3",
+          "supports": [
+            "context"
+          ]
+        },
+        {
+          "sourceId": "guha1991",
+          "pages": null,
+          "supports": [
+            "context"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Interpretive; framing debated among historians."
+      },
+      "claimStatus": "documented",
+      "eventType": "socio-economic",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e10-moamoria-first",
+      "episode": 10,
+      "title": "Moamoria rebellion: first uprising",
+      "date": {
+        "start": "1769",
+        "precision": "year",
+        "end": "1770",
+        "calendarNote": "Uprising late 1769; royalist recovery 1770."
+      },
+      "summary": "Followers of the Moamara satra, joined by other discontented groups, rose against the government, seized the capital Rangpur and held king Lakshmi Singha. Royalists regained control in 1770.",
+      "participants": [
+        "moamoria",
+        "ahom"
+      ],
+      "persons": [
+        "Lakshmi Singha",
+        "Ragha Moran"
+      ],
+      "locations": [
+        "rangpur"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Lakshmi Singha",
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "outcome"
+          ]
+        },
+        {
+          "sourceId": "guha1991",
+          "pages": null,
+          "locator": "essays on the rebellion",
+          "supports": [
+            "context"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "rebellion",
+      "territorialEffect": {
+        "type": "occupation-begins",
+        "actor": "moamoria",
+        "subject": "ahom",
+        "snapshotIds": [
+          "s1769"
+        ]
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Relative weight of religious vs socio-economic causes is debated (Guha vs earlier accounts)."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          94.63,
+          26.98
+        ],
+        "zoom": 9.6,
+        "bearing": 0,
+        "pitch": 0,
+        "vertical": {
+          "center": [
+            94.63,
+            26.98
+          ],
+          "zoom": 9.0
+        }
+      },
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e10-moamoria-second",
+      "episode": 10,
+      "title": "Second uprising; king flees to Guwahati",
+      "date": {
+        "start": "1782",
+        "precision": "year",
+        "end": "1788"
+      },
+      "summary": "A renewed and wider rebellion broke out under Gaurinath Singha. The king abandoned the capital and moved down-river to Guwahati, leaving much of upper Assam outside royal control.",
+      "participants": [
+        "moamoria",
+        "ahom"
+      ],
+      "persons": [
+        "Gaurinath Singha"
+      ],
+      "locations": [
+        "rangpur",
+        "guwahati"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Gaurinath Singha",
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        },
+        {
+          "sourceId": "bhuyan1949",
+          "pages": null,
+          "supports": [
+            "outcome"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "rebellion",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e10-welsh-expedition",
+      "episode": 10,
+      "title": "Captain Welsh's expedition",
+      "date": {
+        "start": "1792-11",
+        "precision": "month",
+        "end": "1794",
+        "calendarNote": "Arrival in Guwahati November 1792; recall in 1794 (month given as March or May in different accounts)."
+      },
+      "summary": "At Gaurinath Singha's request the East India Company sent Captain Thomas Welsh with troops. He restored the king at Rangpur in 1794 and was then recalled. This was a limited intervention, not a British takeover.",
+      "participants": [
+        "eic",
+        "ahom",
+        "moamoria"
+      ],
+      "persons": [
+        "Thomas Welsh",
+        "Gaurinath Singha"
+      ],
+      "locations": [
+        "guwahati",
+        "rangpur"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "bhuyan1949",
+          "pages": null,
+          "locator": "Welsh expedition",
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        },
+        {
+          "sourceId": "welsh-report-1794",
+          "pages": null,
+          "supports": [
+            "context"
+          ],
+          "note": "Edition not yet located."
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "foreign-intervention",
+      "territorialEffect": {
+        "type": "none",
+        "notes": "Temporary Company military presence; draw as an intervention arrow, not territory."
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Departure month: March vs May 1794."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [
+        {
+          "kind": "arrow",
+          "polity": "eic",
+          "from": "guwahati",
+          "to": "rangpur",
+          "style": "advance"
+        },
+        {
+          "kind": "arrow",
+          "polity": "eic",
+          "from": "rangpur",
+          "to": "guwahati",
+          "style": "retreat"
+        }
+      ],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e10-jorhat-capital",
+      "episode": 10,
+      "title": "Capital moved to Jorhat",
+      "date": {
+        "start": "1794",
+        "precision": "year"
+      },
+      "summary": "After the upheavals the royal seat moved to Jorhat.",
+      "participants": [
+        "ahom"
+      ],
+      "persons": [],
+      "locations": [
+        "jorhat"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "bhuyan1949",
+          "pages": null,
+          "supports": [
+            "date"
+          ]
+        },
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Gaurinath Singha",
+          "supports": [
+            "date"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "administrative",
+      "territorialEffect": {
+        "type": "capital-moved",
+        "actor": "ahom"
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e10-moamoria-end",
+      "episode": 10,
+      "title": "End of the rebellion and the Matak settlement",
+      "date": {
+        "start": "1805",
+        "precision": "circa-year"
+      },
+      "summary": "Under the minister Purnananda Burhagohain the government suppressed the rebellion. The Matak territory in the north-east was left under its own leader in a semi-autonomous arrangement. The kingdom emerged with its population and institutions badly weakened.",
+      "participants": [
+        "ahom",
+        "moamoria"
+      ],
+      "persons": [
+        "Purnananda Burhagohain"
+      ],
+      "locations": [
+        "sadiya"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Kamaleswar Singha",
+          "supports": [
+            "date"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "outcome"
+          ]
+        },
+        {
+          "sourceId": "guha1991",
+          "pages": null,
+          "supports": [
+            "context"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "C",
+        "basis": "End date and terms given variously."
+      },
+      "claimStatus": "approximate",
+      "eventType": "rebellion",
+      "territorialEffect": {
+        "type": "tributary-relationship",
+        "actor": "ahom",
+        "notes": "Matak area semi-autonomous; render as tributary/autonomous texture.",
+        "snapshotIds": [
+          "s1805"
+        ]
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Population loss estimates are not reliable; do not display figures."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e11-badan-chandra-ava",
+      "episode": 11,
+      "title": "Badan Chandra Borphukan seeks Burmese help",
+      "date": {
+        "start": "1815",
+        "precision": "year",
+        "end": "1816"
+      },
+      "summary": "In a factional struggle at court, the Ahom official Badan Chandra Borphukan went to the Burmese court to seek military support, opening the door to Burmese intervention.",
+      "participants": [
+        "ahom",
+        "burma"
+      ],
+      "persons": [
+        "Badan Chandra Borphukan",
+        "Chandrakanta Singha"
+      ],
+      "locations": [
+        "ava",
+        "amarapura"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "bhuyan1949",
+          "pages": null,
+          "supports": [
+            "participants",
+            "date"
+          ]
+        },
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Chandrakanta Singha",
+          "supports": [
+            "date"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "diplomacy",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Whether he went to Ava or Amarapura depends on the court location at the time - verify."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e11-first-burmese-invasion",
+      "episode": 11,
+      "title": "First Burmese invasion",
+      "date": {
+        "start": "1817",
+        "precision": "year"
+      },
+      "summary": "A Burmese army entered Assam, installed Badan Chandra's faction in power and withdrew after receiving gifts and tribute. Chandrakanta Singha stayed on the throne under Burmese-backed control.",
+      "participants": [
+        "burma",
+        "ahom"
+      ],
+      "persons": [],
+      "locations": [
+        "patkai",
+        "jorhat"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "bhuyan1949",
+          "pages": null,
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "outcome"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "invasion",
+      "territorialEffect": {
+        "type": "occupation-begins",
+        "actor": "burma",
+        "subject": "ahom",
+        "snapshotIds": [
+          "s1817"
+        ],
+        "notes": "Short occupation followed by withdrawal within the same year."
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Burmese commander names to be verified against Burmese-side sources."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [
+        {
+          "kind": "arrow",
+          "polity": "burma",
+          "from": "patkai",
+          "to": "jorhat",
+          "style": "advance"
+        },
+        {
+          "kind": "arrow",
+          "polity": "burma",
+          "from": "jorhat",
+          "to": "patkai",
+          "style": "retreat"
+        }
+      ],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e11-second-burmese-invasion",
+      "episode": 11,
+      "title": "Second Burmese invasion",
+      "date": {
+        "start": "1819",
+        "precision": "year"
+      },
+      "summary": "After rival ministers installed Purandar Singha in 1818, a second Burmese army restored Chandrakanta Singha. Burmese influence over the court deepened.",
+      "participants": [
+        "burma",
+        "ahom"
+      ],
+      "persons": [
+        "Purandar Singha",
+        "Chandrakanta Singha"
+      ],
+      "locations": [
+        "jorhat"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "bhuyan1949",
+          "pages": null,
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "invasion",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e11-third-burmese-invasion",
+      "episode": 11,
+      "title": "Third Burmese invasion and occupation",
+      "date": {
+        "start": "1821",
+        "precision": "year",
+        "end": "1822"
+      },
+      "summary": "When Chandrakanta Singha tried to free himself from Burmese control, Burmese forces returned, defeated him and installed Jogeswar Singha as a puppet ruler. Burmese occupation of the Brahmaputra valley followed.",
+      "participants": [
+        "burma",
+        "ahom"
+      ],
+      "persons": [
+        "Chandrakanta Singha",
+        "Jogeswar Singha"
+      ],
+      "locations": [
+        "jorhat",
+        "guwahati"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "bhuyan1949",
+          "pages": null,
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "outcome"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "occupation",
+      "territorialEffect": {
+        "type": "occupation-begins",
+        "actor": "burma",
+        "subject": "ahom",
+        "snapshotIds": [
+          "s1822"
+        ]
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Battle names and dates within 1821-22 need verification."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e11-occupation-hardship",
+      "episode": 11,
+      "title": "Burmese occupation remembered as a time of terror",
+      "date": {
+        "start": "1822",
+        "precision": "year",
+        "end": "1824"
+      },
+      "summary": "Assamese tradition remembers the occupation as a period of violence and flight. Many people fled to neighbouring regions. Specific atrocity accounts and population figures come from later or partisan sources and are not quantified here.",
+      "participants": [
+        "burma",
+        "ahom"
+      ],
+      "persons": [],
+      "locations": [],
+      "sourceRefs": [
+        {
+          "sourceId": "bhuyan1949",
+          "pages": null,
+          "supports": [
+            "context"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "context"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "C",
+        "basis": "Experience is well attested qualitatively; numbers are not reliable."
+      },
+      "claimStatus": "approximate",
+      "eventType": "occupation",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Avoid quantifying casualties or depopulation."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e12-war-declared",
+      "episode": 12,
+      "title": "First Anglo-Burmese War begins",
+      "date": {
+        "start": "1824-03-05",
+        "precision": "day"
+      },
+      "summary": "The East India Company declared war on Burma after clashes on the Bengal frontier, including in Cachar and Arakan. Company forces advanced into the Brahmaputra valley.",
+      "participants": [
+        "eic",
+        "burma"
+      ],
+      "persons": [],
+      "locations": [
+        "guwahati"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "bhuyan1949",
+          "pages": null,
+          "supports": [
+            "date"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "date"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "campaign",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          93.5,
+          24.5
+        ],
+        "zoom": 5.4,
+        "bearing": 0,
+        "pitch": 0,
+        "vertical": {
+          "center": [
+            94.0,
+            24.0
+          ],
+          "zoom": 4.8
+        }
+      },
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e12-british-advance",
+      "episode": 12,
+      "title": "Company forces occupy the Brahmaputra valley",
+      "date": {
+        "start": "1824-03",
+        "precision": "month",
+        "end": "1825-01",
+        "calendarNote": "Guwahati occupied March 1824; Rangpur capitulates January 1825 per standard accounts - verify."
+      },
+      "summary": "Company troops moved up the valley from Guwahati. The Burmese garrison at Rangpur capitulated in early 1825. This was a Company military occupation, and its political settlement was still undecided.",
+      "participants": [
+        "eic",
+        "burma"
+      ],
+      "persons": [],
+      "locations": [
+        "guwahati",
+        "rangpur"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "bhuyan1949",
+          "pages": null,
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "occupation",
+      "territorialEffect": {
+        "type": "occupation-begins",
+        "actor": "eic",
+        "subject": "burma",
+        "snapshotIds": [
+          "s1825"
+        ]
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [
+        {
+          "kind": "arrow",
+          "polity": "eic",
+          "from": "guwahati",
+          "to": "rangpur",
+          "style": "advance"
+        }
+      ],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e12-yandabo",
+      "episode": 12,
+      "title": "Treaty of Yandabo",
+      "date": {
+        "start": "1826-02-24",
+        "precision": "day"
+      },
+      "summary": "At Yandabo the King of Ava renounced all claims to Assam and its dependencies and agreed not to interfere in Cachar and Jaintia. Manipur's ruler was recognised, an indemnity was imposed, and Arakan and Tenasserim were ceded. Assam's political future was left to the Company.",
+      "participants": [
+        "burma",
+        "eic"
+      ],
+      "persons": [],
+      "locations": [
+        "yandabo"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "yandabo1826",
+          "pages": null,
+          "locator": "Article 2",
+          "supports": [
+            "outcome",
+            "territory"
+          ]
+        },
+        {
+          "sourceId": "bhuyan1949",
+          "pages": null,
+          "supports": [
+            "outcome"
+          ]
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2 (ends with the treaty)",
+          "supports": [
+            "date"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "A",
+        "basis": "Primary treaty text (Article 2 wording seen); date universally agreed."
+      },
+      "claimStatus": "documented",
+      "eventType": "treaty",
+      "territorialEffect": {
+        "type": "sovereignty-renounced",
+        "actor": "eic",
+        "subject": "burma",
+        "snapshotIds": [
+          "s1826"
+        ],
+        "notes": "Burma renounced claims. Whether this was a formal 'cession' of Assam is debated; label accordingly."
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Cession vs renunciation wording.",
+        "Indemnity amount and instalments: add as numericClaims only after verifying the treaty article."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": {
+        "center": [
+          94.0,
+          23.5
+        ],
+        "zoom": 5.0,
+        "bearing": 0,
+        "pitch": 0,
+        "vertical": {
+          "center": [
+            94.5,
+            23.5
+          ],
+          "zoom": 4.4
+        }
+      },
+      "animationInstructions": [
+        {
+          "kind": "pulseMarker",
+          "placeId": "yandabo"
+        },
+        {
+          "kind": "showSnapshot",
+          "snapshotId": "s1826"
+        },
+        {
+          "kind": "caption",
+          "text": "Burma renounces all claims to Assam (Art. 2)",
+          "tag": "documented"
+        }
+      ],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e13-purandar-restored",
+      "episode": 13,
+      "title": "Purandar Singha restored in Upper Assam",
+      "date": {
+        "start": "1833",
+        "precision": "year"
+      },
+      "summary": "The Company placed Purandar Singha over Upper Assam as a protected, tribute-paying ruler, while Lower Assam stayed under direct Company administration.",
+      "participants": [
+        "eic",
+        "ahom"
+      ],
+      "persons": [
+        "Purandar Singha"
+      ],
+      "locations": [
+        "jorhat"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "bhuyan1949",
+          "pages": null,
+          "supports": [
+            "context"
+          ],
+          "note": "Bhuyan ends at 1826 - need another source for 1833 (Barpujari, Political History of Assam / Aitchison)."
+        },
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "context"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "C",
+        "basis": "Event is standard; sourcing in our registry is incomplete (sources end at 1826)."
+      },
+      "claimStatus": "documented",
+      "eventType": "diplomacy",
+      "territorialEffect": {
+        "type": "tributary-relationship",
+        "actor": "eic",
+        "subject": "ahom",
+        "snapshotIds": [
+          "s1833"
+        ]
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    },
+    {
+      "id": "e13-annexation-1838",
+      "episode": 13,
+      "title": "Upper Assam annexed by the Company",
+      "date": {
+        "start": "1838",
+        "precision": "year"
+      },
+      "summary": "The Company removed Purandar Singha and annexed Upper Assam, ending the last remnant of Ahom royal government.",
+      "participants": [
+        "eic",
+        "ahom"
+      ],
+      "persons": [
+        "Purandar Singha"
+      ],
+      "locations": [
+        "jorhat"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "barpujari1990",
+          "pages": null,
+          "locator": "vol. 2",
+          "supports": [
+            "context"
+          ],
+          "note": "Need a source covering post-1826 - flagged gap."
+        }
+      ],
+      "confidence": {
+        "level": "C",
+        "basis": "Event is standard; registry lacks a verified post-1826 source."
+      },
+      "claimStatus": "documented",
+      "eventType": "conquest",
+      "territorialEffect": {
+        "type": "annexation",
+        "actor": "eic",
+        "subject": "ahom",
+        "snapshotIds": [
+          "s1838"
+        ]
+      },
+      "numericClaims": [],
+      "disputes": [],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Phase 1 draft; page locators pending."
+        }
+      ]
+    }
+  ]
+}
