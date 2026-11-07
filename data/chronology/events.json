@@ -1,6 +1,6 @@
 {
   "$comment": "Draft chronology (Phase 1). Schema: src/domain/types.ts. Page numbers are null until verified in a named edition. Narration is pending. Edit this file directly; log corrections in editorLog.",
-  "version": "0.2.0-gait-verified",
+  "version": "0.3.0-bhuyan-verified",
   "episodes": [
     {
       "number": 1,
@@ -1150,6 +1150,15 @@
       ],
       "sourceRefs": [
         {
+          "sourceId": "gait1906",
+          "pages": "p. 75",
+          "locator": "at Habung 'the Ahoms lived by cultivation'",
+          "supports": [
+            "context"
+          ],
+          "note": "Only a brief early reference; the long-run process needs Guha or Barpujari vol. 3."
+        },
+        {
           "sourceId": "guha1991",
           "pages": null,
           "locator": "essays on Ahom polity and economy",
@@ -1985,8 +1994,8 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Pratap Singha",
+          "pages": "pp. 104-116",
+          "locator": "chapter 'The Period of the Muhammadan Wars' from Bali Narayan's flight (1615) to the treaty fixing the Bar Nadi boundary",
           "supports": [
             "date",
             "outcome"
@@ -2059,6 +2068,15 @@
       "locations": [],
       "sourceRefs": [
         {
+          "sourceId": "bhuyan1947",
+          "pages": "pp. 17-19",
+          "locator": "Momai-tamuli Barbarua under Pratap Singha; officer grades on the lines of the Mughal mansabdari system",
+          "supports": [
+            "context",
+            "participants"
+          ]
+        },
+        {
           "sourceId": "guha1991",
           "pages": null,
           "locator": "essays on the paik system",
@@ -2076,8 +2094,8 @@
         },
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Pratap Singha",
+          "pages": "p. 236",
+          "locator": "paiks organised in gots of four, reduced to three in Upper Assam under Rajesvar Singh",
           "supports": [
             "context"
           ]
@@ -2085,7 +2103,7 @@
       ],
       "confidence": {
         "level": "B",
-        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+        "basis": "Bhuyan pp. 17-19 and Gait p. 236 verified; attribution of specific reforms to Momai Tamuli rests on Bhuyan."
       },
       "claimStatus": "documented",
       "eventType": "administrative",
@@ -2491,8 +2509,8 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Mir Jumla",
+          "pages": "pp. 134-136",
+          "locator": "Mughal garrisons during the rains of 1662; rains cease at end of September; supplies arrive late October",
           "supports": [
             "outcome"
           ]
@@ -2728,11 +2746,12 @@
       "episode": 7,
       "title": "Guwahati recaptured; Lachit Borphukan in command",
       "date": {
-        "start": "1667-08",
-        "end": "1667-11",
-        "precision": "month"
+        "start": "1667-08-20",
+        "end": "1667-11-02",
+        "precision": "day",
+        "calendarNote": "Bhuyan converts Bhadra 3 and Kartik 17, 1589 Saka as 'near about' 20 Aug and 2 Nov 1667 (pp. 26-27). Approximate to a day or two."
       },
-      "summary": "In August 1667 Chakradhwaj Singha sent an army west under Lachit, son of the Bar Barua, newly appointed Bar Phukan. Gauhati and Pandu fell after a two-month siege; Mughal reinforcements that arrived in November were defeated and pursued to the Manas.",
+      "summary": "In August 1667 Chakradhwaj Singha sent an army west under Lachit, son of the Bar Barua, newly appointed Bar Phukan. Gauhati and Pandu fell after a two-month siege; Mughal reinforcements that arrived in November were defeated and pursued to the Manas. Bhuyan dates the departure to about 20 August and the fall of Itakhuli (Sukreswar Hill) and Gauhati to about 2 November 1667; a stone pillar at Gauhati and a cannon found at Silghat carry inscriptions of Saka 1589 (1667) recording the victory.",
       "participants": [
         "ahom",
         "mughal"
@@ -2747,6 +2766,16 @@
       ],
       "sourceRefs": [
         {
+          "sourceId": "bhuyan1947",
+          "pages": "pp. 25-29",
+          "locator": "army leaves Bhadra 3, 1589 Saka (c. 20 Aug 1667); Itakhuli and Gauhati fall Kartik 17, 1589 Saka (c. 2 Nov 1667); inscriptions of Saka 1589",
+          "supports": [
+            "date",
+            "location",
+            "outcome"
+          ]
+        },
+        {
           "sourceId": "gait1906",
           "pages": "pp. 146-147",
           "locator": "August 1667 expedition under Lachit, appointed Bar Phukan; Gauhati and Pandu taken after a two-month siege; Mughals pursued to the Manas",
@@ -2755,20 +2784,11 @@
             "outcome",
             "participants"
           ]
-        },
-        {
-          "sourceId": "bhuyan1947",
-          "pages": null,
-          "locator": "1667 campaign",
-          "supports": [
-            "date",
-            "outcome"
-          ]
         }
       ],
       "confidence": {
         "level": "B",
-        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+        "basis": "Gait pp. 146-147 and Bhuyan pp. 25-29 agree; Saka 1589 inscriptions are cited by Bhuyan but not yet independently examined (would raise to A)."
       },
       "claimStatus": "documented",
       "eventType": "conquest",
@@ -2806,6 +2826,10 @@
         {
           "date": "2026-11-07",
           "note": "Phase 1 draft; page locators pending."
+        },
+        {
+          "date": "2026-11-07",
+          "note": "Bhuyan 1947 pp. 25-29 verified (OCR)."
         }
       ]
     },
@@ -2841,18 +2865,18 @@
           ]
         },
         {
-          "sourceId": "bhuyan1947",
+          "sourceId": "indianculture-saraighat",
           "pages": null,
-          "locator": "Ram Singh's expedition",
           "supports": [
-            "date",
             "participants"
           ]
         },
         {
-          "sourceId": "indianculture-saraighat",
-          "pages": null,
+          "sourceId": "bhuyan1947",
+          "pages": "pp. 33-37",
+          "locator": "Ram Singha sent against Assam; reaches Rangamati February 1669",
           "supports": [
+            "date",
             "participants"
           ]
         }
@@ -2883,7 +2907,14 @@
         "Mughal army size is often quoted but sources differ; not displayed."
       ],
       "narration": {
-        "status": "pending"
+        "status": "pending",
+        "traditionalSayings": [
+          {
+            "text": "The poppy-seed and sand exchange between Ram Singh and Lachit",
+            "attribution": "Assam Buranji (S.M.) p. 114, as cited by Bhuyan 1947 p. 50 (fn. 57)",
+            "note": "Anecdote recorded in a Buranji: label 'the chronicles tell'; not an eyewitness record."
+          }
+        ]
       },
       "cameraView": null,
       "animationInstructions": [],
@@ -2900,9 +2931,17 @@
       "title": "Battle of Alaboi",
       "date": {
         "start": "1669",
-        "precision": "year"
+        "precision": "year",
+        "calendarNote": "Bhuyan's narrative places Alaboi before Chakradhwaj Singha's death in April 1670 (p. 74); his note on a chronicle (Appendix IV) gives c. 29 September 1670 for its first phase. Unresolved.",
+        "alternatives": [
+          {
+            "value": "1670-09-29",
+            "sourceId": "bhuyan1947",
+            "note": "Appendix IV chronicle note; conflicts with the narrative order."
+          }
+        ]
       },
-      "summary": "At Alaboi on the north bank the Ahoms suffered a heavy defeat, but the Mughals were unable to turn it into the capture of Guwahati.",
+      "summary": "The Mughal army camped near Alaboi Hill, by Dalibari, on an open plain between the Brahmaputra and the Sesa river. Under pressure from king Chakradhwaj Singha, who doubted his generals' resolve, Lachit sent a large force against it. In the open field, where Mughal and Rajput cavalry had the advantage, the Ahoms suffered a heavy defeat. The Mughals still could not take Gauhati.",
       "participants": [
         "ahom",
         "mughal"
@@ -2914,10 +2953,10 @@
       "sourceRefs": [
         {
           "sourceId": "bhuyan1947",
-          "pages": null,
-          "locator": "Alaboi",
+          "pages": "pp. 63-69",
+          "locator": "'Ahom disaster at Alaboi': Mughal camp near Alaboi Hill by Dalibari; king's order to attack; Ahom defeat in the open plain",
           "supports": [
-            "date",
+            "location",
             "outcome"
           ]
         },
@@ -2936,6 +2975,14 @@
             "context"
           ],
           "note": "Gait does not name Alaboi; this may or may not be the same engagement."
+        },
+        {
+          "sourceId": "bhuyan1947",
+          "pages": "Appendix IV, pp. 203 ff.",
+          "locator": "note on the chronicle Ram Singhar Yuddhar Katha, which ends with 'the first phase of the battle of Alaboi' on Aswin 5, 1592 Saka (c. 29 Sept 1670)",
+          "supports": [
+            "date"
+          ]
         }
       ],
       "confidence": {
@@ -2947,9 +2994,22 @@
       "territorialEffect": {
         "type": "none"
       },
-      "numericClaims": [],
+      "numericClaims": [
+        {
+          "value": "about ten thousand Ahom soldiers killed",
+          "what": "Ahom dead at Alaboi",
+          "sourceRef": {
+            "sourceId": "bhuyan1947",
+            "pages": "pp. 66-68"
+          },
+          "confidence": "D",
+          "displayPolicy": "attributed",
+          "attribution": "figure in the Assamese chronicles, as given by Bhuyan"
+        }
+      ],
       "disputes": [
-        "Casualty figures circulate widely in popular sources; unsourced - not displayed."
+        "Date: 1669 (narrative order) vs c. 29 Sept 1670 (Bhuyan Appendix IV).",
+        "Details such as the female commander Madanavati come from chronicles quoted by Bhuyan and should be tagged as chronicle anecdote."
       ],
       "narration": {
         "status": "pending"
@@ -2960,6 +3020,10 @@
         {
           "date": "2026-11-07",
           "note": "Phase 1 draft; page locators pending."
+        },
+        {
+          "date": "2026-11-07",
+          "note": "Bhuyan 1947 pp. 63-69 verified; Alaboi located near Dalibari between the Brahmaputra and the Sesa."
         }
       ]
     },
@@ -2968,9 +3032,10 @@
       "episode": 7,
       "title": "Battle of Saraighat",
       "date": {
-        "start": "1671",
-        "precision": "year",
-        "calendarNote": "Usually March 1671; one district government page gives 1672.",
+        "start": "1671-03",
+        "end": "1671-04-05",
+        "precision": "month",
+        "calendarNote": "Battle in early 1671; Bhuyan dates Ram Singh's retreat to 23 Chaitra 1592 Saka, 'near about April 5, 1671' (p. 86). Gait: retreat in March 1671 (p. 150).",
         "alternatives": [
           {
             "value": "1672",
@@ -2979,7 +3044,7 @@
           }
         ]
       },
-      "summary": "Fighting around Gauhati in 1670 and 1671 included naval and land engagements on the Brahmaputra. By March 1671 Ram Singh's army, weakened by repeated losses, retreated to Rangamati, and Hadira opposite Goalpara became the Ahom frontier outpost. Modern accounts, beginning with S. K. Bhuyan's 1947 study, identify the decisive action as a river battle at Saraighat under Lachit Borphukan.",
+      "summary": "With the Ahom defences around Gauhati breached at Andharubali and Lachit Borphukan gravely ill, the Mughal fleet advanced and Ahom crews began to flee. According to the chronicles followed by Bhuyan, Lachit had himself carried to his boat and led a counter-attack with a handful of war-boats; the rest of the fleet rallied, and the battle was fought on the river between Kamakhya, Itakhuli and Aswakranta. The Mughal fleet was defeated and chased down to Pandu. Ram Singh began his retreat about 5 April 1671. Bhuyan notes that 'Saraighat' was a name loosely used for Gauhati and its surroundings; strictly, Sarai was the village of Amingaon opposite Pandu.",
       "participants": [
         "ahom",
         "mughal"
@@ -2996,6 +3061,16 @@
       ],
       "sourceRefs": [
         {
+          "sourceId": "bhuyan1947",
+          "pages": "pp. 78-86",
+          "locator": "'Assamese victory at Saraighat', citing the Assam Buranji (S.M.) pp. 121-124, Kamrupar Buranji, Purani Assam Buranji pp. 147-150, and manuscript Buranjis",
+          "supports": [
+            "date",
+            "location",
+            "outcome"
+          ]
+        },
+        {
           "sourceId": "gait1906",
           "pages": "p. 150",
           "locator": "operations of 1670 and 1671; Ram Singh retreats in March 1671; Hadira becomes the Ahom frontier outpost",
@@ -3004,16 +3079,6 @@
             "outcome"
           ],
           "note": "Gait does not name Saraighat and says the Buranjis are too confused to follow the operations in detail."
-        },
-        {
-          "sourceId": "bhuyan1947",
-          "pages": null,
-          "locator": "Saraighat",
-          "supports": [
-            "date",
-            "outcome",
-            "location"
-          ]
         },
         {
           "sourceId": "indianculture-saraighat",
@@ -3026,7 +3091,7 @@
       ],
       "confidence": {
         "level": "B",
-        "basis": "Mughal retreat in March 1671 verified in Gait p. 150. The named battle and its tactics rest on Bhuyan 1947 (pages pending)."
+        "basis": "Bhuyan pp. 78-86, built on several Buranjis he cites; Gait p. 150 independently confirms a decisive Mughal retreat in spring 1671 but gives no battle details."
       },
       "claimStatus": "documented",
       "eventType": "naval-battle",
@@ -3036,13 +3101,19 @@
       },
       "numericClaims": [],
       "disputes": [
-        "Lachit being ill and leading from a boat is tradition-heavy; tag as traditional.",
-        "The poppy-seed exchange is an anecdote; tag as traditional.",
-        "Do not quote 'My uncle is not greater than my country' as verified speech.",
-        "Gait (1906) gives no named 'Battle of Saraighat'; the detailed battle narrative is a later (Bhuyan 1947) reconstruction from Buranjis."
+        "Gait (1906) gives no named battle; the detailed narrative is Bhuyan's synthesis of Buranjis (some in manuscript).",
+        "Lachit's illness and being carried to his boat: chronicle-attested per Bhuyan (fn. 89 cites an old chronicle extract in Bardoloi's Sandipika) - show as 'the chronicles say'.",
+        "Speeches quoted by Bhuyan are chronicle reports, not verbatim records; show only as attributed paraphrase."
       ],
       "narration": {
-        "status": "pending"
+        "status": "pending",
+        "traditionalSayings": [
+          {
+            "text": "Lachit's reply that he would die at his post rather than leave it",
+            "attribution": "Assamese chronicles, as quoted by Bhuyan 1947 p. 79",
+            "note": "Chronicle report; paraphrase only, label 'the chronicles say'."
+          }
+        ]
       },
       "cameraView": {
         "center": [
@@ -3065,19 +3136,27 @@
           "kind": "battleSequence",
           "phases": [
             {
-              "label": "Mughal fleet advances upstream",
+              "label": "Breach at Andharubali; Mughal fleet advances",
               "tag": "documented"
             },
             {
-              "label": "Ahom boats engage in the river narrows",
+              "label": "Ahom crews begin to retreat",
               "tag": "documented"
             },
             {
-              "label": "Lachit, ill, leads from a boat (tradition)",
-              "tag": "traditional"
+              "label": "Lachit, gravely ill, carried to his boat, leads the counter-attack (chronicles)",
+              "tag": "documented"
             },
             {
-              "label": "Mughal fleet withdraws",
+              "label": "Battle on the river between Kamakhya, Itakhuli and Aswakranta",
+              "tag": "documented"
+            },
+            {
+              "label": "Mughal fleet routed and chased to Pandu",
+              "tag": "documented"
+            },
+            {
+              "label": "Ram Singh retreats, c. 5 April 1671",
               "tag": "documented"
             }
           ]
@@ -3091,6 +3170,10 @@
         {
           "date": "2026-11-07",
           "note": "Gait p. 150 checked: no Saraighat/Lachit-illness narrative in Gait; Bhuyan 1947 pages needed."
+        },
+        {
+          "date": "2026-11-07",
+          "note": "Bhuyan 1947 pp. 78-86 verified; battle narrative now chronicle-sourced via Bhuyan; place and date notes added."
         }
       ]
     },
@@ -3099,10 +3182,11 @@
       "episode": 7,
       "title": "Death of Lachit Borphukan",
       "date": {
-        "start": "1672",
-        "precision": "circa-year"
+        "start": "1671",
+        "precision": "circa-year",
+        "calendarNote": "Bhuyan: 'soon after the battle of Saraighat' (p. 87); no exact date given."
       },
-      "summary": "Lachit Borphukan died soon after the campaign, traditionally of illness. He is commemorated in Assam on Lachit Divas (24 November).",
+      "summary": "Lachit Borphukan died soon after the battle, having fought while in high fever, according to Bhuyan. His elder brother Laluk Sola succeeded him as Barphukan. He is commemorated in Assam on Lachit Divas (24 November).",
       "participants": [
         "ahom"
       ],
@@ -3115,15 +3199,16 @@
       "sourceRefs": [
         {
           "sourceId": "bhuyan1947",
-          "pages": null,
+          "pages": "p. 87",
+          "locator": "'Death of Lachit Barphukan' soon after the battle, still in high fever; succeeded by his brother Laluk Sola",
           "supports": [
-            "date"
+            "outcome"
           ]
         }
       ],
       "confidence": {
-        "level": "C",
-        "basis": "Date and cause given variously."
+        "level": "B",
+        "basis": "Bhuyan p. 87 (timing 'soon after'); exact date unknown; Gait silent."
       },
       "claimStatus": "disputed",
       "eventType": "death",
@@ -3132,10 +3217,17 @@
       },
       "numericClaims": [],
       "disputes": [
-        "Gait (1906) mentions Lachit only once (p. 146) and says nothing of his death."
+        "No exact date of death in Bhuyan or Gait."
       ],
       "narration": {
-        "status": "pending"
+        "status": "pending",
+        "traditionalSayings": [
+          {
+            "text": "My uncle is not greater than my country.",
+            "attribution": "Said on executing his maternal uncle for not finishing a rampart at Amingaon (Bhuyan 1947 p. 37)",
+            "note": "Bhuyan's fn. 43 cites a modern biographical anthology and an extract from an old chronicle in Bardoloi's Sandipika: TRADITION, never show as a verified quotation."
+          }
+        ]
       },
       "cameraView": null,
       "animationInstructions": [],
@@ -3733,7 +3825,7 @@
         "precision": "decade",
         "end": "1751"
       },
-      "summary": "Royal policy towards Vaishnava monasteries (satras) varied by reign, from persecution under Gadadhar Singha to Shakta ascendancy at court under Siva Singha. This background mattered for the later Moamoria rebellion.",
+      "summary": "Royal policy towards the Vaishnava monasteries (satras) varied by reign. Gait describes Gadadhar Singha's hostility to the Vaishnava Gosains, and Siva Singha making his queen Phulesvari 'Bar Raja', with coins struck in both names, and her Sakta partisanship. This background mattered for the later Moamoria rebellion.",
       "participants": [
         "ahom"
       ],
@@ -3743,6 +3835,14 @@
       ],
       "locations": [],
       "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": "pp. 161-162",
+          "locator": "Gadadhar Singh's hostility to the Vaishnava Gosains",
+          "supports": [
+            "context"
+          ]
+        },
         {
           "sourceId": "barpujari1990",
           "pages": null,
@@ -3754,6 +3854,14 @@
         {
           "sourceId": "guha1991",
           "pages": null,
+          "supports": [
+            "context"
+          ]
+        },
+        {
+          "sourceId": "gait1906",
+          "pages": "pp. 177-178",
+          "locator": "Sib Singh declares queen Phulesvari 'Bar Raja'; joint coins; her Sakta partisanship",
           "supports": [
             "context"
           ]
@@ -3881,11 +3989,11 @@
       "episode": 10,
       "title": "Second uprising; king flees to Guwahati",
       "date": {
-        "start": "1782",
-        "precision": "year",
-        "end": "1788"
+        "start": "1782-04",
+        "end": "1788-03",
+        "precision": "month"
       },
-      "summary": "A renewed and wider rebellion broke out under Gaurinath Singha. The king abandoned the capital and moved down-river to Guwahati, leaving much of upper Assam outside royal control.",
+      "summary": "After an abortive rising in April 1782, a far more serious Moamoria revolt broke out early in 1786. The rebels reached the gates of Rangpur and Gaurinath Singha fled in panic to Gauhati, while the Burha Gohain Purnananda held out on the Namdang until March 1788. The rebel king Bharat Singh later minted coins dated 1793, which survive.",
       "participants": [
         "moamoria",
         "ahom"
@@ -3900,8 +4008,8 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Gaurinath Singha",
+          "pages": "pp. 190-193",
+          "locator": "abortive rising April 1782; serious revolt early 1786; Gaurinath flees to Gauhati; Namdang line held until March 1788",
           "supports": [
             "date",
             "outcome"
@@ -3913,11 +4021,19 @@
           "supports": [
             "outcome"
           ]
+        },
+        {
+          "sourceId": "gait1906",
+          "pages": "p. 195",
+          "locator": "coins of Bharat Singh dated 1793",
+          "supports": [
+            "context"
+          ]
         }
       ],
       "confidence": {
         "level": "B",
-        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+        "basis": "Gait pp. 190-195 verified."
       },
       "claimStatus": "documented",
       "eventType": "rebellion",

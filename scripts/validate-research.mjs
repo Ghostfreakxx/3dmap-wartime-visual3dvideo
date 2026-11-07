@@ -103,7 +103,7 @@ for (const p of gaz.places) {
       err(p.id, `coordinate ${p.coord} outside study bbox (possible lat/lon swap)`);
   } else if (p.precision !== "unidentified") err(p.id, "coord is null but precision is not 'unidentified'");
   if (p.coord && p.precision === "unidentified") err(p.id, "unidentified place must not carry a coordinate");
-  if (!p.coordVerified && p.coord) warn(p.id, "coordinate not yet verified");
+  if (!p.coordVerified && p.coord) warn(p.id, `coordinate not yet verified (${p.coordCheck?.status ?? "unchecked"})`);
   for (const r of p.sourceRefs ?? []) if (!sources.has(r.sourceId)) err(p.id, `unknown sourceId '${r.sourceId}'`);
   if ((p.sourceRefs ?? []).length === 0 && p.kind !== "region-label") warn(p.id, "place has no source (orientation label?)");
 }

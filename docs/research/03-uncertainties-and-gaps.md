@@ -6,7 +6,7 @@ These should be resolved, or knowingly accepted, **before** the matching animati
 
 | # | Gap | Severity | Resolution path |
 |---|---|---|---|
-| A1 | ~~No page numbers verified~~ **Partly resolved 2026-11-07:** 52 / 59 events now cite OCR-verified Gait 1906 pages (see `04-verification-log-gait-1906.md`). Still pending: pages for Barpujari, Bhuyan, Guha, Gogoi and Barua, and a page-image check of the Gait OCR | 🟠 | Page images via an archive.org mirror host (currently blocked); library access for the others |
+| A1 | ~~No page numbers verified~~ **Resolved for coverage 2026-11-07:** 59 / 59 events cite OCR-verified pages (Gait 1906, Bhuyan 1947) (see `04-verification-log-gait-1906.md`). Still pending: pages for Barpujari, Bhuyan, Guha, Gogoi and Barua, and a page-image check of the Gait OCR | 🟠 | Page images via an archive.org mirror host (currently blocked); library access for the others |
 | A2 | Barpujari volume publication years not confirmed (the series began 1990) | 🟡 | Record from the physical copy |
 | A3 | ~~Which archive.org scan is the 1906 edition~~ **Resolved:** both are the 1906 Calcutta, Thacker, Spink edition | ✅ | — |
 | A10 | Blochmann (J.A.S.B. 1872) is known only through Gait's citations; it is the route to Talish and the Mughal sources | 🟠 | Find the JASB 1872 volume on archive.org |
@@ -25,7 +25,8 @@ These should be resolved, or knowingly accepted, **before** the matching animati
 | B2 | Chutia annexation: 1523 vs 1524 | 1523 primary, 1524 alternative |
 | B3 | Treaty of 1663: Gait has it concluded before Mir Jumla's 9 Jan 1663 departure order; later works say 23 Jan; Gait doesn't use the name "Ghilajharighat" | Month precision; `disputed` |
 | B4 | Saraighat: 1671 (consensus; Gait p. 150 dates Ram Singh's retreat to March 1671) vs 1672 (one district page). **New:** Gait doesn't describe a named Saraighat battle at all | 1671; the battle narrative needs Bhuyan 1947 pages |
-| B5 | Lachit Borphukan's death date and cause (Gait silent) | C, circa 1672 |
+| B5 | Lachit's death: "soon after" the battle, in fever (Bhuyan p. 87); exact date unknown | B, circa 1671 |
+| B14 | Alaboi: 1669 (Bhuyan's narrative order) vs c. 29 Sept 1670 (Bhuyan, Appendix IV) | 1669 primary, alternative recorded |
 | B6 | ~~Manas vs Hadira~~ **Resolved:** Hadira was the outpost after 1671 (p. 150); the Manas was the boundary after 1682 (p. 160). The month (August) and the name "Itakhuli" are still unverified | Year precision |
 | B7 | ~~Welsh's departure~~ **Resolved:** back in British territory 3 July 1794 (p. 209) | ✅ |
 | B8 | ~~Gaurinath's death~~ **Resolved:** 19 Dec 1794 (p. 211) | ✅ event added |
@@ -39,9 +40,9 @@ These should be resolved, or knowingly accepted, **before** the matching animati
 
 | # | Gap | Severity | Plan |
 |---|---|---|---|
-| C1 | **Every gazetteer coordinate is unverified** (`coordVerified: false`) | 🔴 before render | Verify with GeoNames / Survey of India / imagery |
+| C1 | ~~Every coordinate unverified~~ **Mostly resolved:** 19 verified by Wikidata + OSM agreement; 5 single-source; 8 historical sites unchecked (Tipam, Abhaypur, Habung, Charaideo, Samdhara, Barnadi mouth, Sylhet, Hadira) | 🟠 | UNESCO WHC coordinates for Charaideo; survey sheets for the rest |
 | C2 | Sukaphaa's route across the Patkai is not recorded | 🔴 | Schematic corridor only; caption "route approximate" |
-| C3 | Habung, Abhaypur and Tipam are located only regionally; Alaboi is unidentified | 🟠 | Halo/region rendering; Alaboi text-only |
+| C3 | Habung, Abhaypur and Tipam are located only regionally. Alaboi is now described (Alaboi Hill near Dalibari, between the Brahmaputra and the Sesa; Bhuyan pp. 65–66) but not yet pinned | 🟠 | Halo/region rendering; survey sheet for Alaboi Hill |
 | C4 | The Asurar Ali alignment is not georeferenced | 🔴 for s1639 | Search for archaeological / survey literature; else draw an approximate line with caveat |
 | C5 | ~~Ceded boundary of 1663~~ **Resolved:** west of the Bharali (north bank) and the Kallang (south bank) (Gait p. 136) | ✅ | Draw from modern river geometry, with caveat |
 | C11 | Extent of the north-bank tract ceded to the Koch in 1563 (garrison at Narayanpur) | 🟠 | Research; show as a halo |

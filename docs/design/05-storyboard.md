@@ -75,12 +75,12 @@ The script runs to about 230 words, about 95 s at a measured pace, and about 115
 | Setup: Ahom forts on both banks at Guwahati; river narrows | Documented | Fort markers at Itakhuli and across the river; narrows highlighted |
 | Mughal fleet advances upstream | Documented | Mughal boat glyphs (generic, no counts) moving up the river reach |
 | Ahom boats engage in the narrows | Documented | Ahom boat glyphs converge; clash ripples |
-| Lachit, ill, leads from a boat | **Tradition** | One highlighted boat; the "Tradition" pill is visible |
+| Lachit, gravely ill, carried to his boat, leads the counter-attack | **Chronicles say** | One highlighted boat; "the chronicles say" pill |
 | Mughal fleet withdraws downstream | Documented | Retreat arrow; s1667 frontier persists |
 
 No casualty counts, fleet sizes or invented speeches. If a later-verified source gives a figure, it enters `numericClaims` first.
 
-**Production blocker:** Gait (1906) does not describe a named Saraighat battle. He says the Buranjis are too confused to follow (p. 150). Every "Documented" phase above must be re-sourced to S. K. Bhuyan (1947) pages, or downgraded, before this sequence is built. The long-form episode should include a historian's note on how the Saraighat story was assembled.
+**Sourcing (resolved):** the phases now follow Bhuyan (1947) pp. 78–86, which rests on cited Buranjis. Gait (1906) confirms only the Mughal retreat (p. 150). Battle area: the river between Kamakhya, Itakhuli and Aswakranta; pursuit to Pandu; retreat c. 5 April 1671. Lachit's illness is chronicle-reported, so show it as "the chronicles say". The long-form episode should include a historian's note on how the Saraighat story was assembled, from Gait's silence to Bhuyan's synthesis.
 
 ## 16:9 long-form additions
 

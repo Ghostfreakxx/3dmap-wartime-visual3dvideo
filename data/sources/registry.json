@@ -188,14 +188,17 @@
       "place": "Gauhati",
       "year": 1947,
       "urls": [
-        "https://search.worldcat.org/oclc/4068654"
+        "https://search.worldcat.org/oclc/4068654",
+        "https://archive.org/details/in.ernet.dli.2015.528968",
+        "https://archive.org/details/in.gov.ignca.5258"
       ],
-      "notes": "Primary scholarly study of the 1667-1671 campaigns, built from Buranjis. Historiographical note: later scholars observe it helped give the Lachit narrative academic respectability; treat heroic details as tradition unless independently attested.",
+      "notes": "Primary scholarly study of the 1667-1671 campaigns, built from Buranjis. Historiographical note: later scholars observe it helped give the Lachit narrative academic respectability; treat heroic details as tradition unless independently attested. Bhuyan's footnotes cite Buranjis by edition and page (e.g. Assam Buranji, S.M., pp. 114-124) - a route to the primary chronicles.",
       "verification": {
-        "bibliographic": "catalogue-verified",
-        "pagesChecked": false,
+        "bibliographic": "catalogue-verified; title page in scan reads 'First Edition, 1947', Government of Assam, DHAS, Gauhati",
+        "pagesChecked": true,
+        "pagesCheckedMethod": "OCR text of archive.org DLI scan in.ernet.dli.2015.528968 (cross-checked with in.gov.ignca.5258); pages from the printed table of contents and running heads. Not yet compared with page images.",
         "checkedOn": "2026-11-07",
-        "by": "phase-1 research"
+        "by": "phase-1c verification"
       },
       "access": "library / NVLI e-book listing"
     },
@@ -211,7 +214,9 @@
       "year": 1949,
       "urls": [
         "https://catalog.hathitrust.org/Record/001266739",
-        "https://catalog.crl.edu/Record/a05040a1-08a4-5a14-b196-e7d3d6fa1eb5"
+        "https://catalog.crl.edu/Record/a05040a1-08a4-5a14-b196-e7d3d6fa1eb5",
+        "https://archive.org/details/dli.pahar.2890",
+        "https://archive.org/details/in.ernet.dli.2015.459101"
       ],
       "notes": "Based on English and Assamese archival sources; key for the Welsh expedition (1792-94), Burmese invasions and 1824-26.",
       "verification": {
@@ -437,6 +442,18 @@
     {
       "title": "Sir James Johnstone's narrative of Captain Welsh's expedition (cited by Gait, Introduction)",
       "reason": "Compiled from Foreign Department records; route to Welsh's 1794 report."
+    },
+    {
+      "title": "S. K. Bhuyan (ed.), Assam Buranji (S.M.) and Kamrupar Buranji (DHAS, 1930)",
+      "reason": "Primary chronicles behind Bhuyan's Saraighat and poppy-seed passages; Kamrupar Buranji scan exists on archive.org (dli.ministry.03465 / in.ernet.dli.2015.336001)."
+    },
+    {
+      "title": "S. K. Bhuyan (ed.), Tungkhungia Buranji (1933)",
+      "reason": "Primary chronicle for 1681-1826; on archive.org (in.ernet.dli.2015.22964)."
+    },
+    {
+      "title": "N. N. Acharyya, The History of Medieval Assam (1966; scan dli.pahar.3309)",
+      "reason": "Scholarly 13th-17th c. synthesis; candidate for Episodes 3-5."
     }
   ]
 }

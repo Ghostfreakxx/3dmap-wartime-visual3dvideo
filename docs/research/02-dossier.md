@@ -1,6 +1,6 @@
 # 02 · Historical research dossier: the Ahom Kingdom, 1228–1826 (with epilogue to 1838)
 
-> **Status:** Phase 1, revised after page verification against Gait (1906). **52 of 59 events now cite OCR-verified Gait pages.** Other sources' pages are still pending. All corrections are listed in `04-verification-log-gait-1906.md`. Event-level detail, including confidence and sources, lives in `data/chronology/events.json`. This document is the readable synthesis. Bracketed IDs such as `[e07-saraighat]` point to those records.
+> **Status:** Phase 1, revised after page verification against Gait (1906). **All 59 events now cite OCR-verified pages (Gait 1906; Bhuyan 1947). 19 coordinates are verified by two gazetteers.** Other sources' pages are still pending. All corrections are listed in `04-verification-log-gait-1906.md`. Event-level detail, including confidence and sources, lives in `data/chronology/events.json`. This document is the readable synthesis. Bracketed IDs such as `[e07-saraighat]` point to those records.
 >
 > **Labels used below:** **Documented** = standard scholarly account. **Disputed** = sources disagree. **Approximate** = real, but geography or timing is reconstructed. **Traditional** = legend or anecdote.
 
@@ -112,17 +112,17 @@
 **Documented**
 - **1667**: under Chakradhwaj Singha, **Lachit Borphukan** retakes Itakhuli and Guwahati `[e07-guwahati-recaptured]`.
 - **1669**: **Raja Ram Singh** of Amber arrives with a Mughal army `[e07-ram-singh-arrives]`. The Ahoms suffer a heavy defeat at **Alaboi** `[e07-alaboi]`.
-- **1671 (usually March)**: the **Battle of Saraighat**, a river battle at the Brahmaputra narrows. The Mughal advance is defeated and Guwahati remains Ahom `[e07-saraighat]`.
+- **Early 1671 (retreat began c. 5 April 1671, Bhuyan p. 86)**: the **Battle of Saraighat**, a river battle at the Brahmaputra narrows. The Mughal advance is defeated and Guwahati remains Ahom `[e07-saraighat]`.
 
 **Verified in Gait:** the expedition set out in **August 1667**, and Gauhati fell after a two-month siege (pp. 146–147). Ram Singh reached Rangamati in **February 1669** (p. 148). He retreated in **March 1671** after repeated losses, and Hadira, opposite Goalpara, became the Ahom outpost (p. 150).
 
-**Key historiographical caveat:** Gait (1906) **does not name Saraighat or Alaboi**. He says the Buranjis are too "confused" to follow the operations in detail, and he mentions Lachit only once. The named decisive river battle at Saraighat is a later reconstruction, chiefly Bhuyan (1947), from Buranjis edited after Gait. The Saraighat animation therefore needs Bhuyan's pages before production.
+**Key historiographical caveat:** Gait (1906) **does not name Saraighat or Alaboi**. He says the Buranjis are too "confused" to follow the operations in detail, and he mentions Lachit only once. The named decisive river battle at Saraighat is a later reconstruction, chiefly Bhuyan (1947), from Buranjis edited after Gait. **Now verified in Bhuyan (pp. 78–86):** the battle was fought on the river between Kamakhya, Itakhuli and Aswakranta, and Ram Singh's retreat began c. 5 April 1671. The narrative rests on Buranjis that Bhuyan cites (see the verification log, Addendum A). Bhuyan also dates the 1667 recapture to c. 20 Aug – 2 Nov 1667 and locates Alaboi near Dalibari.
 
-**Disputed:** one Government of Assam district page dates Saraighat to 1672. The date and cause of Lachit's death are also uncertain (c. 1672) `[e07-lachit-death]`.
+**Disputed:** one Government of Assam district page dates Saraighat to 1672. Lachit died "soon after" the battle, still in fever (Bhuyan p. 87); the exact date is unknown `[e07-lachit-death]`.
 
 **Traditional (tag on screen):**
-- Lachit leading from a boat despite illness.
-- Ram Singh's "bag of poppy seeds" taunt.
+- Lachit leading from a boat despite illness: **chronicle-reported** via Bhuyan (fn. 89), so label "the chronicles say".
+- Ram Singh's "bag of poppy seeds" taunt: recorded in the *Assam Buranji* (S.M.) p. 114, per Bhuyan p. 50, so label "the chronicles tell".
 - The saying attributed to Lachit, *"My uncle is not greater than my country."* **Never present this as a verified quotation.**
 - Popular casualty figures for Alaboi. **Unsourced, so not displayed.**
 

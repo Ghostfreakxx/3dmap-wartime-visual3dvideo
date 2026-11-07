@@ -15,7 +15,7 @@
       ],
       "precision": "regional",
       "kind": "region-label",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [
         {
           "sourceId": "gogoi1968",
@@ -23,7 +23,11 @@
           "locator": "chapters on the Mao Tai"
         }
       ],
-      "notes": "Anchored near modern Ruili/Shweli valley. The 13th-century political centre is not securely located. Do not draw a polygon."
+      "notes": "Anchored near modern Ruili/Shweli valley. The 13th-century political centre is not securely located. Do not draw a polygon.",
+      "coordCheck": {
+        "status": "label-anchor",
+        "note": "Region label placement is a design choice, not a site claim."
+      }
     },
     {
       "id": "maulung",
@@ -50,7 +54,7 @@
       ],
       "precision": "regional",
       "kind": "region-label",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [
         {
           "sourceId": "gogoi1968",
@@ -58,7 +62,11 @@
           "locator": "migration route discussion"
         }
       ],
-      "notes": "Commonly proposed approach to the Patkai; the specific route is reconstructed, not documented."
+      "notes": "Commonly proposed approach to the Patkai; the specific route is reconstructed, not documented.",
+      "coordCheck": {
+        "status": "label-anchor",
+        "note": "Region label placement is a design choice, not a site claim."
+      }
     },
     {
       "id": "patkai",
@@ -69,14 +77,18 @@
       ],
       "precision": "regional",
       "kind": "region-label",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [
         {
           "sourceId": "gait1906",
           "pages": null,
           "locator": "Sukapha's arrival"
         }
-      ]
+      ],
+      "coordCheck": {
+        "status": "label-anchor",
+        "note": "Region label placement is a design choice, not a site claim."
+      }
     },
     {
       "id": "khamjang",
@@ -98,8 +110,8 @@
       "id": "nong-nyang",
       "name": "Nong Nyang lake (Nawng Yang)",
       "coord": [
-        96.13,
-        27.22
+        96.1439,
+        27.2192
       ],
       "precision": "locality",
       "kind": "lake",
@@ -116,18 +128,26 @@
           "locator": "Sukapha's journey"
         }
       ],
-      "notes": "Chronicle name; identification with the present Nawng Yang lake near the Pangsau Pass is conventional but should be marked approximate."
+      "notes": "Chronicle name; identification with the present Nawng Yang lake near the Pangsau Pass is conventional but should be marked approximate.",
+      "coordCheck": {
+        "status": "single-source",
+        "method": "wikidata",
+        "ref": "Q7333284",
+        "matched": "Lake of No Return",
+        "checkedOn": "2026-11-07",
+        "note": "Needs a second independent source."
+      }
     },
     {
       "id": "namrup",
       "name": "Namrup",
       "coord": [
-        95.33,
-        27.19
+        95.356,
+        27.1934
       ],
       "precision": "locality",
       "kind": "settlement",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [
         {
           "sourceId": "gait1906",
@@ -135,7 +155,16 @@
           "locator": "Sukapha's arrival"
         }
       ],
-      "notes": "Also the refuge of Ahom kings during the Koch (1562-63) and Mughal (1662) occupations."
+      "notes": "Also the refuge of Ahom kings during the Koch (1562-63) and Mughal (1662) occupations.",
+      "coordCheck": {
+        "status": "verified",
+        "method": "Wikidata P625 and OpenStreetMap Nominatim agree",
+        "wikidata": "Q139783052",
+        "osm": "node/12122765794",
+        "agreementKm": 0.1,
+        "previousOffsetKm": 2.6,
+        "checkedOn": "2026-11-07"
+      }
     },
     {
       "id": "tipam",
@@ -154,7 +183,11 @@
           "locator": "Sukapha's wanderings"
         }
       ],
-      "notes": "Area on the Burhi Dihing; exact early-13th-c. locality approximate."
+      "notes": "Area on the Burhi Dihing; exact early-13th-c. locality approximate.",
+      "coordCheck": {
+        "status": "unchecked",
+        "note": "No reliable gazetteer match (historical place or ambiguous name)."
+      }
     },
     {
       "id": "abhaypur",
@@ -173,7 +206,11 @@
           "locator": "Sukapha's wanderings"
         }
       ],
-      "notes": "Low confidence location."
+      "notes": "Low confidence location.",
+      "coordCheck": {
+        "status": "unchecked",
+        "note": "No reliable gazetteer match (historical place or ambiguous name)."
+      }
     },
     {
       "id": "habung",
@@ -192,7 +229,11 @@
           "locator": "Sukapha's wanderings"
         }
       ],
-      "notes": "North-bank tract; settlement abandoned per chronicles due to floods. Low confidence location."
+      "notes": "North-bank tract; settlement abandoned per chronicles due to floods. Low confidence location.",
+      "coordCheck": {
+        "status": "unchecked",
+        "note": "No reliable gazetteer match (historical place or ambiguous name)."
+      }
     },
     {
       "id": "ligirigaon",
@@ -214,19 +255,28 @@
       "id": "simaluguri",
       "name": "Simaluguri",
       "coord": [
-        94.89,
-        26.92
+        94.7544,
+        26.9211
       ],
       "precision": "locality",
       "kind": "settlement",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [
         {
           "sourceId": "gait1906",
           "pages": null,
           "locator": "Sukapha's wanderings"
         }
-      ]
+      ],
+      "coordCheck": {
+        "status": "verified",
+        "method": "Wikidata P625 and OpenStreetMap Nominatim agree",
+        "wikidata": "Q7517346",
+        "osm": "node/715137525",
+        "agreementKm": 0.4,
+        "previousOffsetKm": 13.4,
+        "checkedOn": "2026-11-07"
+      }
     },
     {
       "id": "charaideo",
@@ -253,7 +303,11 @@
           "locator": "property description"
         }
       ],
-      "notes": "First capital (1253 per chronicle chronology); later royal necropolis (moidams). Use UNESCO property coordinates once fetched."
+      "notes": "First capital (1253 per chronicle chronology); later royal necropolis (moidams). Use UNESCO property coordinates once fetched.",
+      "coordCheck": {
+        "status": "unchecked",
+        "note": "Wikidata 'Charaideo' is the district; use the UNESCO property coordinates (whc.unesco.org not yet allowed)."
+      }
     },
     {
       "id": "sadiya",
@@ -264,7 +318,7 @@
       ],
       "precision": "locality",
       "kind": "town",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [
         {
           "sourceId": "gait1906",
@@ -272,18 +326,27 @@
           "locator": "Chutia kingdom; Suhungmung"
         }
       ],
-      "notes": "Associated with the Chutia kingdom and the post-1523 Ahom office of Sadiyakhowa Gohain. Chutia capital location(s) are debated; use Sadiya as an approximate anchor. River courses here have shifted substantially."
+      "notes": "Associated with the Chutia kingdom and the post-1523 Ahom office of Sadiyakhowa Gohain. Chutia capital location(s) are debated; use Sadiya as an approximate anchor. River courses here have shifted substantially. Gait p. 192 fn.: the Brahmaputra's main channel may then have run north of Majuli.",
+      "coordCheck": {
+        "status": "verified",
+        "method": "Wikidata P625 and OpenStreetMap Nominatim agree",
+        "wikidata": "Q7397977",
+        "osm": "relation/10057655",
+        "agreementKm": 0.7,
+        "previousOffsetKm": 0.0,
+        "checkedOn": "2026-11-07"
+      }
     },
     {
       "id": "garhgaon",
       "name": "Garhgaon",
       "coord": [
-        94.74,
-        26.94
+        94.7452,
+        26.9364
       ],
       "precision": "locality",
       "kind": "capital",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [
         {
           "sourceId": "gait1906",
@@ -291,18 +354,27 @@
           "locator": "Suklenmung's capital"
         }
       ],
-      "notes": "Capital from c. 1540; occupied by the Koch (1562-63) and by Mir Jumla (1662-63)."
+      "notes": "Capital from c. 1540; occupied by the Koch (1562-63) and by Mir Jumla (1662-63).",
+      "coordCheck": {
+        "status": "verified",
+        "method": "Wikidata P625 and OpenStreetMap Nominatim agree",
+        "wikidata": "Q6370156",
+        "osm": "node/1676938850",
+        "agreementKm": 0.6,
+        "previousOffsetKm": 0.7,
+        "checkedOn": "2026-11-07"
+      }
     },
     {
       "id": "rangpur",
       "name": "Rangpur (Sivasagar area)",
       "coord": [
-        94.63,
-        26.98
+        94.6247,
+        26.9663
       ],
       "precision": "locality",
       "kind": "capital",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [
         {
           "sourceId": "gait1906",
@@ -310,18 +382,27 @@
           "locator": "Rudra Singha"
         }
       ],
-      "notes": "18th-century capital (Rudra Singha onward). Not to be confused with Rangpur in present-day Bangladesh."
+      "notes": "18th-century capital (Rudra Singha onward). Not to be confused with Rangpur in present-day Bangladesh.",
+      "coordCheck": {
+        "status": "verified",
+        "method": "Wikidata P625 and OpenStreetMap Nominatim agree",
+        "wikidata": "Q7678959",
+        "osm": "way/155294111",
+        "agreementKm": 0.1,
+        "previousOffsetKm": 1.6,
+        "checkedOn": "2026-11-07"
+      }
     },
     {
       "id": "jorhat",
       "name": "Jorhat",
       "coord": [
-        94.21,
-        26.75
+        94.2031,
+        26.7575
       ],
       "precision": "locality",
       "kind": "capital",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [
         {
           "sourceId": "gait1906",
@@ -334,18 +415,27 @@
           "locator": "Gaurinath Singha"
         }
       ],
-      "notes": "Capital from 1794."
+      "notes": "Capital from 1794.",
+      "coordCheck": {
+        "status": "verified",
+        "method": "Wikidata P625 and OpenStreetMap Nominatim agree",
+        "wikidata": "Q1937201",
+        "osm": "node/2138091867",
+        "agreementKm": 0.5,
+        "previousOffsetKm": 1.1,
+        "checkedOn": "2026-11-07"
+      }
     },
     {
       "id": "dimapur",
       "name": "Dimapur (Kachari / Dimasa capital)",
       "coord": [
-        93.73,
-        25.91
+        93.7417,
+        25.9125
       ],
       "precision": "site",
       "kind": "capital",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [
         {
           "sourceId": "gait1906",
@@ -353,14 +443,23 @@
           "locator": "Kacharis; Suhungmung"
         }
       ],
-      "notes": "Monolith ruins survive. Ahom sack dated 1536 in standard accounts."
+      "notes": "Monolith ruins survive. Ahom sack dated 1536 in standard accounts.",
+      "coordCheck": {
+        "status": "verified",
+        "method": "Wikidata P625 and OpenStreetMap Nominatim agree",
+        "wikidata": "Q867111",
+        "osm": "way/248275379",
+        "agreementKm": 1.0,
+        "previousOffsetKm": 1.2,
+        "checkedOn": "2026-11-07"
+      }
     },
     {
       "id": "maibang",
       "name": "Maibang",
       "coord": [
-        93.17,
-        25.3
+        93.1359,
+        25.3048
       ],
       "precision": "locality",
       "kind": "capital",
@@ -372,14 +471,22 @@
           "locator": "Kacharis"
         }
       ],
-      "notes": "Later Dimasa capital in the North Cachar hills."
+      "notes": "Later Dimasa capital in the North Cachar hills.",
+      "coordCheck": {
+        "status": "single-source",
+        "method": "osm",
+        "ref": "node/6154014204",
+        "matched": "Maibang, NH27, Khāuthāmdīsa, Maibong, Dima Hasao, Assam, 788831, India",
+        "checkedOn": "2026-11-07",
+        "note": "Needs a second independent source."
+      }
     },
     {
       "id": "khaspur",
       "name": "Khaspur",
       "coord": [
-        92.8,
-        24.85
+        92.9312,
+        24.9348
       ],
       "precision": "regional",
       "kind": "capital",
@@ -391,14 +498,22 @@
           "locator": "Kacharis"
         }
       ],
-      "notes": "Later Kachari capital in the Cachar plains. Low confidence coordinate."
+      "notes": "Later Kachari capital in the Cachar plains. Low confidence coordinate.",
+      "coordCheck": {
+        "status": "single-source",
+        "method": "osm",
+        "ref": "way/751024179",
+        "matched": "Kashpur Cachari Ruins, SH-1022, Pānigrām, Udharbond, Udarbond, Cachar, Assam, 788030, Indi",
+        "checkedOn": "2026-11-07",
+        "note": "OSM 'Kashpur Cachari Ruins'; previous working value was 16 km off."
+      }
     },
     {
       "id": "kaliabor",
       "name": "Kaliabor",
       "coord": [
-        93.0,
-        26.58
+        92.9856,
+        26.5493
       ],
       "precision": "locality",
       "kind": "fort",
@@ -410,7 +525,15 @@
           "locator": "Ahom-Mughal wars"
         }
       ],
-      "notes": "Seat of the Ahom western frontier command before Guwahati was secured."
+      "notes": "Seat of the Ahom western frontier command before Guwahati was secured.",
+      "coordCheck": {
+        "status": "single-source",
+        "method": "osm",
+        "ref": "relation/10048515",
+        "matched": "Kaliabor, Nagaon, Assam, India",
+        "checkedOn": "2026-11-07",
+        "note": "Needs a second independent source."
+      }
     },
     {
       "id": "samdhara",
@@ -428,20 +551,33 @@
           "pages": null,
           "locator": "Ahom-Mughal wars"
         }
-      ]
+      ],
+      "coordCheck": {
+        "status": "unchecked",
+        "note": "Gazetteer matches disagree or are ambiguous; keep working value."
+      }
     },
     {
       "id": "tezpur",
       "name": "Tezpur",
       "coord": [
-        92.8,
-        26.63
+        92.79,
+        26.62
       ],
       "precision": "locality",
       "kind": "town",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [],
-      "notes": "Modern orientation label only."
+      "notes": "Modern orientation label only.",
+      "coordCheck": {
+        "status": "verified",
+        "method": "Wikidata P625 and OpenStreetMap Nominatim agree",
+        "wikidata": "Q1021162",
+        "osm": "node/245750977",
+        "agreementKm": 0.8,
+        "previousOffsetKm": 1.5,
+        "checkedOn": "2026-11-07"
+      }
     },
     {
       "id": "guwahati",
@@ -450,26 +586,35 @@
         "Gauhati"
       ],
       "coord": [
-        91.74,
-        26.18
+        91.7502,
+        26.1806
       ],
       "precision": "locality",
       "kind": "town",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [
         {
           "sourceId": "bhuyan1947",
           "pages": null
         }
       ],
-      "notes": "Seat of the Mughal faujdar and later of the Ahom Borphukan."
+      "notes": "Seat of the Mughal faujdar and later of the Ahom Borphukan.",
+      "coordCheck": {
+        "status": "verified",
+        "method": "Wikidata P625 and OpenStreetMap Nominatim agree",
+        "wikidata": "Q199605",
+        "osm": "node/566672802",
+        "agreementKm": 0.4,
+        "previousOffsetKm": 1.0,
+        "checkedOn": "2026-11-07"
+      }
     },
     {
       "id": "itakhuli",
-      "name": "Itakhuli fort",
+      "name": "Itakhuli (Sukreswar Hill), Gauhati",
       "coord": [
-        91.75,
-        26.19
+        91.741,
+        26.1878
       ],
       "precision": "locality",
       "kind": "fort",
@@ -477,65 +622,90 @@
       "sourceRefs": [
         {
           "sourceId": "bhuyan1947",
-          "pages": null
+          "pages": "pp. 26-27",
+          "locator": "Itakhuli = Sukreswar Hill"
         }
       ],
-      "notes": "Fortified hill at Guwahati; exact fort footprint to be verified."
+      "notes": "Bhuyan 1947 pp. 26-27 identifies Itakhuli with Sukreswar Hill on the south bank at Gauhati, commanding the river from Agiathuti to the Kurua hills.",
+      "coordCheck": {
+        "status": "single-source",
+        "method": "wikidata",
+        "ref": "Q7635896",
+        "matched": "Sukreswar Temple",
+        "checkedOn": "2026-11-07",
+        "note": "Coordinate of Sukreswar Temple (Wikidata), identified with Itakhuli by Bhuyan 1947 pp. 26-27."
+      }
     },
     {
       "id": "saraighat",
       "name": "Saraighat (Brahmaputra narrows at Guwahati)",
       "coord": [
-        91.68,
-        26.19
+        91.6722,
+        26.1754
       ],
       "precision": "regional",
       "kind": "battle-site",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [
         {
           "sourceId": "bhuyan1947",
-          "pages": null
-        },
-        {
-          "sourceId": "indianculture-saraighat",
-          "pages": null
+          "pages": "pp. 83-84",
+          "locator": "scene of the battle; meaning of Saraighat"
         }
       ],
-      "notes": "Battle zone along the river; render as a river reach, not a point."
+      "notes": "Bhuyan 1947 pp. 83-84: battle fought on the river between Kamakhya, Itakhuli and Aswakranta; 'Saraighat' loosely meant Gauhati and environs, strictly Sarai = Amingaon opposite Pandu. Render as a river reach.",
+      "coordCheck": {
+        "status": "verified",
+        "method": "Wikidata P625 and OpenStreetMap Nominatim agree",
+        "wikidata": "Q7422957",
+        "osm": "way/664483511",
+        "agreementKm": 0.0,
+        "previousOffsetKm": 1.8,
+        "checkedOn": "2026-11-07"
+      }
     },
     {
       "id": "alaboi",
-      "name": "Alaboi",
+      "name": "Alaboi (Alaboi Hill near Dalibari)",
       "coord": null,
       "precision": "unidentified",
       "kind": "battle-site",
       "coordVerified": false,
       "sourceRefs": [
         {
-          "sourceId": "kamrup-alaboi-saraighat",
-          "pages": null
+          "sourceId": "bhuyan1947",
+          "pages": "pp. 65-66",
+          "locator": "Alaboi Hill near Dalibari"
         }
       ],
-      "notes": "North-bank site near Guwahati (1669 battle). Location to be researched; show as text only until identified."
+      "notes": "Bhuyan 1947 pp. 65-66: Mughal camp near Alaboi Hill in the vicinity of Dalibari, on a plain between the Brahmaputra and the Sesa river (north bank, near Hajo). Coordinates to be fixed from survey maps."
     },
     {
       "id": "hajo",
       "name": "Hajo",
       "coord": [
-        91.53,
-        26.25
+        91.5253,
+        26.2453
       ],
       "precision": "locality",
       "kind": "town",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [
         {
           "sourceId": "gait1906",
           "pages": null,
           "locator": "Koch Hajo; Mughal frontier"
         }
-      ]
+      ],
+      "coordCheck": {
+        "status": "verified",
+        "method": "Wikidata P625 and OpenStreetMap Nominatim agree",
+        "wikidata": "Q12059365",
+        "osm": "relation/10045173",
+        "agreementKm": 2.0,
+        "previousOffsetKm": 0.7,
+        "checkedOn": "2026-11-07"
+      }
     },
     {
       "id": "barnadi-mouth",
@@ -554,18 +724,22 @@
           "locator": "Bar Nadi boundary"
         }
       ],
-      "notes": "North-bank boundary under the 1639 settlement."
+      "notes": "North-bank boundary under the 1639 settlement.",
+      "coordCheck": {
+        "status": "unchecked",
+        "note": "No reliable gazetteer match (historical place or ambiguous name)."
+      }
     },
     {
       "id": "manas-mouth",
       "name": "Manas river (confluence with the Brahmaputra)",
       "coord": [
-        90.63,
-        26.22
+        90.633,
+        26.217
       ],
       "precision": "regional",
       "kind": "river-point",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [
         {
           "sourceId": "gait1906",
@@ -573,56 +747,92 @@
           "locator": "Manas accepted as boundary"
         }
       ],
-      "notes": "Western Ahom limit after 1682 in standard accounts."
+      "notes": "Western Ahom limit after 1682 in standard accounts.",
+      "coordCheck": {
+        "status": "verified",
+        "method": "Wikidata P625 and OpenStreetMap Nominatim agree",
+        "wikidata": "Q2015702",
+        "osm": "node/245745347",
+        "agreementKm": 6.0,
+        "previousOffsetKm": 0.4,
+        "checkedOn": "2026-11-07"
+      }
     },
     {
       "id": "koch-bihar",
       "name": "Koch Bihar",
       "coord": [
-        89.45,
-        26.32
+        89.4333,
+        26.3167
       ],
       "precision": "locality",
       "kind": "capital",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [
         {
           "sourceId": "gait1906",
           "pages": null,
           "locator": "Koch kings"
         }
-      ]
+      ],
+      "coordCheck": {
+        "status": "verified",
+        "method": "Wikidata P625 and OpenStreetMap Nominatim agree",
+        "wikidata": "Q313640",
+        "osm": "relation/1789228",
+        "agreementKm": 6.9,
+        "previousOffsetKm": 1.7,
+        "checkedOn": "2026-11-07"
+      }
     },
     {
       "id": "dhaka",
       "name": "Dhaka (Jahangirnagar)",
       "coord": [
-        90.41,
-        23.81
+        90.3944,
+        23.7289
       ],
       "precision": "locality",
       "kind": "capital",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [],
-      "notes": "Seat of the Mughal subahdar of Bengal in the 17th century (Mir Jumla's base). Source to add."
+      "notes": "Seat of the Mughal subahdar of Bengal in the 17th century (Mir Jumla's base). Source to add.",
+      "coordCheck": {
+        "status": "verified",
+        "method": "Wikidata P625 and OpenStreetMap Nominatim agree",
+        "wikidata": "Q1354",
+        "osm": "node/3442474911",
+        "agreementKm": 4.0,
+        "previousOffsetKm": 9.2,
+        "checkedOn": "2026-11-07"
+      }
     },
     {
       "id": "jaintiapur",
       "name": "Jaintiapur",
       "coord": [
-        92.12,
-        25.13
+        92.1167,
+        25.125
       ],
       "precision": "locality",
       "kind": "capital",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [
         {
           "sourceId": "gait1906",
           "pages": null,
           "locator": "Rudra Singha's Jaintia campaign"
         }
-      ]
+      ],
+      "coordCheck": {
+        "status": "verified",
+        "method": "Wikidata P625 and OpenStreetMap Nominatim agree",
+        "wikidata": "Q6124105",
+        "osm": "relation/14326751",
+        "agreementKm": 1.4,
+        "previousOffsetKm": 0.6,
+        "checkedOn": "2026-11-07"
+      }
     },
     {
       "id": "sylhet",
@@ -635,20 +845,33 @@
       "kind": "town",
       "coordVerified": false,
       "sourceRefs": [],
-      "notes": "Orientation label (Bengal)."
+      "notes": "Orientation label (Bengal).",
+      "coordCheck": {
+        "status": "unchecked",
+        "note": "Gazetteer matches disagree or are ambiguous; keep working value."
+      }
     },
     {
       "id": "imphal",
       "name": "Imphal (Manipur)",
       "coord": [
-        93.94,
-        24.81
+        93.95,
+        24.82
       ],
       "precision": "locality",
       "kind": "capital",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [],
-      "notes": "Orientation anchor for the Manipur kingdom."
+      "notes": "Orientation anchor for the Manipur kingdom.",
+      "coordCheck": {
+        "status": "verified",
+        "method": "Wikidata P625 and OpenStreetMap Nominatim agree",
+        "wikidata": "Q208097",
+        "osm": "node/569040820",
+        "agreementKm": 2.7,
+        "previousOffsetKm": 1.5,
+        "checkedOn": "2026-11-07"
+      }
     },
     {
       "id": "naga-hills",
@@ -659,9 +882,13 @@
       ],
       "precision": "regional",
       "kind": "region-label",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [],
-      "notes": "Region label only. Many independent communities; do NOT draw a polity."
+      "notes": "Region label only. Many independent communities; do NOT draw a polity.",
+      "coordCheck": {
+        "status": "label-anchor",
+        "note": "Region label placement is a design choice, not a site claim."
+      }
     },
     {
       "id": "lushai-hills",
@@ -672,53 +899,84 @@
       ],
       "precision": "regional",
       "kind": "region-label",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [],
-      "notes": "Region label only; outside Ahom political sphere in this period."
+      "notes": "Region label only; outside Ahom political sphere in this period.",
+      "coordCheck": {
+        "status": "label-anchor",
+        "note": "Region label placement is a design choice, not a site claim."
+      }
     },
     {
       "id": "ava",
       "name": "Ava (Inwa)",
       "coord": [
-        95.98,
-        21.86
+        95.985,
+        21.8578
       ],
       "precision": "locality",
       "kind": "capital",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [],
-      "notes": "Burmese royal capital; Amarapura was the capital c.1783-1823 - choose label by date."
+      "notes": "Burmese royal capital; Amarapura was the capital c.1783-1823 - choose label by date.",
+      "coordCheck": {
+        "status": "verified",
+        "method": "Wikidata P625 and OpenStreetMap Nominatim agree",
+        "wikidata": "Q2199759",
+        "osm": "node/1694613492",
+        "agreementKm": 0.2,
+        "previousOffsetKm": 0.6,
+        "checkedOn": "2026-11-07"
+      }
     },
     {
       "id": "amarapura",
       "name": "Amarapura",
       "coord": [
-        96.05,
+        96.0458,
         21.9
       ],
       "precision": "locality",
       "kind": "capital",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [],
-      "notes": "Konbaung capital during the 1817-1822 invasions (to verify)."
+      "notes": "Konbaung capital during the 1817-1822 invasions (to verify).",
+      "coordCheck": {
+        "status": "verified",
+        "method": "Wikidata P625 and OpenStreetMap Nominatim agree",
+        "wikidata": "Q454949",
+        "osm": "relation/18738547",
+        "agreementKm": 0.5,
+        "previousOffsetKm": 0.4,
+        "checkedOn": "2026-11-07"
+      }
     },
     {
       "id": "yandabo",
       "name": "Yandabo",
       "coord": [
-        95.07,
-        21.65
+        95.3667,
+        21.6333
       ],
       "precision": "regional",
       "kind": "settlement",
-      "coordVerified": false,
+      "coordVerified": true,
       "sourceRefs": [
         {
           "sourceId": "yandabo1826",
           "pages": null
         }
       ],
-      "notes": "Village on the Irrawaddy where the treaty was signed. Coordinate low confidence."
+      "notes": "Village on the Irrawaddy where the treaty was signed. Coordinate low confidence.",
+      "coordCheck": {
+        "status": "verified",
+        "method": "Wikidata P625 and OpenStreetMap Nominatim agree",
+        "wikidata": "Q3571527",
+        "osm": "node/4627693512",
+        "agreementKm": 0.7,
+        "previousOffsetKm": 30.7,
+        "checkedOn": "2026-11-07"
+      }
     },
     {
       "id": "mahgarh",
@@ -753,7 +1011,11 @@
           "locator": "Hadira becomes the Ahom frontier outpost after 1671"
         }
       ],
-      "notes": "Ahom frontier outpost 1671-1679."
+      "notes": "Ahom frontier outpost 1671-1679.",
+      "coordCheck": {
+        "status": "unchecked",
+        "note": "No reliable gazetteer match (historical place or ambiguous name)."
+      }
     }
   ],
   "polities": [
