@@ -1,0 +1,114 @@
+{
+  "$comment": "Episode 13 reel (vertical 9:16). Map-reel format; every beat binds to a sourced event. Arrows are schematic.",
+  "episode": 13,
+  "title": "The Last Ahom King",
+  "headline": "EPILOGUE",
+  "subtitle": "Purandar Singha and the end of Ahom rule",
+  "range": "1833–1838",
+  "status": "prototype",
+  "defaultFormat": "9x16",
+  "legend": [
+    {
+      "polity": "ahom",
+      "label": "Purandar Singha's Upper Assam"
+    },
+    {
+      "polity": "eic",
+      "label": "East India Company"
+    }
+  ],
+  "derivedNumbers": [
+    {
+      "text": "six centuries",
+      "derivation": "1228 to 1838"
+    }
+  ],
+  "routes": {},
+  "beats": [
+    {
+      "id": "b1",
+      "eventId": "e13-purandar-restored",
+      "year": "1833",
+      "durationMs": 12000,
+      "camera": {
+        "center": [
+          93.6,
+          26.7
+        ],
+        "zoom": 6.0,
+        "flyMs": 2500
+      },
+      "subtitle": "A king again, under protection",
+      "caption": "Upper Assam is handed to Purandar Singha",
+      "tag": "documented",
+      "narration": "Early in 1833 the Company gave Upper Assam, except Sadiya and the Matak country, to Purandar Singha, a protected king who paid tribute.",
+      "show": {
+        "cities": [
+          "jorhat",
+          "guwahati",
+          "sadiya"
+        ],
+        "capital": "jorhat",
+        "zones": [
+          {
+            "placeId": "jorhat",
+            "radiusKm": 80,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "guwahati",
+            "radiusKm": 90,
+            "polity": "eic"
+          },
+          {
+            "placeId": "sadiya",
+            "radiusKm": 50,
+            "polity": "eic"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b2",
+      "eventId": "e13-annexation-1838",
+      "year": "1838-10",
+      "durationMs": 12000,
+      "camera": {
+        "center": [
+          93.6,
+          26.7
+        ],
+        "zoom": 6.0,
+        "flyMs": 800
+      },
+      "subtitle": "The end",
+      "caption": "In October {1838} the Company takes over",
+      "tag": "documented",
+      "narration": "In October 1838 the Company deposed and pensioned Purandar Singha and took direct control. Six centuries of Ahom rule were over.",
+      "show": {
+        "cities": [
+          "jorhat",
+          "guwahati",
+          "sadiya"
+        ],
+        "zones": [
+          {
+            "placeId": "jorhat",
+            "radiusKm": 80,
+            "polity": "eic"
+          },
+          {
+            "placeId": "guwahati",
+            "radiusKm": 90,
+            "polity": "eic"
+          },
+          {
+            "placeId": "sadiya",
+            "radiusKm": 50,
+            "polity": "eic"
+          }
+        ]
+      }
+    }
+  ]
+}

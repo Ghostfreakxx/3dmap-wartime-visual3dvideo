@@ -1,0 +1,327 @@
+{
+  "$comment": "Episode 4 reel (vertical 9:16). Map-reel format; every beat binds to a sourced event. Arrows are schematic.",
+  "episode": 4,
+  "title": "Suhungmung's Expansion",
+  "headline": "THE AHOM KINGDOM",
+  "subtitle": "Suhungmung, the Chutias, Turbak and Dimapur",
+  "range": "1497–1539",
+  "status": "prototype",
+  "defaultFormat": "9x16",
+  "legend": [
+    {
+      "polity": "ahom",
+      "label": "Ahom kingdom"
+    },
+    {
+      "polity": "chutia",
+      "label": "Chutia kingdom"
+    },
+    {
+      "polity": "kachari",
+      "label": "Kachari kingdom"
+    },
+    {
+      "polity": "bengal-sultanate",
+      "label": "Bengal Sultanate"
+    }
+  ],
+  "derivedNumbers": [],
+  "routes": {
+    "toSadiya": {
+      "via": [
+        "charaideo",
+        "sadiya"
+      ],
+      "label": "Schematic",
+      "polity": "ahom"
+    },
+    "turbak": {
+      "via": [
+        "guwahati",
+        "kaliabor"
+      ],
+      "label": "Schematic",
+      "polity": "bengal-sultanate"
+    },
+    "toDimapur": {
+      "via": [
+        "charaideo",
+        "dimapur"
+      ],
+      "label": "Schematic",
+      "polity": "ahom"
+    }
+  },
+  "beats": [
+    {
+      "id": "b1",
+      "eventId": "e04-suhungmung-accession",
+      "year": "1497",
+      "durationMs": 9000,
+      "camera": {
+        "center": [
+          94.0,
+          26.8
+        ],
+        "zoom": 6.4,
+        "flyMs": 2500
+      },
+      "subtitle": "Suhungmung, the Dihingia Raja",
+      "caption": "{1497}: a king who will double the map",
+      "tag": "documented",
+      "narration": "Suhungmung, known as the Dihingia Raja, became king in 1497.",
+      "show": {
+        "cities": [
+          "charaideo",
+          "sadiya",
+          "dimapur"
+        ],
+        "capital": "charaideo",
+        "zones": [
+          {
+            "placeId": "charaideo",
+            "radiusKm": 65,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "sadiya",
+            "radiusKm": 50,
+            "polity": "chutia"
+          },
+          {
+            "placeId": "dimapur",
+            "radiusKm": 55,
+            "polity": "kachari"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b2",
+      "eventId": "e04-chutia-annexation",
+      "year": "1523",
+      "durationMs": 12000,
+      "camera": {
+        "center": [
+          95.2,
+          27.4
+        ],
+        "zoom": 6.9,
+        "flyMs": 2500
+      },
+      "subtitle": "War with the Chutias",
+      "caption": "Chutia forces are routed",
+      "tag": "documented",
+      "narration": "After years of fighting, the Chutias were routed in 1523. Their king and his heir were killed.",
+      "show": {
+        "route": {
+          "id": "toSadiya",
+          "from": 0,
+          "to": 1
+        },
+        "cities": [
+          "charaideo",
+          "sadiya"
+        ],
+        "zones": [
+          {
+            "placeId": "charaideo",
+            "radiusKm": 65,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "sadiya",
+            "radiusKm": 50,
+            "polity": "chutia"
+          }
+        ],
+        "units": [
+          {
+            "id": "ahom",
+            "polity": "ahom",
+            "label": "Ahom army",
+            "at": "route:toSadiya"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b3",
+      "eventId": "e04-chutia-annexation",
+      "year": "1523",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          95.2,
+          27.4
+        ],
+        "zoom": 6.9,
+        "flyMs": 800
+      },
+      "subtitle": "The Chutia kingdom annexed",
+      "caption": "Sadiya gets an Ahom governor",
+      "tag": "documented",
+      "narration": "The whole Chutia country was annexed and given an Ahom governor, the Sadiya Khowa Gohain.",
+      "show": {
+        "cities": [
+          "charaideo",
+          "sadiya"
+        ],
+        "zones": [
+          {
+            "placeId": "charaideo",
+            "radiusKm": 65,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "sadiya",
+            "radiusKm": 50,
+            "polity": "ahom"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b4",
+      "eventId": "e04-turbak-invasion",
+      "year": "1532-04",
+      "durationMs": 12000,
+      "camera": {
+        "center": [
+          92.6,
+          26.5
+        ],
+        "zoom": 6.8,
+        "flyMs": 2500
+      },
+      "subtitle": "Invasion from Bengal",
+      "caption": "Turbak's army comes up the Brahmaputra",
+      "tag": "documented",
+      "narration": "In April 1532 an army from the Bengal Sultanate under Turbak came up the river. After hard fighting, Turbak was killed near the Bharali and his army routed.",
+      "show": {
+        "route": {
+          "id": "turbak",
+          "from": 0,
+          "to": 1
+        },
+        "cities": [
+          "guwahati",
+          "kaliabor"
+        ],
+        "zones": [
+          {
+            "placeId": "kaliabor",
+            "radiusKm": 40,
+            "polity": "ahom"
+          }
+        ],
+        "units": [
+          {
+            "id": "turbak",
+            "polity": "bengal-sultanate",
+            "label": "Turbak",
+            "at": "route:turbak",
+            "count": "1,000 horses",
+            "countNote": "the Buranjis (via Gait)",
+            "countRef": {
+              "eventId": "e04-turbak-invasion",
+              "what": "Turbak's invading force"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "b5",
+      "eventId": "e04-dimapur-sacked",
+      "year": "1536",
+      "durationMs": 12000,
+      "camera": {
+        "center": [
+          94.3,
+          26.4
+        ],
+        "zoom": 6.6,
+        "flyMs": 2500
+      },
+      "subtitle": "Dimapur sacked",
+      "caption": "The Kachari capital falls in {1536}",
+      "tag": "documented",
+      "narration": "In 1536 Ahom forces sacked Dimapur, the Kachari capital. The Kachari kingdom survived, but moved its capital south to Maibang.",
+      "show": {
+        "route": {
+          "id": "toDimapur",
+          "from": 0,
+          "to": 1
+        },
+        "cities": [
+          "charaideo",
+          "dimapur",
+          "maibang"
+        ],
+        "zones": [
+          {
+            "placeId": "charaideo",
+            "radiusKm": 70,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "maibang",
+            "radiusKm": 45,
+            "polity": "kachari"
+          }
+        ],
+        "units": [
+          {
+            "id": "ahom",
+            "polity": "ahom",
+            "label": "Ahom army",
+            "at": "route:toDimapur"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b6",
+      "eventId": "e04-suhungmung-death",
+      "year": "1539",
+      "durationMs": 9000,
+      "camera": {
+        "center": [
+          94.0,
+          26.8
+        ],
+        "zoom": 6.2,
+        "flyMs": 2500
+      },
+      "subtitle": "The end of a long reign",
+      "caption": "Suhungmung is killed in {1539}",
+      "tag": "documented",
+      "narration": "Suhungmung was assassinated in 1539, leaving a far larger kingdom than he had inherited.",
+      "show": {
+        "cities": [
+          "charaideo",
+          "sadiya",
+          "dimapur"
+        ],
+        "zones": [
+          {
+            "placeId": "charaideo",
+            "radiusKm": 80,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "sadiya",
+            "radiusKm": 50,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "maibang",
+            "radiusKm": 45,
+            "polity": "kachari"
+          }
+        ]
+      }
+    }
+  ]
+}

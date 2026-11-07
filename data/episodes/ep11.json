@@ -1,0 +1,289 @@
+{
+  "$comment": "Episode 11 reel (vertical 9:16). Map-reel format; every beat binds to a sourced event. Arrows are schematic.",
+  "episode": 11,
+  "title": "The Burmese Invasions",
+  "headline": "AHOMS VS BURMA",
+  "subtitle": "Three invasions and an occupation",
+  "range": "1815–1824",
+  "status": "prototype",
+  "defaultFormat": "9x16",
+  "legend": [
+    {
+      "polity": "ahom",
+      "label": "Ahom kingdom"
+    },
+    {
+      "polity": "burma",
+      "label": "Konbaung Burma"
+    }
+  ],
+  "derivedNumbers": [],
+  "routes": {
+    "first": {
+      "via": [
+        "patkai",
+        "jorhat"
+      ],
+      "label": "Schematic",
+      "polity": "burma"
+    },
+    "firstBack": {
+      "via": [
+        "jorhat",
+        "patkai"
+      ],
+      "label": "Schematic",
+      "polity": "burma"
+    },
+    "third": {
+      "via": [
+        "patkai",
+        "jorhat",
+        "guwahati"
+      ],
+      "label": "Schematic",
+      "polity": "burma"
+    }
+  },
+  "beats": [
+    {
+      "id": "b1",
+      "eventId": "e11-badan-chandra-ava",
+      "year": "1816",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          95.0,
+          25.2
+        ],
+        "zoom": 4.8,
+        "flyMs": 2500
+      },
+      "subtitle": "An invitation",
+      "caption": "An Ahom minister asks Burma for help",
+      "tag": "documented",
+      "narration": "In a struggle at court, the Ahom minister Badan Chandra Borphukan turned to the Burmese for military help.",
+      "show": {
+        "cities": [
+          "jorhat",
+          "ava"
+        ],
+        "zones": [
+          {
+            "placeId": "jorhat",
+            "radiusKm": 80,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "ava",
+            "radiusKm": 160,
+            "polity": "burma"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b2",
+      "eventId": "e11-first-burmese-invasion",
+      "year": "1816-12",
+      "durationMs": 12000,
+      "camera": {
+        "center": [
+          95.2,
+          26.9
+        ],
+        "zoom": 6.2,
+        "flyMs": 2500
+      },
+      "subtitle": "The first invasion",
+      "caption": "A Burmese army crosses the Patkai",
+      "tag": "documented",
+      "narration": "At the end of 1816 a Burmese army crossed the Patkai and put Badan Chandra's faction in power.",
+      "show": {
+        "route": {
+          "id": "first",
+          "from": 0,
+          "to": 1
+        },
+        "cities": [
+          "patkai",
+          "jorhat"
+        ],
+        "zones": [
+          {
+            "placeId": "jorhat",
+            "radiusKm": 80,
+            "polity": "ahom"
+          }
+        ],
+        "units": [
+          {
+            "id": "bur",
+            "polity": "burma",
+            "label": "Burmese army",
+            "at": "route:first"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b3",
+      "eventId": "e11-first-burmese-invasion",
+      "year": "1817-04",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          95.2,
+          26.9
+        ],
+        "zoom": 6.2,
+        "flyMs": 800
+      },
+      "subtitle": "Paid to leave",
+      "caption": "With an indemnity, the Burmese go home",
+      "tag": "documented",
+      "narration": "In April 1817, paid an indemnity, the Burmese went home. But they had seen the way in.",
+      "show": {
+        "route": {
+          "id": "firstBack",
+          "from": 0,
+          "to": 1
+        },
+        "cities": [
+          "patkai",
+          "jorhat"
+        ],
+        "zones": [
+          {
+            "placeId": "jorhat",
+            "radiusKm": 80,
+            "polity": "ahom"
+          }
+        ],
+        "units": [
+          {
+            "id": "bur",
+            "polity": "burma",
+            "label": "Burmese army",
+            "at": "route:firstBack"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b4",
+      "eventId": "e11-second-burmese-invasion",
+      "year": "1819-02",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          94.6,
+          27.0
+        ],
+        "zoom": 6.4,
+        "flyMs": 2500
+      },
+      "subtitle": "They return",
+      "caption": "The Burmese now rule through the king",
+      "tag": "documented",
+      "narration": "In February 1819 a second Burmese army arrived and restored Chandrakanta Singha. From then on, real power lay with the Burmese commanders.",
+      "show": {
+        "cities": [
+          "jorhat"
+        ],
+        "zones": [
+          {
+            "placeId": "jorhat",
+            "radiusKm": 80,
+            "polity": "burma"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b5",
+      "eventId": "e11-third-burmese-invasion",
+      "year": "1822-06",
+      "durationMs": 13000,
+      "camera": {
+        "center": [
+          93.5,
+          26.6
+        ],
+        "zoom": 6.0,
+        "flyMs": 2500
+      },
+      "subtitle": "Occupation",
+      "caption": "Chandrakanta is defeated; Burma occupies the valley",
+      "tag": "documented",
+      "narration": "When Chandrakanta tried to break free, the Burmese installed a puppet king. In June 1822 the general Mingi Maha Bandula defeated him, and Burma occupied the valley.",
+      "show": {
+        "route": {
+          "id": "third",
+          "from": 0,
+          "to": 1
+        },
+        "cities": [
+          "jorhat",
+          "guwahati"
+        ],
+        "zones": [
+          {
+            "placeId": "jorhat",
+            "radiusKm": 90,
+            "polity": "burma"
+          },
+          {
+            "placeId": "guwahati",
+            "radiusKm": 70,
+            "polity": "burma"
+          }
+        ],
+        "units": [
+          {
+            "id": "bandula",
+            "polity": "burma",
+            "label": "Maha Bandula",
+            "at": "route:third"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b6",
+      "eventId": "e11-occupation-hardship",
+      "year": "1822–1824",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          93.5,
+          26.6
+        ],
+        "zoom": 6.0,
+        "flyMs": 800
+      },
+      "subtitle": "Years of terror",
+      "caption": "Assam remembers the occupation as a time of terror",
+      "tag": "approximate",
+      "narration": "Assamese memory recalls the occupation as a time of violence and flight. Many people fled to neighbouring lands.",
+      "show": {
+        "cities": [
+          "jorhat",
+          "guwahati"
+        ],
+        "zones": [
+          {
+            "placeId": "jorhat",
+            "radiusKm": 90,
+            "polity": "burma"
+          },
+          {
+            "placeId": "guwahati",
+            "radiusKm": 70,
+            "polity": "burma"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,338 @@
+{
+  "$comment": "Episode 9 reel (vertical 9:16). Map-reel format; every beat binds to a sourced event. Arrows are schematic.",
+  "episode": 9,
+  "title": "Rudra Singha",
+  "headline": "THE AHOM KINGDOM",
+  "subtitle": "Consolidation, culture and the Kachari-Jaintia campaign",
+  "range": "1681–1769",
+  "status": "prototype",
+  "defaultFormat": "9x16",
+  "legend": [
+    {
+      "polity": "ahom",
+      "label": "Ahom kingdom"
+    },
+    {
+      "polity": "kachari",
+      "label": "Kachari kingdom"
+    },
+    {
+      "polity": "jaintia",
+      "label": "Jaintia kingdom"
+    }
+  ],
+  "derivedNumbers": [],
+  "routes": {
+    "kachari": {
+      "via": [
+        "rangpur",
+        "dimapur",
+        "maibang"
+      ],
+      "label": "Schematic",
+      "polity": "ahom"
+    },
+    "jaintia": {
+      "via": [
+        "guwahati",
+        "jaintiapur"
+      ],
+      "label": "Schematic",
+      "polity": "ahom"
+    },
+    "back": {
+      "via": [
+        "jaintiapur",
+        "guwahati"
+      ],
+      "label": "Schematic",
+      "polity": "ahom"
+    }
+  },
+  "beats": [
+    {
+      "id": "b1",
+      "eventId": "e09-rudra-singha",
+      "year": "1696",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          94.0,
+          26.6
+        ],
+        "zoom": 6.4,
+        "flyMs": 2500
+      },
+      "subtitle": "Rudra Singha",
+      "caption": "Under Rudra Singha, Ahom power peaks",
+      "tag": "documented",
+      "narration": "Rudra Singha, king from 1696, built up a new capital at Rangpur and is often seen as the height of Ahom power.",
+      "show": {
+        "cities": [
+          "rangpur",
+          "guwahati"
+        ],
+        "capital": "rangpur",
+        "zones": [
+          {
+            "placeId": "rangpur",
+            "radiusKm": 90,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "guwahati",
+            "radiusKm": 70,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "maibang",
+            "radiusKm": 50,
+            "polity": "kachari"
+          },
+          {
+            "placeId": "jaintiapur",
+            "radiusKm": 45,
+            "polity": "jaintia"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b2",
+      "eventId": "e09-kachari-jaintia-campaign",
+      "year": "1706-12",
+      "durationMs": 12000,
+      "camera": {
+        "center": [
+          93.4,
+          25.9
+        ],
+        "zoom": 6.2,
+        "flyMs": 2500
+      },
+      "subtitle": "War in the south",
+      "caption": "Two armies march on the Kachari kingdom",
+      "tag": "documented",
+      "narration": "When the Kachari king declared independence, Rudra Singha sent two large armies south in December 1706.",
+      "show": {
+        "route": {
+          "id": "kachari",
+          "from": 0,
+          "to": 1
+        },
+        "cities": [
+          "rangpur",
+          "dimapur",
+          "maibang"
+        ],
+        "zones": [
+          {
+            "placeId": "rangpur",
+            "radiusKm": 90,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "maibang",
+            "radiusKm": 50,
+            "polity": "kachari"
+          },
+          {
+            "placeId": "jaintiapur",
+            "radiusKm": 45,
+            "polity": "jaintia"
+          }
+        ],
+        "units": [
+          {
+            "id": "barbarua",
+            "polity": "ahom",
+            "label": "Bar Barua",
+            "at": "route:kachari",
+            "count": "37,000",
+            "countNote": "the Buranjis (via Gait)",
+            "countRef": {
+              "eventId": "e09-kachari-jaintia-campaign",
+              "what": "the two Ahom armies of December 1706"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "b3",
+      "eventId": "e09-kachari-jaintia-campaign",
+      "year": "1708-02",
+      "durationMs": 12000,
+      "camera": {
+        "center": [
+          92.5,
+          25.5
+        ],
+        "zoom": 6.6,
+        "flyMs": 2500
+      },
+      "subtitle": "Annexation announced",
+      "caption": "Jaintiapur occupied; both kingdoms declared annexed",
+      "tag": "documented",
+      "narration": "By February 1708 both kings were captured and Jaintiapur was occupied. The Ahoms announced that both kingdoms were annexed.",
+      "show": {
+        "route": {
+          "id": "jaintia",
+          "from": 0,
+          "to": 1
+        },
+        "cities": [
+          "guwahati",
+          "jaintiapur",
+          "maibang"
+        ],
+        "zones": [
+          {
+            "placeId": "guwahati",
+            "radiusKm": 70,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "jaintiapur",
+            "radiusKm": 35,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "maibang",
+            "radiusKm": 50,
+            "polity": "kachari"
+          }
+        ],
+        "units": [
+          {
+            "id": "barphukan",
+            "polity": "ahom",
+            "label": "Bar Phukan",
+            "at": "route:jaintia"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b4",
+      "eventId": "e09-kachari-jaintia-campaign",
+      "year": "1708",
+      "durationMs": 12000,
+      "camera": {
+        "center": [
+          92.5,
+          25.5
+        ],
+        "zoom": 6.6,
+        "flyMs": 800
+      },
+      "subtitle": "The Jaintias rise",
+      "caption": "Before the rains, the Ahoms retreat",
+      "tag": "documented",
+      "narration": "It did not last. The Jaintias and Khasis rose, and before the rains the Ahom commanders retreated, destroying Jaintiapur as they left.",
+      "show": {
+        "route": {
+          "id": "back",
+          "from": 0,
+          "to": 1
+        },
+        "cities": [
+          "guwahati",
+          "jaintiapur"
+        ],
+        "zones": [
+          {
+            "placeId": "guwahati",
+            "radiusKm": 70,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "jaintiapur",
+            "radiusKm": 45,
+            "polity": "jaintia"
+          },
+          {
+            "placeId": "maibang",
+            "radiusKm": 50,
+            "polity": "kachari"
+          }
+        ],
+        "units": [
+          {
+            "id": "barphukan",
+            "polity": "ahom",
+            "label": "Bar Phukan",
+            "at": "route:back",
+            "count": "2,366",
+            "countNote": "Gait 1906",
+            "countRef": {
+              "eventId": "e09-kachari-jaintia-campaign",
+              "what": "Ahom losses in the Jaintia rising"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "b5",
+      "eventId": "e09-rudra-death",
+      "year": "1714",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          91.75,
+          26.2
+        ],
+        "zoom": 7.0,
+        "flyMs": 2500
+      },
+      "subtitle": "Death at Guwahati",
+      "caption": "Rudra Singha dies preparing a march on Bengal",
+      "tag": "documented",
+      "narration": "Rudra Singha died at Guwahati in 1714, reportedly preparing a westward campaign. His son gave the plan up.",
+      "show": {
+        "cities": [
+          "guwahati"
+        ],
+        "zones": [
+          {
+            "placeId": "guwahati",
+            "radiusKm": 50,
+            "polity": "ahom"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b6",
+      "eventId": "e09-monuments",
+      "year": "1745",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          94.63,
+          26.98
+        ],
+        "zoom": 9.0,
+        "flyMs": 2500
+      },
+      "subtitle": "Brick, tanks and temples",
+      "caption": "The Rang Ghar rises at Rangpur",
+      "tag": "documented",
+      "narration": "The eighteenth-century kings built great tanks, brick palaces and temples. Around 1745 the Rang Ghar pavilion rose at Rangpur.",
+      "show": {
+        "cities": [
+          "rangpur"
+        ],
+        "capital": "rangpur",
+        "zones": [
+          {
+            "placeId": "rangpur",
+            "radiusKm": 10,
+            "polity": "ahom"
+          }
+        ]
+      }
+    }
+  ]
+}

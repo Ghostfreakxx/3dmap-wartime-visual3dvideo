@@ -1,0 +1,274 @@
+{
+  "$comment": "Episode 8 reel (vertical 9:16). Map-reel format; every beat binds to a sourced event. Arrows are schematic.",
+  "episode": 8,
+  "title": "Itakhuli",
+  "headline": "AHOMS VS MUGHALS",
+  "subtitle": "Guwahati lost and won back for good",
+  "range": "1671–1682",
+  "status": "prototype",
+  "defaultFormat": "9x16",
+  "legend": [
+    {
+      "polity": "ahom",
+      "label": "Ahom kingdom"
+    },
+    {
+      "polity": "mughal",
+      "label": "Mughal Empire"
+    }
+  ],
+  "derivedNumbers": [],
+  "routes": {
+    "retake": {
+      "via": [
+        "kaliabor",
+        "guwahati"
+      ],
+      "label": "Schematic",
+      "polity": "ahom"
+    },
+    "pursuit": {
+      "via": [
+        "guwahati",
+        "hajo",
+        "manas-mouth"
+      ],
+      "label": "Schematic",
+      "polity": "ahom"
+    }
+  },
+  "beats": [
+    {
+      "id": "b1",
+      "eventId": "e07-saraighat",
+      "year": "1671",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          91.6,
+          26.25
+        ],
+        "zoom": 6.6,
+        "flyMs": 2500
+      },
+      "subtitle": "After Saraighat",
+      "caption": "The Ahom frontier reaches Hadira",
+      "tag": "documented",
+      "narration": "After Saraighat, the Ahoms held Guwahati, with a frontier post at Hadira, opposite Goalpara.",
+      "show": {
+        "cities": [
+          "guwahati",
+          "hadira"
+        ],
+        "zones": [
+          {
+            "placeId": "guwahati",
+            "radiusKm": 50,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "hadira",
+            "radiusKm": 30,
+            "polity": "ahom"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b2",
+      "eventId": "e08-guwahati-lost-1679",
+      "year": "1679-03",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          91.75,
+          26.2
+        ],
+        "zoom": 7.2,
+        "flyMs": 2500
+      },
+      "subtitle": "Guwahati betrayed",
+      "caption": "The governor hands the city to the Mughals",
+      "tag": "documented",
+      "narration": "During years of court chaos, the Ahom governor of Guwahati made a secret deal with the Mughals and surrendered the city in March 1679.",
+      "show": {
+        "cities": [
+          "guwahati",
+          "garhgaon"
+        ],
+        "zones": [
+          {
+            "placeId": "guwahati",
+            "radiusKm": 40,
+            "polity": "mughal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b3",
+      "eventId": "e08-gadadhar-accession",
+      "year": "1681",
+      "durationMs": 9000,
+      "camera": {
+        "center": [
+          94.0,
+          26.8
+        ],
+        "zoom": 6.2,
+        "flyMs": 2500
+      },
+      "subtitle": "Gadadhar Singha",
+      "caption": "A strong king ends the chaos",
+      "tag": "documented",
+      "narration": "In 1681 Gadadhar Singha took the throne and ended a decade of short, violent reigns.",
+      "show": {
+        "cities": [
+          "garhgaon",
+          "guwahati"
+        ],
+        "capital": "garhgaon",
+        "zones": [
+          {
+            "placeId": "garhgaon",
+            "radiusKm": 90,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "guwahati",
+            "radiusKm": 40,
+            "polity": "mughal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b4",
+      "eventId": "e08-itakhuli",
+      "year": "1682",
+      "durationMs": 12000,
+      "camera": {
+        "center": [
+          91.9,
+          26.25
+        ],
+        "zoom": 7.4,
+        "flyMs": 2500
+      },
+      "subtitle": "The Battle of Itakhuli",
+      "caption": "Ahom boats capture the Mughal fleet",
+      "tag": "documented",
+      "narration": "In 1682 his army attacked. The Mughal forts fell, and a great naval victory near the mouth of the Barnadi captured the whole Mughal fleet.",
+      "show": {
+        "route": {
+          "id": "retake",
+          "from": 0,
+          "to": 1
+        },
+        "cities": [
+          "guwahati",
+          "kaliabor",
+          "barnadi-mouth"
+        ],
+        "zones": [
+          {
+            "placeId": "guwahati",
+            "radiusKm": 30,
+            "polity": "mughal"
+          }
+        ],
+        "units": [
+          {
+            "id": "ahom",
+            "polity": "ahom",
+            "label": "Ahom army",
+            "at": "route:retake"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b5",
+      "eventId": "e08-itakhuli",
+      "year": "1682",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          91.2,
+          26.25
+        ],
+        "zoom": 6.9,
+        "flyMs": 2500
+      },
+      "subtitle": "Chased to the Manas",
+      "caption": "The Mughals flee to the Manas river",
+      "tag": "documented",
+      "narration": "The Mughal commander fled, and the Ahoms chased his men all the way to the Manas river.",
+      "show": {
+        "route": {
+          "id": "pursuit",
+          "from": 0,
+          "to": 1
+        },
+        "cities": [
+          "guwahati",
+          "hajo",
+          "manas-mouth"
+        ],
+        "zones": [
+          {
+            "placeId": "guwahati",
+            "radiusKm": 40,
+            "polity": "ahom"
+          }
+        ],
+        "units": [
+          {
+            "id": "ahom",
+            "polity": "ahom",
+            "label": "Ahom army",
+            "at": "route:pursuit"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b6",
+      "eventId": "e08-itakhuli",
+      "year": "1682",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          92.2,
+          26.4
+        ],
+        "zoom": 6.0,
+        "flyMs": 2500
+      },
+      "subtitle": "A frontier that lasts",
+      "caption": "The Manas stays the border until {1826}",
+      "tag": "documented",
+      "narration": "From then on both sides accepted the Manas as the boundary. Two cannon captured in that campaign survive, inscribed with the date of the victory.",
+      "show": {
+        "cities": [
+          "guwahati",
+          "manas-mouth",
+          "garhgaon"
+        ],
+        "capital": "garhgaon",
+        "zones": [
+          {
+            "placeId": "guwahati",
+            "radiusKm": 70,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "garhgaon",
+            "radiusKm": 90,
+            "polity": "ahom"
+          }
+        ]
+      }
+    }
+  ]
+}

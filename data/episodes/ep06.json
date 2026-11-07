@@ -1,0 +1,317 @@
+{
+  "$comment": "Episode 6 reel (vertical 9:16). Map-reel format; every beat binds to a sourced event. Arrows are schematic.",
+  "episode": 6,
+  "title": "Mir Jumla",
+  "headline": "AHOMS VS MUGHALS",
+  "subtitle": "Mir Jumla's invasion, 1662-1663",
+  "range": "1658–1663",
+  "status": "prototype",
+  "defaultFormat": "9x16",
+  "legend": [
+    {
+      "polity": "ahom",
+      "label": "Ahom kingdom"
+    },
+    {
+      "polity": "mughal",
+      "label": "Mughal Empire"
+    }
+  ],
+  "derivedNumbers": [],
+  "routes": {
+    "mirJumla": {
+      "via": [
+        "koch-bihar",
+        "guwahati",
+        "kaliabor",
+        "garhgaon"
+      ],
+      "label": "Schematic",
+      "polity": "mughal"
+    },
+    "back": {
+      "via": [
+        "garhgaon",
+        "guwahati",
+        "dhaka"
+      ],
+      "label": "Schematic",
+      "polity": "mughal"
+    }
+  },
+  "beats": [
+    {
+      "id": "b1",
+      "eventId": "e06-ahoms-take-guwahati-1658",
+      "year": "1658",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          91.6,
+          26.3
+        ],
+        "zoom": 6.0,
+        "flyMs": 2500
+      },
+      "subtitle": "The Ahoms take Guwahati",
+      "caption": "While Mughal princes fight, Guwahati falls",
+      "tag": "documented",
+      "narration": "In 1658, while Shah Jahan's sons fought over the throne, the Ahoms took Guwahati and pushed the Koches back.",
+      "show": {
+        "cities": [
+          "guwahati",
+          "garhgaon",
+          "koch-bihar"
+        ],
+        "capital": "garhgaon",
+        "zones": [
+          {
+            "placeId": "guwahati",
+            "radiusKm": 60,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "garhgaon",
+            "radiusKm": 90,
+            "polity": "ahom"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b2",
+      "eventId": "e06-mir-jumla-advance",
+      "year": "1662-01-04",
+      "durationMs": 13000,
+      "camera": {
+        "center": [
+          91.6,
+          26.0
+        ],
+        "zoom": 5.4,
+        "flyMs": 2500
+      },
+      "subtitle": "Mir Jumla marches",
+      "caption": "The governor of Bengal invades",
+      "tag": "documented",
+      "narration": "On 4 January 1662 Mir Jumla, the Mughal governor of Bengal, set out for Assam with an army and a river fleet.",
+      "show": {
+        "route": {
+          "id": "mirJumla",
+          "from": 0,
+          "to": 0.6
+        },
+        "cities": [
+          "koch-bihar",
+          "guwahati",
+          "garhgaon"
+        ],
+        "zones": [
+          {
+            "placeId": "garhgaon",
+            "radiusKm": 90,
+            "polity": "ahom"
+          }
+        ],
+        "units": [
+          {
+            "id": "mj",
+            "polity": "mughal",
+            "label": "Mir Jumla",
+            "at": "route:mirJumla"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b3",
+      "eventId": "e06-garhgaon-occupied",
+      "year": "1662-03-17",
+      "durationMs": 12000,
+      "camera": {
+        "center": [
+          93.6,
+          26.7
+        ],
+        "zoom": 6.6,
+        "flyMs": 2500
+      },
+      "subtitle": "The capital falls",
+      "caption": "Mughal troops enter Garhgaon",
+      "tag": "documented",
+      "narration": "On 17 March 1662 the Mughals entered the Ahom capital, Garhgaon. The king withdrew to the hills at Namrup. The capital was occupied; the kingdom was not annexed.",
+      "show": {
+        "route": {
+          "id": "mirJumla",
+          "from": 0.6,
+          "to": 1
+        },
+        "cities": [
+          "garhgaon",
+          "namrup",
+          "kaliabor"
+        ],
+        "zones": [
+          {
+            "placeId": "garhgaon",
+            "radiusKm": 35,
+            "polity": "mughal"
+          },
+          {
+            "placeId": "namrup",
+            "radiusKm": 40,
+            "polity": "ahom"
+          }
+        ],
+        "units": [
+          {
+            "id": "mj",
+            "polity": "mughal",
+            "label": "Mir Jumla",
+            "at": "route:mirJumla"
+          },
+          {
+            "id": "king",
+            "polity": "ahom",
+            "label": "Jayadhwaj Singha",
+            "at": "namrup"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b4",
+      "eventId": "e06-monsoon-crisis",
+      "year": "1662",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          94.4,
+          27.0
+        ],
+        "zoom": 7.2,
+        "flyMs": 2500
+      },
+      "subtitle": "Trapped by the rains",
+      "caption": "Floods, raids and disease",
+      "tag": "documented",
+      "narration": "Then the monsoon came. The Mughal garrisons were cut off by floods and Ahom raids, and disease spread through the camps.",
+      "show": {
+        "cities": [
+          "garhgaon",
+          "namrup"
+        ],
+        "flood": [
+          "garhgaon"
+        ],
+        "zones": [
+          {
+            "placeId": "garhgaon",
+            "radiusKm": 35,
+            "polity": "mughal"
+          },
+          {
+            "placeId": "namrup",
+            "radiusKm": 40,
+            "polity": "ahom"
+          }
+        ],
+        "units": [
+          {
+            "id": "mj",
+            "polity": "mughal",
+            "label": "Mir Jumla",
+            "at": "garhgaon"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b5",
+      "eventId": "e06-ghilajharighat-treaty",
+      "year": "1663-01",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          93.0,
+          26.6
+        ],
+        "zoom": 6.2,
+        "flyMs": 2500
+      },
+      "subtitle": "A harsh treaty",
+      "caption": "The Ahoms give up everything west of the Bharali",
+      "tag": "documented",
+      "narration": "In January 1663 the Ahom king accepted heavy terms: tribute, hostages, and the land west of the Bharali and Kallang rivers.",
+      "show": {
+        "cities": [
+          "guwahati",
+          "garhgaon",
+          "tezpur"
+        ],
+        "zones": [
+          {
+            "placeId": "guwahati",
+            "radiusKm": 80,
+            "polity": "mughal"
+          },
+          {
+            "placeId": "garhgaon",
+            "radiusKm": 90,
+            "polity": "ahom"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b6",
+      "eventId": "e06-mughal-withdrawal",
+      "year": "1663-03-30",
+      "durationMs": 12000,
+      "camera": {
+        "center": [
+          92.2,
+          25.4
+        ],
+        "zoom": 5.4,
+        "flyMs": 2500
+      },
+      "subtitle": "The Mughals leave",
+      "caption": "Mir Jumla dies before reaching Dacca",
+      "tag": "documented",
+      "narration": "The army turned back to Bengal, and Mir Jumla died on 30 March 1663, just before reaching Dacca. The occupation was over.",
+      "show": {
+        "route": {
+          "id": "back",
+          "from": 0,
+          "to": 1
+        },
+        "cities": [
+          "garhgaon",
+          "guwahati",
+          "dhaka"
+        ],
+        "zones": [
+          {
+            "placeId": "guwahati",
+            "radiusKm": 80,
+            "polity": "mughal"
+          },
+          {
+            "placeId": "garhgaon",
+            "radiusKm": 90,
+            "polity": "ahom"
+          }
+        ],
+        "units": [
+          {
+            "id": "mj",
+            "polity": "mughal",
+            "label": "Mir Jumla",
+            "at": "route:back"
+          }
+        ]
+      }
+    }
+  ]
+}

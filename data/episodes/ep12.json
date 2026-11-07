@@ -1,0 +1,227 @@
+{
+  "$comment": "Episode 12 reel (vertical 9:16). Map-reel format; every beat binds to a sourced event. Arrows are schematic.",
+  "episode": 12,
+  "title": "Yandabo",
+  "headline": "BRITAIN VS BURMA",
+  "subtitle": "The First Anglo-Burmese War and the Treaty of Yandabo",
+  "range": "1824–1826",
+  "status": "prototype",
+  "defaultFormat": "9x16",
+  "legend": [
+    {
+      "polity": "eic",
+      "label": "East India Company"
+    },
+    {
+      "polity": "burma",
+      "label": "Konbaung Burma"
+    },
+    {
+      "polity": "manipur",
+      "label": "Manipur"
+    }
+  ],
+  "derivedNumbers": [],
+  "routes": {
+    "advance": {
+      "via": [
+        "hadira",
+        "guwahati",
+        "jorhat",
+        "rangpur"
+      ],
+      "label": "Schematic",
+      "polity": "eic"
+    }
+  },
+  "beats": [
+    {
+      "id": "b1",
+      "eventId": "e12-war-declared",
+      "year": "1824-03-05",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          93.5,
+          25.0
+        ],
+        "zoom": 5.0,
+        "flyMs": 2500
+      },
+      "subtitle": "War",
+      "caption": "The East India Company declares war on Burma",
+      "tag": "documented",
+      "narration": "On 5 March 1824, after clashes on the Bengal frontier, the East India Company declared war on Burma.",
+      "show": {
+        "cities": [
+          "guwahati",
+          "imphal",
+          "ava"
+        ],
+        "zones": [
+          {
+            "placeId": "guwahati",
+            "radiusKm": 80,
+            "polity": "burma"
+          },
+          {
+            "placeId": "jorhat",
+            "radiusKm": 80,
+            "polity": "burma"
+          },
+          {
+            "placeId": "ava",
+            "radiusKm": 160,
+            "polity": "burma"
+          },
+          {
+            "placeId": "dhaka",
+            "radiusKm": 120,
+            "polity": "eic"
+          },
+          {
+            "placeId": "imphal",
+            "radiusKm": 45,
+            "polity": "manipur"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b2",
+      "eventId": "e12-british-advance",
+      "year": "1825-01",
+      "durationMs": 13000,
+      "camera": {
+        "center": [
+          93.3,
+          26.5
+        ],
+        "zoom": 6.0,
+        "flyMs": 2500
+      },
+      "subtitle": "Up the valley",
+      "caption": "Company troops drive the Burmese out of Assam",
+      "tag": "documented",
+      "narration": "Company troops moved up the Brahmaputra. In early 1825 the Burmese garrison at Rangpur surrendered on terms and left Assam.",
+      "show": {
+        "route": {
+          "id": "advance",
+          "from": 0,
+          "to": 1
+        },
+        "cities": [
+          "hadira",
+          "guwahati",
+          "jorhat",
+          "rangpur"
+        ],
+        "zones": [
+          {
+            "placeId": "guwahati",
+            "radiusKm": 70,
+            "polity": "eic"
+          },
+          {
+            "placeId": "rangpur",
+            "radiusKm": 60,
+            "polity": "burma"
+          }
+        ],
+        "units": [
+          {
+            "id": "eic",
+            "polity": "eic",
+            "label": "Company army",
+            "at": "route:advance"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b3",
+      "eventId": "e12-yandabo",
+      "year": "1826-02-24",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          95.5,
+          22.8
+        ],
+        "zoom": 5.6,
+        "flyMs": 2500
+      },
+      "subtitle": "The Treaty of Yandabo",
+      "caption": "Signed in a Burmese village, 24 February {1826}",
+      "tag": "documented",
+      "narration": "The war was settled at Yandabo, a village on the Irrawaddy, on 24 February 1826.",
+      "show": {
+        "cities": [
+          "yandabo",
+          "ava",
+          "imphal"
+        ],
+        "zones": [
+          {
+            "placeId": "ava",
+            "radiusKm": 160,
+            "polity": "burma"
+          },
+          {
+            "placeId": "imphal",
+            "radiusKm": 45,
+            "polity": "manipur"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b4",
+      "eventId": "e12-yandabo",
+      "year": "1826-02-24",
+      "durationMs": 13000,
+      "camera": {
+        "center": [
+          93.6,
+          25.6
+        ],
+        "zoom": 5.2,
+        "flyMs": 2500
+      },
+      "subtitle": "Burma gives up Assam",
+      "caption": "Ava renounces all claims to Assam, Cachar and Jaintia",
+      "tag": "documented",
+      "narration": "Burma renounced all claims to Assam and promised not to interfere in Cachar and Jaintia. Manipur's ruler was recognised. Assam's future was now in Company hands.",
+      "show": {
+        "cities": [
+          "guwahati",
+          "rangpur",
+          "imphal",
+          "ava"
+        ],
+        "zones": [
+          {
+            "placeId": "guwahati",
+            "radiusKm": 80,
+            "polity": "eic"
+          },
+          {
+            "placeId": "rangpur",
+            "radiusKm": 70,
+            "polity": "eic"
+          },
+          {
+            "placeId": "imphal",
+            "radiusKm": 45,
+            "polity": "manipur"
+          },
+          {
+            "placeId": "ava",
+            "radiusKm": 160,
+            "polity": "burma"
+          }
+        ]
+      }
+    }
+  ]
+}

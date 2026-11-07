@@ -4,15 +4,23 @@ import gazetteerJson from "@data/gazetteer/places.json";
 import registryJson from "@data/sources/registry.json";
 import ep01 from "@data/episodes/ep01.json";
 import ep02 from "@data/episodes/ep02.json";
+import ep03 from "@data/episodes/ep03.json";
+import ep04 from "@data/episodes/ep04.json";
+import ep05 from "@data/episodes/ep05.json";
+import ep06 from "@data/episodes/ep06.json";
 import ep07 from "@data/episodes/ep07.json";
+import ep08 from "@data/episodes/ep08.json";
+import ep09 from "@data/episodes/ep09.json";
+import ep10 from "@data/episodes/ep10.json";
+import ep11 from "@data/episodes/ep11.json";
+import ep12 from "@data/episodes/ep12.json";
+import ep13 from "@data/episodes/ep13.json";
 import type { EpisodeBundle, EpisodeScript } from "@/domain/episode";
 import type { HistoricalEvent, Place, Polity, SourceRecord } from "@/domain/types";
 
-const SCRIPTS: Record<number, EpisodeScript> = {
-  1: ep01 as unknown as EpisodeScript,
-  2: ep02 as unknown as EpisodeScript,
-  7: ep07 as unknown as EpisodeScript,
-};
+const SCRIPTS: Record<number, EpisodeScript> = Object.fromEntries(
+  [ep01, ep02, ep03, ep04, ep05, ep06, ep07, ep08, ep09, ep10, ep11, ep12, ep13].map((e) => [e.episode, e as unknown as EpisodeScript]),
+);
 
 const allEvents = (eventsJson as unknown as { events: HistoricalEvent[] }).events;
 const episodeMeta = (eventsJson as unknown as {

@@ -1,0 +1,335 @@
+{
+  "$comment": "Episode 5 reel (vertical 9:16). Map-reel format; every beat binds to a sourced event. Arrows are schematic.",
+  "episode": 5,
+  "title": "Koch and Mughal",
+  "headline": "THE AHOM KINGDOM",
+  "subtitle": "Koch invasion, Mughal frontier and the 1639 peace",
+  "range": "1540–1639",
+  "status": "prototype",
+  "defaultFormat": "9x16",
+  "legend": [
+    {
+      "polity": "ahom",
+      "label": "Ahom kingdom"
+    },
+    {
+      "polity": "koch",
+      "label": "Koch kingdom"
+    },
+    {
+      "polity": "mughal",
+      "label": "Mughal Empire"
+    }
+  ],
+  "derivedNumbers": [
+    {
+      "text": "twenty years",
+      "derivation": "1615 to 1638"
+    }
+  ],
+  "routes": {
+    "chilarai": {
+      "via": [
+        "koch-bihar",
+        "guwahati",
+        "garhgaon"
+      ],
+      "label": "Schematic",
+      "polity": "koch"
+    },
+    "kochBack": {
+      "via": [
+        "garhgaon",
+        "guwahati",
+        "koch-bihar"
+      ],
+      "label": "Schematic",
+      "polity": "koch"
+    },
+    "mughalPush": {
+      "via": [
+        "hajo",
+        "kaliabor"
+      ],
+      "label": "Schematic",
+      "polity": "mughal"
+    },
+    "ahomBack": {
+      "via": [
+        "kaliabor",
+        "guwahati"
+      ],
+      "label": "Schematic",
+      "polity": "ahom"
+    }
+  },
+  "beats": [
+    {
+      "id": "b1",
+      "eventId": "e05-garhgaon-capital",
+      "year": "1540",
+      "durationMs": 9000,
+      "camera": {
+        "center": [
+          94.0,
+          26.8
+        ],
+        "zoom": 6.4,
+        "flyMs": 2500
+      },
+      "subtitle": "A new capital: Garhgaon",
+      "caption": "The court moves to Garhgaon",
+      "tag": "documented",
+      "narration": "Around 1540 king Suklenmung moved the capital to Garhgaon.",
+      "show": {
+        "cities": [
+          "garhgaon"
+        ],
+        "capital": "garhgaon",
+        "zones": [
+          {
+            "placeId": "garhgaon",
+            "radiusKm": 90,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "koch-bihar",
+            "radiusKm": 90,
+            "polity": "koch"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b2",
+      "eventId": "e05-koch-invasion",
+      "year": "1563",
+      "durationMs": 13000,
+      "camera": {
+        "center": [
+          91.8,
+          26.4
+        ],
+        "zoom": 5.6,
+        "flyMs": 2500
+      },
+      "subtitle": "The Koch invade",
+      "caption": "Chilarai's army reaches Garhgaon",
+      "tag": "documented",
+      "narration": "In January 1563 the Koch general Chilarai routed the Ahoms. The king fled to the hills at Namrup, and the Koch camped in the capital.",
+      "show": {
+        "route": {
+          "id": "chilarai",
+          "from": 0,
+          "to": 1
+        },
+        "cities": [
+          "koch-bihar",
+          "guwahati",
+          "garhgaon",
+          "namrup"
+        ],
+        "zones": [
+          {
+            "placeId": "garhgaon",
+            "radiusKm": 90,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "koch-bihar",
+            "radiusKm": 90,
+            "polity": "koch"
+          }
+        ],
+        "units": [
+          {
+            "id": "chilarai",
+            "polity": "koch",
+            "label": "Chilarai",
+            "at": "route:chilarai"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b3",
+      "eventId": "e05-koch-invasion",
+      "year": "1563",
+      "durationMs": 12000,
+      "camera": {
+        "center": [
+          91.8,
+          26.4
+        ],
+        "zoom": 5.6,
+        "flyMs": 800
+      },
+      "subtitle": "Occupation, then withdrawal",
+      "caption": "The Koch leave, but keep land on the north bank",
+      "tag": "documented",
+      "narration": "Peace came on Koch terms: hostages, an indemnity, and a strip of the north bank. Then the Koch army went home. The capital was occupied, not annexed.",
+      "show": {
+        "route": {
+          "id": "kochBack",
+          "from": 0,
+          "to": 1
+        },
+        "cities": [
+          "koch-bihar",
+          "guwahati",
+          "garhgaon"
+        ],
+        "zones": [
+          {
+            "placeId": "garhgaon",
+            "radiusKm": 90,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "koch-bihar",
+            "radiusKm": 90,
+            "polity": "koch"
+          }
+        ],
+        "units": [
+          {
+            "id": "chilarai",
+            "polity": "koch",
+            "label": "Chilarai",
+            "at": "route:kochBack"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b4",
+      "eventId": "e05-mughals-reach-frontier",
+      "year": "1613",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          91.3,
+          26.3
+        ],
+        "zoom": 6.6,
+        "flyMs": 2500
+      },
+      "subtitle": "The Mughals arrive",
+      "caption": "The Mughal Empire swallows Koch Hajo",
+      "tag": "documented",
+      "narration": "Around 1612 the Mughals of Bengal conquered the Koch kingdom of Hajo, as far as the Barnadi. The empire now touched the Ahom frontier.",
+      "show": {
+        "cities": [
+          "hajo",
+          "guwahati",
+          "barnadi-mouth"
+        ],
+        "zones": [
+          {
+            "placeId": "hajo",
+            "radiusKm": 60,
+            "polity": "mughal"
+          },
+          {
+            "placeId": "koch-bihar",
+            "radiusKm": 60,
+            "polity": "koch"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b5",
+      "eventId": "e05-ahom-mughal-wars",
+      "year": "1615–1638",
+      "durationMs": 12000,
+      "camera": {
+        "center": [
+          92.0,
+          26.4
+        ],
+        "zoom": 6.4,
+        "flyMs": 2500
+      },
+      "subtitle": "Twenty years of war",
+      "caption": "Mughal and Ahom armies push back and forth",
+      "tag": "documented",
+      "narration": "For more than twenty years Mughal and Ahom armies fought along the river, with fortunes changing many times.",
+      "show": {
+        "route": {
+          "id": "mughalPush",
+          "from": 0,
+          "to": 1
+        },
+        "cities": [
+          "hajo",
+          "guwahati",
+          "kaliabor"
+        ],
+        "zones": [
+          {
+            "placeId": "hajo",
+            "radiusKm": 60,
+            "polity": "mughal"
+          },
+          {
+            "placeId": "kaliabor",
+            "radiusKm": 60,
+            "polity": "ahom"
+          }
+        ],
+        "units": [
+          {
+            "id": "mughal",
+            "polity": "mughal",
+            "label": "Mughal army",
+            "at": "route:mughalPush"
+          },
+          {
+            "id": "ahom",
+            "polity": "ahom",
+            "label": "Ahom army",
+            "at": "kaliabor"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b6",
+      "eventId": "e05-treaty-1639",
+      "year": "1639",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          91.9,
+          26.3
+        ],
+        "zoom": 7.0,
+        "flyMs": 2500
+      },
+      "subtitle": "The peace of 1639",
+      "caption": "The Barnadi becomes the border",
+      "tag": "documented",
+      "narration": "In 1639 both sides agreed a frontier: the Barnadi river on the north bank and the Asurar Ali embankment on the south. Guwahati stayed Mughal.",
+      "show": {
+        "cities": [
+          "barnadi-mouth",
+          "guwahati",
+          "kaliabor"
+        ],
+        "zones": [
+          {
+            "placeId": "hajo",
+            "radiusKm": 45,
+            "polity": "mughal"
+          },
+          {
+            "placeId": "kaliabor",
+            "radiusKm": 60,
+            "polity": "ahom"
+          }
+        ]
+      }
+    }
+  ]
+}
