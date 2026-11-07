@@ -35,6 +35,18 @@ python3 scripts/narrate-videos.py
 
 This voices every beat with Piper's free "Ryan" voice and writes `renders/narrated/`, including the complete narrated film. Setup is in the script header. Lines that run long are sped up slightly (at most 1.15×); if a line still doesn't fit, shorten its `narration` text.
 
+## Add the background music
+
+```bash
+python3 scripts/compose-music.py
+```
+
+```bash
+python3 scripts/add-music.py
+```
+
+The first command composes two original ambient beds (`calm` and `tense`, 120 s each, numpy synthesis, royalty-free). The second lays them under the narrated reels: Episodes 5–8 and 10–12 get `tense`, the rest `calm`. The music sits at -30 LUFS against the voice's -16, dips further while the narrator speaks, and fades in and out. Output goes to `renders/final/`, including the complete film.
+
 ## Record a reel live (9:16)
 
 1. Open `http://localhost:3000/watch/2?present=1`. Presentation mode hides all controls.
