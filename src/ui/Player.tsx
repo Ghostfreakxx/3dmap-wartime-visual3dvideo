@@ -143,7 +143,7 @@ export default function Player({ bundle, initialFormat, initialPresentation = fa
     w.__ahom = {
       total: pb.total,
       seek: (t: number) => seekTime(t),
-      tilesLoaded: () => !!mapRef.current?.loaded() && !!mapRef.current?.areTilesLoaded(),
+      tilesLoaded: () => !!mapRef.current?.loaded() && !!mapRef.current?.areTilesLoaded() && !mapRef.current?.isMoving(),
       mapReady: () => !!mapRef.current,
     };
   }, [renderMode, pb.total, seekTime]);

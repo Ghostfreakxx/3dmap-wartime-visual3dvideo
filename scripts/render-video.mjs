@@ -66,8 +66,14 @@ for (let i = 0; i < frames; i++) {
     const raf = () => new Promise((r) => requestAnimationFrame(() => r()));
     await raf();
     await raf();
-    const until = performance.now() + 4000;
-    while (!window.__ahom.tilesLoaded() && performance.now() < until) await raf();
+    await raf();
+    // tiles for the new camera are requested a frame after the jump: require 3 settled frames in a row
+    const until = performance.now() + 8000;
+    let settled = 0;
+    while (settled < 3 && performance.now() < until) {
+      settled = window.__ahom.tilesLoaded() ? settled + 1 : 0;
+      await raf();
+    }
   }, t);
   const jpg = await page.screenshot({ type: "jpeg", quality: 92, animations: "disabled" });
   if (!ff.stdin.write(jpg)) await new Promise((r) => ff.stdin.once("drain", r));
