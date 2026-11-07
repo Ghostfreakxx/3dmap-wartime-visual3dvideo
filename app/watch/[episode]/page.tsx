@@ -18,11 +18,11 @@ export default async function WatchPage({
   searchParams,
 }: {
   params: Promise<{ episode: string }>;
-  searchParams: Promise<{ format?: string; present?: string }>;
+  searchParams: Promise<{ format?: string; present?: string; render?: string }>;
 }) {
   const { episode } = await params;
   const sp = await searchParams;
   const bundle = loadEpisode(Number(episode));
   if (!bundle) notFound();
-  return <Player bundle={bundle} initialFormat={sp.format === "9x16" || sp.format === "16x9" ? sp.format : undefined} initialPresentation={sp.present === "1"} />;
+  return <Player bundle={bundle} initialFormat={sp.format === "9x16" || sp.format === "16x9" ? sp.format : undefined} initialPresentation={sp.present === "1"} renderMode={sp.render === "1"} />;
 }

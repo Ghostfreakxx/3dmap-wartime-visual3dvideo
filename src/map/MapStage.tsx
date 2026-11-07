@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Map as MLMap, Marker, setWorkerUrl, type ExpressionSpecification, type GeoJSONSource, type StyleSpecification } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import type { Beat, EpisodeBundle, LngLat } from "@/domain/episode";
+import { cameraAt, type Beat, type EpisodeBundle, type LngLat } from "@/domain/episode";
 import type { Place } from "@/domain/types";
 import { kmToPxAtZoom0, pointAlong, routeLine, routeProgressAt } from "./geo";
 import { PALETTE, polityColor } from "./palette";
@@ -104,7 +104,7 @@ function wrap(inner: HTMLElement) {
   return root;
 }
 
-const shortName = (p: Place) => p.name.replace(/\s*\(.*\)/, "");
+const shortName = (p: Place) => p.name.replace(/\s*\(.*\)/, "").split(",")[0].trim();
 
 function cityEl(p: Place) {
   const el = document.createElement("div");
@@ -121,10 +121,11 @@ function unitEl(color: string) {
   return el;
 }
 
-export default function MapStage({ bundle, beatIndex, localT, layers, vertical, manual, speed, onReady }: Props) {
+export default function MapStage({ bundle, beatIndex, localT, layers, vertical, manual, onReady }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MLMap | null>(null);
   const readyRef = useRef(false);
+  const [ready, setReady] = useState(false);
   const queue = useRef<Array<() => void>>([]);
   const cities = useRef<Record<string, HTMLElement>>({});
   const units = useRef<Record<string, { marker: Marker; el: HTMLElement }>>({});
@@ -136,6 +137,7 @@ export default function MapStage({ bundle, beatIndex, localT, layers, vertical, 
   const beat: Beat = script.beats[beatIndex];
   const routeIds = Object.keys(script.routes);
   const whenReady = (fn: () => void) => (readyRef.current ? fn() : queue.current.push(fn));
+  const arrowColor = useCallback((id: string) => (script.routes[id]?.polity ? polityColor(script.routes[id].polity!) : PALETTE.arrow), [script]);
 
   // ---- init once
   useEffect(() => {
@@ -163,6 +165,7 @@ export default function MapStage({ bundle, beatIndex, localT, layers, vertical, 
     for (const id of routeIds) {
       const head = document.createElement("div");
       head.className = "arrow-head";
+      head.style.borderBottomColor = arrowColor(id);
       arrowHeads.current[id] = new Marker({ element: wrap(head), anchor: "center", rotationAlignment: "map" }).setLngLat([0, 0]).addTo(map);
     }
 
@@ -175,6 +178,7 @@ export default function MapStage({ bundle, beatIndex, localT, layers, vertical, 
       readyRef.current = true;
       queue.current.splice(0).forEach((fn) => fn());
       onReady?.(map);
+      setReady(true);
     });
 
     const ro = new ResizeObserver(() => map.resize());
@@ -197,22 +201,18 @@ export default function MapStage({ bundle, beatIndex, localT, layers, vertical, 
     [map.dragPan, map.scrollZoom, map.boxZoom, map.keyboard, map.doubleClickZoom, map.touchZoomRotate].forEach((h) => (manual ? h.enable() : h.disable()));
   }, [manual]);
 
-  // ---- camera: flat, top-down
+  // ---- camera: deterministic, flat, top-down (runs every frame)
   useEffect(() => {
     const map = mapRef.current;
-    if (!map || manual) return;
-    whenReady(() => {
-      const c = beat.camera;
-      const v = vertical ? beat.vertical ?? { center: c.center, zoom: c.zoom - 0.5 } : { center: c.center, zoom: c.zoom };
-      // keep the action in the clear band between the headline and the legend/caption
-      const { clientWidth: w, clientHeight: h } = map.getContainer();
-      const padding = vertical
-        ? { top: h * 0.2, bottom: h * 0.4, left: w * 0.04, right: w * 0.14 }
-        : { top: h * 0.22, bottom: h * 0.12, left: w * 0.22, right: w * 0.04 };
-      map.flyTo({ center: v.center, zoom: v.zoom, pitch: 0, bearing: 0, padding, duration: (c.flyMs ?? 2500) / speed, curve: 1.2, essential: true });
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [beatIndex, vertical, manual]);
+    if (!map || manual || !readyRef.current) return;
+    const cam = cameraAt(script, beatIndex, localT * beat.durationMs, vertical);
+    const { clientWidth: w, clientHeight: h } = map.getContainer();
+    // keep the action in the clear band between the headline and the legend/caption
+    const padding = vertical
+      ? { top: h * 0.2, bottom: h * 0.4, left: w * 0.04, right: w * 0.14 }
+      : { top: h * 0.22, bottom: h * 0.12, left: w * 0.22, right: w * 0.04 };
+    map.jumpTo({ center: cam.center, zoom: cam.zoom, pitch: 0, bearing: 0, padding });
+  }, [script, beatIndex, localT, beat, vertical, manual, ready]);
 
   // ---- per-beat: cities, zones, units, floods
   useEffect(() => {
@@ -294,7 +294,7 @@ export default function MapStage({ bundle, beatIndex, localT, layers, vertical, 
       const p = prog[id] ?? 0;
       if (Math.abs((lastP.current[id] ?? -1) - p) > 0.0008) {
         map.setPaintProperty(`route-${id}-casing`, "line-gradient", progressGradient(p, PALETTE.arrowCasing));
-        map.setPaintProperty(`route-${id}-core`, "line-gradient", progressGradient(p, PALETTE.arrow));
+        map.setPaintProperty(`route-${id}-core`, "line-gradient", progressGradient(p, arrowColor(id)));
         lastP.current[id] = p;
       }
       const line = lines.current[id] ?? [];
@@ -311,7 +311,7 @@ export default function MapStage({ bundle, beatIndex, localT, layers, vertical, 
         if (u.at === `route:${id}` && units.current[u.id] && line.length > 1) units.current[u.id].marker.setLngLat(pointAlong(line, Math.max(p, 0.001)));
       }
     }
-  }, [script, beatIndex, localT, beat, routeIds, layers.routes]);
+  }, [script, beatIndex, localT, beat, routeIds, layers.routes, ready, arrowColor]);
 
   return (
     <div className="absolute inset-0" role="img" aria-label={`Map: ${beat.subtitle}`}>

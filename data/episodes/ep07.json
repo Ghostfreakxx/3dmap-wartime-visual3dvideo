@@ -1,0 +1,512 @@
+{
+  "$comment": "Episode 7 reel (vertical 9:16, ~100 s): Guwahati recovered and the Battle of Saraighat, 1663-1671. Sources: Gait 1906 pp. 136-150; Bhuyan 1947 pp. 25-87. Arrows are schematic; river-battle positions follow Bhuyan's description (Kamakhya-Itakhuli-Aswakranta).",
+  "episode": 7,
+  "title": "Saraighat",
+  "headline": "AHOMS VS MUGHALS",
+  "subtitle": "Guwahati recovered and the Battle of Saraighat",
+  "range": "1663–1671",
+  "status": "prototype",
+  "defaultFormat": "9x16",
+  "legend": [
+    {
+      "polity": "ahom",
+      "label": "Ahom kingdom"
+    },
+    {
+      "polity": "mughal",
+      "label": "Mughal Empire"
+    }
+  ],
+  "derivedNumbers": [],
+  "routes": {
+    "ahomMarch": {
+      "via": [
+        "garhgaon",
+        "kaliabor",
+        "guwahati"
+      ],
+      "label": "Schematic",
+      "polity": "ahom"
+    },
+    "ahomPursuit": {
+      "via": [
+        "guwahati",
+        "hajo",
+        "manas-mouth"
+      ],
+      "label": "Schematic",
+      "polity": "ahom"
+    },
+    "ramSingh": {
+      "via": [
+        "manas-mouth",
+        "hajo"
+      ],
+      "label": "Schematic",
+      "polity": "mughal"
+    },
+    "fleet": {
+      "via": [
+        "hajo",
+        "saraighat"
+      ],
+      "label": "Schematic",
+      "polity": "mughal"
+    },
+    "counter": {
+      "via": [
+        "itakhuli",
+        "saraighat"
+      ],
+      "label": "Schematic",
+      "polity": "ahom"
+    },
+    "retreat": {
+      "via": [
+        "saraighat",
+        "hajo",
+        "manas-mouth"
+      ],
+      "label": "Schematic",
+      "polity": "mughal"
+    }
+  },
+  "beats": [
+    {
+      "id": "b1-1663",
+      "eventId": "e06-ghilajharighat-treaty",
+      "year": "1663",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          92.6,
+          26.5
+        ],
+        "zoom": 6.2,
+        "flyMs": 2500
+      },
+      "subtitle": "After Mir Jumla's invasion",
+      "caption": "The Mughals hold Guwahati and the west",
+      "tag": "documented",
+      "narration": "In 1663, after Mir Jumla's invasion, the Ahom king signed away everything west of the Bharali and Kallang rivers. Guwahati became a Mughal frontier town.",
+      "show": {
+        "cities": [
+          "garhgaon",
+          "kaliabor",
+          "guwahati",
+          "hajo"
+        ],
+        "capital": "garhgaon",
+        "zones": [
+          {
+            "placeId": "garhgaon",
+            "radiusKm": 120,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "hajo",
+            "radiusKm": 70,
+            "polity": "mughal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b2-march",
+      "eventId": "e07-guwahati-recaptured",
+      "year": "1667-08-20",
+      "durationMs": 12000,
+      "camera": {
+        "center": [
+          92.6,
+          26.5
+        ],
+        "zoom": 6.2,
+        "flyMs": 1500
+      },
+      "subtitle": "Lachit Borphukan marches west",
+      "caption": "The Ahom army sails to retake Guwahati",
+      "tag": "documented",
+      "narration": "In August 1667 king Chakradhwaj Singha sent his army down the Brahmaputra under a new commander, Lachit, appointed Borphukan.",
+      "show": {
+        "cities": [
+          "garhgaon",
+          "kaliabor",
+          "guwahati",
+          "hajo"
+        ],
+        "capital": "garhgaon",
+        "zones": [
+          {
+            "placeId": "garhgaon",
+            "radiusKm": 120,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "hajo",
+            "radiusKm": 70,
+            "polity": "mughal"
+          }
+        ],
+        "route": {
+          "id": "ahomMarch",
+          "from": 0,
+          "to": 1
+        },
+        "units": [
+          {
+            "id": "lachit",
+            "polity": "ahom",
+            "label": "Lachit",
+            "at": "route:ahomMarch"
+          },
+          {
+            "id": "mughal",
+            "polity": "mughal",
+            "label": "Mughal garrison",
+            "at": "hajo"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b3-itakhuli",
+      "eventId": "e07-guwahati-recaptured",
+      "year": "1667-11-02",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          91.4,
+          26.25
+        ],
+        "zoom": 7.2,
+        "flyMs": 2500
+      },
+      "subtitle": "Itakhuli falls",
+      "caption": "Guwahati is Ahom again; the Mughals flee to the Manas",
+      "tag": "documented",
+      "narration": "After a two-month siege, the Itakhuli fort and Guwahati fell in early November 1667. The Mughals were chased back to the Manas river.",
+      "show": {
+        "cities": [
+          "guwahati",
+          "hajo",
+          "manas-mouth"
+        ],
+        "zones": [
+          {
+            "placeId": "guwahati",
+            "radiusKm": 25,
+            "polity": "ahom"
+          }
+        ],
+        "route": {
+          "id": "ahomPursuit",
+          "from": 0,
+          "to": 1
+        },
+        "units": [
+          {
+            "id": "lachit",
+            "polity": "ahom",
+            "label": "Lachit",
+            "at": "route:ahomPursuit"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b4-ram-singh",
+      "eventId": "e07-ram-singh-arrives",
+      "year": "1669-02",
+      "durationMs": 12000,
+      "camera": {
+        "center": [
+          91.2,
+          26.25
+        ],
+        "zoom": 7.0,
+        "flyMs": 2000
+      },
+      "subtitle": "Aurangzeb sends Raja Ram Singh",
+      "caption": "A huge Mughal army returns",
+      "tag": "documented",
+      "narration": "Emperor Aurangzeb answered with a new army under Raja Ram Singh of Amber. It reached the frontier in February 1669.",
+      "show": {
+        "cities": [
+          "guwahati",
+          "manas-mouth"
+        ],
+        "zones": [
+          {
+            "placeId": "guwahati",
+            "radiusKm": 25,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "manas-mouth",
+            "radiusKm": 45,
+            "polity": "mughal"
+          }
+        ],
+        "route": {
+          "id": "ramSingh",
+          "from": 0,
+          "to": 1
+        },
+        "units": [
+          {
+            "id": "ram",
+            "polity": "mughal",
+            "label": "Ram Singh",
+            "at": "route:ramSingh",
+            "count": "18,000 cavalry",
+            "countNote": "the Mughal Alamgirnamah",
+            "countRef": {
+              "eventId": "e07-ram-singh-arrives",
+              "what": "Ram Singh's army"
+            }
+          },
+          {
+            "id": "lachit",
+            "polity": "ahom",
+            "label": "Lachit",
+            "at": "guwahati"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b5-alaboi",
+      "eventId": "e07-alaboi",
+      "year": "1669",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          91.6,
+          26.25
+        ],
+        "zoom": 9.0,
+        "flyMs": 2000
+      },
+      "subtitle": "Disaster at Alaboi",
+      "caption": "In open battle the Ahoms lose heavily",
+      "tag": "disputed",
+      "narration": "Ordered by the king to attack, the Ahoms fought the Mughal cavalry on open ground at Alaboi, north of the river, and were badly defeated. But Guwahati still held.",
+      "show": {
+        "cities": [
+          "guwahati",
+          "hajo"
+        ],
+        "zones": [
+          {
+            "placeId": "guwahati",
+            "radiusKm": 10,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "hajo",
+            "radiusKm": 10,
+            "polity": "mughal"
+          }
+        ],
+        "units": [
+          {
+            "id": "ram",
+            "polity": "mughal",
+            "label": "Ram Singh",
+            "at": "hajo"
+          },
+          {
+            "id": "lachit",
+            "polity": "ahom",
+            "label": "Lachit",
+            "at": "guwahati"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b6-fleet",
+      "eventId": "e07-saraighat",
+      "year": "1671",
+      "durationMs": 12000,
+      "camera": {
+        "center": [
+          91.705,
+          26.19
+        ],
+        "zoom": 11.0,
+        "flyMs": 2500
+      },
+      "subtitle": "The Mughal fleet attacks",
+      "caption": "Boats fill the river at Saraighat",
+      "tag": "documented",
+      "narration": "In early 1671, with Lachit gravely ill, the Mughal fleet pushed up the river towards Guwahati, and Ahom crews began to fall back.",
+      "show": {
+        "cities": [
+          "itakhuli",
+          "saraighat"
+        ],
+        "zones": [
+          {
+            "placeId": "itakhuli",
+            "radiusKm": 3,
+            "polity": "ahom"
+          }
+        ],
+        "route": {
+          "id": "fleet",
+          "from": 0,
+          "to": 1
+        },
+        "units": [
+          {
+            "id": "fleet",
+            "polity": "mughal",
+            "label": "Mughal fleet",
+            "at": "route:fleet"
+          },
+          {
+            "id": "lachit",
+            "polity": "ahom",
+            "label": "Lachit (ill)",
+            "at": "itakhuli"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b7-counter",
+      "eventId": "e07-saraighat",
+      "year": "1671",
+      "durationMs": 12000,
+      "camera": {
+        "center": [
+          91.705,
+          26.19
+        ],
+        "zoom": 11.0,
+        "flyMs": 800
+      },
+      "subtitle": "Lachit leads the boats himself",
+      "caption": "Carried to his boat, Lachit rallies the fleet, say the chronicles",
+      "tag": "documented",
+      "narration": "The chronicles say Lachit had himself carried to his boat and led a counter-attack. The Ahom fleet rallied, and the battle was fought on the river between Kamakhya, Itakhuli and Aswakranta.",
+      "show": {
+        "cities": [
+          "itakhuli",
+          "saraighat"
+        ],
+        "zones": [
+          {
+            "placeId": "itakhuli",
+            "radiusKm": 3,
+            "polity": "ahom"
+          }
+        ],
+        "route": {
+          "id": "counter",
+          "from": 0,
+          "to": 1
+        },
+        "units": [
+          {
+            "id": "fleet",
+            "polity": "mughal",
+            "label": "Mughal fleet",
+            "at": "saraighat"
+          },
+          {
+            "id": "lachit",
+            "polity": "ahom",
+            "label": "Lachit",
+            "at": "route:counter"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b8-retreat",
+      "eventId": "e07-saraighat",
+      "year": "1671",
+      "durationMs": 12000,
+      "camera": {
+        "center": [
+          91.3,
+          26.25
+        ],
+        "zoom": 7.4,
+        "flyMs": 2500
+      },
+      "subtitle": "Victory at Saraighat",
+      "caption": "Ram Singh retreats, about 5 April {1671}",
+      "tag": "documented",
+      "narration": "The Mughal fleet was routed and chased downstream. Around the fifth of April 1671, Ram Singh began his retreat.",
+      "show": {
+        "cities": [
+          "guwahati",
+          "hajo",
+          "manas-mouth"
+        ],
+        "zones": [
+          {
+            "placeId": "guwahati",
+            "radiusKm": 25,
+            "polity": "ahom"
+          }
+        ],
+        "route": {
+          "id": "retreat",
+          "from": 0,
+          "to": 1
+        },
+        "units": [
+          {
+            "id": "ram",
+            "polity": "mughal",
+            "label": "Ram Singh",
+            "at": "route:retreat"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b9-lachit",
+      "eventId": "e07-lachit-death",
+      "year": "1671",
+      "durationMs": 9000,
+      "camera": {
+        "center": [
+          92.4,
+          26.45
+        ],
+        "zoom": 6.3,
+        "flyMs": 2500
+      },
+      "subtitle": "Lachit dies soon after",
+      "caption": "Guwahati stays Ahom; Lachit is remembered on 24 November",
+      "tag": "documented",
+      "narration": "Lachit died soon after the battle, still in fever. Guwahati stayed in Ahom hands, and Assam remembers him every year on Lachit Divas, the twenty-fourth of November.",
+      "show": {
+        "cities": [
+          "garhgaon",
+          "guwahati",
+          "kaliabor"
+        ],
+        "capital": "garhgaon",
+        "zones": [
+          {
+            "placeId": "garhgaon",
+            "radiusKm": 120,
+            "polity": "ahom"
+          },
+          {
+            "placeId": "guwahati",
+            "radiusKm": 30,
+            "polity": "ahom"
+          }
+        ]
+      }
+    }
+  ]
+}

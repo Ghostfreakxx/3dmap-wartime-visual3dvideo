@@ -15,7 +15,8 @@
     "validate:strict": "node scripts/validate-research.mjs --strict",
     "fetch:geo": "NODE_USE_ENV_PROXY=1 node scripts/fetch-geo.mjs",
     "fetch:terrain": "node scripts/fetch-terrain.mjs",
-    "check": "npm run validate && npm run typecheck && npm run lint && npm run build"
+    "check": "npm run validate && npm run typecheck && npm run lint && npm run build",
+    "render": "node scripts/render-video.mjs"
   },
   "dependencies": {
     "maplibre-gl": "6.15.0",

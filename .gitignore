@@ -7,3 +7,4 @@ data/geo/reference/
 # terrain tiles are reproducible via `npm run fetch:terrain`
 public/tiles/terrarium/
 public/vendor/
+renders/

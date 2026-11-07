@@ -2,12 +2,16 @@ import "server-only";
 import eventsJson from "@data/chronology/events.json";
 import gazetteerJson from "@data/gazetteer/places.json";
 import registryJson from "@data/sources/registry.json";
+import ep01 from "@data/episodes/ep01.json";
 import ep02 from "@data/episodes/ep02.json";
+import ep07 from "@data/episodes/ep07.json";
 import type { EpisodeBundle, EpisodeScript } from "@/domain/episode";
 import type { HistoricalEvent, Place, Polity, SourceRecord } from "@/domain/types";
 
 const SCRIPTS: Record<number, EpisodeScript> = {
+  1: ep01 as unknown as EpisodeScript,
   2: ep02 as unknown as EpisodeScript,
+  7: ep07 as unknown as EpisodeScript,
 };
 
 const allEvents = (eventsJson as unknown as { events: HistoricalEvent[] }).events;

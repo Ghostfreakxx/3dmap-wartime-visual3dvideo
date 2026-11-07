@@ -86,7 +86,7 @@ const findUnsourcedNumbers = (text) => {
   for (const m of text.matchAll(/\b\d[\d,.]*\b/g)) {
     const n = Number(m[0].replace(/,/g, ""));
     const isYear = /^\d{4}$/.test(m[0]) && n >= 1100 && n <= 2030;
-    const isDayOfMonth = /^\d{1,2}$/.test(m[0]) && /\b(January|February|March|April|May|June|July|August|September|October|November|December)\b/.test(text.slice(Math.max(0, m.index - 12), m.index + 14));
+    const isDayOfMonth = /^\d{1,2}$/.test(m[0]) && /\b(January|February|March|April|May|June|July|August|September|October|November|December)\b/i.test(text.slice(Math.max(0, m.index - 12), m.index + 14));
     const isOrdinalCentury = /^\d{1,2}$/.test(m[0]) && /^(st|nd|rd|th)\b/.test(text.slice(m.index + m[0].length));
     if (!isYear && !isDayOfMonth && !isOrdinalCentury) hits.push(m[0]);
   }

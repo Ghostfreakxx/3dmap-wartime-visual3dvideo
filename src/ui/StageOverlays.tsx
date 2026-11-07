@@ -24,7 +24,7 @@ function dateLabel(beat: Beat, localT: number) {
     const [a, b] = beat.yearTicker;
     return String(Math.round(a + (b - a) * Math.min(1, localT / 0.8)));
   }
-  return beat.year.replace(/^(\d{4})-(\d{2})-(\d{2})$/, "$1/$2/$3");
+  return beat.year.replace(/^(\d{4})-(\d{2})(?:-(\d{2}))?$/, (_, y, m, d) => (d ? `${y}/${m}/${d}` : `${y}/${m}`));
 }
 
 /** "{1253}" in captions is highlighted. */
@@ -51,7 +51,7 @@ export default function StageOverlays({ bundle, beat, localT, toggles, format }:
   const ref = event?.sourceRefs.find((r) => r.pages);
   const src = ref ? sources[ref.sourceId] : null;
   const srcText = ref && src ? `Source: ${src.authors[0].split(" ").slice(-1)[0].replace(/[()]/g, "")} ${src.year ?? ""}, ${ref.pages}` : null;
-  const counted = (beat.show.units ?? []).some((u) => u.count && u.countNote);
+  const notes = [...new Set((beat.show.units ?? []).filter((u) => u.count && u.countNote).map((u) => u.countNote!))];
   const legend = script.legend.filter((l) => polities[l.polity] || l.polity);
 
   return (
@@ -85,7 +85,7 @@ export default function StageOverlays({ bundle, beat, localT, toggles, format }:
       </div>
       <div className="reel-foot">
         {toggles.sources && srcText}
-        {counted && <span>{srcText ? " · " : ""}* figure as given in the chronicles</span>}
+        {notes.length > 0 && <span>{srcText ? " · " : ""}* figure as given in {notes.join(" / ")}</span>}
       </div>
 
       {toggles.guides && <SafeGuides format={format} />}

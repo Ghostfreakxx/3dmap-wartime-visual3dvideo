@@ -24,11 +24,11 @@ function readBookmarks(ep: number): Record<string, { center: [number, number]; z
   }
 }
 
-export default function Player({ bundle, initialFormat, initialPresentation = false }: { bundle: EpisodeBundle; initialFormat?: Format; initialPresentation?: boolean }) {
+export default function Player({ bundle, initialFormat, initialPresentation = false, renderMode = false }: { bundle: EpisodeBundle; initialFormat?: Format; initialPresentation?: boolean; renderMode?: boolean }) {
   const { script } = bundle;
   const pb = usePlayback(script);
   const [format, setFormat] = useState<Format>(initialFormat ?? script.defaultFormat);
-  const [presentation, setPresentation] = useState(initialPresentation);
+  const [presentation, setPresentation] = useState(initialPresentation || renderMode);
   const [manual, setManual] = useState(false);
   const [narrator, setNarrator] = useState(false);
   const [layers, setLayers] = useState<LayerState>(DEFAULT_LAYERS);
@@ -134,6 +134,19 @@ export default function Player({ bundle, initialFormat, initialPresentation = fa
     chanRef.current?.postMessage(status);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusKey]);
+
+  // Frame-accurate export hook (used by scripts/render-video.mjs): time is driven from outside.
+  const seekTime = pb.seekTime;
+  useEffect(() => {
+    if (!renderMode) return;
+    const w = window as unknown as { __ahom?: unknown };
+    w.__ahom = {
+      total: pb.total,
+      seek: (t: number) => seekTime(t),
+      tilesLoaded: () => !!mapRef.current?.loaded() && !!mapRef.current?.areTilesLoaded(),
+      mapReady: () => !!mapRef.current,
+    };
+  }, [renderMode, pb.total, seekTime]);
 
   const nextBeat = script.beats[pb.index + 1] ?? null;
   const showNarrator = narrator && !presentation;

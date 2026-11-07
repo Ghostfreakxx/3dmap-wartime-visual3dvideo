@@ -76,7 +76,7 @@ export interface EpisodeScript {
   status: "prototype" | "draft" | "reviewed";
   derivedNumbers: Array<{ text: string; derivation: string }>;
   /** smooth: false draws straight legs (for zig-zag sequences that a spline would overshoot) */
-  routes: Record<string, { via: string[]; label: string; smooth?: boolean }>;
+  routes: Record<string, { via: string[]; label: string; smooth?: boolean; polity?: string }>;
   beats: Beat[];
 }
 
@@ -129,3 +129,31 @@ export function beatForYear(s: EpisodeScript, year: number): number {
 }
 
 export const easeInOut = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+
+export interface CameraState {
+  center: LngLat;
+  zoom: number;
+}
+
+/**
+ * Deterministic camera: a pure function of (beat, progress). Each beat eases from the previous
+ * beat's framing to its own over `flyMs`, then holds. Preview and rendered video are identical.
+ */
+export function cameraAt(s: EpisodeScript, index: number, localMs: number, vertical: boolean, speed = 1): CameraState {
+  const frame = (b: Beat): CameraState => {
+    if (vertical) return b.vertical ?? { center: b.camera.center, zoom: b.camera.zoom - 0.5 };
+    return { center: b.camera.center, zoom: b.camera.zoom };
+  };
+  const cur = frame(s.beats[index]);
+  if (index === 0) return cur;
+  const prev = frame(s.beats[index - 1]);
+  const fly = (s.beats[index].camera.flyMs ?? 2500) / speed;
+  const t = easeInOut(Math.min(1, Math.max(0, localMs / fly)));
+  // zoom out-and-in a little on long moves, like a flyTo
+  const dist = Math.hypot(cur.center[0] - prev.center[0], cur.center[1] - prev.center[1]);
+  const arc = Math.min(1.2, dist * 0.35) * Math.sin(Math.PI * t);
+  return {
+    center: [prev.center[0] + (cur.center[0] - prev.center[0]) * t, prev.center[1] + (cur.center[1] - prev.center[1]) * t],
+    zoom: prev.zoom + (cur.zoom - prev.zoom) * t - arc,
+  };
+}

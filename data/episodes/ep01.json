@@ -1,0 +1,225 @@
+{
+  "$comment": "Episode 1 reel (vertical 9:16, ~55 s): the Tai world before 1228. Map-reel format. Sources: Gait 1906 pp. 73-74; Gogoi 1968.",
+  "episode": 1,
+  "title": "The Tai World",
+  "headline": "THE AHOM KINGDOM",
+  "subtitle": "Mong Mao and the Tai political world before 1228",
+  "range": "1200–1228",
+  "status": "prototype",
+  "defaultFormat": "9x16",
+  "legend": [
+    {
+      "polity": "mong-mao-polity",
+      "label": "Tai principalities (Mong Mao)"
+    },
+    {
+      "polity": "ahom",
+      "label": "Sukaphaa's followers"
+    }
+  ],
+  "derivedNumbers": [
+    {
+      "text": "thirteen years",
+      "derivation": "1215 to 1228 (Gait p. 74)"
+    }
+  ],
+  "routes": {
+    "toPatkai": {
+      "via": [
+        "mong-mao",
+        "hukawng"
+      ],
+      "label": "Direction only; path not recorded",
+      "polity": "ahom"
+    }
+  },
+  "beats": [
+    {
+      "id": "b1-tai-world",
+      "eventId": "e01-tai-political-world",
+      "year": "c. 1200",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          96.3,
+          25.4
+        ],
+        "zoom": 5.0,
+        "flyMs": 2500
+      },
+      "subtitle": "Tai principalities east of the Patkai",
+      "caption": "Small Tai states ruled the valleys between Burma and Yunnan",
+      "tag": "approximate",
+      "narration": "Around the year 1200, east of the Patkai hills, Tai-speaking princes ruled small states in the river valleys between Burma and Yunnan.",
+      "show": {
+        "cities": [
+          "mong-mao",
+          "hukawng",
+          "patkai"
+        ],
+        "zones": [
+          {
+            "placeId": "mong-mao",
+            "radiusKm": 160,
+            "polity": "mong-mao-polity"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b2-tradition",
+      "eventId": "e01-origin-tradition",
+      "year": "Legend",
+      "durationMs": 10000,
+      "camera": {
+        "center": [
+          97.6,
+          24.4
+        ],
+        "zoom": 5.8,
+        "flyMs": 2500
+      },
+      "subtitle": "Khunlung and Khunlai",
+      "caption": "The Ahom kings traced their line to two princes from heaven",
+      "tag": "traditional",
+      "narration": "Ahom tradition says the royal line began with two brothers, Khunlung and Khunlai, who came down from heaven to rule the Tai lands. It is a story of legitimacy, not datable history.",
+      "show": {
+        "cities": [
+          "mong-mao"
+        ],
+        "zones": [
+          {
+            "placeId": "mong-mao",
+            "radiusKm": 160,
+            "polity": "mong-mao-polity"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b3-pong",
+      "eventId": "e01-tai-political-world",
+      "year": "c. 1200",
+      "durationMs": 10000,
+      "camera": {
+        "center": [
+          97.6,
+          24.4
+        ],
+        "zoom": 5.8,
+        "flyMs": 1500
+      },
+      "subtitle": "The Ahoms were Tai",
+      "caption": "Same people, language and script as the Shans",
+      "tag": "documented",
+      "narration": "The Ahoms were Tai, kin to the Shans of Upper Burma, with the same language and script, and they kept in touch with their old homeland for centuries.",
+      "show": {
+        "cities": [
+          "mong-mao"
+        ],
+        "zones": [
+          {
+            "placeId": "mong-mao",
+            "radiusKm": 160,
+            "polity": "mong-mao-polity"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b4-departure",
+      "eventId": "e01-sukaphaa-departs",
+      "year": "1215",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          97.4,
+          24.6
+        ],
+        "zoom": 5.8,
+        "flyMs": 1500
+      },
+      "subtitle": "A prince leaves Maulung",
+      "caption": "In {1215} Sukaphaa sets out west, say the chronicles",
+      "tag": "disputed",
+      "narration": "In 1215, the chronicles say, a prince named Sukaphaa left his homeland of Maulung with his followers. Why he left is told differently in different traditions.",
+      "show": {
+        "cities": [
+          "mong-mao"
+        ],
+        "zones": [
+          {
+            "placeId": "mong-mao",
+            "radiusKm": 160,
+            "polity": "mong-mao-polity"
+          }
+        ],
+        "units": [
+          {
+            "id": "party",
+            "polity": "ahom",
+            "label": "Sukaphaa",
+            "at": "mong-mao",
+            "count": "9,000",
+            "countNote": "the Ahom chronicles",
+            "countRef": {
+              "eventId": "e01-sukaphaa-departs",
+              "what": "size of Sukaphaa's following"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "b5-west",
+      "eventId": "e01-sukaphaa-departs",
+      "year": "1215",
+      "durationMs": 10000,
+      "camera": {
+        "center": [
+          96.6,
+          25.6
+        ],
+        "zoom": 5.4,
+        "flyMs": 2000
+      },
+      "subtitle": "Towards the Patkai hills",
+      "caption": "Next: thirteen years in the hills",
+      "tag": "approximate",
+      "narration": "His party headed west, towards the Patkai hills and the Brahmaputra valley beyond.",
+      "show": {
+        "cities": [
+          "mong-mao",
+          "hukawng",
+          "patkai"
+        ],
+        "zones": [
+          {
+            "placeId": "mong-mao",
+            "radiusKm": 160,
+            "polity": "mong-mao-polity"
+          }
+        ],
+        "route": {
+          "id": "toPatkai",
+          "from": 0,
+          "to": 1
+        },
+        "units": [
+          {
+            "id": "party",
+            "polity": "ahom",
+            "label": "Sukaphaa",
+            "at": "route:toPatkai",
+            "count": "9,000",
+            "countNote": "the Ahom chronicles",
+            "countRef": {
+              "eventId": "e01-sukaphaa-departs",
+              "what": "size of Sukaphaa's following"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
