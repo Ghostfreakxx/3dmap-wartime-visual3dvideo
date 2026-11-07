@@ -8,6 +8,10 @@ A cartoon-style 3D battle film made in the browser with Three.js. It uses the lo
 | ![](docs/03-knights.jpg) | ![](docs/04-stakes.jpg) |
 | ![](docs/05-plan.jpg) | ![](docs/06-volley.jpg) |
 
+## Watch it
+
+The rendered film is [`video/longbow-battle.mp4`](video/longbow-battle.mp4): 71 seconds, 1280×720, 24 fps, with captions.
+
 ## Run it
 
 ```bash
