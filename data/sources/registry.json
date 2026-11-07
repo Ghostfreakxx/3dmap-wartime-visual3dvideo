@@ -5,27 +5,60 @@
     {
       "id": "gait1906",
       "tier": "scholarly",
-      "authors": ["Edward Albert Gait"],
+      "authors": [
+        "Edward Albert Gait"
+      ],
       "title": "A History of Assam",
       "edition": "1st edition",
       "publisher": "Thacker, Spink & Co.",
       "place": "Calcutta",
       "year": 1906,
-      "otherEditions": ["2nd edition 1926 (Thacker, Spink)", "3rd edition 1963, revised by B. K. Barua and H. V. S. Murthy"],
+      "otherEditions": [
+        "2nd edition 1926 (Thacker, Spink)",
+        "3rd edition 1963, revised by B. K. Barua and H. V. S. Murthy"
+      ],
       "urls": [
         "https://catalogue.nli.ie/Record/vtls000406162",
         "https://catalog.hathitrust.org/Record/001868979",
         "https://archive.org/details/historyofassam00gait",
         "https://archive.org/details/ahistoryassam01gaitgoog"
       ],
-      "notes": "Foundational narrative and regnal chronology derived largely from Buranjis. Colonial-era interpretive framing; cross-check against Barpujari (ed.) and later scholarship. Two archive.org scans exist; which corresponds to the 1906 Thacker, Spink printing is not yet confirmed. Edition matters for page numbers: cite edition with every page.",
-      "verification": { "bibliographic": "catalogue-verified", "pagesChecked": false, "checkedOn": "2026-11-07", "by": "phase-1 research" },
-      "access": "public-domain scan (archive.org) - blocked from the Phase 1 build environment"
+      "notes": "Foundational narrative and regnal chronology derived largely from Buranjis. Colonial-era interpretive framing; cross-check against Barpujari (ed.) and later scholarship. Two archive.org scans exist; which corresponds to the 1906 Thacker, Spink printing is not yet confirmed. Edition matters for page numbers: cite edition with every page. Gait gives no named 'Battle of Saraighat', does not use the name 'Ghilajharighat', and mentions Lachit only once (p. 146).",
+      "verification": {
+        "bibliographic": "catalogue-verified; archive.org metadata confirms both scans are the 1906 Calcutta, Thacker, Spink edition",
+        "pagesChecked": true,
+        "pagesCheckedMethod": "OCR full text of archive.org item 'historyofassam00gait' (424 images); page numbers taken from the printed running heads, with OCR digit errors reconciled against neighbouring pages. Not yet compared against page images.",
+        "checkedOn": "2026-11-07",
+        "by": "phase-1b verification"
+      },
+      "access": "archive.org (allowed in the environment from 2026-11-07; text read via the /stream/ OCR view)"
+    },
+    {
+      "id": "blochmann1872",
+      "tier": "scholarly",
+      "authors": [
+        "H. Blochmann"
+      ],
+      "title": "Article on Koch Bihar, Koch Hajo and Assam in the 16th and 17th centuries from Persian sources (Akbarnamah, Padishahnamah, Fathiyah-i-'Ibriyah)",
+      "publisher": "Journal of the Asiatic Society of Bengal",
+      "place": "Calcutta",
+      "year": 1872,
+      "urls": [],
+      "notes": "Cited repeatedly by Gait (e.g. 'J.A.S.B., 1872, pp. 53 ff.' on p. 64-65). Exact article title, volume and part not yet verified from the journal itself. Main route to the Mughal-side sources, including Talish.",
+      "verification": {
+        "bibliographic": "UNVERIFIED - known only from Gait's citations",
+        "pagesChecked": false,
+        "checkedOn": "2026-11-07",
+        "by": "phase-1b"
+      },
+      "access": "JASB volumes on archive.org"
     },
     {
       "id": "barua1930",
       "tier": "primary",
-      "authors": ["Golap Chandra Barua (translator and editor)"],
+      "authors": [
+        "Golap Chandra Barua (translator and editor)"
+      ],
       "title": "Ahom-Buranji: From the Earliest Time to the End of Ahom Rule",
       "publisher": "Assam Government / printed at the Baptist Mission Press",
       "place": "Calcutta",
@@ -35,13 +68,20 @@
         "https://wzcc.nvli.in/reports-proceedings/ahom-buranji-earliest-time-end-ahom-rule"
       ],
       "notes": "Tai-Ahom text with English translation. Primary chronicle in translation; chronicle dates are converted from Tai cyclical reckoning and should be treated as chronicle-derived. Catalogues differ on pagination (388 vs 395 pp.).",
-      "verification": { "bibliographic": "catalogue-verified", "pagesChecked": false, "checkedOn": "2026-11-07", "by": "phase-1 research" },
+      "verification": {
+        "bibliographic": "catalogue-verified",
+        "pagesChecked": false,
+        "checkedOn": "2026-11-07",
+        "by": "phase-1 research"
+      },
       "access": "SOAS Digital Collections (believed public domain)"
     },
     {
       "id": "barpujari1990",
       "tier": "scholarly",
-      "authors": ["H. K. Barpujari (general editor)"],
+      "authors": [
+        "H. K. Barpujari (general editor)"
+      ],
       "title": "The Comprehensive History of Assam",
       "publisher": "Publication Board, Assam",
       "place": "Guwahati",
@@ -56,13 +96,20 @@
         "https://wellcomecollection.org/works/a8534ck5"
       ],
       "notes": "Series began 1990; individual volume years NOT yet verified - record the volume year from the physical copy. Multi-author chapters: cite chapter author + volume + page. Later 5-volume edition (Assam Prakashan Parishad, 2022 per bookseller listing) has different pagination.",
-      "verification": { "bibliographic": "catalogue-verified (series); volume years unverified", "pagesChecked": false, "checkedOn": "2026-11-07", "by": "phase-1 research" },
+      "verification": {
+        "bibliographic": "catalogue-verified (series); volume years unverified",
+        "pagesChecked": false,
+        "checkedOn": "2026-11-07",
+        "by": "phase-1 research"
+      },
       "access": "library"
     },
     {
       "id": "baruah1985",
       "tier": "scholarly",
-      "authors": ["S. L. Baruah (Swarnalata Baruah)"],
+      "authors": [
+        "S. L. Baruah (Swarnalata Baruah)"
+      ],
       "title": "A Comprehensive History of Assam",
       "publisher": "Munshiram Manoharlal",
       "place": "New Delhi",
@@ -74,13 +121,20 @@
         "https://openlibrary.org/works/OL3723921W"
       ],
       "notes": "Reprinted 1997 and later; ISBN varies by printing (9788121500159 on a 2023 reprint). Cite printing used.",
-      "verification": { "bibliographic": "catalogue-verified", "pagesChecked": false, "checkedOn": "2026-11-07", "by": "phase-1 research" },
+      "verification": {
+        "bibliographic": "catalogue-verified",
+        "pagesChecked": false,
+        "checkedOn": "2026-11-07",
+        "by": "phase-1 research"
+      },
       "access": "library / purchase"
     },
     {
       "id": "guha1991",
       "tier": "scholarly",
-      "authors": ["Amalendu Guha"],
+      "authors": [
+        "Amalendu Guha"
+      ],
       "title": "Medieval and Early Colonial Assam: Society, Polity, Economy",
       "publisher": "K. P. Bagchi & Co. for the Centre for Studies in Social Sciences, Calcutta",
       "place": "Calcutta",
@@ -92,40 +146,65 @@
         "https://dspace.nehu.ac.in/items/08bb0d54-e5d6-4c4f-ba0b-ba9e6c02c0c8/full"
       ],
       "notes": "Collected essays on the Ahom state, paik system, economy, and early colonial transition. Key for 'state formation' and 'institutional breakdown' framing; NOT a narrative chronology.",
-      "verification": { "bibliographic": "catalogue-verified", "pagesChecked": false, "checkedOn": "2026-11-07", "by": "phase-1 research" },
+      "verification": {
+        "bibliographic": "catalogue-verified",
+        "pagesChecked": false,
+        "checkedOn": "2026-11-07",
+        "by": "phase-1 research"
+      },
       "access": "library"
     },
     {
       "id": "gogoi1968",
       "tier": "scholarly",
-      "authors": ["Padmeswar Gogoi"],
+      "authors": [
+        "Padmeswar Gogoi"
+      ],
       "title": "The Tai and the Tai Kingdoms, with a Fuller Treatment of the Tai-Ahom Kingdom in the Brahmaputra Valley",
       "publisher": "Gauhati University",
       "place": "Gauhati",
       "year": 1968,
       "physical": "c. 552 p., maps",
-      "urls": ["https://catalog.crl.edu/Record/64a64b84-80d6-5b83-b973-c9ea0f7a4092"],
+      "urls": [
+        "https://catalog.crl.edu/Record/64a64b84-80d6-5b83-b973-c9ea0f7a4092"
+      ],
       "notes": "Based on the author's 1961 Gauhati University thesis. Principal English-language scholarly treatment of the wider Tai world (Mong Mao etc.) for Episode 1 and the migration.",
-      "verification": { "bibliographic": "catalogue-verified", "pagesChecked": false, "checkedOn": "2026-11-07", "by": "phase-1 research" },
+      "verification": {
+        "bibliographic": "catalogue-verified",
+        "pagesChecked": false,
+        "checkedOn": "2026-11-07",
+        "by": "phase-1 research"
+      },
       "access": "library"
     },
     {
       "id": "bhuyan1947",
       "tier": "scholarly",
-      "authors": ["Surya Kumar Bhuyan"],
+      "authors": [
+        "Surya Kumar Bhuyan"
+      ],
       "title": "Lachit Barphukan and His Times: A History of the Assam-Mogul Conflicts of the Period 1667 to 1671 A.D.",
       "publisher": "Government of Assam, Department of Historical and Antiquarian Studies",
       "place": "Gauhati",
       "year": 1947,
-      "urls": ["https://search.worldcat.org/oclc/4068654"],
+      "urls": [
+        "https://search.worldcat.org/oclc/4068654"
+      ],
       "notes": "Primary scholarly study of the 1667-1671 campaigns, built from Buranjis. Historiographical note: later scholars observe it helped give the Lachit narrative academic respectability; treat heroic details as tradition unless independently attested.",
-      "verification": { "bibliographic": "catalogue-verified", "pagesChecked": false, "checkedOn": "2026-11-07", "by": "phase-1 research" },
+      "verification": {
+        "bibliographic": "catalogue-verified",
+        "pagesChecked": false,
+        "checkedOn": "2026-11-07",
+        "by": "phase-1 research"
+      },
       "access": "library / NVLI e-book listing"
     },
     {
       "id": "bhuyan1949",
       "tier": "scholarly",
-      "authors": ["Surya Kumar Bhuyan"],
+      "authors": [
+        "Surya Kumar Bhuyan"
+      ],
       "title": "Anglo-Assamese Relations, 1771-1826",
       "publisher": "Department of Historical and Antiquarian Studies in Assam",
       "place": "Gauhati",
@@ -135,105 +214,178 @@
         "https://catalog.crl.edu/Record/a05040a1-08a4-5a14-b196-e7d3d6fa1eb5"
       ],
       "notes": "Based on English and Assamese archival sources; key for the Welsh expedition (1792-94), Burmese invasions and 1824-26.",
-      "verification": { "bibliographic": "catalogue-verified", "pagesChecked": false, "checkedOn": "2026-11-07", "by": "phase-1 research" },
+      "verification": {
+        "bibliographic": "catalogue-verified",
+        "pagesChecked": false,
+        "checkedOn": "2026-11-07",
+        "by": "phase-1 research"
+      },
       "access": "library / CRL microform"
     },
     {
       "id": "saikia2004",
       "tier": "scholarly",
-      "authors": ["Yasmin Saikia"],
+      "authors": [
+        "Yasmin Saikia"
+      ],
       "title": "Fragmented Memories: Struggling to be Tai-Ahom in India",
       "publisher": "Duke University Press",
       "place": "Durham, NC",
       "year": 2004,
       "isbn": "978-0-8223-3373-9",
       "doi": "10.1215/9780822386162",
-      "urls": ["https://www.dukeupress.edu/fragmented-memories"],
+      "urls": [
+        "https://www.dukeupress.edu/fragmented-memories"
+      ],
       "notes": "Use for historiography and modern memory of Ahom identity - important caveat material for narration (how the Ahom past is remembered and politically used today). Not a source for medieval event dates.",
-      "verification": { "bibliographic": "publisher-verified", "pagesChecked": false, "checkedOn": "2026-11-07", "by": "phase-1 research" },
+      "verification": {
+        "bibliographic": "publisher-verified",
+        "pagesChecked": false,
+        "checkedOn": "2026-11-07",
+        "by": "phase-1 research"
+      },
       "access": "library / Duke"
     },
     {
       "id": "unesco2024-moidams",
       "tier": "official",
-      "authors": ["UNESCO World Heritage Committee"],
+      "authors": [
+        "UNESCO World Heritage Committee"
+      ],
       "title": "Moidams - the Mound-Burial System of the Ahom Dynasty (inscription, 46th session, New Delhi, July 2024)",
       "year": 2024,
-      "urls": ["https://whc.unesco.org/en/list/"],
+      "urls": [
+        "https://whc.unesco.org/en/list/"
+      ],
       "notes": "Inscription confirmed via multiple news reports (e.g. AP via ABC News, 26 July 2024). TODO: replace list URL with the exact WHC property page and nomination dossier URL once fetched; the WHC host was not checked in Phase 1.",
-      "verification": { "bibliographic": "news-corroborated; WHC page not yet fetched", "pagesChecked": false, "checkedOn": "2026-11-07", "by": "phase-1 research" },
+      "verification": {
+        "bibliographic": "news-corroborated; WHC page not yet fetched",
+        "pagesChecked": false,
+        "checkedOn": "2026-11-07",
+        "by": "phase-1 research"
+      },
       "access": "open web"
     },
     {
       "id": "yandabo1826",
       "tier": "primary",
-      "authors": ["East India Company and Kingdom of Ava"],
+      "authors": [
+        "East India Company and Kingdom of Ava"
+      ],
       "title": "Treaty of Peace concluded at Yandabo, 24 February 1826",
       "year": 1826,
-      "urls": ["https://www.cambridge.org/core/books/datagathering-in-colonial-southeast-asia-18001900/treaty-of-peace-concluded-at-yandabo/61233109DD900E81D1632212F9F0E21E"],
+      "urls": [
+        "https://www.cambridge.org/core/books/datagathering-in-colonial-southeast-asia-18001900/treaty-of-peace-concluded-at-yandabo/61233109DD900E81D1632212F9F0E21E"
+      ],
       "notes": "Article 2 (as quoted in the Cambridge reproduction): the King of Ava 'renounces all claims upon, and will abstain from all future interference with, the principality of Assam and its dependencies, and also with the contiguous petty states of Cachar and Jyntea'. Narration must say Burma RENOUNCED claims; it is debated whether this is a formal cession of Assam to the Company. TODO: obtain full article-by-article text (e.g. Aitchison's Collection of Treaties) and record edition/page.",
-      "verification": { "bibliographic": "article 2 wording seen in search excerpt only", "pagesChecked": false, "checkedOn": "2026-11-07", "by": "phase-1 research" },
+      "verification": {
+        "bibliographic": "article 2 wording seen in search excerpt only",
+        "pagesChecked": false,
+        "checkedOn": "2026-11-07",
+        "by": "phase-1 research"
+      },
       "access": "Cambridge (paywalled); Aitchison volumes in public domain"
     },
     {
       "id": "indianculture-saraighat",
       "tier": "official",
-      "authors": ["Ministry of Culture, Government of India - Indian Culture portal"],
+      "authors": [
+        "Ministry of Culture, Government of India - Indian Culture portal"
+      ],
       "title": "Battle of Saraighat",
       "year": null,
-      "urls": ["https://indianculture.gov.in/stories/battle-saraighat"],
+      "urls": [
+        "https://indianculture.gov.in/stories/battle-saraighat"
+      ],
       "notes": "Government heritage story. Gives 1671, Raja Ram Singh vs Lachit Borphukan. Repeats the poppy-seed anecdote - that anecdote must be labelled TRADITIONAL in our narration.",
-      "verification": { "bibliographic": "search-excerpt seen; page not fetched", "pagesChecked": false, "checkedOn": "2026-11-07", "by": "phase-1 research" },
+      "verification": {
+        "bibliographic": "search-excerpt seen; page not fetched",
+        "pagesChecked": false,
+        "checkedOn": "2026-11-07",
+        "by": "phase-1 research"
+      },
       "access": "open web"
     },
     {
       "id": "kamrup-alaboi-saraighat",
       "tier": "official",
-      "authors": ["Kamrup (Metro/Rural) District Administration, Government of Assam"],
+      "authors": [
+        "Kamrup (Metro/Rural) District Administration, Government of Assam"
+      ],
       "title": "The Battle of Alaboi and the Battle of Saraighat",
       "year": null,
-      "urls": ["https://kamrup.assam.gov.in/about-us/battle-alaboi-and-saraighat"],
+      "urls": [
+        "https://kamrup.assam.gov.in/about-us/battle-alaboi-and-saraighat"
+      ],
       "notes": "District government page. Reportedly dates Saraighat to 1672, disagreeing with the 1671 consensus - recorded here as evidence of a dating discrepancy, not as authority.",
-      "verification": { "bibliographic": "search-excerpt seen; page not fetched", "pagesChecked": false, "checkedOn": "2026-11-07", "by": "phase-1 research" },
+      "verification": {
+        "bibliographic": "search-excerpt seen; page not fetched",
+        "pagesChecked": false,
+        "checkedOn": "2026-11-07",
+        "by": "phase-1 research"
+      },
       "access": "open web"
     },
     {
       "id": "talish-fathiyya",
       "tier": "primary",
-      "authors": ["Shihabuddin Talish"],
+      "authors": [
+        "Shihabuddin Talish"
+      ],
       "title": "Fathiyya-i-Ibriyya (Persian account of Mir Jumla's Assam campaign, 1661-63)",
       "year": null,
       "urls": [],
-      "notes": "Eyewitness Mughal-side account. English translation/edition NOT yet located or verified. Do not cite until an edition (translator, journal/publisher, year, page) is confirmed.",
-      "verification": { "bibliographic": "UNVERIFIED - edition not located", "pagesChecked": false, "checkedOn": "2026-11-07", "by": "phase-1 research" },
+      "notes": "Eyewitness Mughal-side account. English translation/edition NOT yet located or verified. Do not cite until an edition (translator, journal/publisher, year, page) is confirmed. Gait (1906) uses it via Blochmann's analysis in J.A.S.B. 1872 (see blochmann1872).",
+      "verification": {
+        "bibliographic": "UNVERIFIED - edition not located",
+        "pagesChecked": false,
+        "checkedOn": "2026-11-07",
+        "by": "phase-1 research"
+      },
       "access": "unknown"
     },
     {
       "id": "welsh-report-1794",
       "tier": "primary",
-      "authors": ["Captain Thomas Welsh"],
+      "authors": [
+        "Captain Thomas Welsh"
+      ],
       "title": "Report on Assam (1794)",
       "year": 1794,
       "urls": [],
       "notes": "Eyewitness East India Company report from the 1792-94 expedition. Published edition NOT yet verified (believed reproduced in later compilations). Access via bhuyan1949 until located.",
-      "verification": { "bibliographic": "UNVERIFIED - edition not located", "pagesChecked": false, "checkedOn": "2026-11-07", "by": "phase-1 research" },
+      "verification": {
+        "bibliographic": "UNVERIFIED - edition not located",
+        "pagesChecked": false,
+        "checkedOn": "2026-11-07",
+        "by": "phase-1 research"
+      },
       "access": "unknown"
     },
     {
       "id": "vandermaelen1827",
       "tier": "primary",
-      "authors": ["Philippe Vandermaelen (attribution inferred from sheet format)"],
+      "authors": [
+        "Philippe Vandermaelen (attribution inferred from sheet format)"
+      ],
       "title": "Asie No. 84 - Assam et Boutan (Atlas universel)",
       "year": 1827,
       "urls": [],
       "notes": "Reference image supplied by the user. Sheet header 'ASIE / ASSAM ET BOUTAN / No. 84' matches the format of Vandermaelen's Atlas universel (Brussels, 1825-27); attribution and year must be confirmed from a catalogue record. Use ONLY as a georeferencing aid for early-19th-century European geographic knowledge (river names, settlement placement). Its colour bands are a European cartographer's view, not authoritative political boundaries.",
-      "verification": { "bibliographic": "UNVERIFIED - attribution inferred", "pagesChecked": false, "checkedOn": "2026-11-07", "by": "phase-1 research" },
+      "verification": {
+        "bibliographic": "UNVERIFIED - attribution inferred",
+        "pagesChecked": false,
+        "checkedOn": "2026-11-07",
+        "by": "phase-1 research"
+      },
       "access": "user-supplied image"
     },
     {
       "id": "wiki-finding-aids",
       "tier": "finding-aid",
-      "authors": ["Wikipedia contributors"],
+      "authors": [
+        "Wikipedia contributors"
+      ],
       "title": "Wikipedia articles: Treaty of Ghilajharighat; Battle of Itakhuli; Battle of Saraighat; Battle of Dhai Ali; Gaurinath Singha; Treaty of Yandabo; Moamoria rebellion",
       "year": null,
       "urls": [
@@ -244,17 +396,47 @@
         "https://en.wikipedia.org/wiki/Treaty_of_Yandabo"
       ],
       "notes": "Used only to locate discrepancies and candidate citations. Validation will FAIL any event whose only support is this entry.",
-      "verification": { "bibliographic": "n/a", "pagesChecked": false, "checkedOn": "2026-11-07", "by": "phase-1 research" },
+      "verification": {
+        "bibliographic": "n/a",
+        "pagesChecked": false,
+        "checkedOn": "2026-11-07",
+        "by": "phase-1 research"
+      },
       "access": "open web"
     }
   ],
   "toLocate": [
-    { "title": "Jadunath Sarkar, History of Aurangzib (vol. covering Mir Jumla in Assam)", "reason": "Standard Mughal-side scholarly narrative of 1661-63; edition, volume and pages unverified." },
-    { "title": "S. K. Bhuyan (ed.), Deodhai Asam Buranji and Satsari Asam Buranji (DHAS)", "reason": "Primary Assamese chronicles; edition years unverified." },
-    { "title": "C. U. Aitchison, A Collection of Treaties, Engagements and Sanads (volume containing Yandabo and the 1833 Purandar Singha agreement)", "reason": "Treaty texts for Episode 12 and epilogue." },
-    { "title": "Alexander Mackenzie, History of the Relations of the Government with the Hill Tribes of the North-East Frontier of Bengal (1884)", "reason": "Colonial-era account of hill frontier, posa arrangements; useful but must be critically framed." },
-    { "title": "Burmese-side scholarship on Konbaung campaigns in Assam and Manipur", "reason": "Commander names, campaign years 1817/1819/1821-22 currently rest on Assam-side sources only." },
-    { "title": "Chinese-language / Tai Mao scholarship on Mong Mao (Luchuan) in the 13th century", "reason": "Episode 1 is the weakest-evidenced episode; avoid projecting the 14th-century Luchuan state back to 1215." },
-    { "title": "Archaeological Survey of India / Directorate of Archaeology, Assam - monument notices for Rang Ghar, Talatal Ghar, Kareng Ghar, Sivadol, Charaideo", "reason": "Construction dates of monuments are often given loosely; need official dated notices." }
+    {
+      "title": "Jadunath Sarkar, History of Aurangzib (vol. covering Mir Jumla in Assam)",
+      "reason": "Standard Mughal-side scholarly narrative of 1661-63; edition, volume and pages unverified."
+    },
+    {
+      "title": "S. K. Bhuyan (ed.), Deodhai Asam Buranji and Satsari Asam Buranji (DHAS)",
+      "reason": "Primary Assamese chronicles; edition years unverified."
+    },
+    {
+      "title": "C. U. Aitchison, A Collection of Treaties, Engagements and Sanads (volume containing Yandabo and the 1833 Purandar Singha agreement)",
+      "reason": "Treaty texts for Episode 12 and epilogue."
+    },
+    {
+      "title": "Alexander Mackenzie, History of the Relations of the Government with the Hill Tribes of the North-East Frontier of Bengal (1884)",
+      "reason": "Colonial-era account of hill frontier, posa arrangements; useful but must be critically framed."
+    },
+    {
+      "title": "Burmese-side scholarship on Konbaung campaigns in Assam and Manipur",
+      "reason": "Commander names, campaign years 1817/1819/1821-22 currently rest on Assam-side sources only."
+    },
+    {
+      "title": "Chinese-language / Tai Mao scholarship on Mong Mao (Luchuan) in the 13th century",
+      "reason": "Episode 1 is the weakest-evidenced episode; avoid projecting the 14th-century Luchuan state back to 1215."
+    },
+    {
+      "title": "Archaeological Survey of India / Directorate of Archaeology, Assam - monument notices for Rang Ghar, Talatal Ghar, Kareng Ghar, Sivadol, Charaideo",
+      "reason": "Construction dates of monuments are often given loosely; need official dated notices."
+    },
+    {
+      "title": "Sir James Johnstone's narrative of Captain Welsh's expedition (cited by Gait, Introduction)",
+      "reason": "Compiled from Foreign Department records; route to Welsh's 1794 report."
+    }
   ]
 }

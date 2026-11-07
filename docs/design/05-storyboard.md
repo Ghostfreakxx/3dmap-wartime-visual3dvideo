@@ -18,31 +18,36 @@ Each short episode is a **60–120 s vertical reel** (9:16) plus an optional **l
 
 | Beat | ~Time | Event | Camera | Layers / animation | On-screen text |
 |---|---|---|---|---|---|
-| 0 Hook | 0–6 s | — | Close on Patkai ridges at an oblique 3D pitch, slow push-in | Terrain, mist vignette | "1228. A small band crosses the mountains." |
-| 1 Context | 6–18 s | `e01-tai-political-world` | Pull back to wide Tai world (Shweli → Brahmaputra) | Mong Mao regional label; no borders | "Tai principalities, east of the Patkai" · **Approximate** |
-| 2 Departure | 18–28 s | `e01-sukaphaa-departs` | Hold on the Mong Mao label | Label pulse | "c. 1215: Sukaphaa sets out, according to the chronicles" · **Disputed** |
-| 3 Crossing | 28–48 s | `e02-patkai-crossing` | Follow the corridor west over the ridges | **Schematic corridor** (wide soft band, not a line); Nong Nyang marker | "Route approximate: the chronicles name places, not paths" |
-| 4 Arrival | 48–58 s | `e02-arrival-1228` | Drop into the valley near Namrup | Brahmaputra highlight; point marker | "1228: arrival in the Brahmaputra valley" · **Documented** |
-| 5 Search for a seat | 58–78 s | `e02-wandering-settlements` | Hop between settlement halos | Sequential halos: Tipam → Abhaypur → Habung → Simaluguri | "Some sites can only be located approximately" |
-| 6 Neighbours | 78–90 s | `e02-moran-borahi` | Medium shot of the Dikhow/Charaideo tract | Soft influence zone appears | "Morans and Borahis drawn into the new polity" |
-| 7 Charaideo | 90–105 s | `e02-charaideo-1253` | Fly to Charaideo, pitch 50° | Capital marker; brief moidam mound icon | "1253: Charaideo, first seat of the Ahom kings" |
-| 8 Close | 105–115 s | — | Pull out to the whole valley | Valley glow | "From here, a kingdom would grow for six centuries." |
+| 0 Hook | 0–6 s | — | Close on Patkai ridges at an oblique 3D pitch, slow push-in | Terrain, mist vignette | "1215. A prince leaves home." |
+| 1 Context | 6–16 s | `e01-tai-political-world` | Pull back to wide Tai world (Shweli → Brahmaputra) | Mong Mao regional label; no borders | "Tai principalities, east of the Patkai" · **Approximate** |
+| 2 Departure | 16–26 s | `e01-sukaphaa-departs` | Hold on the Mong Mao label | Label pulse; optional attributed figure card | "1215: Sukaphaa leaves Maulung, according to the chronicles" · **Disputed** |
+| 3 Thirteen years | 26–42 s | `e02-patkai-crossing` | Slow drift along the ridges | **Schematic corridor** (wide soft band); years ticking 1215 → 1228 | "Route approximate: the chronicles name places, not paths" |
+| 4 Conquest | 42–54 s | `e02-naga-violence` | Hold at the Nongnyang marker; desaturate | No figures, no fire effects; text card only | "The chronicles record violent conquest of Naga villages" · **Documented** |
+| 5 Into the valley | 54–62 s | `e02-arrival-1228` | Drop to Namrup | Brahmaputra highlight; point marker | "1228: Khamjang, then Namrup" |
+| 6 Floods | 62–82 s | `e02-wandering-settlements` | Hop between settlement halos, each with its year | Tipam → 1236 Abhaypur → 1240 Habung → 1244 Dikhu mouth → 1246 Simaluguri; flood ripple on Abhaypur and Habung | "Two floods forced them to move on" |
+| 7 Neighbours | 82–92 s | `e02-moran-borahi` | Medium shot of the Dikhow/Charaideo tract | Soft influence zone appears | "Morans and Borahis: defeated, then integrated" |
+| 8 Charaideo | 92–106 s | `e02-charaideo-1253` | Fly to Charaideo, pitch 50° | Capital marker; moidam mound icon | "1253: Charaideo, first seat of the Ahom kings" |
+| 9 Close | 106–116 s | — | Pull out to the whole valley | Valley glow | "From here, a kingdom would grow for six centuries." |
 
-### Prototype narration: DRAFT, pending page verification (~110 s)
+### Prototype narration: DRAFT v2, checked against Gait 1906 pp. 73–76 (~115 s)
 
-> *In the early thirteenth century, a Tai prince named Sukaphaa left the valleys east of the Patkai hills. The Ahom chronicles, the Buranjis, place his departure around 1215. Why he left is told differently in different traditions.*
+> *In 1215, according to the Ahom chronicles, a Tai prince named Sukaphaa left his homeland of Maulung, east of the Patkai hills. Why he left is told differently in different traditions.*
 >
-> *The chronicles name lakes and stopping places on the way, but not the exact path, so the route on this map is a broad corridor, not a road.*
+> *For thirteen years his followers moved through the hill country. The chronicles name rivers and a lake on the way, but not the path, so the route on this map is a broad corridor, not a road.*
 >
-> *By 1228, Sukaphaa and his followers had come down into the upper Brahmaputra valley. That year is still counted as the beginning of Ahom rule.*
+> *It was not a peaceful journey. The chronicles themselves record that Sukaphaa raided Naga villages, and that when some Nagas resisted, he crushed them with deliberate cruelty, so that others would submit.*
 >
-> *It was not yet a kingdom with borders. For about twenty-five years the group moved between settlements, at places the chronicles call Tipam, Abhaypur and Habung, leaving some because of floods. Along the way, local Moran and Borahi communities were brought under their authority, and in time became part of Ahom society.*
+> *In 1228 the party reached Khamjang and then came down towards Namrup, on the edge of the Brahmaputra valley. That year is still counted as the beginning of Ahom rule.*
 >
-> *In 1253 they settled at Charaideo. It became their first royal seat, and later the burial ground of Ahom kings. Today those burial mounds, the moidams, are a UNESCO World Heritage Site.*
+> *Finding a home took another quarter of a century. They settled at Tipam, then Abhaypur, until floods drove them on to Habung, and floods again to the Dikhu and Simaluguri. Along the way they fought the local Moran and Borahi peoples, and then, the chronicles say, made peace through equal treatment and intermarriage.*
 >
-> *From this small foothold in the valley, a state would grow that lasted almost six hundred years.*
+> *In 1253 they founded Charaideo. It became the first royal seat, and later the burial ground of Ahom kings. Those burial mounds, the moidams, are now a UNESCO World Heritage Site.*
+>
+> *From this foothold, a state would grow that lasted almost six hundred years.*
 
-Word count is about 190, which runs about 75–80 s at a measured pace. Pauses and the opening card bring it to about 110 s. **The script contains no numbers other than years and approximate spans already present in the event records.** "Almost six hundred years" (1228–1826) is arithmetic on documented dates. "About twenty-five years" (1228–1253) is likewise derived. Both are allowed.
+The script runs to about 230 words, about 95 s at a measured pace, and about 115 s with the cards. **The only numbers are years and spans derived from documented years**: "thirteen years" (1215–1228, Gait p. 74), "a quarter of a century" (1228–1253) and "almost six hundred years" (1228–1826). The chronicle head-count (nine thousand followers) is left out of the narration. It may appear on an optional card worded "the chronicles claim…".
+
+**Editorial note on beat 4:** the violence is stated factually, in the chronicles' own terms, without graphic detail or visuals. Leaving it out would misrepresent the source.
 
 ---
 
@@ -74,6 +79,8 @@ Word count is about 190, which runs about 75–80 s at a measured pace. Pauses a
 | Mughal fleet withdraws downstream | Documented | Retreat arrow; s1667 frontier persists |
 
 No casualty counts, fleet sizes or invented speeches. If a later-verified source gives a figure, it enters `numericClaims` first.
+
+**Production blocker:** Gait (1906) does not describe a named Saraighat battle. He says the Buranjis are too confused to follow (p. 150). Every "Documented" phase above must be re-sourced to S. K. Bhuyan (1947) pages, or downgraded, before this sequence is built. The long-form episode should include a historian's note on how the Saraighat story was assembled.
 
 ## 16:9 long-form additions
 

@@ -7,8 +7,8 @@
 | Delivered | Not delivered (deliberately) |
 |---|---|
 | Source registry with catalogue-verified bibliography (`data/sources/registry.json`) | Page numbers, because none have been checked in a physical or scanned edition yet |
-| Draft chronology of 57 typed events (`data/chronology/events.json`) | Narration scripts (placeholders only; one prototype draft in the storyboard) |
-| Gazetteer of 38 places and 16 polities with precision flags (`data/gazetteer/places.json`) | Any territorial polygon. All 22 snapshots are `planned` with no geometry |
+| Chronology of 59 typed events (`data/chronology/events.json`) | Narration scripts (placeholders only; one prototype draft in the storyboard) |
+| Gazetteer of 42 places and 17 polities with precision flags (`data/gazetteer/places.json`) | Any territorial polygon. All 22 snapshots are `planned` with no geometry |
 | Event schema (`src/domain/types.ts`) and validator (`scripts/validate-research.mjs`) | Next.js app, map, and animations (Phase 2+) |
 | This plan, a dossier, a gaps register, the geographic data plan, the storyboard, and the architecture | |
 
@@ -83,4 +83,4 @@ Geography has a **separate** precision scale (`site` / `locality` / `regional` /
 
 ## 7. Environment note
 
-During Phase 1 the build environment's network policy **blocked archive.org**, which hosts the public-domain Gait scans. Bibliographic details were confirmed through library catalogues (HathiTrust, CRL, CiNii, WorldCat, SOAS, Duke University Press). Page-level verification needs archive.org to be allowed in the session's network settings, or a local copy of the text.
+During Phase 1 the build environment's network policy **blocked archive.org**. It was allowed on 2026-11-07, and Gait (1906) was then page-verified from its OCR text (see `04-verification-log-gait-1906.md`). Direct file downloads and page images still redirect to archive.org mirror hosts, which remain blocked, so Gait pages are "OCR-verified" until they have been compared with page images. Task R1 is done for Gait; Barpujari vol. 2 remains.

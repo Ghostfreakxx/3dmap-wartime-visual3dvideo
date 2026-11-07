@@ -31,8 +31,10 @@ export interface SourceRecord {
   notes: string;
   verification: {
     bibliographic: string;
-    /** true only once a person has seen the cited pages in a named edition */
+    /** true only once the cited pages have been seen in a named edition */
     pagesChecked: boolean;
+    /** how pages were checked (e.g. OCR running heads vs page images) */
+    pagesCheckedMethod?: string;
     checkedOn: string;
     by: string;
   };
@@ -244,6 +246,14 @@ export interface NumericClaim {
   what: string;
   sourceRef: SourceRef;
   confidence: ConfidenceLevel;
+  /**
+   * attributed = may appear on screen only with its attribution ("the chronicles claim ...").
+   * hidden     = kept for research, never displayed.
+   * plain      = may be shown without attribution (requires confidence A/B).
+   */
+  displayPolicy: "attributed" | "hidden" | "plain";
+  /** e.g. "Buranji figure reported by Gait" */
+  attribution?: string;
 }
 
 export interface Narration {

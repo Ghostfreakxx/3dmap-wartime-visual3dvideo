@@ -170,6 +170,10 @@ for (const e of chrono.events) {
   for (const nc of e.numericClaims ?? []) {
     if (!nc.sourceRef || !sources.has(nc.sourceRef.sourceId)) err(id, `numericClaim '${nc.what}' lacks a valid sourceRef`);
     else if (sources.get(nc.sourceRef.sourceId).tier === "finding-aid") err(id, `numericClaim '${nc.what}' sourced only to a finding aid`);
+    if (nc.sourceRef && nc.sourceRef.pages == null) err(id, `numericClaim '${nc.what}' has no page reference (numbers require a verified page)`);
+    if (!["attributed", "hidden", "plain"].includes(nc.displayPolicy)) err(id, `numericClaim '${nc.what}' needs displayPolicy attributed|hidden|plain`);
+    if (nc.displayPolicy === "attributed" && !nc.attribution) err(id, `numericClaim '${nc.what}' is 'attributed' but has no attribution text`);
+    if (nc.displayPolicy === "plain" && !["A", "B"].includes(nc.confidence)) err(id, `numericClaim '${nc.what}' shown plainly needs confidence A or B`);
   }
 
   // traditional sayings must never be presented as quotations without a note

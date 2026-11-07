@@ -1,6 +1,6 @@
 # 02 · Historical research dossier: the Ahom Kingdom, 1228–1826 (with epilogue to 1838)
 
-> **Status:** Phase 1 draft. Bibliography is catalogue-verified; **page locators are pending for every claim** (see `01-research-plan.md` §7). Event-level detail, including confidence and sources, lives in `data/chronology/events.json`. This document is the readable synthesis. Bracketed IDs such as `[e07-saraighat]` point to those records.
+> **Status:** Phase 1, revised after page verification against Gait (1906). **52 of 59 events now cite OCR-verified Gait pages.** Other sources' pages are still pending. All corrections are listed in `04-verification-log-gait-1906.md`. Event-level detail, including confidence and sources, lives in `data/chronology/events.json`. This document is the readable synthesis. Bracketed IDs such as `[e07-saraighat]` point to those records.
 >
 > **Labels used below:** **Documented** = standard scholarly account. **Disputed** = sources disagree. **Approximate** = real, but geography or timing is reconstructed. **Traditional** = legend or anecdote.
 
@@ -35,17 +35,20 @@
 
 ## Episode 2 · 1228–1253 (–1268): Sukaphaa's migration and Charaideo (prototype episode)
 
-**Documented**
-- Arrival in the upper Brahmaputra valley in **1228**, the conventional start of Ahom rule `[e02-arrival-1228]`.
-- Subjugation and assimilation of the **Moran** and **Borahi** communities `[e02-moran-borahi]`.
-- **Charaideo** established as the seat in **1253** `[e02-charaideo-1253]`. It later became the royal necropolis. The **Moidams** were inscribed on the UNESCO World Heritage List in July 2024 at the 46th session in New Delhi.
-- Sukaphaa died in **1268** `[e02-sukaphaa-death]`.
+**Documented** *(Gait pp. 74–76, OCR-verified; see `04-verification-log-gait-1906.md`)*
+- Sukaphaa left Maulung in **1215** and spent **thirteen years** moving through the Patkai hills, **raiding Naga villages**. In **1228** he reached **Khamjang**, then crossed the Khamnamjang river and came to the **Nongnyang** lake. 1228 is the conventional start of Ahom rule `[e02-patkai-crossing]` `[e02-arrival-1228]`.
+- **Violence against the Nagas.** Some Nagas resisted. The Buranjis record that Sukaphaa defeated them and inflicted extreme cruelty on captives to force the surrounding villages to submit. Gait himself condemns this `[e02-naga-violence]`. **The episode must not present the migration as peaceful.**
+- **Dated sequence of settlements:** Dangkaorang, Khamhangpung, Namrup → Tipam → **1236** Mungklang Chekhru (Abhaypur) → flood, **1240** Habung → flood, **1244** Dikhu mouth and Ligirigaon → **1246** Simaluguri → **1253** Charaideo `[e02-wandering-settlements]` `[e02-charaideo-1253]`.
+- The **Morans** (under Badancha) and **Borahis** (under Thakumtha) were first defeated, then integrated through conciliation and intermarriage `[e02-moran-borahi]`.
+- Sukaphaa created the offices of **Bar Gohain** and **Burha Gohain**, and died in **1268** `[e02-sukaphaa-death]`.
+- Charaideo later became the royal necropolis. The **Moidams** were inscribed on the UNESCO World Heritage List in July 2024 at the 46th session in New Delhi.
 
 **Approximate**
-- The **route across the Patkai**: the chronicles name waypoints such as the lake **Nong Nyang** and the Namrup area, but give no surveyed path. It is drawn as a **schematic corridor** labelled "route approximate" `[e02-patkai-crossing]`.
-- The sequence of temporary settlements (**Tipam → Abhaypur → Habung → … → Simaluguri → Charaideo**) is chronicle-derived. Several sites can be located only regionally `[e02-wandering-settlements]`.
+- The **route across the Patkai**: the chronicles name places, not a path. It is drawn as a **schematic corridor** labelled "route approximate". Khamjang and Ligirigaon cannot be located and are shown as text only.
 
-**Do not show:** follower numbers, named companions with invented roles, battle scenes with local peoples, or a "border" in 1253.
+**Attributed numbers (chronicle figures, Gait p. 74):** eight nobles and 9,000 men, women and children; two elephants; 300 horses. Show these only as *"the chronicles claim…"*.
+
+**Do not show:** named companions with invented roles, graphic depictions of the violence, or a "border" in 1253.
 
 ---
 
@@ -80,7 +83,7 @@
 
 **Documented**
 - The capital moved to **Garhgaon** (c. 1540, Suklenmung) `[e05-garhgaon-capital]`.
-- The **Koch invasion of 1562–63** under Naranarayan and Chilarai: a **temporary occupation** of Garhgaon, followed by withdrawal after terms that included hostages `[e05-koch-invasion]`.
+- The **Koch invasion of 1562–63** under Naranarayan and Chilarai (Silarai): a **temporary occupation** of Garhgaon in 1563. The peace terms included **acknowledgment of Koch supremacy, cession of a north-bank tract held by a Koch garrison at Narayanpur**, hostages and an indemnity (Gait p. 98) `[e05-koch-invasion]`. The occupation ended, but the north-bank loss and the subordinate status were real.
 - The **Mughals absorb Koch Hajo**, 1612–13, bringing the Mughal frontier to the Ahoms `[e05-mughals-reach-frontier]`.
 - **Ahom–Mughal wars, 1615–1638** `[e05-ahom-mughal-wars]`. *Individual battles need separate records before they are animated.*
 - **Paik system reorganisation** under Pratap Singha / Momai Tamuli Borbarua `[e05-paik-reorganisation]`.
@@ -92,15 +95,15 @@
 
 ## Episode 6 · 1662–1663: Mir Jumla's invasion (setup from 1658)
 
-**Documented**
-- **1658**: the Ahoms occupy Guwahati during the Mughal war of succession `[e06-ahoms-take-guwahati-1658]`.
-- **Nov 1661 – Mar 1662**: Mir Jumla advances by land and river `[e06-mir-jumla-advance]`.
-- **March 1662**: the Mughals occupy **Garhgaon**, and Jayadhwaj Singha withdraws to the Namrup hills. **The capital is occupied; the kingdom is not annexed** `[e06-garhgaon-occupied]`.
-- **Monsoon 1662**: Mughal garrisons are isolated and suffer from disease `[e06-monsoon-crisis]`.
-- **Treaty of Ghilajharighat, January 1663**: indemnity, hostages, western territory ceded, and Ahom tributary status, only partly fulfilled `[e06-ghilajharighat-treaty]`.
-- **1663**: the Mughals withdraw, and Mir Jumla dies on the return journey `[e06-mughal-withdrawal]`.
+**Documented** *(Gait pp. 125–137, OCR-verified)*
+- **1658**: during the Mughal succession war, Jayadhwaj bridges the Kallang and takes Gauhati. The Ahoms drive the Koches across the Sankosh and are masters of the valley for nearly three years `[e06-ahoms-take-guwahati-1658]`.
+- **4 January 1662**: having first occupied Koch Bihar, Mir Jumla sets out for Assam `[e06-mir-jumla-advance]`.
+- **17 March 1662**: the Mughals enter **Garhgaon**, and Jayadhwaj Singha withdraws to the Namrup hills. **The capital is occupied; the kingdom is not annexed** `[e06-garhgaon-occupied]`.
+- **Monsoon 1662**: Mughal garrisons are isolated and suffer from disease `[e06-monsoon-crisis]` (page pending).
+- **Treaty, concluded before 9 January 1663**: a daughter for the imperial household, indemnity and annual tribute, hostages, and the cession of the land **west of the Bharali (north bank) and the Kallang (south bank)** `[e06-ghilajharighat-treaty]`.
+- **9 January 1663**: the return is ordered. **30 March 1663**: Mir Jumla dies just before reaching Dacca `[e06-mughal-withdrawal]`.
 
-**Disputed:** the treaty's day (23 January is usual; a February variant exists), its signing place (Ghilajharighat vs. Tipam), the exact ceded boundary, and the quantities of the indemnity, which Persian and Assamese sources give differently. **No quantities are displayed** until they are verified.
+**Disputed:** the name "Ghilajharighat" (Gait doesn't use it) and the day. Later works give 23 January, which conflicts with Gait's 9 January departure order. Quantities vary between Persian and Assamese sources; Gait's list is recorded as **attributed** numbers.
 
 ---
 
@@ -110,6 +113,10 @@
 - **1667**: under Chakradhwaj Singha, **Lachit Borphukan** retakes Itakhuli and Guwahati `[e07-guwahati-recaptured]`.
 - **1669**: **Raja Ram Singh** of Amber arrives with a Mughal army `[e07-ram-singh-arrives]`. The Ahoms suffer a heavy defeat at **Alaboi** `[e07-alaboi]`.
 - **1671 (usually March)**: the **Battle of Saraighat**, a river battle at the Brahmaputra narrows. The Mughal advance is defeated and Guwahati remains Ahom `[e07-saraighat]`.
+
+**Verified in Gait:** the expedition set out in **August 1667**, and Gauhati fell after a two-month siege (pp. 146–147). Ram Singh reached Rangamati in **February 1669** (p. 148). He retreated in **March 1671** after repeated losses, and Hadira, opposite Goalpara, became the Ahom outpost (p. 150).
+
+**Key historiographical caveat:** Gait (1906) **does not name Saraighat or Alaboi**. He says the Buranjis are too "confused" to follow the operations in detail, and he mentions Lachit only once. The named decisive river battle at Saraighat is a later reconstruction, chiefly Bhuyan (1947), from Buranjis edited after Gait. The Saraighat animation therefore needs Bhuyan's pages before production.
 
 **Disputed:** one Government of Assam district page dates Saraighat to 1672. The date and cause of Lachit's death are also uncertain (c. 1672) `[e07-lachit-death]`.
 
@@ -128,7 +135,7 @@
 - **1681**: **Gadadhar Singha** accedes and founds the Tungkhungia line `[e08-gadadhar-accession]`.
 - **August 1682**: the **Battle of Itakhuli**. The Ahoms retake Guwahati and pursue the Mughals to the **Manas** river, which stays the western limit until 1826 `[e08-itakhuli]`.
 
-**Minor variant:** some accounts describe the boundary point as Hadira, opposite Goalpara, rather than the Manas.
+**Resolved variant:** Hadira, opposite Goalpara, was the Ahom outpost **after 1671** (Gait p. 150). The **Manas** became the accepted boundary **after 1682** (p. 160). Gait names neither "Itakhuli" nor the month, which later works give as August. **Material evidence:** two surviving cannon are inscribed as taken by Gadadhar Singha at Gauhati in 1604 Saka, i.e. 1682 (p. 161).
 
 ---
 
@@ -136,11 +143,11 @@
 
 **Documented**
 - **Rudra Singha (1696–1714)**: the capital developed at **Rangpur**, diplomacy with neighbours, and court culture `[e09-rudra-singha]`.
-- **1706–08**: campaigns into the **Kachari** and **Jaintia** kingdoms result in **tributary submission, not annexation** `[e09-kachari-jaintia-campaign]`.
+- **1706–08**: campaigns into the **Kachari** and **Jaintia** kingdoms. In **February 1708** the Ahoms **announced the annexation** of both. A Jaintia and Khasi rising followed, and before the rains the Ahom commanders retreated, destroying Jaintiapur. **The annexation was reversed**, so it is drawn as occupation then withdrawal, not as tributary territory (Gait pp. 165–173) `[e09-kachari-jaintia-campaign]`. *(Corrected from the Phase 1 draft.)*
 - **1714**: Rudra Singha dies at Guwahati. The planned westward campaign is a standard but interpretive claim `[e09-rudra-death]`.
 - Royal religious policy and satra politics, which form background to the Moamoria rebellion `[e09-religious-politics]`.
 
-**Approximate:** construction dates for the **Rang Ghar, Talatal Ghar, Kareng Ghar, Sivadol and the great tanks** vary between sources `[e09-monuments]`. They will be shown by reign until ASI or Assam State Archaeology notices are obtained.
+**Partly dated:** Gait p. 179 dates the **Rang Ghar** at Rangpur to **1745** under Pramatta Singha, along with the Rudreswar and Sukreswar temples at Gauhati, and Rajeswar Singha's brick palaces at Rangpur and Taimung. Other dates (Talatal Ghar, Kareng Ghar, Sivadol, the tanks) still need ASI or Assam State Archaeology notices `[e09-monuments]`.
 
 **Scope note:** the episode range is extended to 1769 to cover Siva Singha, Pramatta Singha and Rajeswar Singha, including Ahom involvement in Manipur in the 1760s. The Manipur involvement still needs research and has no event record yet.
 
@@ -149,13 +156,13 @@
 ## Episode 10 · 1769–1805: Moamoria rebellion and British intervention
 
 **Documented**
-- **1769–70**: the first uprising. Rebels take Rangpur and hold Lakshmi Singha, and the royalists recover in 1770 `[e10-moamoria-first]`.
-- **1782–88**: the second uprising, after which **Gaurinath Singha** retreats to Guwahati `[e10-moamoria-second]`.
-- **1792–94**: **Captain Thomas Welsh's** Company expedition restores the king at Rangpur and is then recalled. This was a **limited intervention, not annexation** `[e10-welsh-expedition]`.
-- **1794**: the capital moves to **Jorhat** `[e10-jorhat-capital]`.
-- **c. 1805**: suppression of the rebellion under Purnananda Burhagohain, and the semi-autonomous **Matak** arrangement `[e10-moamoria-end]`.
+- **October 1769 – April 1770**: the first uprising. Ragha Moran advances, Lakshmi Singha is captured at Sonarinagar, and the rebels enthrone Ramakant, whose **coins dated 1691 Saka** survive as evidence. A royalist counter-coup on the eve of Bihu, April 1770, follows (Gait pp. 185–187) `[e10-moamoria-first]`.
+- **1782–88**: the second uprising, after which **Gaurinath Singha** retreats to Guwahati `[e10-moamoria-second]` (page pending).
+- **September 1792 – 3 July 1794**: **Captain Thomas Welsh's** Company expedition. It took Gauhati in December 1792 and restored the king at Rangpur on 21 March 1794, before Sir John Shore's change of policy recalled it. This was a **limited intervention, not annexation** (pp. 197–209) `[e10-welsh-expedition]`.
+- **1794**: the capital moves to **Jorhat** (p. 209) `[e10-jorhat-capital]`. Gaurinath dies on **19 December 1794** (p. 211) `[e10-gaurinath-death]`.
+- **1799–1805**: rebellions at Bengmara are suppressed under Purnananda Burhagohain. **Sarbananda Singh** is eventually given the title Bar Senapati, creating the semi-autonomous **Matak** territory (pp. 215–218) `[e10-moamoria-end]`.
 
-**Disputed:** the causes of the rebellion (religious vs. socio-economic and paik-system strain; Guha's interpretation vs. earlier accounts), the month of Welsh's departure (March or May 1794), and Gaurinath's date of death.
+**Disputed:** the causes of the rebellion (religious vs. socio-economic and paik-system strain; Guha's interpretation vs. earlier accounts). *(Welsh's departure and Gaurinath's death are now resolved.)*
 **Not displayed:** population-loss figures.
 
 ---
@@ -163,10 +170,10 @@
 ## Episode 11 · 1815–1824: Burmese invasions and occupation
 
 **Documented**
-- **1815–16**: **Badan Chandra Borphukan** seeks Burmese help `[e11-badan-chandra-ava]`.
-- **1817**: the first Burmese invasion, followed by withdrawal `[e11-first-burmese-invasion]`.
-- **1819**: the second invasion restores Chandrakanta Singha after Purandar Singha's installation in 1818 `[e11-second-burmese-invasion]`.
-- **1821–22**: the third invasion. Chandrakanta is defeated and **Jogeswar Singha** installed as a Burmese puppet ruler, beginning the **occupation** `[e11-third-burmese-invasion]`.
+- **1815–16**: **Badan Chandra Borphukan** seeks Burmese help (Gait p. 222) `[e11-badan-chandra-ava]`.
+- **End of 1816 – April 1817**: the first Burmese army enters, then returns home with an indemnity (pp. 222–223) `[e11-first-burmese-invasion]`.
+- **February 1819**: Ala Mingi's army restores Chandrakanta as a nominal ruler, after Purandar Singha's installation in February 1818. Gait follows the Buranji date; Wilson puts it in early 1818 (pp. 223–224) `[e11-second-burmese-invasion]`.
+- **April 1821 – June 1822**: Chandrakanta flees and **Jogeswar Singha** is installed. Chandrakanta retakes Gauhati in January 1822, then Mingi Maha Bandula defeats him at **Mahgarh** in June 1822. The **occupation** follows (pp. 224–226) `[e11-third-burmese-invasion]`.
 - **1822–24**: the occupation is remembered as a time of terror and flight `[e11-occupation-hardship]`. **No numbers are displayed.**
 
 **Research gap:** Burmese commander names and campaign details rest on Assam-side sources only (task R6).
@@ -184,37 +191,61 @@
 
 ## Epilogue · 1833–1838 (labelled "Epilogue")
 
-- **1833**: **Purandar Singha** is restored over **Upper Assam** as a protected, tribute-paying ruler, while Lower Assam stays under Company administration `[e13-purandar-restored]`.
-- **1838**: Upper Assam is annexed by the Company `[e13-annexation-1838]`.
-- **Gap:** the registry currently has no verified source dedicated to the post-1826 period. Candidates include H. K. Barpujari's work on the colonial period and the Aitchison treaty volumes. Confidence is held at C until this is fixed.
+- **Early 1833**: **Purandar Singha** receives "the whole of **Upper Assam, except Sadiya and Matak**" as a protected, tribute-paying ruler, while Lower Assam stays under Company administration (Gait p. 291). Gait's table says 1832 `[e13-purandar-restored]`.
+- **October 1838**: Purandar is deposed and pensioned, and his territory is placed under direct British administration (p. 303) `[e13-annexation-1838]`.
+- Both now rest on Gait (confidence B). The Aitchison treaty texts are still wanted for the 1833 agreement.
 
 ---
 
-## Reference rulers used in the draft chronology (partial; standard chronology after Gait, to be page-verified)
+## Regnal chronology (Gait 1906, Appendix "Chronology of Ahom Kings", pp. 356–358; OCR-verified)
 
-| Ruler | Reign | Notes |
+| Ruler (Ahom / Hindu name) | Gait's dates | Notes |
 |---|---|---|
-| Sukaphaa | 1228–1268 | Founder |
-| Sudangphaa (Bamuni Konwar) | c. 1397–1407 | |
-| Suhungmung (Dihingia Raja) | 1497–1539 | |
-| Suklenmung (Garhgayan Raja) | 1539–1552 | Garhgaon |
-| Pratap Singha (Susengphaa) | 1603–1641 | |
-| Jayadhwaj Singha | 1648–1663 | Mir Jumla |
-| Chakradhwaj Singha | 1663–1670 | Guwahati recaptured |
-| Udayaditya Singha | 1670–1672 | Saraighat |
-| Gadadhar Singha (Supatphaa) | 1681–1696 | Itakhuli |
-| Rudra Singha | 1696–1714 | |
-| Siva Singha | 1714–1744 | |
-| Pramatta Singha | 1744–1751 | |
-| Rajeswar Singha | 1751–1769 | |
-| Lakshmi Singha | 1769–1780 | Moamoria |
-| Gaurinath Singha | 1780–1794 | Welsh |
-| Kamaleswar Singha | 1795–1811 | |
-| Chandrakanta Singha | 1811–1818; 1819–1821 | |
-| Purandar Singha | 1818–1819; Upper Assam 1833–1838 | |
-| Jogeswar Singha | 1821–1822 (Burmese-installed) | |
+| Sukapha | 1228–1268 | Founder |
+| Suteupha | 1268–1281 | |
+| Subinpha | 1281–1293 | |
+| Sukhangpha | 1293–1332 | |
+| Sukhrangpha | 1332–1364 | |
+| Sutupha | 1364–1376 | Killed by the Chutia king |
+| *interregnum* | 1376–1380 | |
+| Tyaokhamti | 1380–1389 | |
+| *interregnum* | 1389–1397 | |
+| Sudangpha ("Bamuni Konwar") | 1397–1407 | |
+| Sujangpha | 1407–1422 | |
+| Suphakpha | 1422–1439 | |
+| Susenpha | 1439–1488 | |
+| Suhenpha | 1488–1493 | |
+| Supimpha | 1493–1497 | |
+| Suhungmung (Dihingia Raja) | 1497–1539 | Chutia annexation |
+| Suklenmung (Garhgaya Raja) | 1539–1552 | Garhgaon |
+| Sukhampha (Khora Raja) | 1552–1603 | Koch invasion |
+| Susengpha / Pratap Singha | 1603–1641 | |
+| Surampha (Bhaga Raja) | 1641–1644 | |
+| Sutyinpha (Nariya Raja) | 1644–1648 | |
+| Sutamla / Jayadhwaj Singha | 1648–1663 | Mir Jumla |
+| Supungmung / Chakradhwaj Singha | 1663–1670 | Gauhati recaptured |
+| Sunyatpha / Udayaditya Singha | 1670–1673 | Ram Singh's retreat, 1671 |
+| Suklampha / Ramdhwaj | 1673–1675 | |
+| Suhung; Gobar | 1675 | |
+| Sujinpha | 1675–1677 | |
+| Sudaipha | 1677–1679 | |
+| Sulikpha (Lara Raja) | 1679–1681 | |
+| Supatpha / Gadadhar Singha | 1681–1696 | Manas frontier |
+| Sukhrangpha / Rudra Singha | 1696–1714 | |
+| Sutanpha / Siva Singha | 1714–1744 | |
+| Sunenpha / Pramatta Singha | 1744–1751 | Rang Ghar |
+| Surampha / Rajeswar Singha | 1751–1769 | |
+| Sunyeopha / Lakshmi Singha | 1769–1780 | Moamoria |
+| Suhitpangpha / Gaurinath Singha | 1780–1795 | Died 19 Dec 1794 (text, p. 211) |
+| Suklingpha / Kamaleswar Singha | 1795–1810 | |
+| Sudinpha / Chandrakanta Singha | 1810–1818 (restored 1819 as nominal ruler) | |
+| Purandar Singha | 1818–1819 | |
+| Jogeswar Singha | 1819 in the table; installed after April 1821 in the narrative | **Gait inconsistent** |
+| Burmese rule | 1819–1824 | |
+| British conquest | 1824 | |
+| Purandar Singha, Upper Assam | 1832–1838 in the table; early 1833 in the narrative (p. 291) | |
 
-This list is **not complete**. It omits the many short reigns of 1672–1681 and most 13th–15th-century kings. It must be page-verified before any on-screen regnal timeline is drawn.
+Dates are Gait's chronicle-derived chronology. Later scholarship (Barpujari vol. 2) should be compared before an on-screen regnal timeline is finalised.
 
 ---
 

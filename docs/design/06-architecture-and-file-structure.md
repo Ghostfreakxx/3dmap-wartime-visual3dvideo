@@ -6,9 +6,9 @@
 .
 ├── README.md
 ├── data/                         # ALL historical content: no React here
-│   ├── sources/registry.json     # source registry (17 sources + to-locate list)
-│   ├── chronology/events.json    # 13 episodes, 57 typed events (draft)
-│   ├── gazetteer/places.json     # 38 places + 16 polities, precision-flagged
+│   ├── sources/registry.json     # source registry (18 sources + to-locate list)
+│   ├── chronology/events.json    # 13 episodes, 59 typed events
+│   ├── gazetteer/places.json     # 42 places + 17 polities, precision-flagged
 │   └── geo/snapshots/index.json  # 22 planned snapshots, no geometry yet
 ├── docs/
 │   ├── research/01-research-plan.md

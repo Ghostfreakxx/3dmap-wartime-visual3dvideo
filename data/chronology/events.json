@@ -1,6 +1,6 @@
 {
   "$comment": "Draft chronology (Phase 1). Schema: src/domain/types.ts. Page numbers are null until verified in a named edition. Narration is pending. Edit this file directly; log corrections in editorLog.",
-  "version": "0.1.0-phase1",
+  "version": "0.2.0-gait-verified",
   "episodes": [
     {
       "number": 1,
@@ -27,6 +27,7 @@
         "e02-patkai-crossing",
         "e02-arrival-1228",
         "e02-wandering-settlements",
+        "e02-naga-violence",
         "e02-moran-borahi",
         "e02-charaideo-1253",
         "e02-sukaphaa-death"
@@ -176,6 +177,7 @@
         "e10-moamoria-second",
         "e10-welsh-expedition",
         "e10-jorhat-capital",
+        "e10-gaurinath-death",
         "e10-moamoria-end"
       ],
       "snapshotIds": [
@@ -260,6 +262,14 @@
       ],
       "sourceRefs": [
         {
+          "sourceId": "gait1906",
+          "pages": "p. 73",
+          "locator": "Khunlung and Khunlai; Mungrimungram",
+          "supports": [
+            "context"
+          ]
+        },
+        {
           "sourceId": "barua1930",
           "pages": null,
           "locator": "opening sections",
@@ -340,6 +350,14 @@
       ],
       "sourceRefs": [
         {
+          "sourceId": "gait1906",
+          "pages": "pp. 73-74",
+          "locator": "Ahoms as Shans from the ancient kingdom of Pong; Tai self-name",
+          "supports": [
+            "context"
+          ]
+        },
+        {
           "sourceId": "gogoi1968",
           "pages": null,
           "locator": "chapters on the Tai kingdoms",
@@ -408,7 +426,7 @@
         "precision": "circa-year",
         "calendarNote": "Chronicle-derived date reproduced by Gait; converted from Tai reckoning."
       },
-      "summary": "Ahom chronicles describe the prince Sukaphaa departing his homeland with followers around 1215, beginning a journey of several years. The reasons given (a succession dispute is commonly mentioned) rest on tradition.",
+      "summary": "According to the Buranjis, as summarised by Gait, the prince Sukaphaa left Maulung in 1215 with nobles and followers, beginning years of wandering in the Patkai hills. Gait saw no reason to doubt the Buranji statement that he came from Maulung, within the old Shan kingdom he calls Pong. His reasons for leaving rest on tradition.",
       "participants": [
         "ahom",
         "mong-mao-polity"
@@ -423,10 +441,11 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Sukapha",
+          "pages": "p. 74",
+          "locator": "Sukapha leaves Maulung, 1215",
           "supports": [
-            "date"
+            "date",
+            "participants"
           ]
         },
         {
@@ -456,10 +475,34 @@
       "territorialEffect": {
         "type": "none"
       },
-      "numericClaims": [],
+      "numericClaims": [
+        {
+          "value": "eight nobles and 9,000 men, women and children",
+          "what": "size of Sukaphaa's following",
+          "sourceRef": {
+            "sourceId": "gait1906",
+            "pages": "p. 74"
+          },
+          "confidence": "D",
+          "displayPolicy": "attributed",
+          "attribution": "Buranji figure reported by Gait, who adds that most followers were probably adult men"
+        },
+        {
+          "value": "two elephants and 300 horses",
+          "what": "animals with Sukaphaa's party",
+          "sourceRef": {
+            "sourceId": "gait1906",
+            "pages": "p. 74"
+          },
+          "confidence": "D",
+          "displayPolicy": "attributed",
+          "attribution": "Buranji figure reported by Gait"
+        }
+      ],
       "disputes": [
         "Homeland: 'Maulung' / Mong Mit / Mong Mao identifications differ.",
-        "Motive (succession dispute) is traditional."
+        "Motive (succession dispute) is traditional.",
+        "Gait (p. 73) notes that Shan chronicles do not mention Sukapha's invasion, but credit Samlungpha, brother of a Mungmau king who came to the throne in 1220, with victories in Upper Assam; Gait thinks both stories may be true."
       ],
       "narration": {
         "status": "pending"
@@ -491,13 +534,13 @@
     {
       "id": "e02-patkai-crossing",
       "episode": 2,
-      "title": "Crossing the Patkai",
+      "title": "Thirteen years in the Patkai hills",
       "date": {
         "start": "1215",
         "precision": "circa-year",
         "end": "1228"
       },
-      "summary": "The chronicles describe Sukaphaa's party crossing the Patkai hills into the upper Brahmaputra valley, naming the lake Nong Nyang on the way. The precise path is not recorded; any drawn line is a schematic corridor.",
+      "summary": "The Buranjis, as summarised by Gait, say Sukaphaa spent thirteen years moving through the hilly Patkai country, raiding Naga villages, before reaching Khamjang in 1228. He crossed the Khamnamjang river on rafts and came to the Nongnyang lake. The chronicles name places, not a path, so any line drawn is a schematic corridor.",
       "participants": [
         "ahom"
       ],
@@ -507,22 +550,24 @@
       "locations": [
         "hukawng",
         "patkai",
+        "khamjang",
         "nong-nyang",
         "namrup"
       ],
       "sourceRefs": [
         {
-          "sourceId": "barua1930",
-          "pages": null,
-          "locator": "Sukapha's journey",
+          "sourceId": "gait1906",
+          "pages": "p. 74",
+          "locator": "thirteen years in the Patkai; Khamjang; Khamnamjang river; Nongnyang lake",
           "supports": [
+            "date",
             "location"
           ]
         },
         {
-          "sourceId": "gait1906",
+          "sourceId": "barua1930",
           "pages": null,
-          "locator": "Sukapha",
+          "locator": "Sukapha's journey",
           "supports": [
             "location"
           ]
@@ -587,6 +632,10 @@
         {
           "date": "2026-11-07",
           "note": "Phase 1 draft; page locators pending."
+        },
+        {
+          "date": "2026-11-07",
+          "note": "Gait p. 74 verified (OCR): 13 years in the Patkai; arrival at Khamjang 1228; Naga raids. Route still unrecorded."
         }
       ]
     },
@@ -599,7 +648,7 @@
         "precision": "year",
         "calendarNote": "Conventional founding date of the Ahom kingdom; chronicle-derived."
       },
-      "summary": "Sukaphaa's arrival in the upper Brahmaputra valley is conventionally dated to 1228, the date used for the start of Ahom rule.",
+      "summary": "In 1228 Sukaphaa reached Khamjang, according to the Buranjis as summarised by Gait. From there his party moved on through Dangkaorang and Khamhangpung to Namrup, on the edge of the upper Brahmaputra valley. 1228 is the date conventionally used for the start of Ahom rule.",
       "participants": [
         "ahom"
       ],
@@ -607,15 +656,17 @@
         "Sukaphaa"
       ],
       "locations": [
+        "khamjang",
         "namrup"
       ],
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Sukapha",
+          "pages": "pp. 74-75",
+          "locator": "arrival in Khamjang 1228; Dangkaorang, Khamhangpung, Namrup",
           "supports": [
-            "date"
+            "date",
+            "location"
           ]
         },
         {
@@ -686,7 +737,7 @@
         "precision": "decade",
         "end": "1253"
       },
-      "summary": "Over roughly a quarter-century the chronicles move Sukaphaa's group between several sites, abandoning some because of floods, before settling at Charaideo. Several of these places can only be located approximately.",
+      "summary": "Gait's summary of the Buranjis gives a dated sequence. Sukaphaa bridged the Sessa, tried the Dihing, then settled at Tipam. In 1236 he moved to Mungklang Chekhru (Abhaypur); a flood in 1240 drove him down the Brahmaputra to Habung, where his people lived by cultivation; another flood in 1244 pushed him on to the Dikhu mouth and Ligirigaon; in 1246 he moved to Simaluguri. Several of these places can only be located approximately.",
       "participants": [
         "ahom"
       ],
@@ -694,18 +745,21 @@
         "Sukaphaa"
       ],
       "locations": [
+        "namrup",
         "tipam",
         "abhaypur",
         "habung",
+        "ligirigaon",
         "simaluguri",
         "charaideo"
       ],
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Sukapha",
+          "pages": "p. 75",
+          "locator": "Tipam; Mungklang Chekhru (Abhaypur) 1236; Habung 1240; Ligirigaon 1244; Simaluguri 1246",
           "supports": [
+            "date",
             "location"
           ]
         },
@@ -719,8 +773,8 @@
         }
       ],
       "confidence": {
-        "level": "C",
-        "basis": "Sequence is chronicle-derived; site identifications partly uncertain."
+        "level": "B",
+        "basis": "Dated sequence verified in Gait p. 75 (chronicle-derived); locations partly approximate."
       },
       "claimStatus": "approximate",
       "eventType": "migration",
@@ -771,6 +825,78 @@
       ]
     },
     {
+      "id": "e02-naga-violence",
+      "episode": 2,
+      "title": "Violence against the Nagas of the Patkai",
+      "date": {
+        "start": "1228",
+        "precision": "year",
+        "calendarNote": "Placed by Gait at the Nongnyang lake stage, after arrival in Khamjang in 1228."
+      },
+      "summary": "Some Nagas resisted the newcomers. The Buranjis, as summarised by Gait, record that Sukaphaa defeated them and treated captives with extreme cruelty to terrify the surrounding villages into submission, and that he left a noble to rule the conquered area. Gait himself condemns these methods. The episode is part of the founding story and should be told plainly, without graphic visuals.",
+      "participants": [
+        "ahom",
+        "naga-communities"
+      ],
+      "persons": [
+        "Sukaphaa"
+      ],
+      "locations": [
+        "nong-nyang",
+        "patkai"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": "pp. 74-76",
+          "locator": "Naga resistance at Nongnyang; Gait's verdict on Sukapha",
+          "supports": [
+            "outcome",
+            "participants"
+          ]
+        },
+        {
+          "sourceId": "barua1930",
+          "pages": null,
+          "locator": "Sukapha's journey",
+          "supports": [
+            "outcome"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Recorded in the Ahom chronicles and reported by Gait; one-sided source, but self-incriminating rather than flattering to the dynasty."
+      },
+      "claimStatus": "documented",
+      "eventType": "conquest",
+      "territorialEffect": {
+        "type": "none",
+        "notes": "Local submission; no mappable territory."
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Details come only from the Ahom side; no Naga account survives in written form."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [
+        {
+          "kind": "caption",
+          "text": "The chronicles record violent conquest of Naga villages",
+          "tag": "documented"
+        }
+      ],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Added after Gait p. 74 verification; omitted in the Phase 1 draft."
+        }
+      ]
+    },
+    {
       "id": "e02-moran-borahi",
       "episode": 2,
       "title": "Morans and Borahis incorporated",
@@ -779,23 +905,28 @@
         "precision": "decade",
         "end": "1268"
       },
-      "summary": "The newcomers subdued and incorporated the local Moran and Borahi communities, partly through intermarriage and assimilation. Their numbers and the exact area involved are not recorded.",
+      "summary": "The country around the new settlements belonged to the Morans, whose king Gait names as Badancha, and the Borahis, ruled by Thakumtha. Sukaphaa fought and defeated both, then, in Gait's account, adopted conciliatory policies, treating them as equals and encouraging intermarriage. Their numbers and the exact area involved are not recorded.",
       "participants": [
         "ahom",
         "moran",
         "borahi"
       ],
-      "persons": [],
+      "persons": [
+        "Badancha",
+        "Thakumtha",
+        "Sukaphaa"
+      ],
       "locations": [
         "charaideo"
       ],
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Sukapha",
+          "pages": "pp. 75-76",
+          "locator": "Morans under Badancha, Borahis under Thakumtha",
           "supports": [
-            "participants"
+            "participants",
+            "outcome"
           ]
         },
         {
@@ -878,8 +1009,8 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Sukapha",
+          "pages": "p. 75",
+          "locator": "Simaluguri abandoned for Charaideo, 1253",
           "supports": [
             "date",
             "location"
@@ -897,7 +1028,7 @@
       ],
       "confidence": {
         "level": "B",
-        "basis": "Standard scholarly account derived from Buranji chronology; page locator not yet verified."
+        "basis": "Gait p. 75 verified (chronicle-derived date); site confirmed by UNESCO inscription."
       },
       "claimStatus": "documented",
       "eventType": "foundation",
@@ -956,7 +1087,7 @@
         "precision": "year",
         "calendarNote": "Chronicle-derived."
       },
-      "summary": "Sukaphaa died in 1268 according to the standard chronology.",
+      "summary": "Sukaphaa died in 1268. Gait credits him with creating the two great offices of state, the Bar Gohain and the Burha Gohain, and notes that the Ahoms called the country Mungdunsunkham, 'the country full of golden gardens'.",
       "participants": [
         "ahom"
       ],
@@ -969,10 +1100,11 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Sukapha",
+          "pages": "p. 76",
+          "locator": "death of Sukapha, 1268; Bar Gohain and Burha Gohain appointed",
           "supports": [
-            "date"
+            "date",
+            "context"
           ]
         }
       ],
@@ -1078,10 +1210,9 @@
       "title": "Early Ahom-Chutia conflict",
       "date": {
         "start": "1376",
-        "precision": "circa-year",
-        "calendarNote": "Gait's chronology dates the killing of Sutuphaa to c.1376; verify."
+        "precision": "year"
       },
-      "summary": "Relations with the Chutia kingdom to the north-east alternated between peace and war. Chronicles report that the Ahom king Sutuphaa was killed by the Chutia ruler, an episode followed by an interregnum.",
+      "summary": "Relations with the Chutia kingdom alternated between peace and war. Gait records frequent disputes under Sutuphaa, and says that in 1376 the Chutia king visited him at Chapaguri, pretending reconciliation, and killed him. An interregnum followed (1376-1380 in Gait's table).",
       "participants": [
         "ahom",
         "chutia"
@@ -1095,8 +1226,8 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Sutupha",
+          "pages": "pp. 78-79",
+          "locator": "Sutupha (1364-76) and the Chutiyas",
           "supports": [
             "date",
             "outcome"
@@ -1104,10 +1235,10 @@
         }
       ],
       "confidence": {
-        "level": "C",
-        "basis": "Single-tradition account; date and circumstances to be cross-checked."
+        "level": "B",
+        "basis": "Gait pp. 78-79 verified (chronicle account)."
       },
-      "claimStatus": "disputed",
+      "claimStatus": "documented",
       "eventType": "battle",
       "territorialEffect": {
         "type": "none"
@@ -1146,8 +1277,8 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Sudangpha",
+          "pages": "p. 80",
+          "locator": "Sudangpha became king in 1397",
           "supports": [
             "date"
           ]
@@ -1205,8 +1336,8 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Suhungmung",
+          "pages": "pp. 356-358",
+          "locator": "Appendix: 'Chronology of Ahom Kings' (exact page within range not resolvable from OCR)",
           "supports": [
             "date"
           ]
@@ -1254,17 +1385,18 @@
           {
             "value": "1524",
             "sourceId": "wiki-finding-aids",
-            "note": "Some secondary works give 1524; resolve from Barpujari vol. 2."
+            "note": "Some later works give 1524; Gait gives 1523."
           }
         ]
       },
-      "summary": "The Ahoms conquered the Chutia kingdom and placed its territory under a new Ahom governor, the Sadiyakhowa Gohain. This moved the Ahom frontier north-east towards Sadiya.",
+      "summary": "After fighting from 1518, the Chutias besieged an Ahom fort in 1523 and were routed. Gait's account says their king and his eldest son were killed, the royal family captured, and the whole Chutia country annexed under a new officer, the Sadiya Khowa Gohain. Ahom settlers were moved from Garhgaon to Sadiya to hold it.",
       "participants": [
         "ahom",
         "chutia"
       ],
       "persons": [
-        "Suhungmung"
+        "Suhungmung",
+        "Dhir Narayan"
       ],
       "locations": [
         "sadiya"
@@ -1272,8 +1404,8 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Suhungmung",
+          "pages": "pp. 84-85",
+          "locator": "Chutiya wars 1518-1523; annexation; Sadiya Khowa Gohain",
           "supports": [
             "date",
             "outcome",
@@ -1305,7 +1437,8 @@
       },
       "numericClaims": [],
       "disputes": [
-        "Year 1523 vs 1524."
+        "Year 1523 vs 1524.",
+        "Gait (p. 84 fn.) notes other accounts date the first Chutia invasion to 1516 and name the king Chandra Narayan rather than Dhir Narayan."
       ],
       "narration": {
         "status": "pending"
@@ -1351,9 +1484,9 @@
       "episode": 4,
       "title": "Invasion from Bengal repulsed (Turbak)",
       "date": {
-        "start": "1532",
-        "precision": "year",
-        "end": "1533"
+        "start": "1532-04",
+        "end": "1533",
+        "precision": "month"
       },
       "summary": "An army from the Bengal Sultanate under the commander Turbak advanced up the Brahmaputra and was eventually defeated; Turbak was killed. This is the first major clash with a Muslim power from Bengal in Ahom accounts.",
       "participants": [
@@ -1370,8 +1503,8 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Suhungmung",
+          "pages": "pp. 90-92",
+          "locator": "Turbak's invasion from April 1532; death near the Bharali",
           "supports": [
             "date",
             "outcome"
@@ -1387,7 +1520,19 @@
       "territorialEffect": {
         "type": "none"
       },
-      "numericClaims": [],
+      "numericClaims": [
+        {
+          "value": "thirty elephants, 1,000 horses, artillery and many foot soldiers",
+          "what": "Turbak's invading force",
+          "sourceRef": {
+            "sourceId": "gait1906",
+            "pages": "p. 90"
+          },
+          "confidence": "C",
+          "displayPolicy": "attributed",
+          "attribution": "Buranji figures reported by Gait"
+        }
+      ],
       "disputes": [
         "Battle locations and army sizes are not reliably recorded; do not display numbers."
       ],
@@ -1426,10 +1571,18 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Suhungmung; Kacharis",
+          "pages": "p. 244",
+          "locator": "1536: Detsung quarrels with the Ahoms; Dimapur sacked",
           "supports": [
             "date",
+            "outcome"
+          ]
+        },
+        {
+          "sourceId": "gait1906",
+          "pages": "pp. 94-95",
+          "locator": "Kachari power broken; Dimapur twice occupied; Marangi Khowa Gohain",
+          "supports": [
             "outcome"
           ]
         },
@@ -1513,8 +1666,8 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Suhungmung",
+          "pages": "pp. 356-358",
+          "locator": "Appendix: 'Chronology of Ahom Kings' (exact page within range not resolvable from OCR)",
           "supports": [
             "date"
           ]
@@ -1564,10 +1717,9 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Suklenmung",
+          "pages": "p. 95",
+          "locator": "Suklenmung made his capital at Garhgaon (Garhgaya Raja)",
           "supports": [
-            "date",
             "location"
           ]
         }
@@ -1617,10 +1769,11 @@
       "title": "Koch invasion and temporary occupation of Garhgaon",
       "date": {
         "start": "1562",
+        "end": "1563",
         "precision": "year",
-        "end": "1563"
+        "calendarNote": "Main invasion January 1563; withdrawal in the autumn (Gait p. 98)."
       },
-      "summary": "The Koch king Naranarayan and his brother and general Chilarai invaded, and the Ahom king withdrew to the hills near Namrup. The Koch occupied Garhgaon temporarily and withdrew after the Ahoms submitted terms that included hostages. This was an occupation, not a lasting annexation.",
+      "summary": "In 1562 a Koch fleet under the general Tipu came up the Brahmaputra. In January 1563 Silarai (Chilarai) himself routed the Ahoms; the king fled to Charaikharang in Namrup and Silarai camped in Garhgaon. Three months later peace was made on Koch terms: acknowledgment of Koch supremacy, cession of a large tract on the north bank, hostages from noble families, and an indemnity. Silarai withdrew in the autumn, leaving a garrison at Narayanpur to hold the north-bank cession. The capital was occupied, then given back; the north-bank loss was real.",
       "participants": [
         "koch",
         "ahom"
@@ -1628,7 +1781,8 @@
       "persons": [
         "Naranarayan",
         "Chilarai",
-        "Sukhaamphaa"
+        "Sukhaamphaa",
+        "Tipu"
       ],
       "locations": [
         "garhgaon",
@@ -1638,11 +1792,12 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Sukhaamphaa (Khora Raja); Koch kings",
+          "pages": "p. 98",
+          "locator": "Koch invasions 1562-63; Silarai at Garhgaon; terms of peace",
           "supports": [
             "date",
-            "outcome"
+            "outcome",
+            "territory"
           ]
         },
         {
@@ -1667,11 +1822,23 @@
         "snapshotIds": [
           "s1563"
         ],
-        "notes": "Must be paired with withdrawal in the same snapshot narrative."
+        "notes": "Temporary occupation of Garhgaon; formal acknowledgment of Koch supremacy; north-bank tract ceded and garrisoned at Narayanpur."
       },
-      "numericClaims": [],
+      "numericClaims": [
+        {
+          "value": "sixty elephants, sixty pieces of cloth and a large quantity of gold and silver",
+          "what": "war indemnity paid to the Koch",
+          "sourceRef": {
+            "sourceId": "gait1906",
+            "pages": "p. 98"
+          },
+          "confidence": "C",
+          "displayPolicy": "attributed",
+          "attribution": "terms as given by Gait from the Buranjis"
+        }
+      ],
       "disputes": [
-        "Terms of the settlement differ between accounts."
+        "Extent of the ceded north-bank tract is not stated precisely."
       ],
       "narration": {
         "status": "pending"
@@ -1747,12 +1914,13 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Koch Hajo; Mughal conquest",
+          "pages": "pp. 64-65",
+          "locator": "Parikshit's dominions 'as far as the Bar Nadi' annexed; Mughal garrison; Hajo",
           "supports": [
-            "date",
-            "outcome"
-          ]
+            "outcome",
+            "territory"
+          ],
+          "note": "Year 1612-13 not checked on these pages."
         },
         {
           "sourceId": "barpujari1990",
@@ -1964,12 +2132,12 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "treaty of 1639",
+          "pages": "pp. 115-116",
+          "locator": "treaty fixing the Bar Nadi and Asurar Ali as the boundary",
           "supports": [
-            "date",
             "territory"
-          ]
+          ],
+          "note": "The year is not printed in the verified passage; 1639 is from the standard chronology."
         },
         {
           "sourceId": "barpujari1990",
@@ -2042,7 +2210,7 @@
         "start": "1658",
         "precision": "year"
       },
-      "summary": "While Shah Jahan's sons fought over the Mughal throne, Jayadhwaj Singha's forces pushed west and occupied Guwahati and Mughal-held Kamrup. This provoked the later Mughal response.",
+      "summary": "When Shah Jahan fell ill in 1658 and his sons fought for the throne, Jayadhwaj Singha bridged the Kallang and advanced on Gauhati; the Mughal faujdar fled. Rejecting a Koch offer to share the spoils, the Ahoms drove the Koches back across the Sankosh and, in Gait's words, became masters of the whole Brahmaputra valley for nearly three years.",
       "participants": [
         "ahom",
         "mughal"
@@ -2056,11 +2224,12 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Jayadhwaj Singha",
+          "pages": "pp. 125-126",
+          "locator": "Shah Jahan's illness; Jayadhvaj crosses the Kallang; Gauhati taken; Koches driven across the Sankosh",
           "supports": [
             "date",
-            "outcome"
+            "outcome",
+            "territory"
           ]
         },
         {
@@ -2105,11 +2274,11 @@
       "episode": 6,
       "title": "Mir Jumla's invasion begins",
       "date": {
-        "start": "1661-11",
-        "precision": "month",
-        "end": "1662-03"
+        "start": "1662-01-04",
+        "end": "1662-03",
+        "precision": "day"
       },
-      "summary": "Mir Jumla, the Mughal governor of Bengal, led an army and river fleet up the Brahmaputra. He retook Guwahati and pressed east into the Ahom heartland.",
+      "summary": "Mir Jumla, the Mughal governor of Bengal, first occupied Koch Bihar and then, on 4 January 1662, set out for Assam with an army and river fleet. He retook Gauhati and pressed east into the Ahom heartland.",
       "participants": [
         "mughal",
         "ahom"
@@ -2119,7 +2288,7 @@
         "Jayadhwaj Singha"
       ],
       "locations": [
-        "dhaka",
+        "koch-bihar",
         "guwahati",
         "kaliabor",
         "garhgaon"
@@ -2127,11 +2296,10 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Jayadhwaj Singha; Mir Jumla",
+          "pages": "p. 127",
+          "locator": "Mir Jumlah occupies Koch Bihar, then sets out for Assam on 4 January 1662",
           "supports": [
-            "date",
-            "outcome"
+            "date"
           ]
         },
         {
@@ -2188,6 +2356,13 @@
         {
           "kind": "arrow",
           "polity": "mughal",
+          "from": "koch-bihar",
+          "to": "guwahati",
+          "style": "advance"
+        },
+        {
+          "kind": "arrow",
+          "polity": "mughal",
           "from": "guwahati",
           "to": "garhgaon",
           "style": "naval"
@@ -2197,6 +2372,10 @@
         {
           "date": "2026-11-07",
           "note": "Phase 1 draft; page locators pending."
+        },
+        {
+          "date": "2026-11-07",
+          "note": "Corrected start from Nov 1661 (unsourced) to 4 Jan 1662 per Gait p. 127."
         }
       ]
     },
@@ -2205,9 +2384,8 @@
       "episode": 6,
       "title": "Mughal occupation of Garhgaon",
       "date": {
-        "start": "1662-03",
-        "precision": "month",
-        "calendarNote": "Often given as 17 March 1662; day to be verified against Talish/Barpujari."
+        "start": "1662-03-17",
+        "precision": "day"
       },
       "summary": "The Mughal army entered the Ahom capital Garhgaon. Jayadhwaj Singha withdrew to the hills near Namrup. The capital was occupied, but the kingdom was not annexed.",
       "participants": [
@@ -2225,8 +2403,8 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Mir Jumla",
+          "pages": "p. 133",
+          "locator": "17 March: the Nawab entered Garhgaon",
           "supports": [
             "date",
             "location"
@@ -2360,16 +2538,16 @@
       "date": {
         "start": "1663-01",
         "precision": "month",
-        "calendarNote": "Commonly 23 January 1663; one secondary source gives February. Place sometimes given as Tipam.",
+        "calendarNote": "Concluded before 9 January 1663, when Mir Jumla ordered the return (Gait p. 137). 23 January is given in some later works, which conflicts with this.",
         "alternatives": [
           {
-            "value": "1663-02-23",
+            "value": "1663-01-23",
             "sourceId": "wiki-finding-aids",
-            "note": "Likely a typographical variant; resolve from primary account."
+            "note": "Later date in secondary works; inconsistent with Gait's 9 January departure order."
           }
         ]
       },
-      "summary": "Jayadhwaj Singha accepted harsh terms: an indemnity, hostages, and the cession of western territory to the Mughals. The Ahom kingdom became tributary on paper, and the terms were only partly carried out.",
+      "summary": "Jayadhwaj Singha accepted heavy terms: a daughter for the imperial household, an immediate and a deferred indemnity in gold, silver and elephants, hostages from noble families, an annual tribute of elephants, the return of prisoners, and the cession of the country west of the Bharali (north bank) and the Kallang (south bank). The terms were only partly carried out.",
       "participants": [
         "ahom",
         "mughal"
@@ -2385,12 +2563,14 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Mir Jumla; treaty",
+          "pages": "pp. 136-137",
+          "locator": "terms of the treaty; order to return issued 9 January 1663",
           "supports": [
             "date",
-            "territory"
-          ]
+            "territory",
+            "numbers"
+          ],
+          "note": "Gait does not use the name 'Ghilajharighat'."
         },
         {
           "sourceId": "barpujari1990",
@@ -2412,7 +2592,7 @@
       ],
       "confidence": {
         "level": "B",
-        "basis": "Treaty is well attested; individual terms and the exact boundary are disputed."
+        "basis": "Terms verified in Gait pp. 136-137; the treaty's name and exact day vary in later works."
       },
       "claimStatus": "disputed",
       "eventType": "treaty",
@@ -2423,12 +2603,36 @@
         "snapshotIds": [
           "s1663"
         ],
-        "notes": "Western boundary commonly given as the Bharali (north bank) and Kalang (south bank) - VERIFY before drawing."
+        "notes": "Ceded: west of the Bharali (north bank) and of the Kallang (south bank), per Gait p. 136."
       },
-      "numericClaims": [],
+      "numericClaims": [
+        {
+          "value": "20,000 tolas of gold, six times as much silver and 40 elephants at once; 300,000 tolas of silver and 90 elephants within twelve months; 20 elephants a year",
+          "what": "indemnity and tribute",
+          "sourceRef": {
+            "sourceId": "gait1906",
+            "pages": "p. 136"
+          },
+          "confidence": "C",
+          "displayPolicy": "attributed",
+          "attribution": "terms as listed by Gait"
+        },
+        {
+          "value": "six sons of the chief nobles",
+          "what": "hostages",
+          "sourceRef": {
+            "sourceId": "gait1906",
+            "pages": "p. 136"
+          },
+          "confidence": "C",
+          "displayPolicy": "attributed",
+          "attribution": "as listed by Gait"
+        }
+      ],
       "disputes": [
-        "Indemnity quantities differ across Persian and Assamese sources; not displayed.",
-        "Exact boundary line to be verified."
+        "Exact day (Gait implies before 9 Jan; later works say 23 Jan).",
+        "Treaty name 'Ghilajharighat' comes from later works.",
+        "Quantities differ between Persian and Assamese sources (Gait's list follows one version)."
       ],
       "narration": {
         "status": "pending"
@@ -2447,11 +2651,11 @@
       "episode": 6,
       "title": "Mughal withdrawal and Mir Jumla's death",
       "date": {
-        "start": "1663",
-        "precision": "year",
-        "calendarNote": "Mir Jumla died on the return journey in spring 1663 (commonly 30/31 March); verify day."
+        "start": "1663-01-09",
+        "end": "1663-03-30",
+        "precision": "day"
       },
-      "summary": "The Mughal army withdrew from upper Assam. Mir Jumla fell ill and died on the way back to Dhaka. The occupation of the Ahom capital ended.",
+      "summary": "On 9 January 1663 Mir Jumla ordered the army back to Bengal. He fell ill on the way and died on 30 March 1663, just before his ship reached Dacca. Jayadhwaj Singha returned to his capital. The occupation of the Ahom heartland was over.",
       "participants": [
         "mughal",
         "ahom"
@@ -2467,8 +2671,8 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Mir Jumla",
+          "pages": "p. 137",
+          "locator": "return ordered 9 January 1663; Mir Jumlah dies 30 March 1663 just before reaching Dacca",
           "supports": [
             "date",
             "outcome"
@@ -2524,11 +2728,11 @@
       "episode": 7,
       "title": "Guwahati recaptured; Lachit Borphukan in command",
       "date": {
-        "start": "1667",
-        "precision": "year",
-        "calendarNote": "Recapture commonly placed in November 1667; verify month."
+        "start": "1667-08",
+        "end": "1667-11",
+        "precision": "month"
       },
-      "summary": "Under Chakradhwaj Singha the Ahoms prepared a counter-offensive. Their commander Lachit, appointed Borphukan, retook Itakhuli and Guwahati from the Mughals.",
+      "summary": "In August 1667 Chakradhwaj Singha sent an army west under Lachit, son of the Bar Barua, newly appointed Bar Phukan. Gauhati and Pandu fell after a two-month siege; Mughal reinforcements that arrived in November were defeated and pursued to the Manas.",
       "participants": [
         "ahom",
         "mughal"
@@ -2543,20 +2747,22 @@
       ],
       "sourceRefs": [
         {
+          "sourceId": "gait1906",
+          "pages": "pp. 146-147",
+          "locator": "August 1667 expedition under Lachit, appointed Bar Phukan; Gauhati and Pandu taken after a two-month siege; Mughals pursued to the Manas",
+          "supports": [
+            "date",
+            "outcome",
+            "participants"
+          ]
+        },
+        {
           "sourceId": "bhuyan1947",
           "pages": null,
           "locator": "1667 campaign",
           "supports": [
             "date",
             "outcome"
-          ]
-        },
-        {
-          "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Chakradhwaj Singha",
-          "supports": [
-            "date"
           ]
         }
       ],
@@ -2608,9 +2814,8 @@
       "episode": 7,
       "title": "Raja Ram Singh's army arrives",
       "date": {
-        "start": "1669",
-        "precision": "year",
-        "calendarNote": "Ram Singh appointed 1667-68, arrives in Kamrup early 1669 per standard accounts; verify."
+        "start": "1669-02",
+        "precision": "month"
       },
       "summary": "Aurangzeb sent Raja Ram Singh of Amber to recover Kamrup. His army reached the Guwahati front, where the Ahoms held fortified positions on both banks of the river.",
       "participants": [
@@ -2625,6 +2830,16 @@
         "guwahati"
       ],
       "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": "p. 148",
+          "locator": "Aurangzeb appoints Raja Ram Singh; arrival at Rangamati February 1669",
+          "supports": [
+            "date",
+            "participants",
+            "numbers"
+          ]
+        },
         {
           "sourceId": "bhuyan1947",
           "pages": null,
@@ -2651,7 +2866,19 @@
       "territorialEffect": {
         "type": "none"
       },
-      "numericClaims": [],
+      "numericClaims": [
+        {
+          "value": "18,000 cavalry and 30,000 infantry, with 15,000 archers from Koch Bihar",
+          "what": "Ram Singh's army",
+          "sourceRef": {
+            "sourceId": "gait1906",
+            "pages": "p. 148"
+          },
+          "confidence": "C",
+          "displayPolicy": "attributed",
+          "attribution": "figures from the Mughal Alamgirnamah as cited by Gait; the Buranjis give none"
+        }
+      ],
       "disputes": [
         "Mughal army size is often quoted but sources differ; not displayed."
       ],
@@ -2700,6 +2927,15 @@
           "supports": [
             "outcome"
           ]
+        },
+        {
+          "sourceId": "gait1906",
+          "pages": "p. 149",
+          "locator": "Ram Singh routs the Ahom army with heavy loss",
+          "supports": [
+            "context"
+          ],
+          "note": "Gait does not name Alaboi; this may or may not be the same engagement."
         }
       ],
       "confidence": {
@@ -2743,7 +2979,7 @@
           }
         ]
       },
-      "summary": "In a river battle at the narrows of the Brahmaputra near Guwahati, Ahom boats under Lachit Borphukan defeated the Mughal fleet's attempt to break through. Mughal forces withdrew, and Guwahati stayed in Ahom hands.",
+      "summary": "Fighting around Gauhati in 1670 and 1671 included naval and land engagements on the Brahmaputra. By March 1671 Ram Singh's army, weakened by repeated losses, retreated to Rangamati, and Hadira opposite Goalpara became the Ahom frontier outpost. Modern accounts, beginning with S. K. Bhuyan's 1947 study, identify the decisive action as a river battle at Saraighat under Lachit Borphukan.",
       "participants": [
         "ahom",
         "mughal"
@@ -2759,6 +2995,16 @@
         "itakhuli"
       ],
       "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": "p. 150",
+          "locator": "operations of 1670 and 1671; Ram Singh retreats in March 1671; Hadira becomes the Ahom frontier outpost",
+          "supports": [
+            "date",
+            "outcome"
+          ],
+          "note": "Gait does not name Saraighat and says the Buranjis are too confused to follow the operations in detail."
+        },
         {
           "sourceId": "bhuyan1947",
           "pages": null,
@@ -2776,31 +3022,24 @@
             "date",
             "participants"
           ]
-        },
-        {
-          "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Udayaditya Singha",
-          "supports": [
-            "date"
-          ]
         }
       ],
       "confidence": {
         "level": "B",
-        "basis": "Battle and outcome are well attested; tactical details rely on chronicle narrative."
+        "basis": "Mughal retreat in March 1671 verified in Gait p. 150. The named battle and its tactics rest on Bhuyan 1947 (pages pending)."
       },
       "claimStatus": "documented",
       "eventType": "naval-battle",
       "territorialEffect": {
         "type": "none",
-        "notes": "Defensive victory; status quo of s1667 maintained."
+        "notes": "Ahoms keep Gauhati; Hadira (opposite Goalpara) becomes the frontier outpost (Gait p. 150)."
       },
       "numericClaims": [],
       "disputes": [
         "Lachit being ill and leading from a boat is tradition-heavy; tag as traditional.",
         "The poppy-seed exchange is an anecdote; tag as traditional.",
-        "Do not quote 'My uncle is not greater than my country' as verified speech."
+        "Do not quote 'My uncle is not greater than my country' as verified speech.",
+        "Gait (1906) gives no named 'Battle of Saraighat'; the detailed battle narrative is a later (Bhuyan 1947) reconstruction from Buranjis."
       ],
       "narration": {
         "status": "pending"
@@ -2848,6 +3087,10 @@
         {
           "date": "2026-11-07",
           "note": "Phase 1 draft; page locators pending."
+        },
+        {
+          "date": "2026-11-07",
+          "note": "Gait p. 150 checked: no Saraighat/Lachit-illness narrative in Gait; Bhuyan 1947 pages needed."
         }
       ]
     },
@@ -2888,7 +3131,9 @@
         "type": "none"
       },
       "numericClaims": [],
-      "disputes": [],
+      "disputes": [
+        "Gait (1906) mentions Lachit only once (p. 146) and says nothing of his death."
+      ],
       "narration": {
         "status": "pending"
       },
@@ -2906,10 +3151,10 @@
       "episode": 8,
       "title": "Guwahati handed back to the Mughals",
       "date": {
-        "start": "1679",
-        "precision": "year"
+        "start": "1679-03",
+        "precision": "month"
       },
-      "summary": "During a period of court instability and short reigns, the Ahom governor Laluksola Borphukan surrendered Guwahati to the Mughals.",
+      "summary": "During a period of court instability, the Bar Phukan at Gauhati (Laluksola) entered into secret correspondence with the Nawab of Bengal and surrendered Gauhati to the Mughals early in March 1679. Gait notes this is the Ahom version; the Mughal Maasir-i-Alamgiri mentions the 'conquest' without details.",
       "participants": [
         "ahom",
         "mughal"
@@ -2923,8 +3168,8 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "period of puppet kings",
+          "pages": "p. 157",
+          "locator": "Bar Phukan's treasonable correspondence; Gauhati surrendered early in March 1679",
           "supports": [
             "date",
             "outcome"
@@ -2986,8 +3231,8 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Gadadhar Singha",
+          "pages": "p. 159",
+          "locator": "accession of Supatpha / Gadadhar Singh, 1681",
           "supports": [
             "date"
           ]
@@ -3021,11 +3266,18 @@
       "episode": 8,
       "title": "Battle of Itakhuli",
       "date": {
-        "start": "1682-08",
-        "precision": "month",
-        "calendarNote": "Mid-August 1682 per standard accounts; pursuit continued into following weeks."
+        "start": "1682",
+        "precision": "year",
+        "calendarNote": "Year from cannon inscriptions dated 1604 Saka (Gait p. 161). August is given in later works (unverified here).",
+        "alternatives": [
+          {
+            "value": "1682-08",
+            "sourceId": "wiki-finding-aids",
+            "note": "Month from secondary works; verify in Barpujari vol. 2."
+          }
+        ]
       },
-      "summary": "Ahom forces retook Guwahati and the Itakhuli fort and pursued the Mughals west to the Manas river. The Manas then became the western limit of the Ahom kingdom for the rest of its history.",
+      "summary": "Gadadhar Singha's army took the Mughal forts near Gauhati and won a great naval victory near the mouth of the Barnadi, capturing the Mughal fleet. The faujdar fled and was pursued to the Manas. Gait calls this the last Muhammadan war: from then on both sides accepted the Manas as the boundary. Two surviving cannon are inscribed as taken by Gadadhar Singha at Gauhati in 1604 Saka (1682).",
       "participants": [
         "ahom",
         "mughal"
@@ -3041,12 +3293,14 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Gadadhar Singha",
+          "pages": "pp. 160-161",
+          "locator": "Gauhati retaken; naval victory near the Barnadi mouth; pursuit to the Manas; Manas accepted as boundary; inscribed cannon of 1604 Saka",
           "supports": [
-            "date",
-            "territory"
-          ]
+            "outcome",
+            "territory",
+            "date"
+          ],
+          "note": "Gait gives the year from cannon inscriptions but no month, and does not name Itakhuli."
         },
         {
           "sourceId": "barpujari1990",
@@ -3082,7 +3336,10 @@
         "notes": "Western boundary at the Manas; some accounts name Hadira opposite Goalpara."
       },
       "numericClaims": [],
-      "disputes": [],
+      "disputes": [
+        "Later works call this the Battle of Itakhuli and date it to August 1682; Gait names neither.",
+        "Resolved: Hadira (opposite Goalpara) was the outpost after 1671 (Gait p. 150); the Manas became the boundary after 1682 (p. 160)."
+      ],
       "narration": {
         "status": "pending"
       },
@@ -3148,10 +3405,18 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Rudra Singha",
+          "pages": "pp. 356-358",
+          "locator": "Appendix: 'Chronology of Ahom Kings' (exact page within range not resolvable from OCR)",
           "supports": [
             "date"
+          ]
+        },
+        {
+          "sourceId": "gait1906",
+          "pages": "p. 245",
+          "locator": "Rudra Singh calls in a Bengal artisan to build in brick at Rangpur",
+          "supports": [
+            "context"
           ]
         },
         {
@@ -3212,33 +3477,37 @@
     {
       "id": "e09-kachari-jaintia-campaign",
       "episode": 9,
-      "title": "Campaigns against the Kachari and Jaintia kingdoms",
+      "title": "Kachari and Jaintia campaigns: announced annexation, rising and retreat",
       "date": {
-        "start": "1706",
-        "precision": "year",
-        "end": "1708"
+        "start": "1706-12",
+        "end": "1708",
+        "precision": "month"
       },
-      "summary": "Ahom armies entered the Kachari and Jaintia kingdoms. The outcome was submission and tribute, not lasting annexation; both kingdoms kept their own rulers.",
+      "summary": "When the Kachari king Tamradhwaj asserted his independence, Rudra Singha sent two armies, from December 1706, up the Dhansiri and Kopili valleys to the Kachari capital at Maibang; sickness forced a withdrawal. After the Jaintia king seized Tamradhwaj, a second campaign took both kings captive and occupied Jaintiapur, and in February 1708 the Ahoms announced that both kingdoms were annexed. A Jaintia and Khasi rising followed; before the rains the Ahom commanders retreated, destroying Jaintiapur and killing many inhabitants. The annexation did not last.",
       "participants": [
         "ahom",
         "kachari",
         "jaintia"
       ],
       "persons": [
-        "Rudra Singha"
+        "Rudra Singha",
+        "Tamradhwaj",
+        "Ram Singh of Jaintia"
       ],
       "locations": [
+        "maibang",
         "khaspur",
         "jaintiapur"
       ],
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Rudra Singha",
+          "pages": "pp. 165-173",
+          "locator": "Tamradhvaj asserts independence; campaigns of 1706-08; annexation announced Feb 1708; Jaintia rising and Ahom retreat",
           "supports": [
             "date",
-            "outcome"
+            "outcome",
+            "numbers"
           ]
         },
         {
@@ -3257,15 +3526,38 @@
       "claimStatus": "documented",
       "eventType": "campaign",
       "territorialEffect": {
-        "type": "tributary-relationship",
+        "type": "occupation-begins",
         "actor": "ahom",
-        "subject": "kachari",
+        "subject": "jaintia",
         "snapshotIds": [
           "s1708"
         ],
-        "notes": "Render Kachari and Jaintia as tributary texture, temporary."
+        "notes": "Annexation proclaimed Feb 1708 (Gait p. 171) but reversed by the Jaintia rising and Ahom retreat (pp. 172-173). Render as occupation, then withdrawal."
       },
-      "numericClaims": [],
+      "numericClaims": [
+        {
+          "value": "over 37,000 and 34,000 men",
+          "what": "the two Ahom armies of December 1706",
+          "sourceRef": {
+            "sourceId": "gait1906",
+            "pages": "pp. 165-166"
+          },
+          "confidence": "C",
+          "displayPolicy": "attributed",
+          "attribution": "Buranji figures reported by Gait"
+        },
+        {
+          "value": "2,366 men killed, including twelve high officers",
+          "what": "Ahom losses in the Jaintia rising",
+          "sourceRef": {
+            "sourceId": "gait1906",
+            "pages": "p. 173"
+          },
+          "confidence": "C",
+          "displayPolicy": "attributed",
+          "attribution": "figure reported by Gait"
+        }
+      ],
       "disputes": [],
       "narration": {
         "status": "pending"
@@ -3276,7 +3568,7 @@
           "kind": "arrow",
           "polity": "ahom",
           "from": "rangpur",
-          "to": "khaspur",
+          "to": "maibang",
           "style": "advance"
         },
         {
@@ -3285,12 +3577,30 @@
           "from": "guwahati",
           "to": "jaintiapur",
           "style": "advance"
+        },
+        {
+          "kind": "occupationOverlay",
+          "polity": "ahom",
+          "placeIds": [
+            "jaintiapur"
+          ]
+        },
+        {
+          "kind": "arrow",
+          "polity": "ahom",
+          "from": "jaintiapur",
+          "to": "guwahati",
+          "style": "retreat"
         }
       ],
       "editorLog": [
         {
           "date": "2026-11-07",
           "note": "Phase 1 draft; page locators pending."
+        },
+        {
+          "date": "2026-11-07",
+          "note": "Corrected from 'tributary submission' to 'announced annexation, then retreat' per Gait pp. 171-173."
         }
       ]
     },
@@ -3315,10 +3625,11 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Rudra Singha",
+          "pages": "pp. 176-177",
+          "locator": "death of Rudra Singh; Sib Singh with him at Gauhati; projected invasion of Bengal given up",
           "supports": [
-            "date"
+            "outcome",
+            "location"
           ]
         }
       ],
@@ -3357,7 +3668,7 @@
         "end": "1769",
         "calendarNote": "Individual construction dates (e.g. Sivadol, Rang Ghar) need official monument notices."
       },
-      "summary": "18th-century kings built large water tanks, brick temples and palaces around Rangpur and Garhgaon, including the Rang Ghar pavilion, the Talatal Ghar palace complex and the Sivasagar temples. Exact construction years are given variously and will be shown only as reigns until verified.",
+      "summary": "18th-century kings built tanks, brick temples and palaces. Gait dates the Rang Ghar, an amphitheatre for animal fights at Rangpur, to 1745 under Pramatta Singha, alongside new buildings at Garhgaon and the Rudreswar and Sukreswar temples at Gauhati, and says Rajeswar Singha built brick palaces at Rangpur and Taimung. Other construction dates still need official monument notices.",
       "participants": [
         "ahom"
       ],
@@ -3374,9 +3685,10 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "18th-century kings",
+          "pages": "p. 179",
+          "locator": "1745: Rangghar built at Rangpur; new buildings at Garhgaon; Rudresvar and Sukresvar temples at Gauhati; Rajesvar Singh's palaces at Rangpur and Taimung",
           "supports": [
+            "date",
             "context"
           ]
         },
@@ -3475,19 +3787,19 @@
       "episode": 10,
       "title": "Moamoria rebellion: first uprising",
       "date": {
-        "start": "1769",
-        "precision": "year",
-        "end": "1770",
-        "calendarNote": "Uprising late 1769; royalist recovery 1770."
+        "start": "1769-10",
+        "end": "1770-04",
+        "precision": "month"
       },
-      "summary": "Followers of the Moamara satra, joined by other discontented groups, rose against the government, seized the capital Rangpur and held king Lakshmi Singha. Royalists regained control in 1770.",
+      "summary": "Followers of the Moamara satra, joined by other discontented groups, rose against the government. In October 1769 Ragha, a Moran leader styling himself Bar Barua, advanced down the north bank; king Lakshmi Singha fled Rangpur but was captured at Sonarinagar. The rebels enthroned Ramakant, who minted coins dated 1691 Saka (1769). In April 1770, on the eve of Bihu, royalists killed Ragha and restored the king, followed by harsh reprisals.",
       "participants": [
         "moamoria",
         "ahom"
       ],
       "persons": [
         "Lakshmi Singha",
-        "Ragha Moran"
+        "Ragha Moran",
+        "Ramakant"
       ],
       "locations": [
         "rangpur"
@@ -3495,8 +3807,8 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Lakshmi Singha",
+          "pages": "pp. 185-187",
+          "locator": "Ragha's advance, October 1769; king captured at Sonarinagar; Ramakant enthroned; counter-coup April 1770",
           "supports": [
             "date",
             "outcome"
@@ -3631,12 +3943,11 @@
       "episode": 10,
       "title": "Captain Welsh's expedition",
       "date": {
-        "start": "1792-11",
-        "precision": "month",
-        "end": "1794",
-        "calendarNote": "Arrival in Guwahati November 1792; recall in 1794 (month given as March or May in different accounts)."
+        "start": "1792-09",
+        "end": "1794-07-03",
+        "precision": "day"
       },
-      "summary": "At Gaurinath Singha's request the East India Company sent Captain Thomas Welsh with troops. He restored the king at Rangpur in 1794 and was then recalled. This was a limited intervention, not a British takeover.",
+      "summary": "At Gaurinath Singha's request the East India Company sent Captain Thomas Welsh with sepoys in September 1792. He reached Goalpara on 8 November and took Gauhati in December 1792, and restored the king at Rangpur in March 1794. Under the new Governor-General, Sir John Shore, the Company reversed policy and recalled him; the expedition was back in British territory on 3 July 1794. It was a limited intervention, not a takeover.",
       "participants": [
         "eic",
         "ahom",
@@ -3652,6 +3963,15 @@
       ],
       "sourceRefs": [
         {
+          "sourceId": "gait1906",
+          "pages": "pp. 197-209",
+          "locator": "Welsh sent September 1792; Goalpara 8 Nov 1792; crosses at Gauhati 6 Dec 1792; Rangpur 21 March 1794; recalled; British territory 3 July 1794",
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        },
+        {
           "sourceId": "bhuyan1949",
           "pages": null,
           "locator": "Welsh expedition",
@@ -3663,10 +3983,10 @@
         {
           "sourceId": "welsh-report-1794",
           "pages": null,
+          "locator": "Welsh's report, quoted by Gait",
           "supports": [
             "context"
-          ],
-          "note": "Edition not yet located."
+          ]
         }
       ],
       "confidence": {
@@ -3681,7 +4001,7 @@
       },
       "numericClaims": [],
       "disputes": [
-        "Departure month: March vs May 1794."
+        "Resolved by Gait p. 209: the expedition left Assam in summer 1794 (back in British territory 3 July), not March or May."
       ],
       "narration": {
         "status": "pending"
@@ -3728,16 +4048,17 @@
       ],
       "sourceRefs": [
         {
-          "sourceId": "bhuyan1949",
-          "pages": null,
+          "sourceId": "gait1906",
+          "pages": "p. 209",
+          "locator": "after the withdrawal Gaurinath moves to Jorhat, 'which now became the capital'",
           "supports": [
-            "date"
+            "date",
+            "location"
           ]
         },
         {
-          "sourceId": "gait1906",
+          "sourceId": "bhuyan1949",
           "pages": null,
-          "locator": "Gaurinath Singha",
           "supports": [
             "date"
           ]
@@ -3768,6 +4089,59 @@
       ]
     },
     {
+      "id": "e10-gaurinath-death",
+      "episode": 10,
+      "title": "Death of Gaurinath Singha",
+      "date": {
+        "start": "1794-12-19",
+        "precision": "day"
+      },
+      "summary": "Gaurinath Singha died on 19 December 1794, a few months after the Company's troops left.",
+      "participants": [
+        "ahom"
+      ],
+      "persons": [
+        "Gaurinath Singha"
+      ],
+      "locations": [
+        "jorhat"
+      ],
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": "p. 211",
+          "locator": "death of Gaurinath, 19 December 1794",
+          "supports": [
+            "date"
+          ]
+        }
+      ],
+      "confidence": {
+        "level": "B",
+        "basis": "Gait p. 211 verified."
+      },
+      "claimStatus": "documented",
+      "eventType": "death",
+      "territorialEffect": {
+        "type": "none"
+      },
+      "numericClaims": [],
+      "disputes": [
+        "Some secondary sources give January 1794 in error."
+      ],
+      "narration": {
+        "status": "pending"
+      },
+      "cameraView": null,
+      "animationInstructions": [],
+      "editorLog": [
+        {
+          "date": "2026-11-07",
+          "note": "Added from Gait p. 211 (resolves gap B8)."
+        }
+      ]
+    },
+    {
       "id": "e10-moamoria-end",
       "episode": 10,
       "title": "End of the rebellion and the Matak settlement",
@@ -3775,13 +4149,14 @@
         "start": "1805",
         "precision": "circa-year"
       },
-      "summary": "Under the minister Purnananda Burhagohain the government suppressed the rebellion. The Matak territory in the north-east was left under its own leader in a semi-autonomous arrangement. The kingdom emerged with its population and institutions badly weakened.",
+      "summary": "Under the minister Purnananda Burhagohain the government fought on: a 1799 outbreak at Bengmara was defeated, and in 1805 a combined Moamaria and Kachari force was beaten. In the same year Moran Moamarias east of the Dibru rose under Sarbananda Singh at Bengmara; in the end Purnananda gave him the title Bar Senapati, and he collected and paid revenue from the people under him. This became the semi-autonomous Matak territory. The kingdom emerged badly weakened.",
       "participants": [
         "ahom",
         "moamoria"
       ],
       "persons": [
-        "Purnananda Burhagohain"
+        "Purnananda Burhagohain",
+        "Sarbananda Singh"
       ],
       "locations": [
         "sadiya"
@@ -3789,10 +4164,11 @@
       "sourceRefs": [
         {
           "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Kamaleswar Singha",
+          "pages": "pp. 215-218",
+          "locator": "1799 outbreak at Bengmara; 1805 defeat of Moamarias and Kacharis; Sarbananda Singh at Bengmara given the title Bar Senapati",
           "supports": [
-            "date"
+            "date",
+            "outcome"
           ]
         },
         {
@@ -3812,8 +4188,8 @@
         }
       ],
       "confidence": {
-        "level": "C",
-        "basis": "End date and terms given variously."
+        "level": "B",
+        "basis": "Gait pp. 215-218 verified; date of the Bar Senapati settlement is 'in the end', not a fixed year."
       },
       "claimStatus": "approximate",
       "eventType": "rebellion",
@@ -3865,18 +4241,18 @@
       ],
       "sourceRefs": [
         {
+          "sourceId": "gait1906",
+          "pages": "p. 222",
+          "locator": "Badan Chandra, Bar Phukan, befriends the Burmese government's Calcutta agent",
+          "supports": [
+            "participants"
+          ]
+        },
+        {
           "sourceId": "bhuyan1949",
           "pages": null,
           "supports": [
             "participants",
-            "date"
-          ]
-        },
-        {
-          "sourceId": "gait1906",
-          "pages": null,
-          "locator": "Chandrakanta Singha",
-          "supports": [
             "date"
           ]
         }
@@ -3911,10 +4287,12 @@
       "episode": 11,
       "title": "First Burmese invasion",
       "date": {
-        "start": "1817",
-        "precision": "year"
+        "start": "1816-12",
+        "end": "1817-04",
+        "precision": "month",
+        "calendarNote": "'Towards the end of the year 1816' (Gait p. 222)."
       },
-      "summary": "A Burmese army entered Assam, installed Badan Chandra's faction in power and withdrew after receiving gifts and tribute. Chandrakanta Singha stayed on the throne under Burmese-backed control.",
+      "summary": "A Burmese army sent at the end of 1816 entered Assam and put Badan Chandra's faction in power. After receiving an indemnity, it returned to Burma in April 1817. Chandrakanta Singha stayed on the throne.",
       "participants": [
         "burma",
         "ahom"
@@ -3925,6 +4303,16 @@
         "jorhat"
       ],
       "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": "pp. 222-223",
+          "locator": "army despatched at the end of 1816; returns to Burma April 1817 with an indemnity",
+          "supports": [
+            "date",
+            "outcome",
+            "numbers"
+          ]
+        },
         {
           "sourceId": "bhuyan1949",
           "pages": null,
@@ -3957,7 +4345,19 @@
         ],
         "notes": "Short occupation followed by withdrawal within the same year."
       },
-      "numericClaims": [],
+      "numericClaims": [
+        {
+          "value": "about eight thousand men",
+          "what": "the Burmese army of 1816-17",
+          "sourceRef": {
+            "sourceId": "gait1906",
+            "pages": "p. 222"
+          },
+          "confidence": "C",
+          "displayPolicy": "attributed",
+          "attribution": "figure reported by Gait"
+        }
+      ],
       "disputes": [
         "Burmese commander names to be verified against Burmese-side sources."
       ],
@@ -3993,22 +4393,39 @@
       "episode": 11,
       "title": "Second Burmese invasion",
       "date": {
-        "start": "1819",
-        "precision": "year"
+        "start": "1819-02",
+        "precision": "month",
+        "alternatives": [
+          {
+            "value": "1818",
+            "sourceId": "gait1906",
+            "note": "Gait p. 223 fn.: Wilson places Ala Mingi's arrival 'early in 1818'; Gait follows the Buranji date."
+          }
+        ]
       },
-      "summary": "After rival ministers installed Purandar Singha in 1818, a second Burmese army restored Chandrakanta Singha. Burmese influence over the court deepened.",
+      "summary": "Rival ministers made Purandar Singha king in February 1818. A second Burmese army under Ala Mingi reached Assam in February 1819 (the Buranji date); Purandar fled to Gauhati and Chandrakanta was reinstated, but only as a nominal ruler. From 1819 real authority lay with the Burmese commanders.",
       "participants": [
         "burma",
         "ahom"
       ],
       "persons": [
         "Purandar Singha",
-        "Chandrakanta Singha"
+        "Chandrakanta Singha",
+        "Ala Mingi"
       ],
       "locations": [
         "jorhat"
       ],
       "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": "pp. 223-224",
+          "locator": "Purandar Singh made king February 1818; Ala Mingi reaches Assam February 1819; Chandrakant reinstated as nominal ruler",
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        },
         {
           "sourceId": "bhuyan1949",
           "pages": null,
@@ -4046,24 +4463,35 @@
       "episode": 11,
       "title": "Third Burmese invasion and occupation",
       "date": {
-        "start": "1821",
-        "precision": "year",
-        "end": "1822"
+        "start": "1821-04",
+        "end": "1822-06",
+        "precision": "month"
       },
-      "summary": "When Chandrakanta Singha tried to free himself from Burmese control, Burmese forces returned, defeated him and installed Jogeswar Singha as a puppet ruler. Burmese occupation of the Brahmaputra valley followed.",
+      "summary": "Fearing for his safety, Chandrakanta fled in April 1821, and the Burmese set up Jogeswar Singha in his place. Chandrakanta fought back and reoccupied Gauhati in January 1822, but in spring 1822 Mingi Maha Bandula arrived from Ava with reinforcements and defeated him at Mahgarh in June. Burmese occupation of the valley followed.",
       "participants": [
         "burma",
         "ahom"
       ],
       "persons": [
         "Chandrakanta Singha",
-        "Jogeswar Singha"
+        "Jogeswar Singha",
+        "Mingi Maha Bandula"
       ],
       "locations": [
         "jorhat",
-        "guwahati"
+        "guwahati",
+        "mahgarh"
       ],
       "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": "pp. 224-226",
+          "locator": "Chandrakant flees April 1821; Jogesvar set up; Gauhati reoccupied January 1822; Mingi Maha Bandula; battle at Mahgarh June 1822",
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        },
         {
           "sourceId": "bhuyan1949",
           "pages": null,
@@ -4097,7 +4525,7 @@
       },
       "numericClaims": [],
       "disputes": [
-        "Battle names and dates within 1821-22 need verification."
+        "Gait's regnal table (pp. 356-358) dates Jogeswar to 1819, but his narrative (p. 224) places Jogeswar's installation after Chandrakanta's flight in 1821."
       ],
       "narration": {
         "status": "pending"
@@ -4128,6 +4556,14 @@
       "persons": [],
       "locations": [],
       "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": "p. 277",
+          "locator": "Burmese retreating from Gauhati in 1824 massacre inhabitants",
+          "supports": [
+            "context"
+          ]
+        },
         {
           "sourceId": "bhuyan1949",
           "pages": null,
@@ -4177,7 +4613,7 @@
         "start": "1824-03-05",
         "precision": "day"
       },
-      "summary": "The East India Company declared war on Burma after clashes on the Bengal frontier, including in Cachar and Arakan. Company forces advanced into the Brahmaputra valley.",
+      "summary": "Clashes on the Bengal frontier, including in Cachar, preceded the formal declaration of war, which the Company proclaimed on 5 March 1824. Company forces then advanced into the Brahmaputra valley.",
       "participants": [
         "eic",
         "burma"
@@ -4187,6 +4623,14 @@
         "guwahati"
       ],
       "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": "p. 277",
+          "locator": "formal declaration of war not proclaimed until 5 March",
+          "supports": [
+            "date"
+          ]
+        },
         {
           "sourceId": "bhuyan1949",
           "pages": null,
@@ -4251,7 +4695,7 @@
         "end": "1825-01",
         "calendarNote": "Guwahati occupied March 1824; Rangpur capitulates January 1825 per standard accounts - verify."
       },
-      "summary": "Company troops moved up the valley from Guwahati. The Burmese garrison at Rangpur capitulated in early 1825. This was a Company military occupation, and its political settlement was still undecided.",
+      "summary": "Company troops moved up the valley from Gauhati. The Burmese burned their stockade at Jorhat and fell back on Rangpur; after fighting in late January, Rangpur was surrendered on negotiated terms, mediated by a Buddhist monk. The Burmese left Assam. This was a Company military occupation, and its political settlement was still undecided.",
       "participants": [
         "eic",
         "burma"
@@ -4262,6 +4706,15 @@
         "rangpur"
       ],
       "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": "pp. 277-280",
+          "locator": "Burmese fall back from Gauhati and Jorhat to Rangpur; attack of 27 January; Colonel Richards' advance; negotiated surrender of Rangpur",
+          "supports": [
+            "outcome"
+          ],
+          "note": "Year 1825 for the Rangpur surrender is from the narrative context."
+        },
         {
           "sourceId": "bhuyan1949",
           "pages": null,
@@ -4326,6 +4779,15 @@
       ],
       "sourceRefs": [
         {
+          "sourceId": "gait1906",
+          "pages": "pp. 282-283",
+          "locator": "treaty concluded 24 February 1826: the king of Ava agrees to abstain from all interference in Assam",
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        },
+        {
           "sourceId": "yandabo1826",
           "pages": null,
           "locator": "Article 2",
@@ -4347,6 +4809,14 @@
           "locator": "vol. 2 (ends with the treaty)",
           "supports": [
             "date"
+          ]
+        },
+        {
+          "sourceId": "gait1906",
+          "pages": "p. 267",
+          "locator": "Gambhir Singh's position as Raja of Manipur confirmed by the treaty",
+          "supports": [
+            "outcome"
           ]
         }
       ],
@@ -4419,7 +4889,7 @@
         "start": "1833",
         "precision": "year"
       },
-      "summary": "The Company placed Purandar Singha over Upper Assam as a protected, tribute-paying ruler, while Lower Assam stayed under direct Company administration.",
+      "summary": "Early in 1833 the Company handed the whole of Upper Assam, except Sadiya and the Matak country, to Purandar Singha as a protected, tribute-paying ruler. Lower Assam stayed under direct Company administration.",
       "participants": [
         "eic",
         "ahom"
@@ -4431,6 +4901,15 @@
         "jorhat"
       ],
       "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": "p. 291",
+          "locator": "early in 1833 the whole of Upper Assam, except Sadiya and Matak, made over to Purandar Singh",
+          "supports": [
+            "date",
+            "territory"
+          ]
+        },
         {
           "sourceId": "bhuyan1949",
           "pages": null,
@@ -4449,8 +4928,8 @@
         }
       ],
       "confidence": {
-        "level": "C",
-        "basis": "Event is standard; sourcing in our registry is incomplete (sources end at 1826)."
+        "level": "B",
+        "basis": "Gait p. 291 verified; Gait's table (pp. 356-358) gives 1832 as the start."
       },
       "claimStatus": "documented",
       "eventType": "diplomacy",
@@ -4460,10 +4939,13 @@
         "subject": "ahom",
         "snapshotIds": [
           "s1833"
-        ]
+        ],
+        "notes": "Upper Assam excluding Sadiya and Matak (Gait p. 291)."
       },
       "numericClaims": [],
-      "disputes": [],
+      "disputes": [
+        "Gait's own regnal table gives 1832-1838; his narrative says early 1833."
+      ],
       "narration": {
         "status": "pending"
       },
@@ -4481,10 +4963,10 @@
       "episode": 13,
       "title": "Upper Assam annexed by the Company",
       "date": {
-        "start": "1838",
-        "precision": "year"
+        "start": "1838-10",
+        "precision": "month"
       },
-      "summary": "The Company removed Purandar Singha and annexed Upper Assam, ending the last remnant of Ahom royal government.",
+      "summary": "Judging his administration a failure, the Company deposed and pensioned Purandar Singha in October 1838 and placed his territories under direct British administration, ending the last Ahom royal government.",
       "participants": [
         "eic",
         "ahom"
@@ -4497,6 +4979,15 @@
       ],
       "sourceRefs": [
         {
+          "sourceId": "gait1906",
+          "pages": "p. 303",
+          "locator": "Purandar Singh deposed and pensioned in October 1838; territories placed under British officers",
+          "supports": [
+            "date",
+            "outcome"
+          ]
+        },
+        {
           "sourceId": "barpujari1990",
           "pages": null,
           "locator": "vol. 2",
@@ -4507,8 +4998,8 @@
         }
       ],
       "confidence": {
-        "level": "C",
-        "basis": "Event is standard; registry lacks a verified post-1826 source."
+        "level": "B",
+        "basis": "Gait p. 303 verified."
       },
       "claimStatus": "documented",
       "eventType": "conquest",

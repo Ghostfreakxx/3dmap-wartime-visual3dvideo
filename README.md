@@ -11,6 +11,7 @@ There is no app code yet. Phase 1 establishes the evidence base and the data mod
 | [Research plan and evidence rules](docs/research/01-research-plan.md) | Source hierarchy, confidence scale, hard rules |
 | [Historical dossier](docs/research/02-dossier.md) | Episode-by-episode synthesis: documented / disputed / approximate / traditional |
 | [Uncertainties and gaps](docs/research/03-uncertainties-and-gaps.md) | What must be resolved before animating |
+| [Verification log: Gait 1906](docs/research/04-verification-log-gait-1906.md) | Page-verified claims and the corrections they forced |
 | [Geographic data plan](docs/design/04-geographic-data-plan.md) | Snapshot model, textures, base layers |
 | [Storyboard](docs/design/05-storyboard.md) | Prototype Episode 2 beat sheet + draft narration; outlines for all episodes |
 | [Architecture and file structure](docs/design/06-architecture-and-file-structure.md) | Next.js 16 / MapLibre plan, presenter mode, controls |

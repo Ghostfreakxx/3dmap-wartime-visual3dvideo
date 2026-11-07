@@ -1,27 +1,337 @@
 {
   "$comment": "Planned territorial snapshots. Snapshots are DISCRETE: the timeline jumps between them, never interpolates. status=planned means no geometry exists yet - Phase 1 deliberately ships none. Each snapshot's `method` says what the geometry may be built from; `fallback` says what to show if evidence is insufficient. See docs/design/04-geographic-data-plan.md.",
   "snapshots": [
-    { "id": "s1228", "asOf": { "start": "1228", "precision": "year" }, "title": "Arrival in the valley", "file": null, "status": "planned", "method": "point markers only", "fallback": "points", "linkedEvents": ["e02-arrival-1228"] },
-    { "id": "s1253", "asOf": { "start": "1253", "precision": "year" }, "title": "Charaideo founded", "file": null, "status": "planned", "method": "soft influence zone around Charaideo-Dikhow tract", "fallback": "points", "linkedEvents": ["e02-charaideo-1253"] },
-    { "id": "s1523", "asOf": { "start": "1523", "precision": "year" }, "title": "After the Chutia annexation", "file": null, "status": "planned", "method": "valley-floor influence zone; Sadiya anchor", "fallback": "influence-zone", "linkedEvents": ["e04-chutia-annexation"] },
-    { "id": "s1536", "asOf": { "start": "1536", "precision": "year" }, "title": "After Dimapur", "file": null, "status": "planned", "method": "influence zone extended to Dhansiri; Kachari independent to the south", "fallback": "influence-zone", "linkedEvents": ["e04-dimapur-sacked"] },
-    { "id": "s1563", "asOf": { "start": "1562", "end": "1563", "precision": "year" }, "title": "Koch occupation (temporary)", "file": null, "status": "planned", "method": "occupation overlay on Garhgaon only, over s1536 base", "fallback": "points", "linkedEvents": ["e05-koch-invasion"] },
-    { "id": "s1615", "asOf": { "start": "1615", "precision": "year" }, "title": "Mughal frontier reaches Ahom territory", "file": null, "status": "planned", "method": "Mughal-held Koch Hajo as influence zone; contested strip near Barnadi", "fallback": "influence-zone", "linkedEvents": ["e05-mughals-reach-frontier"] },
-    { "id": "s1639", "asOf": { "start": "1639", "precision": "year" }, "title": "Barnadi / Asurar Ali boundary", "file": null, "status": "planned", "method": "boundary line: Barnadi river (north bank, river geometry) + Asurar Ali (south bank, approximate)", "fallback": "line + caveat", "linkedEvents": ["e05-treaty-1639"] },
-    { "id": "s1658", "asOf": { "start": "1658", "precision": "year" }, "title": "Ahoms hold Guwahati", "file": null, "status": "planned", "method": "frontier moved west of Guwahati; exact limit unknown -> contested zone", "fallback": "contested-zone", "linkedEvents": ["e06-ahoms-take-guwahati-1658"] },
-    { "id": "s1662", "asOf": { "start": "1662-03", "precision": "month" }, "title": "Mughal occupation of Garhgaon", "file": null, "status": "planned", "method": "occupation overlay along the river corridor and Garhgaon; Ahom court at Namrup", "fallback": "points + corridor", "linkedEvents": ["e06-garhgaon-occupied"] },
-    { "id": "s1663", "asOf": { "start": "1663", "precision": "year" }, "title": "After Ghilajharighat and withdrawal", "file": null, "status": "planned", "method": "treaty boundary (Bharali / Kalang - VERIFY) + tributary hatch on Ahom area", "fallback": "line + caveat", "linkedEvents": ["e06-ghilajharighat-treaty", "e06-mughal-withdrawal"] },
-    { "id": "s1667", "asOf": { "start": "1667", "precision": "year" }, "title": "Guwahati recovered", "file": null, "status": "planned", "method": "frontier west of Guwahati; contested zone toward Manas", "fallback": "contested-zone", "linkedEvents": ["e07-guwahati-recaptured"] },
-    { "id": "s1679", "asOf": { "start": "1679", "precision": "year" }, "title": "Guwahati surrendered", "file": null, "status": "planned", "method": "revert western frontier to Kaliabor-Guwahati contested state", "fallback": "contested-zone", "linkedEvents": ["e08-guwahati-lost-1679"] },
-    { "id": "s1682", "asOf": { "start": "1682", "precision": "year" }, "title": "Manas frontier", "file": null, "status": "planned", "method": "western boundary on Manas river geometry (modern course, labelled); valley-floor zone with foothill proxy", "fallback": "line + caveat", "linkedEvents": ["e08-itakhuli"] },
-    { "id": "s1708", "asOf": { "start": "1708", "precision": "year" }, "title": "Kachari and Jaintia tributary", "file": null, "status": "planned", "method": "tributary hatch on Kachari/Jaintia anchor zones (not borders)", "fallback": "influence-zone", "linkedEvents": ["e09-kachari-jaintia-campaign"] },
-    { "id": "s1769", "asOf": { "start": "1769", "precision": "year" }, "title": "Moamoria rebels hold Rangpur", "file": null, "status": "planned", "method": "rebel-control overlay on Rangpur area only", "fallback": "points", "linkedEvents": ["e10-moamoria-first"] },
-    { "id": "s1805", "asOf": { "start": "1805", "precision": "circa-year" }, "title": "After the rebellion; Matak autonomy", "file": null, "status": "planned", "method": "autonomous-texture zone NE of Dibrugarh area (approximate)", "fallback": "influence-zone", "linkedEvents": ["e10-moamoria-end"] },
-    { "id": "s1817", "asOf": { "start": "1817", "precision": "year" }, "title": "First Burmese intervention", "file": null, "status": "planned", "method": "arrows only; no territorial change", "fallback": "arrows", "linkedEvents": ["e11-first-burmese-invasion"] },
-    { "id": "s1822", "asOf": { "start": "1822", "precision": "year" }, "title": "Burmese occupation", "file": null, "status": "planned", "method": "occupation texture over the valley (approximate)", "fallback": "influence-zone", "linkedEvents": ["e11-third-burmese-invasion"] },
-    { "id": "s1825", "asOf": { "start": "1825-01", "precision": "month" }, "title": "Company occupation", "file": null, "status": "planned", "method": "occupation texture (Company) over the valley", "fallback": "influence-zone", "linkedEvents": ["e12-british-advance"] },
-    { "id": "s1826", "asOf": { "start": "1826-02-24", "precision": "day" }, "title": "Treaty of Yandabo", "file": null, "status": "planned", "method": "Company occupation + treaty labels; Manipur/Cachar/Jaintia as named states", "fallback": "labels", "linkedEvents": ["e12-yandabo"] },
-    { "id": "s1833", "asOf": { "start": "1833", "precision": "year" }, "title": "Upper Assam under Purandar Singha", "file": null, "status": "planned", "method": "split: protected Upper Assam vs Company Lower Assam; dividing line TO RESEARCH", "fallback": "labels", "linkedEvents": ["e13-purandar-restored"] },
-    { "id": "s1838", "asOf": { "start": "1838", "precision": "year" }, "title": "Annexation", "file": null, "status": "planned", "method": "Company direct rule texture", "fallback": "labels", "linkedEvents": ["e13-annexation-1838"] }
+    {
+      "id": "s1228",
+      "asOf": {
+        "start": "1228",
+        "precision": "year"
+      },
+      "title": "Arrival in the valley",
+      "file": null,
+      "status": "planned",
+      "method": "point markers only",
+      "fallback": "points",
+      "linkedEvents": [
+        "e02-arrival-1228"
+      ]
+    },
+    {
+      "id": "s1253",
+      "asOf": {
+        "start": "1253",
+        "precision": "year"
+      },
+      "title": "Charaideo founded",
+      "file": null,
+      "status": "planned",
+      "method": "soft influence zone around Charaideo-Dikhow tract",
+      "fallback": "points",
+      "linkedEvents": [
+        "e02-charaideo-1253"
+      ]
+    },
+    {
+      "id": "s1523",
+      "asOf": {
+        "start": "1523",
+        "precision": "year"
+      },
+      "title": "After the Chutia annexation",
+      "file": null,
+      "status": "planned",
+      "method": "valley-floor influence zone; Sadiya anchor",
+      "fallback": "influence-zone",
+      "linkedEvents": [
+        "e04-chutia-annexation"
+      ]
+    },
+    {
+      "id": "s1536",
+      "asOf": {
+        "start": "1536",
+        "precision": "year"
+      },
+      "title": "After Dimapur",
+      "file": null,
+      "status": "planned",
+      "method": "influence zone extended to Dhansiri; Kachari independent to the south",
+      "fallback": "influence-zone",
+      "linkedEvents": [
+        "e04-dimapur-sacked"
+      ]
+    },
+    {
+      "id": "s1563",
+      "asOf": {
+        "start": "1562",
+        "end": "1563",
+        "precision": "year"
+      },
+      "title": "Koch occupation (temporary)",
+      "file": null,
+      "status": "planned",
+      "method": "occupation overlay on Garhgaon (temporary) + Koch-held north-bank tract (garrison at Narayanpur, extent approximate) over s1536 base",
+      "fallback": "points",
+      "linkedEvents": [
+        "e05-koch-invasion"
+      ]
+    },
+    {
+      "id": "s1615",
+      "asOf": {
+        "start": "1615",
+        "precision": "year"
+      },
+      "title": "Mughal frontier reaches Ahom territory",
+      "file": null,
+      "status": "planned",
+      "method": "Mughal-held Koch Hajo as influence zone; contested strip near Barnadi",
+      "fallback": "influence-zone",
+      "linkedEvents": [
+        "e05-mughals-reach-frontier"
+      ]
+    },
+    {
+      "id": "s1639",
+      "asOf": {
+        "start": "1639",
+        "precision": "year"
+      },
+      "title": "Barnadi / Asurar Ali boundary",
+      "file": null,
+      "status": "planned",
+      "method": "boundary line: Barnadi river (north bank, river geometry) + Asurar Ali (south bank, approximate)",
+      "fallback": "line + caveat",
+      "linkedEvents": [
+        "e05-treaty-1639"
+      ]
+    },
+    {
+      "id": "s1658",
+      "asOf": {
+        "start": "1658",
+        "precision": "year"
+      },
+      "title": "Ahoms hold Guwahati",
+      "file": null,
+      "status": "planned",
+      "method": "frontier moved west of Guwahati; exact limit unknown -> contested zone",
+      "fallback": "contested-zone",
+      "linkedEvents": [
+        "e06-ahoms-take-guwahati-1658"
+      ]
+    },
+    {
+      "id": "s1662",
+      "asOf": {
+        "start": "1662-03",
+        "precision": "month"
+      },
+      "title": "Mughal occupation of Garhgaon",
+      "file": null,
+      "status": "planned",
+      "method": "occupation overlay along the river corridor and Garhgaon; Ahom court at Namrup",
+      "fallback": "points + corridor",
+      "linkedEvents": [
+        "e06-garhgaon-occupied"
+      ]
+    },
+    {
+      "id": "s1663",
+      "asOf": {
+        "start": "1663",
+        "precision": "year"
+      },
+      "title": "After Ghilajharighat and withdrawal",
+      "file": null,
+      "status": "planned",
+      "method": "treaty boundary: Bharali river (north bank) and Kallang river (south bank), verified in Gait p. 136; tributary hatch on Ahom area",
+      "fallback": "line + caveat",
+      "linkedEvents": [
+        "e06-ghilajharighat-treaty",
+        "e06-mughal-withdrawal"
+      ]
+    },
+    {
+      "id": "s1667",
+      "asOf": {
+        "start": "1667",
+        "precision": "year"
+      },
+      "title": "Guwahati recovered",
+      "file": null,
+      "status": "planned",
+      "method": "frontier west of Guwahati; contested zone toward Manas",
+      "fallback": "contested-zone",
+      "linkedEvents": [
+        "e07-guwahati-recaptured"
+      ]
+    },
+    {
+      "id": "s1679",
+      "asOf": {
+        "start": "1679",
+        "precision": "year"
+      },
+      "title": "Guwahati surrendered",
+      "file": null,
+      "status": "planned",
+      "method": "revert western frontier to Kaliabor-Guwahati contested state",
+      "fallback": "contested-zone",
+      "linkedEvents": [
+        "e08-guwahati-lost-1679"
+      ]
+    },
+    {
+      "id": "s1682",
+      "asOf": {
+        "start": "1682",
+        "precision": "year"
+      },
+      "title": "Manas frontier",
+      "file": null,
+      "status": "planned",
+      "method": "western boundary on Manas river geometry (modern course, labelled); valley-floor zone with foothill proxy",
+      "fallback": "line + caveat",
+      "linkedEvents": [
+        "e08-itakhuli"
+      ]
+    },
+    {
+      "id": "s1708",
+      "asOf": {
+        "start": "1708",
+        "precision": "year"
+      },
+      "title": "Kachari and Jaintia campaigns (annexation announced, then reversed)",
+      "file": null,
+      "status": "planned",
+      "method": "occupation overlay on Jaintiapur and the Kachari capital, followed by withdrawal; NOT tributary territory (Gait pp. 171-173)",
+      "fallback": "points + arrows",
+      "linkedEvents": [
+        "e09-kachari-jaintia-campaign"
+      ]
+    },
+    {
+      "id": "s1769",
+      "asOf": {
+        "start": "1769",
+        "precision": "year"
+      },
+      "title": "Moamoria rebels hold Rangpur",
+      "file": null,
+      "status": "planned",
+      "method": "rebel-control overlay on Rangpur area only",
+      "fallback": "points",
+      "linkedEvents": [
+        "e10-moamoria-first"
+      ]
+    },
+    {
+      "id": "s1805",
+      "asOf": {
+        "start": "1805",
+        "precision": "circa-year"
+      },
+      "title": "After the rebellion; Matak autonomy",
+      "file": null,
+      "status": "planned",
+      "method": "autonomous-texture zone NE of Dibrugarh area (approximate)",
+      "fallback": "influence-zone",
+      "linkedEvents": [
+        "e10-moamoria-end"
+      ]
+    },
+    {
+      "id": "s1817",
+      "asOf": {
+        "start": "1817",
+        "precision": "year"
+      },
+      "title": "First Burmese intervention",
+      "file": null,
+      "status": "planned",
+      "method": "arrows only; no territorial change",
+      "fallback": "arrows",
+      "linkedEvents": [
+        "e11-first-burmese-invasion"
+      ]
+    },
+    {
+      "id": "s1822",
+      "asOf": {
+        "start": "1822",
+        "precision": "year"
+      },
+      "title": "Burmese occupation",
+      "file": null,
+      "status": "planned",
+      "method": "occupation texture over the valley (approximate)",
+      "fallback": "influence-zone",
+      "linkedEvents": [
+        "e11-third-burmese-invasion"
+      ]
+    },
+    {
+      "id": "s1825",
+      "asOf": {
+        "start": "1825-01",
+        "precision": "month"
+      },
+      "title": "Company occupation",
+      "file": null,
+      "status": "planned",
+      "method": "occupation texture (Company) over the valley",
+      "fallback": "influence-zone",
+      "linkedEvents": [
+        "e12-british-advance"
+      ]
+    },
+    {
+      "id": "s1826",
+      "asOf": {
+        "start": "1826-02-24",
+        "precision": "day"
+      },
+      "title": "Treaty of Yandabo",
+      "file": null,
+      "status": "planned",
+      "method": "Company occupation + treaty labels; Manipur/Cachar/Jaintia as named states",
+      "fallback": "labels",
+      "linkedEvents": [
+        "e12-yandabo"
+      ]
+    },
+    {
+      "id": "s1833",
+      "asOf": {
+        "start": "1833",
+        "precision": "year"
+      },
+      "title": "Upper Assam under Purandar Singha",
+      "file": null,
+      "status": "planned",
+      "method": "Upper Assam except Sadiya and Matak under Purandar Singha (Gait p. 291); dividing line with Lower Assam TO RESEARCH",
+      "fallback": "labels",
+      "linkedEvents": [
+        "e13-purandar-restored"
+      ]
+    },
+    {
+      "id": "s1838",
+      "asOf": {
+        "start": "1838",
+        "precision": "year"
+      },
+      "title": "Annexation",
+      "file": null,
+      "status": "planned",
+      "method": "Company direct rule texture",
+      "fallback": "labels",
+      "linkedEvents": [
+        "e13-annexation-1838"
+      ]
+    }
   ]
 }

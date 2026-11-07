@@ -1,61 +1,870 @@
 {
   "$comment": "Gazetteer. coord = [lon, lat] WGS84. ALL coordinates are Phase-1 working values (coordVerified=false) and must be checked against GeoNames / Survey of India / satellite imagery before rendering. Precision tells the renderer how to draw: site=point, locality=small halo, regional=label only, unidentified=no point (text-only mention). Modern place names are used as anchors only where the historical site is at or near the modern town.",
   "places": [
-    { "id": "mong-mao", "name": "Mong Mao (Tai Mao heartland, Shweli valley)", "altNames": ["Mäng Mao", "Möng Mao", "Luchuan (Chinese, later period)"], "coord": [97.85, 24.0], "precision": "regional", "kind": "region-label", "coordVerified": false, "sourceRefs": [{ "sourceId": "gogoi1968", "pages": null, "locator": "chapters on the Mao Tai" }], "notes": "Anchored near modern Ruili/Shweli valley. The 13th-century political centre is not securely located. Do not draw a polygon." },
-    { "id": "maulung", "name": "Mong Mit / 'Maulung' (Sukaphaa's traditional homeland)", "coord": null, "precision": "unidentified", "kind": "region-label", "coordVerified": false, "sourceRefs": [{ "sourceId": "gait1906", "pages": null, "locator": "chapter on the Ahom origin" }], "notes": "Identification disputed in the literature. Render as text in narrator panel only." },
-    { "id": "hukawng", "name": "Hukawng Valley", "coord": [96.4, 26.5], "precision": "regional", "kind": "region-label", "coordVerified": false, "sourceRefs": [{ "sourceId": "gogoi1968", "pages": null, "locator": "migration route discussion" }], "notes": "Commonly proposed approach to the Patkai; the specific route is reconstructed, not documented." },
-    { "id": "patkai", "name": "Patkai Hills", "coord": [95.9, 27.0], "precision": "regional", "kind": "region-label", "coordVerified": false, "sourceRefs": [{ "sourceId": "gait1906", "pages": null, "locator": "Sukapha's arrival" }] },
-    { "id": "nong-nyang", "name": "Nong Nyang lake (Nawng Yang)", "coord": [96.13, 27.22], "precision": "locality", "kind": "lake", "coordVerified": false, "sourceRefs": [{ "sourceId": "barua1930", "pages": null, "locator": "Sukapha's journey" }], "notes": "Chronicle name; identification with the present Nawng Yang lake near the Pangsau Pass is conventional but should be marked approximate." },
-    { "id": "namrup", "name": "Namrup", "coord": [95.33, 27.19], "precision": "locality", "kind": "settlement", "coordVerified": false, "sourceRefs": [{ "sourceId": "gait1906", "pages": null, "locator": "Sukapha's arrival" }], "notes": "Also the refuge of Ahom kings during the Koch (1562-63) and Mughal (1662) occupations." },
-    { "id": "tipam", "name": "Tipam", "coord": [95.55, 27.33], "precision": "locality", "kind": "settlement", "coordVerified": false, "sourceRefs": [{ "sourceId": "gait1906", "pages": null, "locator": "Sukapha's wanderings" }], "notes": "Area on the Burhi Dihing; exact early-13th-c. locality approximate." },
-    { "id": "abhaypur", "name": "Abhaypur", "coord": [94.95, 27.0], "precision": "regional", "kind": "settlement", "coordVerified": false, "sourceRefs": [{ "sourceId": "gait1906", "pages": null, "locator": "Sukapha's wanderings" }], "notes": "Low confidence location." },
-    { "id": "habung", "name": "Habung", "coord": [94.4, 27.25], "precision": "regional", "kind": "settlement", "coordVerified": false, "sourceRefs": [{ "sourceId": "gait1906", "pages": null, "locator": "Sukapha's wanderings" }], "notes": "North-bank tract; settlement abandoned per chronicles due to floods. Low confidence location." },
-    { "id": "simaluguri", "name": "Simaluguri", "coord": [94.89, 26.92], "precision": "locality", "kind": "settlement", "coordVerified": false, "sourceRefs": [{ "sourceId": "gait1906", "pages": null, "locator": "Sukapha's wanderings" }] },
-    { "id": "charaideo", "name": "Charaideo", "altNames": ["Che-rai-doi"], "coord": [94.80, 26.94], "precision": "locality", "kind": "capital", "coordVerified": false, "sourceRefs": [{ "sourceId": "gait1906", "pages": null, "locator": "Sukapha" }, { "sourceId": "unesco2024-moidams", "pages": null, "locator": "property description" }], "notes": "First capital (1253 per chronicle chronology); later royal necropolis (moidams). Use UNESCO property coordinates once fetched." },
-    { "id": "sadiya", "name": "Sadiya", "coord": [95.67, 27.83], "precision": "locality", "kind": "town", "coordVerified": false, "sourceRefs": [{ "sourceId": "gait1906", "pages": null, "locator": "Chutia kingdom; Suhungmung" }], "notes": "Associated with the Chutia kingdom and the post-1523 Ahom office of Sadiyakhowa Gohain. Chutia capital location(s) are debated; use Sadiya as an approximate anchor. River courses here have shifted substantially." },
-    { "id": "garhgaon", "name": "Garhgaon", "coord": [94.74, 26.94], "precision": "locality", "kind": "capital", "coordVerified": false, "sourceRefs": [{ "sourceId": "gait1906", "pages": null, "locator": "Suklenmung" }], "notes": "Capital from c. 1540; occupied by the Koch (1562-63) and by Mir Jumla (1662-63)." },
-    { "id": "rangpur", "name": "Rangpur (Sivasagar area)", "coord": [94.63, 26.98], "precision": "locality", "kind": "capital", "coordVerified": false, "sourceRefs": [{ "sourceId": "gait1906", "pages": null, "locator": "Rudra Singha" }], "notes": "18th-century capital (Rudra Singha onward). Not to be confused with Rangpur in present-day Bangladesh." },
-    { "id": "jorhat", "name": "Jorhat", "coord": [94.21, 26.75], "precision": "locality", "kind": "capital", "coordVerified": false, "sourceRefs": [{ "sourceId": "bhuyan1949", "pages": null, "locator": "Gaurinath Singha" }], "notes": "Capital from 1794." },
-    { "id": "dimapur", "name": "Dimapur (Kachari / Dimasa capital)", "coord": [93.73, 25.91], "precision": "site", "kind": "capital", "coordVerified": false, "sourceRefs": [{ "sourceId": "gait1906", "pages": null, "locator": "Kacharis; Suhungmung" }], "notes": "Monolith ruins survive. Ahom sack dated 1536 in standard accounts." },
-    { "id": "maibang", "name": "Maibang", "coord": [93.17, 25.30], "precision": "locality", "kind": "capital", "coordVerified": false, "sourceRefs": [{ "sourceId": "gait1906", "pages": null, "locator": "Kacharis" }], "notes": "Later Dimasa capital in the North Cachar hills." },
-    { "id": "khaspur", "name": "Khaspur", "coord": [92.80, 24.85], "precision": "regional", "kind": "capital", "coordVerified": false, "sourceRefs": [{ "sourceId": "gait1906", "pages": null, "locator": "Kacharis" }], "notes": "Later Kachari capital in the Cachar plains. Low confidence coordinate." },
-    { "id": "kaliabor", "name": "Kaliabor", "coord": [93.0, 26.58], "precision": "locality", "kind": "fort", "coordVerified": false, "sourceRefs": [{ "sourceId": "gait1906", "pages": null, "locator": "Ahom-Mughal wars" }], "notes": "Seat of the Ahom western frontier command before Guwahati was secured." },
-    { "id": "samdhara", "name": "Samdhara (Bharali mouth)", "coord": [92.88, 26.63], "precision": "regional", "kind": "fort", "coordVerified": false, "sourceRefs": [{ "sourceId": "gait1906", "pages": null, "locator": "Ahom-Mughal wars" }] },
-    { "id": "tezpur", "name": "Tezpur", "coord": [92.80, 26.63], "precision": "locality", "kind": "town", "coordVerified": false, "sourceRefs": [], "notes": "Modern orientation label only." },
-    { "id": "guwahati", "name": "Guwahati", "altNames": ["Gauhati"], "coord": [91.74, 26.18], "precision": "locality", "kind": "town", "coordVerified": false, "sourceRefs": [{ "sourceId": "bhuyan1947", "pages": null }], "notes": "Seat of the Mughal faujdar and later of the Ahom Borphukan." },
-    { "id": "itakhuli", "name": "Itakhuli fort", "coord": [91.75, 26.19], "precision": "locality", "kind": "fort", "coordVerified": false, "sourceRefs": [{ "sourceId": "bhuyan1947", "pages": null }], "notes": "Fortified hill at Guwahati; exact fort footprint to be verified." },
-    { "id": "saraighat", "name": "Saraighat (Brahmaputra narrows at Guwahati)", "coord": [91.68, 26.19], "precision": "regional", "kind": "battle-site", "coordVerified": false, "sourceRefs": [{ "sourceId": "bhuyan1947", "pages": null }, { "sourceId": "indianculture-saraighat", "pages": null }], "notes": "Battle zone along the river; render as a river reach, not a point." },
-    { "id": "alaboi", "name": "Alaboi", "coord": null, "precision": "unidentified", "kind": "battle-site", "coordVerified": false, "sourceRefs": [{ "sourceId": "kamrup-alaboi-saraighat", "pages": null }], "notes": "North-bank site near Guwahati (1669 battle). Location to be researched; show as text only until identified." },
-    { "id": "hajo", "name": "Hajo", "coord": [91.53, 26.25], "precision": "locality", "kind": "town", "coordVerified": false, "sourceRefs": [{ "sourceId": "gait1906", "pages": null, "locator": "Koch Hajo; Mughal frontier" }] },
-    { "id": "barnadi-mouth", "name": "Barnadi river (mouth)", "coord": [91.88, 26.17], "precision": "regional", "kind": "river-point", "coordVerified": false, "sourceRefs": [{ "sourceId": "gait1906", "pages": null, "locator": "treaty of 1639" }], "notes": "North-bank boundary under the 1639 settlement." },
-    { "id": "manas-mouth", "name": "Manas river (confluence with the Brahmaputra)", "coord": [90.63, 26.22], "precision": "regional", "kind": "river-point", "coordVerified": false, "sourceRefs": [{ "sourceId": "gait1906", "pages": null, "locator": "Gadadhar Singha" }], "notes": "Western Ahom limit after 1682 in standard accounts." },
-    { "id": "koch-bihar", "name": "Koch Bihar", "coord": [89.45, 26.32], "precision": "locality", "kind": "capital", "coordVerified": false, "sourceRefs": [{ "sourceId": "gait1906", "pages": null, "locator": "Koch kings" }] },
-    { "id": "dhaka", "name": "Dhaka (Jahangirnagar)", "coord": [90.41, 23.81], "precision": "locality", "kind": "capital", "coordVerified": false, "sourceRefs": [], "notes": "Seat of the Mughal subahdar of Bengal in the 17th century (Mir Jumla's base). Source to add." },
-    { "id": "jaintiapur", "name": "Jaintiapur", "coord": [92.12, 25.13], "precision": "locality", "kind": "capital", "coordVerified": false, "sourceRefs": [{ "sourceId": "gait1906", "pages": null, "locator": "Rudra Singha's Jaintia campaign" }] },
-    { "id": "sylhet", "name": "Sylhet", "coord": [91.87, 24.90], "precision": "locality", "kind": "town", "coordVerified": false, "sourceRefs": [], "notes": "Orientation label (Bengal)." },
-    { "id": "imphal", "name": "Imphal (Manipur)", "coord": [93.94, 24.81], "precision": "locality", "kind": "capital", "coordVerified": false, "sourceRefs": [], "notes": "Orientation anchor for the Manipur kingdom." },
-    { "id": "naga-hills", "name": "Naga Hills", "coord": [94.3, 25.9], "precision": "regional", "kind": "region-label", "coordVerified": false, "sourceRefs": [], "notes": "Region label only. Many independent communities; do NOT draw a polity." },
-    { "id": "lushai-hills", "name": "Lushai Hills", "coord": [92.8, 23.6], "precision": "regional", "kind": "region-label", "coordVerified": false, "sourceRefs": [], "notes": "Region label only; outside Ahom political sphere in this period." },
-    { "id": "ava", "name": "Ava (Inwa)", "coord": [95.98, 21.86], "precision": "locality", "kind": "capital", "coordVerified": false, "sourceRefs": [], "notes": "Burmese royal capital; Amarapura was the capital c.1783-1823 - choose label by date." },
-    { "id": "amarapura", "name": "Amarapura", "coord": [96.05, 21.90], "precision": "locality", "kind": "capital", "coordVerified": false, "sourceRefs": [], "notes": "Konbaung capital during the 1817-1822 invasions (to verify)." },
-    { "id": "yandabo", "name": "Yandabo", "coord": [95.07, 21.65], "precision": "regional", "kind": "settlement", "coordVerified": false, "sourceRefs": [{ "sourceId": "yandabo1826", "pages": null }], "notes": "Village on the Irrawaddy where the treaty was signed. Coordinate low confidence." }
+    {
+      "id": "mong-mao",
+      "name": "Mong Mao (Tai Mao heartland, Shweli valley)",
+      "altNames": [
+        "Mäng Mao",
+        "Möng Mao",
+        "Luchuan (Chinese, later period)"
+      ],
+      "coord": [
+        97.85,
+        24.0
+      ],
+      "precision": "regional",
+      "kind": "region-label",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gogoi1968",
+          "pages": null,
+          "locator": "chapters on the Mao Tai"
+        }
+      ],
+      "notes": "Anchored near modern Ruili/Shweli valley. The 13th-century political centre is not securely located. Do not draw a polygon."
+    },
+    {
+      "id": "maulung",
+      "name": "Mong Mit / 'Maulung' (Sukaphaa's traditional homeland)",
+      "coord": null,
+      "precision": "unidentified",
+      "kind": "region-label",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "chapter on the Ahom origin"
+        }
+      ],
+      "notes": "Identification disputed in the literature. Render as text in narrator panel only."
+    },
+    {
+      "id": "hukawng",
+      "name": "Hukawng Valley",
+      "coord": [
+        96.4,
+        26.5
+      ],
+      "precision": "regional",
+      "kind": "region-label",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gogoi1968",
+          "pages": null,
+          "locator": "migration route discussion"
+        }
+      ],
+      "notes": "Commonly proposed approach to the Patkai; the specific route is reconstructed, not documented."
+    },
+    {
+      "id": "patkai",
+      "name": "Patkai Hills",
+      "coord": [
+        95.9,
+        27.0
+      ],
+      "precision": "regional",
+      "kind": "region-label",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Sukapha's arrival"
+        }
+      ]
+    },
+    {
+      "id": "khamjang",
+      "name": "Khamjang",
+      "coord": null,
+      "precision": "unidentified",
+      "kind": "region-label",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": "p. 74",
+          "locator": "Sukapha arrives in Khamjang, 1228"
+        }
+      ],
+      "notes": "Tract in the Patkai region reached in 1228 per Gait; not located. Text-only."
+    },
+    {
+      "id": "nong-nyang",
+      "name": "Nong Nyang lake (Nawng Yang)",
+      "coord": [
+        96.13,
+        27.22
+      ],
+      "precision": "locality",
+      "kind": "lake",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": "p. 74",
+          "locator": "Nongnyang lake"
+        },
+        {
+          "sourceId": "barua1930",
+          "pages": null,
+          "locator": "Sukapha's journey"
+        }
+      ],
+      "notes": "Chronicle name; identification with the present Nawng Yang lake near the Pangsau Pass is conventional but should be marked approximate."
+    },
+    {
+      "id": "namrup",
+      "name": "Namrup",
+      "coord": [
+        95.33,
+        27.19
+      ],
+      "precision": "locality",
+      "kind": "settlement",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Sukapha's arrival"
+        }
+      ],
+      "notes": "Also the refuge of Ahom kings during the Koch (1562-63) and Mughal (1662) occupations."
+    },
+    {
+      "id": "tipam",
+      "name": "Tipam",
+      "coord": [
+        95.55,
+        27.33
+      ],
+      "precision": "locality",
+      "kind": "settlement",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Sukapha's wanderings"
+        }
+      ],
+      "notes": "Area on the Burhi Dihing; exact early-13th-c. locality approximate."
+    },
+    {
+      "id": "abhaypur",
+      "name": "Abhaypur",
+      "coord": [
+        94.95,
+        27.0
+      ],
+      "precision": "regional",
+      "kind": "settlement",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Sukapha's wanderings"
+        }
+      ],
+      "notes": "Low confidence location."
+    },
+    {
+      "id": "habung",
+      "name": "Habung",
+      "coord": [
+        94.4,
+        27.25
+      ],
+      "precision": "regional",
+      "kind": "settlement",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Sukapha's wanderings"
+        }
+      ],
+      "notes": "North-bank tract; settlement abandoned per chronicles due to floods. Low confidence location."
+    },
+    {
+      "id": "ligirigaon",
+      "name": "Ligirigaon",
+      "coord": null,
+      "precision": "unidentified",
+      "kind": "settlement",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": "p. 75",
+          "locator": "Sukapha at Ligirigaon after the 1244 flood"
+        }
+      ],
+      "notes": "Near the Dikhu mouth per Gait; not located."
+    },
+    {
+      "id": "simaluguri",
+      "name": "Simaluguri",
+      "coord": [
+        94.89,
+        26.92
+      ],
+      "precision": "locality",
+      "kind": "settlement",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Sukapha's wanderings"
+        }
+      ]
+    },
+    {
+      "id": "charaideo",
+      "name": "Charaideo",
+      "altNames": [
+        "Che-rai-doi"
+      ],
+      "coord": [
+        94.8,
+        26.94
+      ],
+      "precision": "locality",
+      "kind": "capital",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": "p. 75",
+          "locator": "Charaideo, 1253"
+        },
+        {
+          "sourceId": "unesco2024-moidams",
+          "pages": null,
+          "locator": "property description"
+        }
+      ],
+      "notes": "First capital (1253 per chronicle chronology); later royal necropolis (moidams). Use UNESCO property coordinates once fetched."
+    },
+    {
+      "id": "sadiya",
+      "name": "Sadiya",
+      "coord": [
+        95.67,
+        27.83
+      ],
+      "precision": "locality",
+      "kind": "town",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Chutia kingdom; Suhungmung"
+        }
+      ],
+      "notes": "Associated with the Chutia kingdom and the post-1523 Ahom office of Sadiyakhowa Gohain. Chutia capital location(s) are debated; use Sadiya as an approximate anchor. River courses here have shifted substantially."
+    },
+    {
+      "id": "garhgaon",
+      "name": "Garhgaon",
+      "coord": [
+        94.74,
+        26.94
+      ],
+      "precision": "locality",
+      "kind": "capital",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": "p. 95",
+          "locator": "Suklenmung's capital"
+        }
+      ],
+      "notes": "Capital from c. 1540; occupied by the Koch (1562-63) and by Mir Jumla (1662-63)."
+    },
+    {
+      "id": "rangpur",
+      "name": "Rangpur (Sivasagar area)",
+      "coord": [
+        94.63,
+        26.98
+      ],
+      "precision": "locality",
+      "kind": "capital",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Rudra Singha"
+        }
+      ],
+      "notes": "18th-century capital (Rudra Singha onward). Not to be confused with Rangpur in present-day Bangladesh."
+    },
+    {
+      "id": "jorhat",
+      "name": "Jorhat",
+      "coord": [
+        94.21,
+        26.75
+      ],
+      "precision": "locality",
+      "kind": "capital",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": "p. 209",
+          "locator": "Jorhat becomes the capital"
+        },
+        {
+          "sourceId": "bhuyan1949",
+          "pages": null,
+          "locator": "Gaurinath Singha"
+        }
+      ],
+      "notes": "Capital from 1794."
+    },
+    {
+      "id": "dimapur",
+      "name": "Dimapur (Kachari / Dimasa capital)",
+      "coord": [
+        93.73,
+        25.91
+      ],
+      "precision": "site",
+      "kind": "capital",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Kacharis; Suhungmung"
+        }
+      ],
+      "notes": "Monolith ruins survive. Ahom sack dated 1536 in standard accounts."
+    },
+    {
+      "id": "maibang",
+      "name": "Maibang",
+      "coord": [
+        93.17,
+        25.3
+      ],
+      "precision": "locality",
+      "kind": "capital",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Kacharis"
+        }
+      ],
+      "notes": "Later Dimasa capital in the North Cachar hills."
+    },
+    {
+      "id": "khaspur",
+      "name": "Khaspur",
+      "coord": [
+        92.8,
+        24.85
+      ],
+      "precision": "regional",
+      "kind": "capital",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Kacharis"
+        }
+      ],
+      "notes": "Later Kachari capital in the Cachar plains. Low confidence coordinate."
+    },
+    {
+      "id": "kaliabor",
+      "name": "Kaliabor",
+      "coord": [
+        93.0,
+        26.58
+      ],
+      "precision": "locality",
+      "kind": "fort",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Ahom-Mughal wars"
+        }
+      ],
+      "notes": "Seat of the Ahom western frontier command before Guwahati was secured."
+    },
+    {
+      "id": "samdhara",
+      "name": "Samdhara (Bharali mouth)",
+      "coord": [
+        92.88,
+        26.63
+      ],
+      "precision": "regional",
+      "kind": "fort",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Ahom-Mughal wars"
+        }
+      ]
+    },
+    {
+      "id": "tezpur",
+      "name": "Tezpur",
+      "coord": [
+        92.8,
+        26.63
+      ],
+      "precision": "locality",
+      "kind": "town",
+      "coordVerified": false,
+      "sourceRefs": [],
+      "notes": "Modern orientation label only."
+    },
+    {
+      "id": "guwahati",
+      "name": "Guwahati",
+      "altNames": [
+        "Gauhati"
+      ],
+      "coord": [
+        91.74,
+        26.18
+      ],
+      "precision": "locality",
+      "kind": "town",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "bhuyan1947",
+          "pages": null
+        }
+      ],
+      "notes": "Seat of the Mughal faujdar and later of the Ahom Borphukan."
+    },
+    {
+      "id": "itakhuli",
+      "name": "Itakhuli fort",
+      "coord": [
+        91.75,
+        26.19
+      ],
+      "precision": "locality",
+      "kind": "fort",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "bhuyan1947",
+          "pages": null
+        }
+      ],
+      "notes": "Fortified hill at Guwahati; exact fort footprint to be verified."
+    },
+    {
+      "id": "saraighat",
+      "name": "Saraighat (Brahmaputra narrows at Guwahati)",
+      "coord": [
+        91.68,
+        26.19
+      ],
+      "precision": "regional",
+      "kind": "battle-site",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "bhuyan1947",
+          "pages": null
+        },
+        {
+          "sourceId": "indianculture-saraighat",
+          "pages": null
+        }
+      ],
+      "notes": "Battle zone along the river; render as a river reach, not a point."
+    },
+    {
+      "id": "alaboi",
+      "name": "Alaboi",
+      "coord": null,
+      "precision": "unidentified",
+      "kind": "battle-site",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "kamrup-alaboi-saraighat",
+          "pages": null
+        }
+      ],
+      "notes": "North-bank site near Guwahati (1669 battle). Location to be researched; show as text only until identified."
+    },
+    {
+      "id": "hajo",
+      "name": "Hajo",
+      "coord": [
+        91.53,
+        26.25
+      ],
+      "precision": "locality",
+      "kind": "town",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Koch Hajo; Mughal frontier"
+        }
+      ]
+    },
+    {
+      "id": "barnadi-mouth",
+      "name": "Barnadi river (mouth)",
+      "coord": [
+        91.88,
+        26.17
+      ],
+      "precision": "regional",
+      "kind": "river-point",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": "pp. 115-116",
+          "locator": "Bar Nadi boundary"
+        }
+      ],
+      "notes": "North-bank boundary under the 1639 settlement."
+    },
+    {
+      "id": "manas-mouth",
+      "name": "Manas river (confluence with the Brahmaputra)",
+      "coord": [
+        90.63,
+        26.22
+      ],
+      "precision": "regional",
+      "kind": "river-point",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": "p. 160",
+          "locator": "Manas accepted as boundary"
+        }
+      ],
+      "notes": "Western Ahom limit after 1682 in standard accounts."
+    },
+    {
+      "id": "koch-bihar",
+      "name": "Koch Bihar",
+      "coord": [
+        89.45,
+        26.32
+      ],
+      "precision": "locality",
+      "kind": "capital",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Koch kings"
+        }
+      ]
+    },
+    {
+      "id": "dhaka",
+      "name": "Dhaka (Jahangirnagar)",
+      "coord": [
+        90.41,
+        23.81
+      ],
+      "precision": "locality",
+      "kind": "capital",
+      "coordVerified": false,
+      "sourceRefs": [],
+      "notes": "Seat of the Mughal subahdar of Bengal in the 17th century (Mir Jumla's base). Source to add."
+    },
+    {
+      "id": "jaintiapur",
+      "name": "Jaintiapur",
+      "coord": [
+        92.12,
+        25.13
+      ],
+      "precision": "locality",
+      "kind": "capital",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": null,
+          "locator": "Rudra Singha's Jaintia campaign"
+        }
+      ]
+    },
+    {
+      "id": "sylhet",
+      "name": "Sylhet",
+      "coord": [
+        91.87,
+        24.9
+      ],
+      "precision": "locality",
+      "kind": "town",
+      "coordVerified": false,
+      "sourceRefs": [],
+      "notes": "Orientation label (Bengal)."
+    },
+    {
+      "id": "imphal",
+      "name": "Imphal (Manipur)",
+      "coord": [
+        93.94,
+        24.81
+      ],
+      "precision": "locality",
+      "kind": "capital",
+      "coordVerified": false,
+      "sourceRefs": [],
+      "notes": "Orientation anchor for the Manipur kingdom."
+    },
+    {
+      "id": "naga-hills",
+      "name": "Naga Hills",
+      "coord": [
+        94.3,
+        25.9
+      ],
+      "precision": "regional",
+      "kind": "region-label",
+      "coordVerified": false,
+      "sourceRefs": [],
+      "notes": "Region label only. Many independent communities; do NOT draw a polity."
+    },
+    {
+      "id": "lushai-hills",
+      "name": "Lushai Hills",
+      "coord": [
+        92.8,
+        23.6
+      ],
+      "precision": "regional",
+      "kind": "region-label",
+      "coordVerified": false,
+      "sourceRefs": [],
+      "notes": "Region label only; outside Ahom political sphere in this period."
+    },
+    {
+      "id": "ava",
+      "name": "Ava (Inwa)",
+      "coord": [
+        95.98,
+        21.86
+      ],
+      "precision": "locality",
+      "kind": "capital",
+      "coordVerified": false,
+      "sourceRefs": [],
+      "notes": "Burmese royal capital; Amarapura was the capital c.1783-1823 - choose label by date."
+    },
+    {
+      "id": "amarapura",
+      "name": "Amarapura",
+      "coord": [
+        96.05,
+        21.9
+      ],
+      "precision": "locality",
+      "kind": "capital",
+      "coordVerified": false,
+      "sourceRefs": [],
+      "notes": "Konbaung capital during the 1817-1822 invasions (to verify)."
+    },
+    {
+      "id": "yandabo",
+      "name": "Yandabo",
+      "coord": [
+        95.07,
+        21.65
+      ],
+      "precision": "regional",
+      "kind": "settlement",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "yandabo1826",
+          "pages": null
+        }
+      ],
+      "notes": "Village on the Irrawaddy where the treaty was signed. Coordinate low confidence."
+    },
+    {
+      "id": "mahgarh",
+      "name": "Mahgarh",
+      "coord": null,
+      "precision": "unidentified",
+      "kind": "battle-site",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": "p. 226",
+          "locator": "battle of June 1822"
+        }
+      ],
+      "notes": "Site of Chandrakanta's defeat, June 1822. Not located."
+    },
+    {
+      "id": "hadira",
+      "name": "Hadira (opposite Goalpara)",
+      "coord": [
+        90.63,
+        26.2
+      ],
+      "precision": "regional",
+      "kind": "fort",
+      "coordVerified": false,
+      "sourceRefs": [
+        {
+          "sourceId": "gait1906",
+          "pages": "p. 150",
+          "locator": "Hadira becomes the Ahom frontier outpost after 1671"
+        }
+      ],
+      "notes": "Ahom frontier outpost 1671-1679."
+    }
   ],
   "polities": [
-    { "id": "ahom", "name": "Ahom kingdom", "altNames": ["Tai-Ahom", "Mong Dun Shun Kham (Tai name, verify)"], "kind": "kingdom", "colorToken": "polity.ahom" },
-    { "id": "mong-mao-polity", "name": "Mong Mao (Tai Mao polity)", "kind": "kingdom", "colorToken": "polity.taimao", "notes": "13th-century extent unknown; point/zone only." },
-    { "id": "chutia", "name": "Chutia kingdom", "kind": "kingdom", "colorToken": "polity.chutia" },
-    { "id": "kachari", "name": "Kachari (Dimasa) kingdom", "kind": "kingdom", "colorToken": "polity.kachari" },
-    { "id": "koch", "name": "Koch kingdom (Kamata / Koch Bihar)", "kind": "kingdom", "colorToken": "polity.koch" },
-    { "id": "koch-hajo", "name": "Koch Hajo", "kind": "kingdom", "colorToken": "polity.koch" },
-    { "id": "bengal-sultanate", "name": "Bengal Sultanate", "kind": "sultanate", "colorToken": "polity.bengal" },
-    { "id": "mughal", "name": "Mughal Empire (Bengal subah)", "kind": "empire", "colorToken": "polity.mughal" },
-    { "id": "jaintia", "name": "Jaintia kingdom", "kind": "kingdom", "colorToken": "polity.jaintia" },
-    { "id": "manipur", "name": "Kingdom of Manipur", "kind": "kingdom", "colorToken": "polity.manipur" },
-    { "id": "burma", "name": "Konbaung Burma (Kingdom of Ava)", "kind": "kingdom", "colorToken": "polity.burma" },
-    { "id": "eic", "name": "English East India Company", "kind": "company-state", "colorToken": "polity.eic" },
-    { "id": "moran", "name": "Moran people", "kind": "community", "colorToken": "community.generic" },
-    { "id": "borahi", "name": "Borahi (Barahi) people", "kind": "community", "colorToken": "community.generic" },
-    { "id": "moamoria", "name": "Moamoria rebels", "kind": "rebel-movement", "colorToken": "rebel.moamoria" },
-    { "id": "bhutan", "name": "Bhutan (Deb Raja / Druk Desi polity)", "kind": "kingdom", "colorToken": "polity.bhutan", "notes": "Northern neighbour; duars arrangements." }
+    {
+      "id": "ahom",
+      "name": "Ahom kingdom",
+      "altNames": [
+        "Tai-Ahom",
+        "Mong Dun Shun Kham (Tai name, verify)"
+      ],
+      "kind": "kingdom",
+      "colorToken": "polity.ahom"
+    },
+    {
+      "id": "mong-mao-polity",
+      "name": "Mong Mao (Tai Mao polity)",
+      "kind": "kingdom",
+      "colorToken": "polity.taimao",
+      "notes": "13th-century extent unknown; point/zone only."
+    },
+    {
+      "id": "chutia",
+      "name": "Chutia kingdom",
+      "kind": "kingdom",
+      "colorToken": "polity.chutia"
+    },
+    {
+      "id": "kachari",
+      "name": "Kachari (Dimasa) kingdom",
+      "kind": "kingdom",
+      "colorToken": "polity.kachari"
+    },
+    {
+      "id": "koch",
+      "name": "Koch kingdom (Kamata / Koch Bihar)",
+      "kind": "kingdom",
+      "colorToken": "polity.koch"
+    },
+    {
+      "id": "koch-hajo",
+      "name": "Koch Hajo",
+      "kind": "kingdom",
+      "colorToken": "polity.koch"
+    },
+    {
+      "id": "bengal-sultanate",
+      "name": "Bengal Sultanate",
+      "kind": "sultanate",
+      "colorToken": "polity.bengal"
+    },
+    {
+      "id": "mughal",
+      "name": "Mughal Empire (Bengal subah)",
+      "kind": "empire",
+      "colorToken": "polity.mughal"
+    },
+    {
+      "id": "jaintia",
+      "name": "Jaintia kingdom",
+      "kind": "kingdom",
+      "colorToken": "polity.jaintia"
+    },
+    {
+      "id": "manipur",
+      "name": "Kingdom of Manipur",
+      "kind": "kingdom",
+      "colorToken": "polity.manipur"
+    },
+    {
+      "id": "burma",
+      "name": "Konbaung Burma (Kingdom of Ava)",
+      "kind": "kingdom",
+      "colorToken": "polity.burma"
+    },
+    {
+      "id": "eic",
+      "name": "English East India Company",
+      "kind": "company-state",
+      "colorToken": "polity.eic"
+    },
+    {
+      "id": "moran",
+      "name": "Moran people",
+      "kind": "community",
+      "colorToken": "community.generic"
+    },
+    {
+      "id": "borahi",
+      "name": "Borahi (Barahi) people",
+      "kind": "community",
+      "colorToken": "community.generic"
+    },
+    {
+      "id": "moamoria",
+      "name": "Moamoria rebels",
+      "kind": "rebel-movement",
+      "colorToken": "rebel.moamoria"
+    },
+    {
+      "id": "bhutan",
+      "name": "Bhutan (Deb Raja / Druk Desi polity)",
+      "kind": "kingdom",
+      "colorToken": "polity.bhutan",
+      "notes": "Northern neighbour; duars arrangements."
+    },
+    {
+      "id": "naga-communities",
+      "name": "Naga communities of the Patkai",
+      "kind": "community",
+      "colorToken": "community.generic",
+      "notes": "Independent village communities; never draw as a state."
+    }
   ]
 }
