@@ -3,21 +3,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-  /* Layout: full-screen canvas stage (camera frame + effects), HUD on top, sheets over it. Single dark look by design. */
+  /* Layout: full-screen canvas stage (deep-space starfield or monochrome camera), quiet HUD on top, sheets over it.
+     Single dark look by design: black space, light as the only colour. */
   :root {
-    --ink: #06070b;
-    --panel: rgba(12, 14, 22, 0.8);
-    --line: rgba(255, 255, 255, 0.14);
-    --text: #eef1f6;
-    --muted: #9aa3b5;
-    --bone: #3dff6e;
-    --joint: #ff3b4e;
-    --osc: #ffd23f;
-    --filt: #3fd8ff;
-    --rec: #ff3b4e;
-    --display: "Chakra Petch", "Arial Narrow", system-ui, sans-serif;
+    --ink: #000002;
+    --panel: rgba(0, 0, 4, 0.55);
+    --line: rgba(255, 255, 255, 0.16);
+    --text: #f2f1ec;
+    --muted: #8e8f99;
+    --bone: rgba(255, 255, 255, 0.78);
+    --joint: #ffffff;
+    --osc: #eadfc6;
+    --filt: #c3cde4;
+    --rec: #e86a5c;
+    --display: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
     --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
     color-scheme: dark;
   }
@@ -36,24 +37,24 @@
     padding-right: max(16px, env(safe-area-inset-right, 0px));
     background: linear-gradient(var(--panel), transparent);
   }
-  #hud h1 { font: 700 20px/1 var(--display); letter-spacing: 0.06em; margin: 0 auto 0 0; text-transform: uppercase; flex-basis: 100%; }
-  #hud h1 span { color: var(--bone); }
+  #hud h1 { font: 500 24px/1 var(--display); letter-spacing: 0.02em; margin: 0 auto 0 0; flex-basis: 100%; }
+  #hud h1 span { font-style: italic; color: var(--muted); }
   .chip {
-    font: 600 12px/1 var(--mono); color: var(--text); background: rgba(255,255,255,0.06);
-    border: 1px solid var(--line); border-radius: 999px; padding: 9px 12px; cursor: pointer;
-    letter-spacing: 0.04em; text-transform: uppercase; font-variant-numeric: tabular-nums;
+    font: 500 10.5px/1 var(--mono); color: var(--text); background: transparent;
+    border: 1px solid var(--line); border-radius: 999px; padding: 9px 13px; cursor: pointer;
+    letter-spacing: 0.14em; text-transform: uppercase; font-variant-numeric: tabular-nums;
   }
   .chip[aria-pressed="true"] { background: var(--text); color: var(--ink); border-color: var(--text); }
   .chip.rec { border-color: var(--rec); color: var(--rec); }
   #more { display: flex; flex-wrap: wrap; gap: 8px; flex-basis: 100%; }
   .chip.rec[aria-pressed="true"] { background: var(--rec); color: #fff; animation: pulse 1s infinite; }
   @keyframes pulse { 50% { opacity: 0.65; } }
-  .chip:focus-visible, .big:focus-visible { outline: 2px solid var(--filt); outline-offset: 2px; }
+  .chip:focus-visible, .big:focus-visible { outline: 1px solid var(--text); outline-offset: 3px; }
   #readout {
     position: fixed; z-index: 5; left: max(16px, env(safe-area-inset-left, 0px));
     bottom: calc(env(safe-area-inset-bottom, 0px) + 14px);
-    font: 400 12px/1.6 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums;
-    background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px;
+    font: 400 10.5px/1.6 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; letter-spacing: 0.08em;
+    background: transparent; border: 0; padding: 0;
   }
   #readout b { color: var(--text); font-weight: 600; }
   #status {
@@ -63,27 +64,27 @@
   }
   .sheet {
     position: fixed; inset: 0; z-index: 10; display: grid; place-items: center; overflow-y: auto;
-    background: radial-gradient(circle at 50% 30%, rgba(61,255,110,0.10), transparent 55%), rgba(6,7,11,0.88);
+    background: rgba(0, 0, 2, 0.35);
     padding-left: max(16px, env(safe-area-inset-left, 0px));
     padding-right: max(16px, env(safe-area-inset-right, 0px));
     padding-block: 24px;
   }
   .card { width: min(100%, 440px); display: grid; gap: 16px; }
-  .card h2 { font: 700 clamp(34px, 9vw, 52px)/0.95 var(--display); margin: 0; text-transform: uppercase; text-wrap: balance; }
-  .card h2 em { font-style: normal; color: var(--bone); }
-  .card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+  .card h2 { font: 500 clamp(40px, 11vw, 64px)/0.95 var(--display); margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+  .card h2 em { font-style: italic; color: var(--muted); }
+  .card p { margin: 0; color: var(--muted); font: 400 17px/1.5 var(--display); }
   .map { display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; font-size: 12px; line-height: 1.4; margin: 0; }
-  .map dt { font-weight: 600; letter-spacing: 0.04em; }
-  .map dd { margin: 0; color: var(--muted); }
-  .k-osc { color: var(--osc); } .k-filt { color: var(--filt); } .k-liq { color: var(--bone); } .k-drum { color: var(--joint); } .k-fx { color: #ffc56b; }
+  .map dt { font-weight: 500; letter-spacing: 0.14em; font-size: 10.5px; }
+  .map dd { margin: 0; color: var(--muted); font: 400 15.5px/1.35 var(--display); }
+  .k-osc, .k-filt, .k-liq, .k-drum, .k-fx { color: var(--text); }
   .row { display: flex; gap: 10px; flex-wrap: wrap; }
   .big {
-    flex: 1 1 160px; font: 700 15px/1 var(--display); text-transform: uppercase; letter-spacing: 0.06em;
-    padding: 16px; border-radius: 12px; cursor: pointer; border: 1px solid var(--line);
-    background: rgba(255,255,255,0.06); color: var(--text); text-align: center; text-decoration: none;
+    flex: 1 1 160px; font: 500 11px/1 var(--mono); text-transform: uppercase; letter-spacing: 0.18em;
+    padding: 17px; border-radius: 999px; cursor: pointer; border: 1px solid var(--line);
+    background: transparent; color: var(--text); text-align: center; text-decoration: none;
   }
-  .big.primary { background: var(--bone); color: var(--ink); border-color: var(--bone); }
-  .note { font-size: 11px; color: var(--muted); }
+  .big.primary { background: var(--text); color: var(--ink); border-color: var(--text); }
+  .note { font: italic 400 15px/1.45 var(--display); color: var(--muted); }
   #clip { width: 100%; max-height: 52vh; border-radius: 12px; background: #000; }
 </style>
 
@@ -104,7 +105,7 @@
     <button class="chip" id="m-chord" aria-pressed="false">Chords</button>
     <button class="chip" id="m-arp" aria-pressed="false">Arp</button>
     <button class="chip" id="m-voice">Voice: Saw</button>
-    <button class="chip" id="m-theme">Theme: Fire</button>
+    <button class="chip" id="m-theme">Theme: Cosmos</button>
     <button class="chip" id="m-view">View: Wide</button>
     <button class="chip" id="m-quality">Quality: Auto</button>
     <button class="chip" id="m-source">Touch</button>
@@ -315,13 +316,13 @@ function beatTick() {
   }
 }
 const drums = {
-  kick() { if (!A || !state.sound) return; kickAt(ac.currentTime); hit("KICK", COL.joint); },
-  hat() { if (!A || !state.sound) return; noiseBurst(0.06, 7000, 0.35, ac.currentTime); hit("HI-HAT", COL.filt); },
+  kick() { if (!A || !state.sound) return; kickAt(ac.currentTime); hit("kick", "#ffffff"); },
+  hat() { if (!A || !state.sound) return; noiseBurst(0.06, 7000, 0.35, ac.currentTime); hit("hi-hat", "#dfe4f5"); },
   zap() {
     if (!A || !state.sound) return;
     const t = ac.currentTime;
     noiseBurst(0.35, 3000, 0.4, t); noiseBurst(0.12, 800, 0.3, t + 0.05);
-    hit("STORM", `rgb(${TH.bolt[1]})`);
+    hit("storm", `rgb(${TH.bolt[1]})`);
   },
   spell() {
     if (!A || !state.sound) return;
@@ -331,13 +332,13 @@ const drums = {
     e.gain.setValueAtTime(0.0001, t); e.gain.exponentialRampToValueAtTime(0.35, t + 0.08); e.gain.exponentialRampToValueAtTime(0.001, t + 1.2);
     o.connect(f).connect(e); e.connect(A.bus); e.connect(A.verb); o.start(t); o.stop(t + 1.25);
     noiseBurst(0.9, 6000, 0.12, t);
-    hit("SPELL", "#ffe7b0");
+    hit("spell", "#ffffff");
   },
   clap() {
     if (!A || !state.sound) return;
     const t = ac.currentTime;
     clapAt(t); noiseBurst(1.6, 5000, 0.35, t + 0.01);     // snare + cymbal
-    hit("CLAP", "#ffffff");
+    hit("clap", "#ffffff");
   },
 };
 const readout = { freq: 0, cut: 0, q: 0 };
@@ -346,11 +347,12 @@ const hit = (text, col) => { hitText = { text, col, life: 1 }; };
 
 // ================= effects =================
 const THEMES = {
+  cosmos: { circle: "236,240,255", tip: "255,255,255", s1: "236,240,255", s2: "190,200,235", burst: "255,255,255", fist: "210,215,240", touch: "230,235,255", bolt: ["150,165,255", "255,255,255"], ink: "240,242,255", flash: "110,125,200" },
   fire: { circle: "255,236,200", tip: "255,200,120", s1: "255,190,80", s2: "255,150,60", burst: "255,230,160", fist: "255,120,40", touch: "255,180,70", bolt: ["80,190,255", "225,245,255"], ink: "255,170,60", flash: "255,140,40" },
   ice:  { circle: "215,240,255", tip: "150,225,255", s1: "140,220,255", s2: "90,170,255", burst: "220,245,255", fist: "80,150,255", touch: "130,210,255", bolt: ["120,200,255", "235,250,255"], ink: "110,210,255", flash: "80,170,255" },
   void: { circle: "235,212,255", tip: "205,150,255", s1: "190,120,255", s2: "150,90,255", burst: "230,200,255", fist: "170,70,255", touch: "190,130,255", bolt: ["170,110,255", "245,230,255"], ink: "200,120,255", flash: "150,70,255" },
 };
-let themeKey = "fire", TH = THEMES.fire;
+let themeKey = "cosmos", TH = THEMES.cosmos;
 const sparks = [], rings = [], spirals = [], eqs = [];
 const EQUATIONS = ["E = mc²", "e^iπ + 1 = 0", "∇·E = ρ/ε₀", "∮B·dl = μ₀I", "iħ ∂ψ/∂t = Ĥψ", "∫ e^(−x²) dx = √π",
   "F = ma", "λ = h/p", "Σ 1/n² = π²/6", "∇×E = −∂B/∂t", "S = k ln W", "φ = (1+√5)/2", "Gμν = 8πTμν", "ΔxΔp ≥ ħ/2"];
@@ -515,7 +517,7 @@ function analyse(hands) {
     const st = hstate[i];
     if (gesture !== st.gesture) {
       if (gesture === "peace" && state.magic) drums.zap();
-      if (gesture === "point" && state.magic) hit("DRAW", `rgb(${TH.ink})`);
+      if (gesture === "point" && state.magic) hit("draw", `rgb(${TH.ink})`);
       st.gesture = gesture;
     }
     if (fist && !st.fist) drums.kick();
@@ -543,15 +545,16 @@ function analyse(hands) {
   return { info, spread };
 }
 function label(text, x, y, col) {
-  g.font = `600 ${Math.max(12, W / 36)}px "IBM Plex Mono", monospace`;
+  g.font = `500 ${Math.max(10, W / 44)}px "IBM Plex Mono", monospace`;
+  g.letterSpacing = "2px";
   g.textAlign = "center"; g.textBaseline = "middle";
   g.lineWidth = 4; g.strokeStyle = "rgba(0,0,0,0.6)"; g.strokeText(text, x, y);
   g.fillStyle = col; g.fillText(text, x, y);
 }
 function knobLine(p, q, col, text) {
-  g.strokeStyle = col; g.lineWidth = 3;
+  g.strokeStyle = col; g.lineWidth = 1;
   g.beginPath(); g.moveTo(p.x, p.y); g.lineTo(q.x, q.y); g.stroke();
-  for (const pt of [p, q]) { g.fillStyle = col; g.beginPath(); g.arc(pt.x, pt.y, 8, 0, Math.PI * 2); g.fill(); }
+  for (const pt of [p, q]) { g.strokeStyle = col; g.lineWidth = 1; g.beginPath(); g.arc(pt.x, pt.y, 6, 0, Math.PI * 2); g.stroke(); }
   label(text, (p.x + q.x) / 2, (p.y + q.y) / 2 - 18, col);
 }
 // air ink: strokes drawn while pointing, fading after a few seconds
@@ -599,10 +602,14 @@ function drawHands({ info, spread }, t) {
   }
   info.forEach(({ h, pinch, fist, palm }, idx) => {
     if (state.synth) {
-      g.strokeStyle = COL.bone; g.lineWidth = 3;
+      g.strokeStyle = COL.bone; g.lineWidth = 1.4;
       for (const [a, b] of BONES) { g.beginPath(); g.moveTo(h[a].x, h[a].y); g.lineTo(h[b].x, h[b].y); g.stroke(); }
-      g.fillStyle = COL.joint;
-      for (const p of h) { g.beginPath(); g.arc(p.x, p.y, 4.5, 0, Math.PI * 2); g.fill(); }
+      // joints as small stars: a bright point with a soft halo
+      for (const [k, p] of h.entries()) {
+        const big = TIPS.includes(k) ? 1.5 : 1;
+        g.fillStyle = "rgba(255,255,255,0.16)"; g.beginPath(); g.arc(p.x, p.y, 6 * big, 0, Math.PI * 2); g.fill();
+        g.fillStyle = COL.joint; g.beginPath(); g.arc(p.x, p.y, 1.8 * big, 0, Math.PI * 2); g.fill();
+      }
     }
     if (state.magic) {
       spellCircle(palm.x, palm.y, dist(h[0], h[9]) * (0.7 + pinch * 0.5), t);
@@ -645,16 +652,32 @@ cv.addEventListener("pointermove", (e) => {
 });
 for (const ev of ["pointerup", "pointercancel"]) cv.addEventListener(ev, (e) => touches.delete(e.pointerId));
 
-function touchBackdrop(t) {
-  g.fillStyle = "#06070b"; g.fillRect(0, 0, W, H);
-  const gr = g.createRadialGradient(W * (0.5 + 0.3 * Math.sin(t * 0.3)), H * 0.4, 0, W / 2, H * 0.4, H * 0.7);
-  gr.addColorStop(0, "rgba(61,255,110,0.10)"); gr.addColorStop(0.5, "rgba(63,120,255,0.06)"); gr.addColorStop(1, "rgba(0,0,0,0)");
-  g.fillStyle = gr; g.fillRect(0, 0, W, H);
-  g.strokeStyle = "rgba(255,255,255,0.05)"; g.lineWidth = 1;
-  const step = 40, off = (t * 12) % step;
-  for (let x = -off; x < W; x += step) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, H); g.stroke(); }
-  for (let y = -off; y < H; y += step) { g.beginPath(); g.moveTo(0, y); g.lineTo(W, y); g.stroke(); }
+// deep-space backdrop: three depths of slowly drifting stars and a barely-there nebula
+const STARS = Array.from({ length: 420 }, (_, i) => {
+  const r = (n) => { const x = Math.sin(i * 12.9898 + n * 78.233) * 43758.5453; return x - Math.floor(x); };
+  const depth = r(1) < 0.7 ? 0.25 : r(2) < 0.75 ? 0.6 : 1;
+  return { x: r(3), y: r(4), z: depth, s: depth * (0.5 + r(5) * 1.1), tw: r(6) * 6.28, warm: r(7) < 0.12 };
+});
+function drawStars(t, alpha = 1) {
+  for (const st of STARS) {
+    const x = ((st.x + t * 0.004 * st.z) % 1) * W, y = ((st.y + t * 0.0015 * st.z) % 1) * H;
+    const a = alpha * (0.35 + 0.65 * st.z) * (0.6 + 0.4 * Math.sin(t * (0.6 + st.z) + st.tw));
+    g.fillStyle = st.warm ? `rgba(255,236,214,${a})` : `rgba(226,232,255,${a})`;
+    g.fillRect(x, y, st.s, st.s);
+    if (st.z === 1 && st.s > 1.1) { g.fillStyle = `rgba(226,232,255,${a * 0.18})`; g.fillRect(x - 2, y + st.s / 2 - 0.5, st.s + 4, 1); g.fillRect(x + st.s / 2 - 0.5, y - 2, 1, st.s + 4); }
+  }
 }
+function drawSpace(t) {
+  g.fillStyle = "#000002"; g.fillRect(0, 0, W, H);
+  // faint nebula: two cold clouds, almost black
+  for (const [cx, cy, r, c] of [[0.3 + 0.03 * Math.sin(t * 0.05), 0.35, 0.75, "38,46,92"], [0.78, 0.72 + 0.02 * Math.cos(t * 0.04), 0.6, "60,36,74"]]) {
+    const gr = g.createRadialGradient(W * cx, H * cy, 0, W * cx, H * cy, H * r);
+    gr.addColorStop(0, `rgba(${c},0.22)`); gr.addColorStop(1, "rgba(0,0,0,0)");
+    g.fillStyle = gr; g.fillRect(0, 0, W, H);
+  }
+  drawStars(t);
+}
+function touchBackdrop(t) { drawSpace(t); }
 function drawTouch(t) {
   touchBackdrop(t);
   const pts = [...touches.values()].sort((a, b) => a.x - b.x);
@@ -733,7 +756,7 @@ async function loadTracker() {
 }
 function drawCamera() {
   const vw = video.videoWidth, vh = video.videoHeight;
-  if (!vw) { g.fillStyle = "#06070b"; g.fillRect(0, 0, W, H); return; }
+  if (!vw) { drawSpace(performance.now() / 1000); return; }
   g.save(); g.translate(W, 0); g.scale(-1, 1);                    // mirror like a selfie
   if (state.fit === "wide") {
     // dim, stretched copy behind fills the edges; the full camera frame sits on top
@@ -744,10 +767,14 @@ function drawCamera() {
   const r = videoRect();
   g.drawImage(video, r.x, r.y, r.w, r.h);
   g.restore();
-  g.fillStyle = "rgba(6,8,16,0.38)"; g.fillRect(0, 0, W, H);       // cinematic darken
-  const vg = g.createRadialGradient(W / 2, H / 2, H * 0.25, W / 2, H / 2, H * 0.75);
-  vg.addColorStop(0, "rgba(0,0,0,0)"); vg.addColorStop(1, "rgba(0,0,0,0.55)");
+  // monochrome: wipe out colour, then push the image down into deep black
+  g.globalCompositeOperation = "saturation"; g.fillStyle = "#808080"; g.fillRect(0, 0, W, H);
+  g.globalCompositeOperation = "source-over";
+  g.fillStyle = "rgba(0,0,6,0.55)"; g.fillRect(0, 0, W, H);
+  const vg = g.createRadialGradient(W / 2, H * 0.45, H * 0.2, W / 2, H * 0.45, H * 0.75);
+  vg.addColorStop(0, "rgba(0,0,0,0)"); vg.addColorStop(1, "rgba(0,0,2,0.85)");
   g.fillStyle = vg; g.fillRect(0, 0, W, H);
+  drawStars(performance.now() / 1000, 0.55);
 }
 
 // ================= loop =================
@@ -779,7 +806,7 @@ function frame(now) {
       const frac = Math.min(1, (now - lastDetect) / 33) * 0.6;
       drawHands(analyse(predict(lastHands, frac)), t);
     }
-  } else { g.fillStyle = "#06070b"; g.fillRect(0, 0, W, H); }
+  } else drawSpace(t);
   if (state.magic) { drawSpirals(now); drawSparks(); }
   if (beatPulse > 0.02 && !reduced) {
     const bg = g.createRadialGradient(W / 2, H / 2, H * 0.2, W / 2, H / 2, H * 0.8);
@@ -789,7 +816,7 @@ function frame(now) {
   }
   if (hitText && hitText.life > 0.03) {
     g.save(); g.globalAlpha = hitText.life;
-    g.font = `700 ${W / 9}px "Chakra Petch", sans-serif`; g.textAlign = "center"; g.textBaseline = "middle";
+    g.font = `italic 500 ${W / 8}px "Cormorant Garamond", Georgia, serif`; g.textAlign = "center"; g.textBaseline = "middle";
     g.fillStyle = hitText.col; g.fillText(hitText.text, W / 2, H * 0.62 - (1 - hitText.life) * 40);
     g.restore(); hitText.life *= 0.9;
   }
