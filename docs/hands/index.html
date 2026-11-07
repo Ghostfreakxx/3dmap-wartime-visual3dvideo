@@ -45,6 +45,7 @@
   }
   .chip[aria-pressed="true"] { background: var(--text); color: var(--ink); border-color: var(--text); }
   .chip.rec { border-color: var(--rec); color: var(--rec); }
+  #more { display: flex; flex-wrap: wrap; gap: 8px; flex-basis: 100%; }
   .chip.rec[aria-pressed="true"] { background: var(--rec); color: #fff; animation: pulse 1s infinite; }
   @keyframes pulse { 50% { opacity: 0.65; } }
   .chip:focus-visible, .big:focus-visible { outline: 2px solid var(--filt); outline-offset: 2px; }
@@ -95,13 +96,19 @@
   <h1>Hand <span>Synth</span></h1>
   <button class="chip" id="m-synth" aria-pressed="true">Synth</button>
   <button class="chip" id="m-magic" aria-pressed="true">Magic</button>
-  <button class="chip" id="m-chord" aria-pressed="false">Chords</button>
-  <button class="chip" id="m-arp" aria-pressed="false">Arp</button>
+  <button class="chip" id="m-beat" aria-pressed="false">Beat</button>
   <button class="chip" id="m-sound" aria-pressed="true">Sound on</button>
   <button class="chip rec" id="m-rec" aria-pressed="false">● Rec</button>
-  <button class="chip" id="m-view">View: Wide</button>
-  <button class="chip" id="m-quality">Quality: Auto</button>
-  <button class="chip" id="m-source">Touch</button>
+  <button class="chip" id="m-more" aria-expanded="false" aria-controls="more">More</button>
+  <div id="more" hidden>
+    <button class="chip" id="m-chord" aria-pressed="false">Chords</button>
+    <button class="chip" id="m-arp" aria-pressed="false">Arp</button>
+    <button class="chip" id="m-voice">Voice: Saw</button>
+    <button class="chip" id="m-theme">Theme: Fire</button>
+    <button class="chip" id="m-view">View: Wide</button>
+    <button class="chip" id="m-quality">Quality: Auto</button>
+    <button class="chip" id="m-source">Touch</button>
+  </div>
 </div>
 <div id="readout" hidden></div>
 <div id="status" role="status"></div>
@@ -114,7 +121,8 @@
       <dt class="k-osc">OSC FREQ</dt><dd>Height of your left hand (or first finger)</dd>
       <dt class="k-filt">FILTER</dt><dd>Pinch thumb and index on your right hand</dd>
       <dt class="k-liq">LIQUID</dt><dd>Distance between your two hands</dd>
-      <dt class="k-drum">DRUMS</dt><dd>Fist = kick · quick pinch = hi-hat · clap = snare and cymbal</dd>
+      <dt class="k-drum">DRUMS</dt><dd>Fist = kick · quick pinch = hi-hat · clap = snare and cymbal · Beat button = drum loop</dd>
+      <dt class="k-filt">GESTURES</dt><dd>☝ point to draw in the air · ✌ peace sign for a lightning storm</dd>
       <dt class="k-fx">MAGIC</dt><dd>Spell circles, sparks, glitch blocks and lightning between your hands. Flick a hand upward for a spiral of equations</dd>
     </dl>
     <div class="row">
@@ -160,7 +168,7 @@ function resize() {
 addEventListener("resize", resize); resize();
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const state = { source: null, synth: true, magic: true, sound: true, chord: false, arp: false, fit: "wide" };
+const state = { source: null, synth: true, magic: true, sound: true, chord: false, arp: false, beat: false, fit: "wide" };
 // where the camera frame sits on screen: "wide" shows the whole field of view, "fill" crops to fill the screen
 function videoRect() {
   const vw = video.videoWidth || 640, vh = video.videoHeight || 480;
@@ -200,6 +208,8 @@ function audioStart() {
     a.connect(gn); b.connect(gn); gn.connect(env); a.start(); b.start();
     return { a, b, gn };
   });
+  const vib = ac.createOscillator(); vib.frequency.value = 5.4; const vibAmt = ac.createGain(); vibAmt.gain.value = 0;
+  vib.connect(vibAmt); for (const v of voices) { vibAmt.connect(v.a.detune); vibAmt.connect(v.b.detune); } vib.start();
   const lfo = ac.createOscillator(); lfo.frequency.value = 3; const lfoAmt = ac.createGain(); lfoAmt.gain.value = 0;
   lfo.connect(lfoAmt).connect(filter.frequency); lfo.start();
   const delay = ac.createDelay(1); delay.delayTime.value = 0.375;
@@ -208,10 +218,24 @@ function audioStart() {
   master.connect(bus); master.connect(verb);
   master.connect(delay); delay.connect(fb).connect(delay); delay.connect(dwet).connect(bus);
   const recDest = ac.createMediaStreamDestination(); comp.connect(recDest);
-  A = { bus, verb, master, env, filter, voices, lfoAmt, recDest };
-  setInterval(arpTick, 25);
+  A = { bus, verb, master, env, filter, voices, lfoAmt, vibAmt, recDest };
+  applyVoice();
+  setInterval(() => { arpTick(); beatTick(); }, 25);
 }
 const SCALE = [0, 3, 5, 7, 10, 12, 15, 17, 19, 22, 24, 27, 29, 31, 34];   // minor pentatonic
+// instrument voices: oscillator shapes, the second oscillator's ratio, octave and vibrato
+const VOICES = {
+  saw:   { name: "Saw",   a: "sawtooth", b: "square",   ratio: 0.5,   oct: 1,   vib: 0 },
+  glass: { name: "Glass", a: "sine",     b: "triangle", ratio: 2,     oct: 2,   vib: 0 },
+  bass:  { name: "Bass",  a: "square",   b: "sawtooth", ratio: 0.5,   oct: 0.5, vib: 0 },
+  choir: { name: "Choir", a: "triangle", b: "triangle", ratio: 1.006, oct: 1,   vib: 16 },
+};
+let voiceKey = "saw", VO = VOICES.saw;
+function applyVoice() {
+  if (!A) return;
+  for (const v of A.voices) { v.a.type = VO.a; v.b.type = VO.b; }
+  A.vibAmt.gain.setTargetAtTime(VO.vib, ac.currentTime, 0.05);
+}
 let curIdx = 4, active = false;
 const hz = (idx) => 110 * Math.pow(2, SCALE[Math.max(0, Math.min(SCALE.length - 1, idx))] / 12);
 function setSynth({ on, pitchY, pinch, spread }) {
@@ -224,7 +248,7 @@ function setSynth({ on, pitchY, pinch, spread }) {
   if (!state.arp) {
     A.voices.forEach((v, k) => {
       const f = hz(curIdx + k * 2);
-      v.a.frequency.setTargetAtTime(f, t, 0.03); v.b.frequency.setTargetAtTime(f / 2, t, 0.03);
+      v.a.frequency.setTargetAtTime(f * VO.oct, t, 0.03); v.b.frequency.setTargetAtTime(f * VO.oct * VO.ratio, t, 0.03);
       v.gn.gain.setTargetAtTime(k === 0 ? 0.2 : state.chord ? 0.13 : 0, t, 0.05);
     });
     A.env.gain.setTargetAtTime(1, t, 0.02);
@@ -244,7 +268,7 @@ function arpTick() {
   while (nextArp < ac.currentTime + 0.1) {
     const pat = [0, 2, 4, 7, 4, 2], f = hz(curIdx + pat[arpStep % pat.length]);
     A.voices.forEach((v, k) => {
-      v.a.frequency.setValueAtTime(f * (k === 2 ? 2 : 1), nextArp); v.b.frequency.setValueAtTime(f / 2, nextArp);
+      v.a.frequency.setValueAtTime(f * VO.oct * (k === 2 ? 2 : 1), nextArp); v.b.frequency.setValueAtTime(f * VO.oct * VO.ratio, nextArp);
       v.gn.gain.setValueAtTime(k === 0 ? 0.22 : state.chord && k === 1 ? 0.1 : 0, nextArp);
     });
     A.env.gain.cancelScheduledValues(nextArp);
@@ -260,17 +284,45 @@ function noiseBurst(dur, hp, gain, t) {
   const e = ac.createGain(); e.gain.setValueAtTime(gain, t); e.gain.exponentialRampToValueAtTime(0.001, t + dur);
   n.buffer = buf; n.connect(f).connect(e); e.connect(A.bus); e.connect(A.verb); n.start(t);
 }
+function kickAt(t, gain = 1) {
+  const o = ac.createOscillator(), e = ac.createGain();
+  o.frequency.setValueAtTime(160, t); o.frequency.exponentialRampToValueAtTime(42, t + 0.16);
+  e.gain.setValueAtTime(gain, t); e.gain.exponentialRampToValueAtTime(0.001, t + 0.42);
+  o.connect(e).connect(A.bus); o.start(t); o.stop(t + 0.45);
+  noiseBurst(0.02, 2000, 0.3 * gain, t);
+}
+function clapAt(t, gain = 1) {
+  noiseBurst(0.18, 1200, 0.8 * gain, t);
+  const o = ac.createOscillator(), e = ac.createGain();
+  o.frequency.setValueAtTime(220, t); o.frequency.exponentialRampToValueAtTime(120, t + 0.1);
+  e.gain.setValueAtTime(0.5 * gain, t); e.gain.exponentialRampToValueAtTime(0.001, t + 0.2);
+  o.connect(e).connect(A.bus); o.start(t); o.stop(t + 0.22);
+}
+// 120 BPM sixteenth-note drum loop, on the same clock as the arpeggiator
+let nextBeat = 0, beatStep = 0;
+const kickTimes = [];
+const KICK = [1,0,0,0, 1,0,0,0, 1,0,1,0, 1,0,0,0], CLAP = [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,1], HAT = [0,0,1,0, 0,0,1,0, 0,0,1,0, 0,1,1,0];
+function beatTick() {
+  if (!A || !state.beat || !state.sound) { nextBeat = 0; return; }
+  const step = 0.125;
+  if (nextBeat < ac.currentTime) nextBeat = ac.currentTime + 0.05;
+  while (nextBeat < ac.currentTime + 0.1) {
+    const i = beatStep % 16;
+    if (KICK[i]) { kickAt(nextBeat, 0.85); kickTimes.push(nextBeat); }
+    if (CLAP[i]) clapAt(nextBeat, 0.55);
+    if (HAT[i]) noiseBurst(0.05, 7500, 0.22, nextBeat); else if (i % 2) noiseBurst(0.03, 9000, 0.07, nextBeat);
+    beatStep++; nextBeat += step;
+  }
+}
 const drums = {
-  kick() {
-    if (!A || !state.sound) return;
-    const t = ac.currentTime, o = ac.createOscillator(), e = ac.createGain();
-    o.frequency.setValueAtTime(160, t); o.frequency.exponentialRampToValueAtTime(42, t + 0.16);
-    e.gain.setValueAtTime(1, t); e.gain.exponentialRampToValueAtTime(0.001, t + 0.42);
-    o.connect(e).connect(A.bus); o.start(t); o.stop(t + 0.45);
-    noiseBurst(0.02, 2000, 0.3, t);
-    hit("KICK", COL.joint);
-  },
+  kick() { if (!A || !state.sound) return; kickAt(ac.currentTime); hit("KICK", COL.joint); },
   hat() { if (!A || !state.sound) return; noiseBurst(0.06, 7000, 0.35, ac.currentTime); hit("HI-HAT", COL.filt); },
+  zap() {
+    if (!A || !state.sound) return;
+    const t = ac.currentTime;
+    noiseBurst(0.35, 3000, 0.4, t); noiseBurst(0.12, 800, 0.3, t + 0.05);
+    hit("STORM", `rgb(${TH.bolt[1]})`);
+  },
   spell() {
     if (!A || !state.sound) return;
     const t = ac.currentTime, o = ac.createOscillator(), e = ac.createGain(), f = ac.createBiquadFilter();
@@ -284,11 +336,7 @@ const drums = {
   clap() {
     if (!A || !state.sound) return;
     const t = ac.currentTime;
-    noiseBurst(0.18, 1200, 0.8, t); noiseBurst(1.6, 5000, 0.35, t + 0.01);     // snare + cymbal
-    const o = ac.createOscillator(), e = ac.createGain();
-    o.frequency.setValueAtTime(220, t); o.frequency.exponentialRampToValueAtTime(120, t + 0.1);
-    e.gain.setValueAtTime(0.5, t); e.gain.exponentialRampToValueAtTime(0.001, t + 0.2);
-    o.connect(e).connect(A.bus); o.start(t); o.stop(t + 0.22);
+    clapAt(t); noiseBurst(1.6, 5000, 0.35, t + 0.01);     // snare + cymbal
     hit("CLAP", "#ffffff");
   },
 };
@@ -297,12 +345,18 @@ let hitText = null;
 const hit = (text, col) => { hitText = { text, col, life: 1 }; };
 
 // ================= effects =================
+const THEMES = {
+  fire: { circle: "255,236,200", tip: "255,200,120", s1: "255,190,80", s2: "255,150,60", burst: "255,230,160", fist: "255,120,40", touch: "255,180,70", bolt: ["80,190,255", "225,245,255"], ink: "255,170,60", flash: "255,140,40" },
+  ice:  { circle: "215,240,255", tip: "150,225,255", s1: "140,220,255", s2: "90,170,255", burst: "220,245,255", fist: "80,150,255", touch: "130,210,255", bolt: ["120,200,255", "235,250,255"], ink: "110,210,255", flash: "80,170,255" },
+  void: { circle: "235,212,255", tip: "205,150,255", s1: "190,120,255", s2: "150,90,255", burst: "230,200,255", fist: "170,70,255", touch: "190,130,255", bolt: ["170,110,255", "245,230,255"], ink: "200,120,255", flash: "150,70,255" },
+};
+let themeKey = "fire", TH = THEMES.fire;
 const sparks = [], rings = [], spirals = [], eqs = [];
 const EQUATIONS = ["E = mc²", "e^iπ + 1 = 0", "∇·E = ρ/ε₀", "∮B·dl = μ₀I", "iħ ∂ψ/∂t = Ĥψ", "∫ e^(−x²) dx = √π",
   "F = ma", "λ = h/p", "Σ 1/n² = π²/6", "∇×E = −∂B/∂t", "S = k ln W", "φ = (1+√5)/2", "Gμν = 8πTμν", "ΔxΔp ≥ ħ/2"];
 let eqIdx = 0;
 function castSpiral(x, y, up = 1) {
-  spirals.push({ x, y, born: performance.now(), hue: Math.random() < 0.5 ? "255,205,120" : "130,220,255" });
+  spirals.push({ x, y, born: performance.now(), hue: Math.random() < 0.5 ? TH.tip : TH.circle });
   for (let k = 0; k < 3; k++) {
     const a = Math.random() * Math.PI * 2;
     eqs.push({ text: EQUATIONS[eqIdx++ % EQUATIONS.length], x: x + Math.cos(a) * 60, y: y - 20 - k * 30,
@@ -383,7 +437,7 @@ function drawSparks() {
   }
   g.globalCompositeOperation = "source-over";
 }
-function spellCircle(x, y, r, t, hue = "255,236,200") {
+function spellCircle(x, y, r, t, hue = TH.circle) {
   g.save(); g.globalCompositeOperation = "lighter"; g.translate(x, y);
   if (tier.glow) { g.shadowColor = `rgba(${hue},0.9)`; g.shadowBlur = 14; }
   g.strokeStyle = `rgba(${hue},0.9)`;
@@ -400,7 +454,7 @@ function spellCircle(x, y, r, t, hue = "255,236,200") {
 }
 function lightning(p, q, t, k) {
   g.save(); g.globalCompositeOperation = "lighter";
-  for (const [w, c] of [[7, "rgba(80,190,255,0.35)"], [2, "rgba(225,245,255,0.95)"]]) {
+  for (const [w, c] of [[7, `rgba(${TH.bolt[0]},0.35)`], [2, `rgba(${TH.bolt[1]},0.95)`]]) {
     g.strokeStyle = c; g.lineWidth = w; g.beginPath(); g.moveTo(p.x, p.y);
     const n = 9, dx = q.x - p.x, dy = q.y - p.y, len = Math.hypot(dx, dy) || 1, nx = -dy / len, ny = dx / len;
     for (let i = 1; i < n; i++) {
@@ -456,15 +510,22 @@ function analyse(hands) {
     const pinch = Math.min(1, Math.max(0, (dist(h[4], h[8]) / size - 0.15) / 1.1));
     const curl = TIPS.slice(1).reduce((s, k) => s + dist(h[k], h[0]), 0) / 4 / size;
     const fist = curl < 1.15;
+    const ext = [[8, 6], [12, 10], [16, 14], [20, 18]].map(([tp, pip]) => dist(h[tp], h[0]) > dist(h[pip], h[0]) * 1.12);
+    const gesture = fist ? "fist" : ext[0] && !ext[1] && !ext[2] && !ext[3] ? "point" : ext[0] && ext[1] && !ext[2] && !ext[3] ? "peace" : "open";
     const st = hstate[i];
+    if (gesture !== st.gesture) {
+      if (gesture === "peace" && state.magic) drums.zap();
+      if (gesture === "point" && state.magic) hit("DRAW", `rgb(${TH.ink})`);
+      st.gesture = gesture;
+    }
     if (fist && !st.fist) drums.kick();
     if (!fist && pinch < 0.08 && st.pinch > 0.3) drums.hat();
     st.fist = fist; st.pinch = pinch;
     if (state.magic) checkRise(`h${i}`, (h[0].x + h[9].x) / 2, (h[0].y + h[9].y) / 2, performance.now());
     const xs = h.map((p) => p.x), ys = h.map((p) => p.y);
-    return { h, size, pinch, fist, palm: { x: (h[0].x + h[9].x) / 2, y: (h[0].y + h[9].y) / 2 }, box: { x0: Math.min(...xs), x1: Math.max(...xs), y0: Math.min(...ys), y1: Math.max(...ys) } };
+    return { h, size, pinch, fist, gesture, palm: { x: (h[0].x + h[9].x) / 2, y: (h[0].y + h[9].y) / 2 }, box: { x0: Math.min(...xs), x1: Math.max(...xs), y0: Math.min(...ys), y1: Math.max(...ys) } };
   });
-  for (let i = hands.length; i < 2; i++) hstate[i] = { fist: false, pinch: 1 };
+  for (let i = hands.length; i < 2; i++) { hstate[i] = { fist: false, pinch: 1 }; curStroke[i] = null; }
   let spread = 0;
   if (info.length > 1) {
     const gap = dist(info[0].palm, info[1].palm);
@@ -472,7 +533,7 @@ function analyse(hands) {
     if (clapCool <= 0 && lastPalmGap > W * 0.3 && gap < W * 0.16) {
       drums.clap(); clapCool = 30;
       const m = { x: (info[0].palm.x + info[1].palm.x) / 2, y: (info[0].palm.y + info[1].palm.y) / 2 };
-      rings.push({ x: m.x, y: m.y, r: 20, life: 1 }); emit(m.x, m.y, 0, 0, 160, "255,230,160", 7);
+      rings.push({ x: m.x, y: m.y, r: 20, life: 1 }); emit(m.x, m.y, 0, 0, 160, TH.burst, 7);
     }
     lastPalmGap = gap;
   } else lastPalmGap = Infinity;
@@ -493,7 +554,42 @@ function knobLine(p, q, col, text) {
   for (const pt of [p, q]) { g.fillStyle = col; g.beginPath(); g.arc(pt.x, pt.y, 8, 0, Math.PI * 2); g.fill(); }
   label(text, (p.x + q.x) / 2, (p.y + q.y) / 2 - 18, col);
 }
+// air ink: strokes drawn while pointing, fading after a few seconds
+const strokes = [], curStroke = [null, null];
+const INK_LIFE = 4000;
+function drawInk(now) {
+  g.save(); g.globalCompositeOperation = "lighter"; g.lineCap = g.lineJoin = "round";
+  for (let i = strokes.length - 1; i >= 0; i--) {
+    const st = strokes[i];
+    while (st.pts.length && now - st.pts[0].t > INK_LIFE) st.pts.shift();
+    if (!st.pts.length && st !== curStroke[0] && st !== curStroke[1]) { strokes.splice(i, 1); continue; }
+    for (const [w, a] of [[tier.glow ? 14 : 9, 0.18], [4, 0.95]]) {
+      for (let k = 1; k < st.pts.length; k++) {
+        const p = st.pts[k - 1], q = st.pts[k], life = 1 - (now - q.t) / INK_LIFE;
+        g.strokeStyle = `rgba(${st.col},${a * life})`; g.lineWidth = w;
+        g.beginPath(); g.moveTo(p.x, p.y); g.lineTo(q.x, q.y); g.stroke();
+      }
+    }
+  }
+  g.restore();
+}
+function storm(tip, t, k) {
+  for (let b = 0; b < 3; b++) {
+    const a = Math.sin(t * 13 + b * 2.1 + k) * Math.PI + (b - 1) * 0.9 - Math.PI / 2, r = 90 + 80 * Math.abs(Math.sin(t * 7 + b + k));
+    lightning(tip, { x: tip.x + Math.cos(a) * r, y: tip.y + Math.sin(a) * r }, t, b + k * 3);
+  }
+}
 function drawHands({ info, spread }, t) {
+  const nowMs = performance.now();
+  info.forEach(({ h, gesture }, idx) => {
+    if (state.magic && gesture === "point") {
+      if (!curStroke[idx]) { curStroke[idx] = { pts: [], col: TH.ink }; strokes.push(curStroke[idx]); }
+      const last = curStroke[idx].pts.at(-1);
+      if (!last || Math.hypot(last.x - h[8].x, last.y - h[8].y) > 3) curStroke[idx].pts.push({ x: h[8].x, y: h[8].y, t: nowMs });
+    } else curStroke[idx] = null;
+    if (state.magic && gesture === "peace") { storm(h[8], t, 0); storm(h[12], t, 1); }
+  });
+  if (state.magic) drawInk(nowMs);
   if (state.magic) for (const hd of info) glitch(hd.box);
   if (state.magic && info.length > 1) {
     const near = 1 - spread;
@@ -510,14 +606,14 @@ function drawHands({ info, spread }, t) {
     }
     if (state.magic) {
       spellCircle(palm.x, palm.y, dist(h[0], h[9]) * (0.7 + pinch * 0.5), t);
-      spellCircle(h[8].x, h[8].y, 18 + pinch * 26, t * 1.4, "255,200,120");
+      spellCircle(h[8].x, h[8].y, 18 + pinch * 26, t * 1.4, TH.tip);
       for (const k of TIPS) {
         const key = `${idx}-${k}`, prev = prevTips.get(key) || h[k];
         const vx = h[k].x - prev.x, vy = h[k].y - prev.y;
-        if (k === 8 || tierKey !== "low") emit(h[k].x, h[k].y, vx, vy, Math.min(tierKey === "max" ? 6 : 3, 1 + Math.hypot(vx, vy) / 8), k === 8 ? "255,190,80" : "255,150,60");
+        if (k === 8 || tierKey !== "low") emit(h[k].x, h[k].y, vx, vy, Math.min(tierKey === "max" ? 6 : 3, 1 + Math.hypot(vx, vy) / 8), k === 8 ? TH.s1 : TH.s2);
         prevTips.set(key, { x: h[k].x, y: h[k].y });
       }
-      if (fist) emit(h[9].x, h[9].y, 0, -2, 24, "255,120,40");
+      if (fist) emit(h[9].x, h[9].y, 0, -2, 24, TH.fist);
     }
   });
   if (state.synth && info.length) {
@@ -540,7 +636,7 @@ cv.addEventListener("pointerdown", (e) => {
   const now = performance.now();
   if (now - lastTap < 280) drums.kick();
   lastTap = now;
-  if (touches.size === 3) { drums.clap(); rings.push({ x: e.clientX, y: e.clientY, r: 20, life: 1 }); emit(e.clientX, e.clientY, 0, 0, 120, "255,230,160", 6); }
+  if (touches.size === 3) { drums.clap(); rings.push({ x: e.clientX, y: e.clientY, r: 20, life: 1 }); emit(e.clientX, e.clientY, 0, 0, 120, TH.burst, 6); }
 });
 cv.addEventListener("pointermove", (e) => {
   const p = touches.get(e.pointerId); if (!p) return;
@@ -570,7 +666,7 @@ function drawTouch(t) {
     lightning(pts[0], pts[1], t, 0);
     orb((pts[0].x + pts[1].x) / 2, (pts[0].y + pts[1].y) / 2, Math.max(0, 0.7 - spread) * 110, t);
   }
-  for (const p of pts) if (state.magic) { spellCircle(p.x, p.y, 46 + spread * 40, t); emit(p.x, p.y, p.x - p.px, p.y - p.py, 5, "255,180,70"); }
+  for (const p of pts) if (state.magic) { spellCircle(p.x, p.y, 46 + spread * 40, t); emit(p.x, p.y, p.x - p.px, p.y - p.py, 5, TH.touch); }
   if (state.synth && pts.length) {
     label(`OSC FREQ ${Math.round(readout.freq)} Hz`, pts[0].x, pts[0].y - 74, COL.osc);
     if (pts.length > 1) knobLine(pts[0], pts[1], COL.bone, `LIQUID ${(spread * 100) | 0}% · FILTER ${Math.round(readout.cut)} Hz`);
@@ -664,8 +760,10 @@ function adapt(now) {
   if (avgMs > 28 && i > 0) { setTier(order[i - 1]); tierCool = 90; }       // under ~36 fps: step down
   else if (avgMs < 17.5 && i < 2) { setTier(order[i + 1]); tierCool = 240; } // smooth for a while: step up (auto stops at high)
 }
+let beatPulse = 0;
 function frame(now) {
   adapt(now);
+  if (ac) while (kickTimes.length && kickTimes[0] <= ac.currentTime) { kickTimes.shift(); beatPulse = 1; }
   const t = now / 1000;
   if (state.source === "touch") drawTouch(t);
   else if (state.source === "camera") {
@@ -683,6 +781,12 @@ function frame(now) {
     }
   } else { g.fillStyle = "#06070b"; g.fillRect(0, 0, W, H); }
   if (state.magic) { drawSpirals(now); drawSparks(); }
+  if (beatPulse > 0.02 && !reduced) {
+    const bg = g.createRadialGradient(W / 2, H / 2, H * 0.2, W / 2, H / 2, H * 0.8);
+    bg.addColorStop(0, "rgba(0,0,0,0)"); bg.addColorStop(1, `rgba(${TH.flash},${0.28 * beatPulse})`);
+    g.fillStyle = bg; g.fillRect(0, 0, W, H);
+    beatPulse *= 0.85;
+  }
   if (hitText && hitText.life > 0.03) {
     g.save(); g.globalAlpha = hitText.life;
     g.font = `700 ${W / 9}px "Chakra Petch", sans-serif`; g.textAlign = "center"; g.textBaseline = "middle";
@@ -779,7 +883,19 @@ $("m-quality").onclick = () => {
   if (qualityMode === "fast") setTier("low"); else if (qualityMode === "max") setTier("max"); else tierCool = 0;
 };
 $("m-source").onclick = () => (state.source === "camera" ? begin("touch") : $("go-camera").onclick());
-for (const [id, key, on, off] of [["m-synth", "synth"], ["m-magic", "magic"], ["m-chord", "chord"], ["m-arp", "arp"], ["m-sound", "sound", "Sound on", "Sound off"]]) {
+$("m-more").onclick = () => {
+  const open = $("more").hidden; $("more").hidden = !open;
+  $("m-more").setAttribute("aria-expanded", String(open)); $("m-more").textContent = open ? "Less" : "More";
+};
+$("m-voice").onclick = () => {
+  const keys = Object.keys(VOICES); voiceKey = keys[(keys.indexOf(voiceKey) + 1) % keys.length]; VO = VOICES[voiceKey];
+  $("m-voice").textContent = `Voice: ${VO.name}`; applyVoice();
+};
+$("m-theme").onclick = () => {
+  const keys = Object.keys(THEMES); themeKey = keys[(keys.indexOf(themeKey) + 1) % keys.length]; TH = THEMES[themeKey];
+  $("m-theme").textContent = `Theme: ${themeKey[0].toUpperCase()}${themeKey.slice(1)}`;
+};
+for (const [id, key, on, off] of [["m-synth", "synth"], ["m-magic", "magic"], ["m-beat", "beat"], ["m-chord", "chord"], ["m-arp", "arp"], ["m-sound", "sound", "Sound on", "Sound off"]]) {
   $(id).onclick = () => {
     state[key] = !state[key];
     $(id).setAttribute("aria-pressed", String(state[key]));
