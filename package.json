@@ -1,0 +1,39 @@
+{
+  "name": "ahom-kingdom-map-documentary",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Animated, source-first historical map documentary of the Ahom Kingdom (1228-1826).",
+  "scripts": {
+    "predev": "node scripts/copy-maplibre-worker.mjs",
+    "dev": "next dev",
+    "prebuild": "node scripts/copy-maplibre-worker.mjs",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "validate": "node scripts/validate-research.mjs",
+    "validate:strict": "node scripts/validate-research.mjs --strict",
+    "fetch:geo": "NODE_USE_ENV_PROXY=1 node scripts/fetch-geo.mjs",
+    "fetch:terrain": "node scripts/fetch-terrain.mjs",
+    "check": "npm run validate && npm run typecheck && npm run lint && npm run build"
+  },
+  "dependencies": {
+    "maplibre-gl": "6.15.0",
+    "next": "16.4.3",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "server-only": "0.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "22.20.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.4.3",
+    "tailwindcss": "4.3.3",
+    "topojson-client": "3.1.0",
+    "typescript": "5.9.3",
+    "world-atlas": "2.0.2"
+  }
+}

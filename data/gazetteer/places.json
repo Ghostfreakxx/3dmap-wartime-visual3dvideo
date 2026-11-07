@@ -173,7 +173,7 @@
         95.55,
         27.33
       ],
-      "precision": "locality",
+      "precision": "regional",
       "kind": "settlement",
       "coordVerified": false,
       "sourceRefs": [
@@ -183,7 +183,7 @@
           "locator": "Sukapha's wanderings"
         }
       ],
-      "notes": "Area on the Burhi Dihing; exact early-13th-c. locality approximate.",
+      "notes": "Area on the Burhi Dihing; exact early-13th-c. locality approximate. Precision lowered to regional (2026-11-07): no gazetteer confirmation.",
       "coordCheck": {
         "status": "unchecked",
         "note": "No reliable gazetteer match (historical place or ambiguous name)."

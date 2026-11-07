@@ -1,0 +1,384 @@
+{
+  "$comment": "Episode 2 reel script (vertical 9:16, ~80 s). Flat map-reel style. Each beat binds to an event in data/chronology/events.json. Numbers on screen: years, phrases in derivedNumbers, or unit counts with a countRef to a sourced numericClaim. Narration is the optional voice-over / teleprompter text.",
+  "episode": 2,
+  "title": "Over the Patkai",
+  "headline": "THE AHOM KINGDOM",
+  "subtitle": "Sukaphaa's migration and the founding of Charaideo",
+  "range": "1215–1253",
+  "status": "prototype",
+  "defaultFormat": "9x16",
+  "legend": [
+    {
+      "polity": "ahom",
+      "label": "Sukaphaa's Tai-Ahom followers"
+    },
+    {
+      "polity": "mong-mao-polity",
+      "label": "Tai principalities (Mong Mao)"
+    },
+    {
+      "polity": "moran",
+      "label": "Moran & Borahi peoples"
+    },
+    {
+      "polity": "naga-communities",
+      "label": "Naga villages"
+    }
+  ],
+  "derivedNumbers": [
+    {
+      "text": "thirteen years",
+      "derivation": "1215 to 1228 (Gait p. 74)"
+    },
+    {
+      "text": "six hundred years",
+      "derivation": "1228 to 1826, stated as 'almost'"
+    }
+  ],
+  "routes": {
+    "migration": {
+      "via": [
+        "mong-mao",
+        "hukawng",
+        "nong-nyang",
+        "namrup"
+      ],
+      "label": "Route approximate"
+    },
+    "settlements": {
+      "via": [
+        "namrup",
+        "tipam",
+        "abhaypur",
+        "habung",
+        "simaluguri",
+        "charaideo"
+      ],
+      "label": "Sequence per the chronicles; sites approximate",
+      "smooth": false
+    }
+  },
+  "beats": [
+    {
+      "id": "b1-departure",
+      "eventId": "e01-sukaphaa-departs",
+      "year": "1215",
+      "durationMs": 10000,
+      "camera": {
+        "center": [
+          96.6,
+          25.6
+        ],
+        "zoom": 5.4,
+        "flyMs": 2500
+      },
+      "subtitle": "A Tai prince leaves Maulung",
+      "caption": "In {1215} Sukaphaa leaves his homeland, say the chronicles",
+      "tag": "disputed",
+      "narration": "In 1215, according to the Ahom chronicles, a Tai prince named Sukaphaa left his homeland of Maulung, east of the Patkai hills.",
+      "show": {
+        "cities": [
+          "mong-mao",
+          "patkai"
+        ],
+        "zones": [
+          {
+            "placeId": "mong-mao",
+            "radiusKm": 120,
+            "polity": "mong-mao-polity"
+          }
+        ],
+        "units": [
+          {
+            "id": "party",
+            "polity": "ahom",
+            "label": "Sukaphaa",
+            "at": "mong-mao",
+            "count": "9,000",
+            "countNote": "chronicles",
+            "countRef": {
+              "eventId": "e01-sukaphaa-departs",
+              "what": "size of Sukaphaa's following"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "b2-patkai",
+      "eventId": "e02-patkai-crossing",
+      "year": "1215–1228",
+      "yearTicker": [
+        1215,
+        1228
+      ],
+      "durationMs": 14000,
+      "camera": {
+        "center": [
+          96.6,
+          25.8
+        ],
+        "zoom": 5.4,
+        "flyMs": 1500
+      },
+      "subtitle": "Thirteen years in the Patkai hills",
+      "caption": "No path is recorded: the arrow is approximate",
+      "tag": "approximate",
+      "narration": "For thirteen years his followers moved through the hill country. The chronicles name rivers and a lake, but not the path.",
+      "show": {
+        "cities": [
+          "mong-mao",
+          "patkai",
+          "hukawng",
+          "nong-nyang"
+        ],
+        "zones": [
+          {
+            "placeId": "mong-mao",
+            "radiusKm": 120,
+            "polity": "mong-mao-polity"
+          }
+        ],
+        "route": {
+          "id": "migration",
+          "from": 0,
+          "to": 0.82
+        },
+        "units": [
+          {
+            "id": "party",
+            "polity": "ahom",
+            "label": "Sukaphaa",
+            "at": "route:migration",
+            "count": "9,000",
+            "countNote": "chronicles",
+            "countRef": {
+              "eventId": "e01-sukaphaa-departs",
+              "what": "size of Sukaphaa's following"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "b3-nagas",
+      "eventId": "e02-naga-violence",
+      "year": "1228",
+      "durationMs": 11000,
+      "camera": {
+        "center": [
+          96.0,
+          27.0
+        ],
+        "zoom": 7.0,
+        "flyMs": 2500
+      },
+      "subtitle": "Conquest of the Naga villages",
+      "caption": "The chronicles record brutal reprisals against Nagas who resisted",
+      "tag": "documented",
+      "narration": "It was not a peaceful journey. The chronicles themselves record that Sukaphaa crushed Naga villages that resisted, with deliberate cruelty, so that others would submit.",
+      "show": {
+        "cities": [
+          "nong-nyang",
+          "patkai"
+        ],
+        "zones": [
+          {
+            "placeId": "nong-nyang",
+            "radiusKm": 35,
+            "polity": "naga-communities"
+          }
+        ],
+        "route": {
+          "id": "migration",
+          "from": 0.82,
+          "to": 0.82
+        },
+        "units": [
+          {
+            "id": "party",
+            "polity": "ahom",
+            "label": "Sukaphaa",
+            "at": "route:migration"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b4-arrival",
+      "eventId": "e02-arrival-1228",
+      "year": "1228",
+      "durationMs": 9000,
+      "camera": {
+        "center": [
+          95.6,
+          27.1
+        ],
+        "zoom": 7.0,
+        "flyMs": 2000
+      },
+      "subtitle": "Into the Brahmaputra valley",
+      "caption": "{1228}: the start of Ahom rule",
+      "tag": "documented",
+      "narration": "In 1228 the party came down towards Namrup, on the edge of the Brahmaputra valley. That year still marks the beginning of Ahom rule.",
+      "show": {
+        "cities": [
+          "nong-nyang",
+          "namrup"
+        ],
+        "route": {
+          "id": "migration",
+          "from": 0.82,
+          "to": 1
+        },
+        "units": [
+          {
+            "id": "party",
+            "polity": "ahom",
+            "label": "Sukaphaa",
+            "at": "route:migration"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b5-floods",
+      "eventId": "e02-wandering-settlements",
+      "year": "1236–1246",
+      "yearTicker": [
+        1236,
+        1246
+      ],
+      "durationMs": 14000,
+      "camera": {
+        "center": [
+          95.05,
+          27.15
+        ],
+        "zoom": 7.2,
+        "flyMs": 2000
+      },
+      "subtitle": "Floods drive them from site to site",
+      "caption": "Tipam → Abhaypur → Habung → Simaluguri",
+      "tag": "documented",
+      "narration": "Finding a home took a quarter of a century. They settled at Tipam, then Abhaypur, until floods drove them to Habung, and floods again to the Dikhu and Simaluguri.",
+      "show": {
+        "cities": [
+          "namrup",
+          "tipam",
+          "abhaypur",
+          "habung",
+          "simaluguri"
+        ],
+        "route": {
+          "id": "settlements",
+          "from": 0,
+          "to": 0.86
+        },
+        "flood": [
+          "abhaypur",
+          "habung"
+        ],
+        "units": [
+          {
+            "id": "party",
+            "polity": "ahom",
+            "label": "Sukaphaa",
+            "at": "route:settlements"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b6-neighbours",
+      "eventId": "e02-moran-borahi",
+      "year": "1246",
+      "durationMs": 10000,
+      "camera": {
+        "center": [
+          94.95,
+          27.0
+        ],
+        "zoom": 7.6,
+        "flyMs": 2000
+      },
+      "subtitle": "Morans and Borahis",
+      "caption": "Defeated, then joined through intermarriage",
+      "tag": "documented",
+      "narration": "They fought the local Moran and Borahi peoples, and then, the chronicles say, made peace through equal treatment and intermarriage.",
+      "show": {
+        "cities": [
+          "simaluguri",
+          "abhaypur"
+        ],
+        "zones": [
+          {
+            "placeId": "abhaypur",
+            "radiusKm": 42,
+            "polity": "moran"
+          },
+          {
+            "placeId": "simaluguri",
+            "radiusKm": 22,
+            "polity": "ahom"
+          }
+        ],
+        "route": {
+          "id": "settlements",
+          "from": 0.86,
+          "to": 0.86
+        },
+        "units": [
+          {
+            "id": "party",
+            "polity": "ahom",
+            "label": "Sukaphaa",
+            "at": "route:settlements"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b7-charaideo",
+      "eventId": "e02-charaideo-1253",
+      "year": "1253",
+      "durationMs": 12000,
+      "camera": {
+        "center": [
+          94.85,
+          26.95
+        ],
+        "zoom": 7.9,
+        "flyMs": 2500
+      },
+      "subtitle": "Charaideo, the first royal seat",
+      "caption": "By {1253} the Ahoms have a capital",
+      "tag": "documented",
+      "narration": "In 1253 they founded Charaideo, the first royal seat and later the burial ground of Ahom kings. From this foothold, a state would grow that lasted almost six hundred years.",
+      "show": {
+        "cities": [
+          "charaideo",
+          "namrup"
+        ],
+        "capital": "charaideo",
+        "zones": [
+          {
+            "placeId": "abhaypur",
+            "radiusKm": 42,
+            "polity": "moran"
+          },
+          {
+            "placeId": "charaideo",
+            "radiusKm": 30,
+            "polity": "ahom"
+          }
+        ],
+        "route": {
+          "id": "settlements",
+          "from": 0.86,
+          "to": 1
+        }
+      }
+    }
+  ]
+}

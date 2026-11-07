@@ -2,9 +2,11 @@
 
 A source-first, animated historical map of the rise and decline of the Ahom kingdom in the Brahmaputra valley. It is built for vertical Instagram Reels (9:16) and long-form YouTube or podcast video (16:9).
 
-## Status: Phase 1 (research and design) complete
+## Status
 
-There is no app code yet. Phase 1 establishes the evidence base and the data model before any map is drawn.
+- **Research:** all 59 events cite OCR-verified pages (Gait 1906, Bhuyan 1947). Coordinates are checked against Wikidata and OpenStreetMap.
+- **App:** a Next.js 16 + MapLibre PWA. **Episode 2 ("Over the Patkai", 1215–1253)** is built as an ~80 s vertical map reel. The other episodes are researched but not yet animated.
+- **Record:** see [docs/RECORDING.md](docs/RECORDING.md).
 
 | Read first | |
 |---|---|
@@ -17,6 +19,14 @@ There is no app code yet. Phase 1 establishes the evidence base and the data mod
 | [Architecture and file structure](docs/design/06-architecture-and-file-structure.md) | Next.js 16 / MapLibre plan, presenter mode, controls |
 
 Data: `data/sources/registry.json` · `data/chronology/events.json` · `data/gazetteer/places.json` · `data/geo/snapshots/index.json` · Schema: `src/domain/types.ts`
+
+## Run
+
+```bash
+npm install && npm run fetch:terrain && npm run dev
+```
+
+Then open `/watch/2`.
 
 ## Validate the research data
 

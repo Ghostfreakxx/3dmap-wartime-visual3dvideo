@@ -17,7 +17,7 @@
  *  - enums (confidence, claimStatus) are valid
  *  - reports pending page locators and unverified coordinates as warnings
  */
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -221,6 +221,51 @@ for (const s of snapIndex.snapshots) {
       const [a, b] = [ring[0], ring[ring.length - 1]];
       if (a[0] !== b[0] || a[1] !== b[1]) err(fid, "ring not closed");
       for (const [lon, lat] of ring) if (lon < BBOX.minLon || lon > BBOX.maxLon || lat < BBOX.minLat || lat > BBOX.maxLat) { err(fid, "vertex outside bbox"); break; }
+    }
+  }
+}
+
+
+/* ---------- episode reel scripts ---------- */
+const epDir = join(root, "data/episodes");
+const eventById = new Map(chrono.events.map((e) => [e.id, e]));
+for (const f of existsSync(epDir) ? readdirSync(epDir).filter((x) => x.endsWith(".json")) : []) {
+  const ep = JSON.parse(readFileSync(join(epDir, f), "utf8"));
+  const id0 = `episode:${f}`;
+  const total = ep.beats.reduce((a, b) => a + b.durationMs, 0);
+  if (total > 120000) warn(id0, `runs ${total / 1000}s; reels should be 60-120s`);
+  const derived = (ep.derivedNumbers ?? []).map((d) => d.text.toLowerCase());
+  for (const r of Object.values(ep.routes ?? {})) for (const v of r.via) {
+    if (!places.has(v)) err(id0, `route via unknown place '${v}'`);
+    else if (places.get(v).precision === "unidentified") err(id0, `route via unidentified place '${v}'`);
+  }
+  for (const l of ep.legend ?? []) if (!polities.has(l.polity)) err(id0, `legend polity '${l.polity}' unknown`);
+  for (const b of ep.beats) {
+    const bid = `${id0}#${b.id}`;
+    if (b.eventId && !eventById.has(b.eventId)) err(bid, `unknown event '${b.eventId}'`);
+    const s = b.show ?? {};
+    for (const pid of [...(s.cities ?? []), ...(s.flood ?? []), ...(s.capital ? [s.capital] : [])]) if (!places.has(pid)) err(bid, `unknown place '${pid}'`);
+    for (const z of s.zones ?? []) {
+      if (!places.has(z.placeId)) err(bid, `zone at unknown place '${z.placeId}'`);
+      if (!polities.has(z.polity)) err(bid, `zone polity '${z.polity}' unknown`);
+    }
+    if (s.route && !ep.routes?.[s.route.id]) err(bid, `unknown route '${s.route.id}'`);
+    for (const u of s.units ?? []) {
+      if (!polities.has(u.polity)) err(bid, `unit polity '${u.polity}' unknown`);
+      if (!u.at.startsWith("route:") && !places.has(u.at)) err(bid, `unit at unknown place '${u.at}'`);
+      if (u.count) {
+        const ev = u.countRef && eventById.get(u.countRef.eventId);
+        const nc = ev?.numericClaims.find((n) => n.what === u.countRef.what);
+        if (!nc) err(bid, `unit count '${u.count}' has no matching sourced numericClaim`);
+        else if (!nc.value.includes(u.count)) err(bid, `unit count '${u.count}' not found in claim value '${nc.value}'`);
+        else if (nc.displayPolicy === "attributed" && !u.countNote) err(bid, `unit count '${u.count}' is attributed-only but shown without a note`);
+      }
+    }
+    for (const t of [b.caption, b.subtitle, b.narration].filter(Boolean)) {
+      let txt = t.toLowerCase();
+      for (const d of derived) txt = txt.replaceAll(d, "");
+      const hits = findUnsourcedNumbers(txt.replace(/[{}]/g, ""));
+      if (hits.length) err(bid, `unsourced number(s) in on-screen/narration text: ${hits.join(", ")}`);
     }
   }
 }
