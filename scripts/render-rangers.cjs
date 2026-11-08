@@ -13,7 +13,9 @@ const fs = require('fs');
   const total = await p.evaluate(() => window.__film.TOTAL);
   const end = Math.min(to, Math.round(total * fps));
   const t0 = Date.now();
-  for (let i = from; i < end; i++) {
+  const order = [...Array(Math.max(0, end - from)).keys()].map((k) => from + k);
+  if (process.env.REVERSE) order.reverse(); // a helper can eat a range from the back while another works from the front
+  for (const i of order) {
     const name = `f${String(i).padStart(5, '0')}.jpg`;
     if (process.env.RESUME && fs.existsSync(`${out}/wide/${name}`) && fs.existsSync(`${out}/reel/${name}`)) continue; // resume
     const [w, r] = await p.evaluate((t) => window.__compBoth(t), i / fps);
