@@ -268,7 +268,7 @@ const SHOTS = [
     cam: (T, k) => { const s = vip.track.sample(Math.min(T, 50.9)); return C_(V(X - 6.5 + 1.5 * k, yc + 1.7, Z - 1.5 - 2 * k), V(s.x, yc + 1.0, s.z), 50); } },
   { name: 'Lift Off', s: [53.2, 59.2], dur: 7, mood: 'nightOps', handheld: 0.5, subs: [[0.6, 3.6, 'Vanapa 1-1', 'Package aboard! All Vanapas accounted for — go!'], [3.9, 6.6, 'Dawn 1', 'Pulling pitch!']],
     cam: (T, k) => C_(V(X + 10, yc + 1.8, Z - 11.5), hpos(f1, T).add(V(0, 1.5, 0)), 52) },
-  { name: 'Dawn', s: [64, 76], dur: 9, mood: 'dawn', subs: [[0.8, 4.8, 'Dawn 1', 'Vanapa Actual, Dawn 1 — package secure. Bringing her home.'], [5.2, 8.4, 'Vanapa Actual', 'Copy, Dawn 1. Welcome home.']],
+  { name: 'Dawn', s: [64, 76], dur: 9, mood: 'dawn', subs: [[0.6, 4.7, 'Vanapa 1-1', 'Vanapa Actual, we have secured the target. For God and Country —'], [4.9, 8.7, 'Vanapa 1-1', 'Geronimo. I repeat — Geronimo.']],
     cam: (T, k) => { const p = hpos(f1, T); return C_(p.clone().add(V(11 - 4 * k, 3, 9)), p.clone().add(V(-3, 0, -8)), 46); } },
   { name: 'End', s: [76, 76.01], dur: 6.5, card: 'end', mood: 'dawn', cam: (T) => { const p = hpos(f1, 76); return C_(p.clone().add(V(7, 3, 9)), p.clone().add(V(-3, 0, -8)), 46); } },
 ];

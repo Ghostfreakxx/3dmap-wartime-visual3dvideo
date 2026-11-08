@@ -14,8 +14,9 @@ const fs = require('fs');
   const end = Math.min(to, Math.round(total * fps));
   const t0 = Date.now();
   for (let i = from; i < end; i++) {
-    const [w, r] = await p.evaluate((t) => window.__compBoth(t), i / fps);
     const name = `f${String(i).padStart(5, '0')}.jpg`;
+    if (process.env.RESUME && fs.existsSync(`${out}/wide/${name}`) && fs.existsSync(`${out}/reel/${name}`)) continue; // resume
+    const [w, r] = await p.evaluate((t) => window.__compBoth(t), i / fps);
     fs.writeFileSync(`${out}/wide/${name}`, Buffer.from(w.split(',')[1], 'base64'));
     fs.writeFileSync(`${out}/reel/${name}`, Buffer.from(r.split(',')[1], 'base64'));
   }
