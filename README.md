@@ -12,6 +12,23 @@ A cartoon-style 3D battle film made in the browser with Three.js. It uses the lo
 
 The rendered film is [`video/longbow-battle.mp4`](video/longbow-battle.mp4): 71 seconds, 1280×720, 24 fps, with captions.
 
+## Film 2: Ambush in the Lushai Hills (90 s)
+
+`lushai.html` is the second film. Mizo (Lushai) warriors ambush a British column on a jungle hillside path, then carry the heads back to the sahlam at the village gate. It draws on real ambushes of 1888 to 1890, such as Lt. Stewart's survey party in 1888 and Capt. Browne's party at Changsil in 1890. The column is shown as Redcoats in pith helmets for the look of the film. Historically, most troops in these expeditions were Gurkha and Indian sepoy units under British officers.
+
+The rendered film is [`video/lushai-ambush.mp4`](video/lushai-ambush.mp4). With the dev server running, the interactive version is at `/lushai.html`.
+
+Its code is in `src/lushai/`:
+
+| File | What it does |
+|---|---|
+| `terrain.js` | The height field: hillside path, ravine, ridges and the hilltop village |
+| `world.js` | Bamboo, jungle, panji spikes, river, mist, stilt houses, the sahlam, bonfire, and the lighting moods |
+| `rig.js` | Merged per-bone characters: Redcoats, an officer, Mizo braves, veterans, a chief and elders, plus trophy heads |
+| `moves.js` | Poses: march, aim, fire, reload, crouch, charge, strike, bayonet, fall, flee, cheer, dance, the raised dao and the chop, and carrying |
+| `fx.js` | Musket smoke, muzzle flashes, blood bursts and splats |
+| `script.js` | The choreography (keyframed tracks), the effect events and the 11 shots |
+
 ## Run it
 
 ```bash
@@ -27,6 +44,8 @@ Open the URL Vite prints (usually http://localhost:5173).
 - Shot buttons jump to a scene, and the timeline lets you scrub.
 - **☔ Rain** turns the rain on or off. **🎥 Free cam** lets you orbit the scene with the mouse.
 - **● REC** plays the film from the start and downloads it as `longbow-battle.webm`. Size the window to the resolution you want before you press it. The film is always rendered at 16:9.
+
+To render a film to MP4, use `scripts/render-film.cjs`. The steps are in the comment at the top of the file.
 
 URL options: `?shot=3` starts at a given shot, `?t=45` starts at a given second.
 
