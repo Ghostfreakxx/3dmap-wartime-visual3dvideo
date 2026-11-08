@@ -63,6 +63,7 @@ const heliWorld = (h, f, T, local) => { f.apply(h, T); h.body.updateMatrixWorld(
 // ------------------------------------------------------------ cast
 const actors = [];
 const add = (kind, variant, weapon) => { const a = makeActor(kind, variant, weapon); a.phase = R() * 10; a.phaseSign = R() < 0.5 ? -1 : 1; a.track = new Track(); a.rides = []; scene.add(a.root); actors.push(a); return a; };
+const SND = []; // { T, type, pos }
 const blood = (t, p, dir = V(0, 0.2, -1), amt = 1.2) => { fx.blood(t, p.clone(), dir.clone().normalize(), amt); fx.blood(t + 0.15, p.clone().add(V(0, -0.3, 0)), dir.clone().normalize(), amt * 0.6); };
 const face = (x, z, tx, tz) => Math.atan2(tx - x, tz - z);
 
@@ -155,6 +156,9 @@ for (let i = 0; i < 3; i++) {
 }
 // the breach
 fx.explosion(41.6, V(X, yc + 1.2, Z + 0.9), 0.55);
+SND.push({ T: 41.6, type: 'breach', pos: V(X, yc + 1.2, Z + 0.9) }, { T: 38.75, type: 'boom', pos: cpd.towers[3].top.clone() });
+rangers.forEach((a) => SND.push({ T: a.rope.t0, type: 'rope', pos: V(a.rope.x, a.rope.yTop, a.rope.z) }));
+deaths.forEach(([i, t]) => SND.push({ T: t, type: 'hit', pos: posAt(junta[i], t).add(V(0, 0.9, 0)) }));
 
 // ------------------------------------------------------------ gunfire, derived from the choreography
 actors.forEach((a) => { if (!a.track.k.length) a.track.at(0, 0, -900, 'idle'); a.track.finalize(); });
@@ -174,6 +178,7 @@ for (const a of [...rangers, ...junta]) {
     const dir = target.clone().sub(base).normalize();
     const muzzle = base.clone().addScaledVector(dir, 1.2);
     fx.shot(T, muzzle, dir, false);
+    SND.push({ T, type: a.kind === 'ranger' ? 'supp' : 'ak', pos: muzzle.clone() });
     if (a.kind === 'ranger') { // suppressed: small flash
       fx.p[fx.p.length - 2].r0 = 0.1; fx.p[fx.p.length - 2].r1 = 0.14;
     }
@@ -190,6 +195,7 @@ for (const [t0, t1, tgt] of gunTargets) {
     const from = heliWorld(H2, f2, T, [1.6, 1.75, 0.4]);
     const to = tgt().clone().add(V((R() - 0.5) * 2.2, (R() - 0.5) * 1.2, (R() - 0.5) * 2.2));
     fx.tracer(T, from, to); fx.shot(T, from, to.clone().sub(from).normalize(), true);
+    SND.push({ T, type: 'mini', pos: from.clone() });
     if (R() < 0.4) fx.dust(T + 0.12, V(to.x, heightAt(to.x, to.z), to.z));
   }
 }
@@ -216,7 +222,7 @@ const SHOTS = [
   { name: 'NVG', s: [33.4, 37.6], dur: 5, mood: 'nightOps', nvg: true, handheld: 1, subs: [[0.6, 4.4, 'Ranger', 'Tower two down! Moving!']],
     cam: (T, k) => L(C_(V(X - 3, yc + 1.4, Z - 13), V(X - 1, yc + 2.6, Z + 4), 50), C_(V(X - 4, yc + 1.5, Z - 12), V(X - 2, yc + 2.8, Z + 4), 50), k) },
   { name: 'Door Gun', s: [37.6, 39.0], dur: 4, mood: 'nightOps', handheld: 0.6,
-    cam: (T, k) => { f2.apply(H2, T); const m = H2.body.matrixWorld; return C_(V(2.4, 2.7, -2.2).applyMatrix4(m), cpd.towers[3].top.clone(), 46); } },
+    cam: (T, k) => { f2.apply(H2, T); const m = H2.body.matrixWorld; return C_(V(7.5 - 1.5 * k, 2.4, 6.5 - 1.0 * k).applyMatrix4(m), V(0.4, 1.7, -1.2).applyMatrix4(m), 44); } },
   { name: 'Breach', s: [40.0, 42.3], dur: 5, mood: 'nightOps', slowFrom: [41.3, 41.9],
     cam: (T, k) => C_(V(X + 3.8, yc + 1.5, Z - 1.6), V(X, yc + 1.3, Z + 1), 44) },
   { name: 'The Room', s: [42.3, 46.6], dur: 8.5, mood: 'nightOps', interior: true,
@@ -379,6 +385,33 @@ function compose(t) {
   return [wide.toDataURL('image/jpeg', 0.92), reel.toDataURL('image/jpeg', 0.92)];
 }
 window.__compBoth = compose;
+// everything the sound designer needs, in screen time (see scripts/make-sfx.py)
+window.__audioPlan = (rate = 24) => {
+  const out = { total: TOTAL, rate, frames: [], events: [], subs: [] };
+  const dir = new THREE.Vector3(), right = new THREE.Vector3();
+  const rel = (p) => { const d = p.clone().sub(camera.position); const dist = d.length(); camera.getWorldDirection(dir); right.crossVectors(dir, camera.up).normalize(); return { d: +dist.toFixed(2), pan: +Math.max(-1, Math.min(1, d.normalize().dot(right))).toFixed(2) }; };
+  const setCam = (t) => { const o = storyOf(t); if (!o.shot.card) { const c = o.shot.cam(o.T, o.k); camera.position.copy(c.pos); camera.lookAt(c.look); camera.updateMatrixWorld(); } return o; };
+  for (let f = 0; f < TOTAL * rate; f++) {
+    const t = f / rate, o = setCam(t), T = o.T;
+    f1.apply(H1, T); f2.apply(H2, T);
+    const o2 = storyOf(t + 1 / rate), slow = o2.i === o.i ? (o2.T - T) * rate : 1;
+    const fire = cpd.towers[3].burnAt >= 0 && T >= cpd.towers[3].burnAt ? rel(cpd.towers[3].top) : null;
+    out.frames.push({ shot: o.shot.name, card: !!o.shot.card, interior: !!o.shot.interior, nvg: !!o.shot.nvg, mood: o.shot.mood, slow: +slow.toFixed(3), h1: rel(H1.root.position), h2: rel(H2.root.position), fire, lt: +o.lt.toFixed(3) });
+  }
+  // discrete cues: walk screen time finely and fire each story event as story time passes it
+  const step = 1 / 240; let prev = null;
+  for (let t = 0; t < TOTAL; t += step) {
+    const o = storyOf(t);
+    if (o.shot.card) { prev = null; continue; }
+    if (!prev || prev.i !== o.i) { prev = { i: o.i, T: o.T - 1e-6 }; }
+    const slow = (o.T - prev.T) / step;
+    for (const e of SND) if (e.T > prev.T && e.T <= o.T) { setCam(t); out.events.push({ t: +t.toFixed(4), type: e.type, slow: +Math.min(1.5, slow).toFixed(3), ...rel(e.pos) }); }
+    prev = { i: o.i, T: o.T };
+  }
+  SHOTS.forEach((s) => (s.subs ?? []).forEach(([a, , who]) => out.subs.push({ t: s.start + a, who })));
+  out.shots = SHOTS.map((s) => ({ name: s.name, start: s.start, dur: s.dur, slowFrom: s.slowFrom ?? null, title: !!s.title }));
+  return out;
+};
 window.__film = { TOTAL, SHOTS };
 if (!new URLSearchParams(location.search).has('still')) {
   const view = document.createElement('canvas'); view.width = W; view.height = Hh; stageEl.appendChild(view); renderer.domElement.style.display = 'none';
