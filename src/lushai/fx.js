@@ -64,18 +64,24 @@ export class FX {
 
   update(T) {
     const m = new C.Matrix4(), q = new C.Quaternion(), s = new C.Vector3(), p = new C.Vector3();
-    this.p.forEach((o, i) => {
+    // only live particles are written (packed at the front) and drawn
+    let k = 0;
+    const col = new C.Color();
+    for (const o of this.p) {
       const u = (T - o.t0) / o.life;
-      if (u < 0 || u > 1) { this.alpha.array[i] = 0; m.makeScale(0, 0, 0); this.mesh.setMatrixAt(i, m); return; }
+      if (u < 0 || u > 1) continue;
       const tt = T - o.t0;
       const d = o.drag ? (1 - Math.exp(-o.drag * tt)) / o.drag : tt;
       p.copy(o.pos).addScaledVector(o.vel, d); p.y -= 0.5 * o.g * tt * tt;
       const r = o.r0 + (o.r1 - o.r0) * Math.sqrt(u);
       m.compose(p, q, s.setScalar(r));
-      this.mesh.setMatrixAt(i, m);
-      this.alpha.array[i] = o.a0 + (o.a1 - o.a0) * u;
-    });
-    this.mesh.instanceMatrix.needsUpdate = true; this.alpha.needsUpdate = true;
+      this.mesh.setMatrixAt(k, m);
+      this.alpha.array[k] = o.a0 + (o.a1 - o.a0) * u;
+      col.set(o.col).toArray(this.col.array, k * 3);
+      k++;
+    }
+    this.mesh.count = k;
+    this.mesh.instanceMatrix.needsUpdate = true; this.alpha.needsUpdate = true; this.col.needsUpdate = true;
     this.splats.forEach((o, i) => {
       const k = Math.min(1, Math.max(0, (T - o.t0) / 0.3));
       m.compose(p.set(o.x, heightAt(o.x, o.z) + 0.03, o.z), q.setFromAxisAngle(new C.Vector3(0, 1, 0), o.r), s.set(o.s * k + 1e-4, 1, o.s * k * 0.8 + 1e-4));

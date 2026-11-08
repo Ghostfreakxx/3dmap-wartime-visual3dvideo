@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rambuai: The Convoy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root { --ink: #2b2522; --paper: #f6eee0; --accent: #f2c53d; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; background: #000; color: var(--paper); font-family: Nunito, system-ui, sans-serif; overflow: hidden; }
+    #wrap { position: fixed; inset: 0; display: grid; place-items: center; }
+    #stage { position: relative; overflow: hidden; }
+    #stage canvas { display: block; }
+    #fade { position: absolute; inset: 0; background: #000; pointer-events: none; }
+    #title {
+      position: absolute; left: 0; right: 0; top: 30%; text-align: center; pointer-events: none;
+      font-family: 'Luckiest Guy', Impact, sans-serif; font-size: clamp(28px, 7vw, 84px); letter-spacing: 2px;
+      color: var(--paper); -webkit-text-stroke: 3px var(--ink); paint-order: stroke fill;
+      text-shadow: 0 6px 0 var(--ink); opacity: 0; transform: scale(.9); transition: opacity .5s, transform .5s;
+    }
+    #title.show { opacity: 1; transform: scale(1); }
+    #caption {
+      position: absolute; left: 50%; bottom: 7%; transform: translate(-50%, 12px); max-width: 82%;
+      padding: .45em .9em; border-radius: 14px; background: rgba(43,37,34,.82); border: 3px solid var(--ink);
+      font-weight: 900; font-size: clamp(13px, 2.1vw, 26px); text-align: center; line-height: 1.25;
+      opacity: 0; transition: opacity .4s, transform .4s; pointer-events: none;
+    }
+    #caption.show { opacity: 1; transform: translate(-50%, 0); }
+    #ui {
+      position: fixed; left: 50%; bottom: 10px; transform: translateX(-50%); width: min(980px, calc(100% - 20px));
+      display: flex; flex-direction: column; gap: 6px; padding: 8px 10px; border-radius: 14px;
+      background: rgba(20,18,17,.78); backdrop-filter: blur(6px); opacity: .25; transition: opacity .25s;
+    }
+    #ui:hover, #ui:focus-within { opacity: 1; }
+    .row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    button {
+      font: 800 13px Nunito, sans-serif; color: var(--paper); background: #3a332f; border: 2px solid #574c45;
+      border-radius: 9px; padding: 5px 10px; cursor: pointer; min-height: 32px;
+    }
+    button:hover { border-color: var(--accent); }
+    button.active, button.on { background: var(--accent); color: var(--ink); border-color: var(--accent); }
+    button.off { opacity: .5; text-decoration: line-through; }
+    #rec.on { background: #c8322f; border-color: #c8322f; color: #fff; }
+    #scrub { flex: 1; min-width: 120px; accent-color: var(--accent); }
+    #time { font-variant-numeric: tabular-nums; font-size: 13px; opacity: .8; }
+    #shots { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; }
+    #shots button { white-space: nowrap; font-size: 12px; }
+    body.hide-ui #ui, body.recording #ui { display: none; }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <div id="stage">
+      <div id="title"></div>
+      <div id="caption"></div>
+      <div id="fade"></div>
+    </div>
+  </div>
+  <div id="ui">
+    <div class="row">
+      <button id="prev" title="Previous shot (←)">⏮</button>
+      <button id="play" title="Play / pause (space)">►</button>
+      <button id="next" title="Next shot (→)">⏭</button>
+      <input id="scrub" type="range" min="0" step="0.01" value="0" aria-label="Timeline" />
+      <span id="time">0:00</span>
+      <button id="free" title="Orbit the scene freely">🎥 Free cam</button>
+      <button id="rec" title="Record the whole film to a .webm">● REC</button>
+    </div>
+    <div id="shots"></div>
+  </div>
+  <script type="module" src="/src/mnf/main.js"></script>
+</body>
+</html>

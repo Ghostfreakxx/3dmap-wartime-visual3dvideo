@@ -184,6 +184,82 @@ export function pose(a, mode, t, p) {
       a.armR.rotation.set(-2.85, 0, 0.35);
       if (a.weapon) a.weapon.visible = false;
       break;
+    // ---------------- modes for the convoy film
+    case 'sit':
+      a.hips.position.y = 0.36; a.legs[0].rotation.x = -1.45; a.legs[1].rotation.x = -1.45;
+      a.armR.rotation.set(-0.7, 0, 0.1); a.armL.rotation.set(-0.6, 0, -0.1);
+      if (a.weapon) a.weapon.rotation.x = 0.1;
+      a.neck.rotation.y = 0.3 * Math.sin(p * 0.4); a.torso.rotation.x = 0.04 * Math.sin(p * 9); // truck jolting
+      break;
+    case 'prone': case 'proneFire': case 'proneBurst': {
+      a.body.rotation.x = 1.42; a.body.position.y = 0.16;
+      a.armR.rotation.set(-2.85, 0, 0.18); a.armL.rotation.set(-2.75, 0, -0.35);
+      if (a.weapon) a.weapon.rotation.x = W.alongArm;
+      a.neck.rotation.x = -1.0; a.legs[0].rotation.z = 0.15; a.legs[1].rotation.z = -0.15;
+      if (mode === 'proneFire' && (t % 1.6) < 0.12) a.body.position.z = -0.05;
+      if (mode === 'proneBurst') a.armR.rotation.x += 0.03 * Math.sin(p * 60) * ((t % 1.3) < 0.6 ? 1 : 0);
+      break;
+    }
+    case 'autoFire': case 'kneelFire': case 'kneelBurst': {
+      if (mode !== 'autoFire') crouchLegs(a);
+      aimArms(a);
+      const burst = mode === 'kneelFire' ? (t % 1.7) < 0.15 : (t % 1.3) < 0.6;
+      if (burst) { a.torso.rotation.x -= mode === 'kneelFire' ? 0.15 : 0.03 * Math.abs(Math.sin(p * 55)); }
+      break;
+    }
+    case 'binocs':
+      crouchLegs(a); a.torso.rotation.x = 0.2;
+      a.armR.rotation.set(-2.3, 0, 0.75); a.armL.rotation.set(-2.3, 0, -0.75); a.neck.rotation.x = -0.15;
+      if (a.weapon) a.weapon.visible = false;
+      break;
+    case 'plunge': {
+      crouchLegs(a); a.torso.rotation.x = 0.55;
+      const k = t < 1.0 ? 0 : easeOut((t - 1.0) / 0.15);
+      a.armR.rotation.set(-1.3 + 0.8 * k, 0, -0.25); a.armL.rotation.set(-1.3 + 0.8 * k, 0, 0.25);
+      a.hips.position.y = 0.24 - 0.05 * k;
+      if (a.weapon) a.weapon.visible = false;
+      break;
+    }
+    case 'throw': {
+      const k = clamp01(t / 0.45);
+      a.armR.rotation.set(k < 0.6 ? -1.0 - 2.0 * (k / 0.6) : -3.0 + 2.2 * ((k - 0.6) / 0.4), 0, -0.2);
+      a.torso.rotation.x = k < 0.6 ? -0.2 : 0.3; a.legs[0].rotation.x = -0.4; a.legs[1].rotation.x = 0.4;
+      if (a.weapon) a.weapon.visible = false;
+      break;
+    }
+    case 'loot':
+      a.torso.rotation.x = 0.85; a.hips.position.y = 0.3; a.legs[0].rotation.x = -0.5; a.legs[1].rotation.x = 0.3;
+      a.armR.rotation.set(-0.9 + 0.3 * Math.sin(p * 3), 0, 0.2); a.armL.rotation.set(-1.0, 0, -0.2);
+      break;
+    case 'wounded':
+      a.body.position.y = -0.18; a.hips.position.y = 0.24; a.legs[0].rotation.x = -1.5; a.legs[1].rotation.x = -1.3;
+      a.torso.rotation.x = -0.35; a.neck.rotation.x = 0.35 + 0.05 * Math.sin(p * 0.8); a.neck.rotation.z = 0.2;
+      a.armR.rotation.set(-0.6, 0, 0.5); a.armL.rotation.set(-0.3 + 0.05 * Math.sin(p), 0, 0.2);
+      if (a.weapon) a.weapon.visible = false;
+      break;
+    case 'speech': {
+      const s = Math.sin(p * 3);
+      a.armR.rotation.set(-2.6 + 0.3 * s, 0, -0.3); a.armL.rotation.set(-0.4, 0, 0.3); a.torso.rotation.x = -0.05 + 0.05 * s;
+      break;
+    }
+    case 'handshake':
+      a.armR.rotation.set(-1.2 + 0.08 * Math.sin(p * 6), 0, 0.25); a.neck.rotation.x = 0.05;
+      break;
+    case 'carryBundle': {
+      const s = walkLegs(a, p, 5, 0.4);
+      a.armL.rotation.set(-3.0, 0, 0.2); a.armR.rotation.x = 0.25 * s; a.torso.rotation.x = 0.1; a.neck.rotation.x = 0.15;
+      break;
+    }
+    case 'wave': {
+      a.armR.rotation.set(-2.9, 0, -0.3 + 0.4 * Math.sin(p * 6)); a.armL.rotation.set(-2.9, 0, 0.3 - 0.4 * Math.sin(p * 6 + 1));
+      a.body.position.y = 0.06 * Math.abs(Math.sin(p * 4));
+      break;
+    }
+    case 'clap': {
+      const k = Math.abs(Math.sin(p * 6));
+      a.armR.rotation.set(-1.3, 0, 0.5 * k); a.armL.rotation.set(-1.3, 0, -0.5 * k);
+      break;
+    }
     case 'plant': {
       crouchLegs(a); a.torso.rotation.x = 0.5; a.neck.rotation.x = -0.1;
       const c = (p * 1.6) % 1, k = c < 0.6 ? c / 0.6 : 1 - (c - 0.6) / 0.4;

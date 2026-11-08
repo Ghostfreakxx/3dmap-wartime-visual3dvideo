@@ -29,6 +29,26 @@ Its code is in `src/lushai/`:
 | `fx.js` | Musket smoke, muzzle flashes, blood bursts and splats |
 | `script.js` | The choreography (keyframed tracks), the effect events and the 11 shots |
 
+## Film 3: Rambuai, the Convoy (2 min)
+
+`mnf.html` is the third film. It is set during the Mizo insurgency (1966–1986), and it moves from history into a convoy ambush.
+
+1. The 1959 Mautam famine.
+2. The MNF founded in 1961.
+3. Operation Jericho, 1 March 1966.
+4. The IAF air strikes on Aizawl, March 1966.
+5. An MNA ambush of an Indian Army convoy: a lead jeep and Shaktiman trucks, with jawans in olive green and Mk II helmets carrying SLR, .303 and Bren guns.
+6. Village grouping, 1967–69.
+7. The Mizo Peace Accord, 30 June 1986.
+
+The ambush is a composite inspired by MNA road ambushes, not a reconstruction of one particular attack.
+
+The rendered film is [`video/rambuai-convoy.mp4`](video/rambuai-convoy.mp4). Its code is in `src/mnf/`:
+- `vehicles.js`: the truck, jeep and jet, with burnt versions and fire
+- `rig2.js`: jawans, MNA fighters and civilians
+- `fx2.js`: rifle shots, bullet dust, sparks, explosions and smoke columns
+- `script.js`: the convoy, the ambush, the gunfire derived from each character's actions, and the shots
+
 ## Run it
 
 ```bash

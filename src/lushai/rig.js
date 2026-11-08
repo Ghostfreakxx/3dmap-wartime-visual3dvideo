@@ -4,10 +4,10 @@ import * as THREE from 'three';
 import { part, merge, vcToon, outlineMaterial } from '../toon.js';
 
 const C = THREE;
-const P = (geo, color, pos = [0, 0, 0], rot = [0, 0, 0], scale = [1, 1, 1]) => part(geo, color, { pos, rot, scale });
-const S = (r, w = 14, h = 10, ...a) => new C.SphereGeometry(r, w, h, ...a);
-const Cy = (a, b, h, n = 12, ...r) => new C.CylinderGeometry(a, b, h, n, 1, ...r);
-const B = (x, y, z) => new C.BoxGeometry(x, y, z);
+export const P = (geo, color, pos = [0, 0, 0], rot = [0, 0, 0], scale = [1, 1, 1]) => part(geo, color, { pos, rot, scale });
+export const S = (r, w = 14, h = 10, ...a) => new C.SphereGeometry(r, w, h, ...a);
+export const Cy = (a, b, h, n = 12, ...r) => new C.CylinderGeometry(a, b, h, n, 1, ...r);
+export const B = (x, y, z) => new C.BoxGeometry(x, y, z);
 
 export const K = {
   ink: 0x2b2522, paleSkin: 0xf6eee0, mizoSkin: 0xd09060, red: 0xc0262b, redDark: 0x9c1e22, navy: 0x23263a, white: 0xf3efe6,
@@ -16,7 +16,7 @@ export const K = {
 };
 
 // ---------------------------------------------------------------- shared pieces
-function face(skin, { brows = 'angry', mustache = null, mouth = 'flat', dead = false } = {}) {
+export function face(skin, { brows = 'angry', mustache = null, mouth = 'flat', dead = false } = {}) {
   const p = [P(S(0.36, 24, 16), skin, [0, 0.32, 0])];
   const y = 0.32;
   for (const s of [-1, 1]) {
@@ -35,15 +35,15 @@ function face(skin, { brows = 'angry', mustache = null, mouth = 'flat', dead = f
   if (mustache) for (const s of [-1, 1]) p.push(P(S(0.07, 8, 6), mustache, [s * 0.07, y - 0.08, 0.32], [0, 0, s * 0.4], [1.3, 0.5, 0.5]));
   return p;
 }
-function leg(color, foot) {
+export function leg(color, foot) {
   return merge([P(Cy(0.075, 0.068, 0.3, 10), color, [0, -0.15, 0]), P(B(0.13, 0.07, 0.22), foot, [0, -0.32, 0.04])]);
 }
-function arm(sleeve, hand, extra = []) {
+export function arm(sleeve, hand, extra = []) {
   return merge([P(Cy(0.06, 0.055, 0.34, 10), sleeve, [0, -0.17, 0]), P(S(0.072, 10, 8), hand, [0, -0.36, 0]), ...extra]);
 }
 
 // ---------------------------------------------------------------- weapons (axis +y, grip at origin)
-const WEAPONS = {
+export const WEAPONS = {
   rifle: () => merge([
     P(B(0.06, 0.42, 0.11), K.wood, [0, -0.22, 0]),
     P(Cy(0.035, 0.035, 0.7, 6), K.wood, [0, 0.35, 0]),
@@ -152,9 +152,11 @@ function warriorParts(v) {
 }
 
 const cache = new Map();
+/** other films can add body plans: KINDS[kind] = (variant) => ({ leg, torso, arm, head, weapon, skin }) */
+export const KINDS = { redcoat: redcoatParts, warrior: warriorParts };
 function parts(kind, variant) {
   const k = kind + ':' + variant;
-  if (!cache.has(k)) cache.set(k, kind === 'redcoat' ? redcoatParts(variant) : warriorParts(variant));
+  if (!cache.has(k)) cache.set(k, KINDS[kind](variant));
   return cache.get(k);
 }
 const wcache = new Map();
