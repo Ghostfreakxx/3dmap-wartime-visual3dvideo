@@ -96,6 +96,7 @@
 <div id="hud" hidden>
   <h1>Hand <span>Synth</span></h1>
   <div id="modes" role="group" aria-label="Mode">
+    <button class="chip" data-mode="arsenal" aria-pressed="false">Arsenal</button>
     <button class="chip" data-mode="interface" aria-pressed="true">Interface</button>
     <button class="chip" data-mode="cradle" aria-pressed="false">Cradle</button>
     <button class="chip" data-mode="sigil" aria-pressed="false">Sigil</button>
@@ -112,6 +113,7 @@
     <button class="chip" id="m-chord" aria-pressed="false">Chords</button>
     <button class="chip" id="m-arp" aria-pressed="false">Arp</button>
     <button class="chip" id="m-voice">Voice: Saw</button>
+    <button class="chip" id="m-beatstyle">Beat: Rock</button>
     <button class="chip" id="m-theme">Theme: Cosmos</button>
     <button class="chip" id="m-view">View: Wide</button>
     <button class="chip" id="m-quality">Quality: Auto</button>
@@ -124,8 +126,9 @@
 <div class="sheet" id="sheet">
   <div class="card">
     <h2>Your body is an <em>instrument</em></h2>
-    <p>Five ways to play light and sound with your hands. Switch between them at the top of the screen.</p>
+    <p>Six ways to play light and sound with your hands. The Beat button plays a hard-rock groove. Switch between them at the top of the screen.</p>
     <dl class="map">
+      <dt>ARSENAL</dt><dd>Finger gun (drop your thumb to fire) · two fists to lock a rocket, open to launch · open hand for six cosmic stones, snap to turn the world to dust · raise a fist for the storm hammer, swing down for thunder.</dd>
       <dt>INTERFACE</dt><dd>A planet sits in your palm inside rotating gauges. Turn your hand to turn them; open it to fill them. Height sets the note.</dd>
       <dt>CRADLE</dt><dd>Strings run between your fingertips. Stretch or squeeze them to pluck a harp.</dd>
       <dt>SIGIL</dt><dd>A constellation circle blooms in your palm. Hold it open to charge, and it fires a beam of light.</dd>
@@ -178,7 +181,7 @@ function resize() {
 addEventListener("resize", resize); resize();
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const state = { source: null, mode: "interface", synth: true, magic: true, sound: true, chord: false, arp: false, beat: false, fit: "wide" };
+const state = { source: null, mode: "interface", synth: true, magic: true, sound: true, chord: false, arp: false, beat: false, beatStyle: "rock", fit: "wide" };
 // where the camera frame sits on screen: "wide" shows the whole field of view, "fill" crops to fill the screen
 function videoRect() {
   const vw = video.videoWidth || 640, vh = video.videoHeight || 480;
@@ -318,9 +321,12 @@ function beatTick() {
   if (nextBeat < ac.currentTime) nextBeat = ac.currentTime + 0.05;
   while (nextBeat < ac.currentTime + 0.1) {
     const i = beatStep % 16;
-    if (KICK[i]) { kickAt(nextBeat, 0.85); kickTimes.push(nextBeat); }
-    if (CLAP[i]) clapAt(nextBeat, 0.55);
-    if (HAT[i]) noiseBurst(0.05, 7500, 0.22, nextBeat); else if (i % 2) noiseBurst(0.03, 9000, 0.07, nextBeat);
+    if (state.beatStyle === "rock") rockStep(beatStep % 32, nextBeat);
+    else {
+      if (KICK[i]) { kickAt(nextBeat, 0.85); kickTimes.push(nextBeat); }
+      if (CLAP[i]) clapAt(nextBeat, 0.55);
+      if (HAT[i]) noiseBurst(0.05, 7500, 0.22, nextBeat); else if (i % 2) noiseBurst(0.03, 9000, 0.07, nextBeat);
+    }
     beatStep++; nextBeat += step;
   }
 }
@@ -550,7 +556,7 @@ function analyse(hands) {
   } else lastPalmGap = Infinity;
   clapCool--;
   const L = info[0], R = info[1] ?? info[0];
-  const continuous = state.mode !== "cradle" && state.mode !== "sigil";   // harp and sigil make their own sounds
+  const continuous = !["cradle", "sigil", "arsenal"].includes(state.mode);   // harp and sigil make their own sounds
   setSynth({ on: info.length > 0 && continuous, pitchY: L ? L.h[8].y / H : 0.5, pinch: R ? R.pinch : 0.5, spread });
   return { info, spread };
 }
@@ -652,6 +658,7 @@ cv.addEventListener("pointerdown", (e) => {
   try { cv.setPointerCapture(e.pointerId); } catch {}
   touches.set(e.pointerId, { x: e.clientX, y: e.clientY, px: e.clientX, py: e.clientY, t0: performance.now() });
   const now = performance.now();
+  if (state.mode === "arsenal") { arsenalDown(e); return; }
   if (now - lastTap < 280) drums.kick();
   lastTap = now;
   if (touches.size === 3) { drums.clap(); rings.push({ x: e.clientX, y: e.clientY, r: 20, life: 1 }); emit(e.clientX, e.clientY, 0, 0, 120, TH.burst, 6); }
@@ -661,7 +668,7 @@ cv.addEventListener("pointermove", (e) => {
   p.px = p.x; p.py = p.y; p.x = e.clientX; p.y = e.clientY;
   if (state.magic) checkRise(`t${e.pointerId}`, p.x, p.y, performance.now());
 });
-for (const ev of ["pointerup", "pointercancel"]) cv.addEventListener(ev, (e) => touches.delete(e.pointerId));
+for (const ev of ["pointerup", "pointercancel"]) cv.addEventListener(ev, (e) => { touches.delete(e.pointerId); if (state.mode === "arsenal" && ev === "pointerup") arsenalUp(e); });
 
 // deep-space backdrop: three depths of slowly drifting stars and a barely-there nebula
 const STARS = Array.from({ length: 420 }, (_, i) => {
@@ -695,7 +702,7 @@ function drawTouch(t, based = false) {
   const d = pts.length > 1 ? Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y) : 0;
   const spread = pts.length > 1 ? Math.min(1, d / (W * 0.8)) : 0;
   const pinch = pts.length > 1 ? Math.min(1, d / Math.max(W, H)) : (pts[0] ? pts[0].x / W : 0.5);
-  setSynth({ on: pts.length > 0 && state.mode !== "cradle" && state.mode !== "sigil", pitchY: pts[0] ? pts[0].y / H : 0.5, pinch, spread });
+  setSynth({ on: pts.length > 0 && !["cradle", "sigil", "arsenal"].includes(state.mode), pitchY: pts[0] ? pts[0].y / H : 0.5, pinch, spread });
   if (state.mode !== "classic") { drawModeTouch(pts, t); if (!pts.length) label("Touch and drag to play", W / 2, H / 2, "rgba(255,255,255,0.6)"); return; }
   if (state.magic && pts.length > 1) {
     lightning(pts[0], pts[1], t, 0);
@@ -794,7 +801,7 @@ function drawCamera() {
 // Cradle: strings between fingertips that pluck notes when stretched.
 // Sigil: a constellation summoning circle that charges and fires a beam.
 // Gravity: the index finger bends the frame and a numbered grid like a black hole.
-const MODE_NAMES = { interface: "Interface", cradle: "Cradle", sigil: "Sigil", gravity: "Gravity", classic: "Classic" };
+const MODE_NAMES = { arsenal: "Arsenal", interface: "Interface", cradle: "Cradle", sigil: "Sigil", gravity: "Gravity", classic: "Classic" };
 const MONO = (px, w = 500) => `${w} ${px}px "IBM Plex Mono", monospace`;
 const clamp01 = (x) => Math.max(0, Math.min(1, x));
 let modeLast = performance.now(), modeDt = 0.016;
@@ -1060,7 +1067,8 @@ function warpFrame(t) {
 // ---------- mode renderers ----------
 function drawModeHands({ info }, t) {
   const hands = info.map((x) => x.h);
-  if (state.mode === "interface") {
+  if (state.mode === "arsenal") arsenalHands(info, t);
+  else if (state.mode === "interface") {
     for (const hd of info) {
       const { h, size, curl } = hd;
       const ang = Math.atan2(h[9].y - h[0].y, h[9].x - h[0].x) + Math.PI / 2;
@@ -1080,7 +1088,8 @@ function drawModeHands({ info }, t) {
   dotHands(hands);
 }
 function drawModeTouch(pts, t) {
-  if (state.mode === "interface") pts.forEach((p, i) => hudPalm(p.x, p.y, 120, t * 0.25 + i, clamp01(1 - p.y / H), t, null));
+  if (state.mode === "arsenal") arsenalTouch(pts, t);
+  else if (state.mode === "interface") pts.forEach((p, i) => hudPalm(p.x, p.y, 120, t * 0.25 + i, clamp01(1 - p.y / H), t, null));
   else if (state.mode === "cradle") {
     if (pts.length >= 2) {
       // fan each finger out into five virtual fingertips so a two-finger stretch plays the harp
@@ -1095,6 +1104,338 @@ function drawModeTouch(pts, t) {
     for (let i = pts.length; i < 2; i++) updateSigil(i, false, false);
   }
   for (const p of pts) { g.fillStyle = "#fff"; g.beginPath(); g.arc(p.x, p.y, 3, 0, Math.PI * 2); g.fill(); }
+}
+
+// ================= arsenal =================
+// Finger gun, two-fist rocket launcher, six cosmic stones with a snap,
+// and a storm hammer that pulls lightning from the sky and slams thunder.
+const shots = [], rockets = [], blasts = [], smoke = [], dust = [];
+let shake = 0, flash = 0;
+const ARS = [{}, {}];
+const STONES = ["100,170,255", "255,214,80", "255,70,70", "185,95,255", "80,230,140", "255,150,60"];
+let lastSpeak = 0;
+function speak(text) {
+  // a generic system voice using the phone's own text-to-speech
+  if (!state.sound || !window.speechSynthesis || performance.now() - lastSpeak < 1500) return;
+  lastSpeak = performance.now();
+  try {
+    const u = new SpeechSynthesisUtterance(text);
+    const v = speechSynthesis.getVoices().find((x) => /en-GB/i.test(x.lang)) || speechSynthesis.getVoices().find((x) => /^en/i.test(x.lang));
+    if (v) u.voice = v;
+    u.rate = 1.02; u.pitch = 0.85; u.volume = 0.9;
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
+  } catch {}
+}
+function lowNoise(dur, lp, gain, t) {
+  const n = ac.createBufferSource(), buf = ac.createBuffer(1, Math.ceil(ac.sampleRate * dur), ac.sampleRate);
+  const d = buf.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+  const f = ac.createBiquadFilter(); f.type = "lowpass"; f.frequency.value = lp;
+  const e = ac.createGain(); e.gain.setValueAtTime(gain, t); e.gain.exponentialRampToValueAtTime(0.001, t + dur);
+  n.buffer = buf; n.connect(f).connect(e); e.connect(A.bus); e.connect(A.verb); n.start(t);
+}
+function thud(f0, f1, dur, gain, t) {
+  const o = ac.createOscillator(), e = ac.createGain();
+  o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur * 0.8);
+  e.gain.setValueAtTime(gain, t); e.gain.exponentialRampToValueAtTime(0.001, t + dur);
+  o.connect(e).connect(A.bus); o.start(t); o.stop(t + dur + 0.02);
+}
+function sfx(kind) {
+  if (!A || !state.sound) return;
+  const t = ac.currentTime;
+  if (kind === "gun") { noiseBurst(0.14, 900, 0.9, t); thud(150, 45, 0.16, 0.8, t); }
+  if (kind === "whoosh") {
+    const n = ac.createBufferSource(), buf = ac.createBuffer(1, ac.sampleRate, ac.sampleRate), d = buf.getChannelData(0);
+    for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+    const f = ac.createBiquadFilter(); f.type = "bandpass"; f.Q.value = 2; f.frequency.setValueAtTime(300, t); f.frequency.exponentialRampToValueAtTime(3200, t + 0.85);
+    const e = ac.createGain(); e.gain.setValueAtTime(0.001, t); e.gain.exponentialRampToValueAtTime(0.5, t + 0.2); e.gain.exponentialRampToValueAtTime(0.001, t + 0.95);
+    n.buffer = buf; n.connect(f).connect(e).connect(A.bus); n.start(t);
+  }
+  if (kind === "boom") { thud(90, 28, 1.4, 1.2, t); lowNoise(1.6, 700, 0.9, t); noiseBurst(0.3, 2000, 0.4, t); }
+  if (kind === "thunder") { noiseBurst(0.12, 2500, 0.7, t); lowNoise(2.8, 500, 1, t + 0.05); thud(60, 30, 1.6, 0.9, t); }
+  if (kind === "crackle") noiseBurst(0.06, 4500, 0.22, t);
+  if (kind === "snap") { noiseBurst(0.04, 3000, 0.7, t); lowNoise(2.2, 400, 0.5, t + 0.1); [12, 9, 7, 4, 0].forEach((n, k) => setTimeout(() => pluck(hz(n + 2) * 2), 120 + k * 140)); }
+}
+
+// ---------- gun ----------
+function fireShot(x, y, dx, dy) {
+  shots.push({ x, y, dx, dy, life: 1 });
+  rings.push({ x, y, r: 6, life: 0.6 });
+  emit(x, y, dx * 4, dy * 4, 10, "255,230,180", 3);
+  shake = Math.max(shake, 0.25);
+  sfx("gun");
+}
+function drawShots() {
+  g.save(); g.globalCompositeOperation = "lighter"; g.lineCap = "round";
+  for (let i = shots.length - 1; i >= 0; i--) {
+    const s = shots[i];
+    s.x += s.dx * 42; s.y += s.dy * 42; s.life -= 0.045;
+    const out = s.x < -20 || s.x > W + 20 || s.y < -20 || s.y > H + 20;
+    if (out || s.life <= 0) { if (!out) emit(s.x, s.y, 0, 0, 22, "255,220,170", 4); shots.splice(i, 1); continue; }
+    const tg = g.createLinearGradient(s.x - s.dx * 70, s.y - s.dy * 70, s.x, s.y);
+    tg.addColorStop(0, "rgba(255,200,120,0)"); tg.addColorStop(1, "rgba(255,250,235,1)");
+    g.strokeStyle = tg; g.lineWidth = 3;
+    g.beginPath(); g.moveTo(s.x - s.dx * 70, s.y - s.dy * 70); g.lineTo(s.x, s.y); g.stroke();
+  }
+  g.restore();
+}
+function gunSight(tip, dx, dy) {
+  g.save();
+  g.strokeStyle = "rgba(255,90,80,0.75)"; g.lineWidth = 1; g.setLineDash([3, 6]);
+  g.beginPath(); g.moveTo(tip.x, tip.y); g.lineTo(tip.x + dx * 260, tip.y + dy * 260); g.stroke(); g.setLineDash([]);
+  const cx = tip.x + dx * 260, cy = tip.y + dy * 260;
+  g.strokeStyle = "rgba(255,255,255,0.85)";
+  g.beginPath(); g.arc(cx, cy, 12, 0, Math.PI * 2); g.stroke();
+  for (const [a, b] of [[-20, -8], [8, 20]]) { g.beginPath(); g.moveTo(cx + a, cy); g.lineTo(cx + b, cy); g.moveTo(cx, cy + a); g.lineTo(cx, cy + b); g.stroke(); }
+  g.restore();
+}
+
+// ---------- rocket ----------
+function fireRocket(x, y, tx, ty) { rockets.push({ x0: x, y0: y, tx, ty, born: performance.now(), px: x, py: y }); sfx("whoosh"); speak("Rocket away."); }
+function explode(x, y) {
+  blasts.push({ x, y, born: performance.now() });
+  shake = 1; flash = Math.max(flash, 0.5);
+  rings.push({ x, y, r: 30, life: 1 });
+  emit(x, y, 0, 0, 160, "255,190,110", 9);
+  sfx("boom");
+}
+function drawRockets(now) {
+  for (let i = rockets.length - 1; i >= 0; i--) {
+    const r = rockets[i], p = Math.min(1, (now - r.born) / 900);
+    const e = p * p * (3 - 2 * p);
+    const x = r.x0 + (r.tx - r.x0) * e + Math.sin(p * Math.PI) * 30, y = r.y0 + (r.ty - r.y0) * e - Math.sin(p * Math.PI) * 60;
+    const ang = Math.atan2(y - r.py, x - r.px);
+    smoke.push({ x: r.px, y: r.py, r: 6, life: 1, vx: (Math.random() - 0.5) * 0.6, vy: -0.3 });
+    r.px = x; r.py = y;
+    g.save(); g.translate(x, y); g.rotate(ang);
+    g.globalCompositeOperation = "lighter";
+    const fl = 18 + Math.random() * 14;
+    const fg = g.createLinearGradient(-fl - 14, 0, -14, 0);
+    fg.addColorStop(0, "rgba(255,120,30,0)"); fg.addColorStop(1, "rgba(255,240,200,1)");
+    g.fillStyle = fg; g.beginPath(); g.moveTo(-14, -4); g.lineTo(-14 - fl, 0); g.lineTo(-14, 4); g.fill();
+    g.globalCompositeOperation = "source-over";
+    g.fillStyle = "#c9ccd2"; g.fillRect(-14, -4, 24, 8);
+    g.fillStyle = "#e4e6ea"; g.beginPath(); g.moveTo(10, -4); g.lineTo(18, 0); g.lineTo(10, 4); g.fill();
+    g.fillStyle = "#7d828b"; g.beginPath(); g.moveTo(-14, -4); g.lineTo(-18, -8); g.lineTo(-10, -4); g.moveTo(-14, 4); g.lineTo(-18, 8); g.lineTo(-10, 4); g.fill();
+    g.restore();
+    if (p >= 1) { explode(x, y); rockets.splice(i, 1); }
+  }
+}
+function drawBlasts(now) {
+  for (let i = smoke.length - 1; i >= 0; i--) {
+    const s = smoke[i]; s.x += s.vx; s.y += s.vy; s.r += 0.6; s.life -= 0.012;
+    if (s.life <= 0) { smoke.splice(i, 1); continue; }
+    g.fillStyle = `rgba(150,150,158,${0.28 * s.life})`; g.beginPath(); g.arc(s.x, s.y, s.r, 0, Math.PI * 2); g.fill();
+  }
+  if (smoke.length > 400) smoke.splice(0, smoke.length - 400);
+  g.save(); g.globalCompositeOperation = "lighter";
+  for (let i = blasts.length - 1; i >= 0; i--) {
+    const b = blasts[i], age = (now - b.born) / 1000;
+    if (age > 1.5) { blasts.splice(i, 1); continue; }
+    const r = 40 + (1 - Math.pow(1 - Math.min(1, age / 0.6), 3)) * 230, a = 1 - age / 1.5;
+    const fg = g.createRadialGradient(b.x, b.y, 0, b.x, b.y, r);
+    fg.addColorStop(0, `rgba(255,255,240,${a})`); fg.addColorStop(0.3, `rgba(255,190,90,${a * 0.9})`); fg.addColorStop(0.65, `rgba(220,70,20,${a * 0.5})`); fg.addColorStop(1, "rgba(0,0,0,0)");
+    g.fillStyle = fg; g.beginPath(); g.arc(b.x, b.y, r, 0, Math.PI * 2); g.fill();
+    if (age > 0.25 && age < 0.6) for (let k = 0; k < 6; k++) smoke.push({ x: b.x + (Math.random() - 0.5) * r, y: b.y + (Math.random() - 0.5) * r * 0.6, r: 14, life: 1, vx: (Math.random() - 0.5) * 1.5, vy: -0.8 - Math.random() });
+  }
+  g.restore();
+}
+function lockRing(x, y, k, t) {
+  g.save(); g.translate(x, y); g.rotate(t * 2);
+  g.strokeStyle = "rgba(255,90,80,0.9)"; g.lineWidth = 2;
+  for (let s = 0; s < 4; s++) { g.beginPath(); g.arc(0, 0, 54, s * Math.PI / 2 + 0.2, s * Math.PI / 2 + 1.2); g.stroke(); }
+  g.rotate(-t * 4); g.strokeStyle = "rgba(255,255,255,0.9)";
+  g.beginPath(); g.arc(0, 0, 40, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * k); g.stroke();
+  g.restore();
+  g.save(); g.font = MONO(10); g.letterSpacing = "2px"; g.textAlign = "center"; g.fillStyle = "#fff";
+  g.fillText(k >= 1 ? "LOCKED · OPEN TO FIRE" : `LOCK ${Math.round(k * 100)}%`, x, y + 76);
+  g.restore();
+}
+
+// ---------- cosmic stones + snap ----------
+function gem(x, y, r, col, t) {
+  g.save();
+  g.globalCompositeOperation = "lighter";
+  const hg = g.createRadialGradient(x, y, 0, x, y, r * 3.2);
+  hg.addColorStop(0, `rgba(${col},0.55)`); hg.addColorStop(1, "rgba(0,0,0,0)");
+  g.fillStyle = hg; g.beginPath(); g.arc(x, y, r * 3.2, 0, Math.PI * 2); g.fill();
+  g.globalCompositeOperation = "source-over";
+  g.translate(x, y); g.rotate(Math.sin(t * 1.3 + x) * 0.15);
+  const pts = [[0, -r * 1.25], [r, -r * 0.35], [r * 0.7, r * 0.9], [0, r * 1.25], [-r * 0.7, r * 0.9], [-r, -r * 0.35]];
+  const fg = g.createLinearGradient(-r, -r, r, r);
+  fg.addColorStop(0, "rgba(255,255,255,0.95)"); fg.addColorStop(0.35, `rgb(${col})`); fg.addColorStop(1, "rgba(10,10,20,0.9)");
+  g.fillStyle = fg; g.beginPath(); pts.forEach(([a, b], k) => (k ? g.lineTo(a, b) : g.moveTo(a, b))); g.closePath(); g.fill();
+  g.strokeStyle = "rgba(255,255,255,0.7)"; g.lineWidth = 0.8; g.stroke();
+  g.beginPath(); g.moveTo(pts[0][0], pts[0][1]); g.lineTo(0, 0); g.lineTo(pts[3][0], pts[3][1]); g.moveTo(pts[1][0], pts[1][1]); g.lineTo(0, 0); g.lineTo(pts[4][0], pts[4][1]); g.stroke();
+  g.restore();
+}
+function snap(x, y) {
+  flash = 1; shake = Math.max(shake, 0.4);
+  for (let k = 0; k < 320; k++) {
+    const sx = Math.random() * W, sy = Math.random() * H;
+    dust.push({ x: sx, y: sy, vx: 0.6 + Math.random() * 2.2, vy: -0.4 - Math.random() * 1.2, life: 1, s: 1 + Math.random() * 2.5 });
+  }
+  emit(x, y, 0, 0, 80, "255,255,255", 5);
+  sfx("snap"); hit("snap", "#ffffff");
+}
+function drawDust() {
+  for (let i = dust.length - 1; i >= 0; i--) {
+    const d = dust[i]; d.x += d.vx; d.y += d.vy; d.vx *= 1.01; d.life -= 0.008;
+    if (d.life <= 0) { dust.splice(i, 1); continue; }
+    g.fillStyle = `rgba(190,180,165,${d.life * 0.85})`; g.fillRect(d.x, d.y, d.s, d.s);
+  }
+}
+
+// ---------- storm hammer ----------
+let lastCrackle = 0;
+function hammer(x, y, s, t) {
+  const hx = x, hy = y - s * 1.75, hw = s * 1.55, hh = s * 0.95;
+  // lightning from the sky into the head
+  for (let b = 0; b < 2; b++) lightning({ x: hx + Math.sin(t * 9 + b * 2) * W * 0.25, y: 0 }, { x: hx, y: hy - hh / 2 }, t, b + 7);
+  if (performance.now() - lastCrackle > 230) { lastCrackle = performance.now(); sfx("crackle"); }
+  g.save();
+  // handle
+  g.fillStyle = "#4a3426"; g.fillRect(x - s * 0.13, hy, s * 0.26, (y + s * 0.95) - hy);
+  g.strokeStyle = "rgba(20,12,8,0.8)"; g.lineWidth = 1.5;
+  for (let k = 0; k < 7; k++) { const yy = y - s * 0.3 + k * s * 0.18; g.beginPath(); g.moveTo(x - s * 0.13, yy); g.lineTo(x + s * 0.13, yy + s * 0.07); g.stroke(); }
+  // head
+  const mg = g.createLinearGradient(hx, hy - hh / 2, hx, hy + hh / 2);
+  mg.addColorStop(0, "#f1f3f7"); mg.addColorStop(0.45, "#9aa1ab"); mg.addColorStop(1, "#3b4048");
+  g.fillStyle = mg; g.beginPath(); g.roundRect(hx - hw / 2, hy - hh / 2, hw, hh, s * 0.12); g.fill();
+  g.strokeStyle = "rgba(255,255,255,0.5)"; g.lineWidth = 1; g.stroke();
+  g.strokeStyle = "rgba(40,44,52,0.7)"; g.beginPath(); g.moveTo(hx - hw / 2 + s * 0.2, hy); g.lineTo(hx + hw / 2 - s * 0.2, hy); g.stroke();
+  // electric glow on the head
+  g.globalCompositeOperation = "lighter";
+  const eg = g.createRadialGradient(hx, hy, 0, hx, hy, hw);
+  eg.addColorStop(0, `rgba(160,190,255,${0.35 + 0.25 * Math.sin(t * 30)})`); eg.addColorStop(1, "rgba(0,0,0,0)");
+  g.fillStyle = eg; g.beginPath(); g.arc(hx, hy, hw, 0, Math.PI * 2); g.fill();
+  g.restore();
+}
+function slam(x, y, t) {
+  for (let k = 0; k < 9; k++) {
+    const a = (k / 9) * Math.PI * 2 + Math.random() * 0.3, r = 160 + Math.random() * 140;
+    lightning({ x, y }, { x: x + Math.cos(a) * r, y: y + Math.sin(a) * r }, t, k);
+  }
+  rings.push({ x, y, r: 20, life: 1 }); rings.push({ x, y, r: 60, life: 0.8 });
+  emit(x, y, 0, 0, 120, "200,220,255", 8);
+  shake = 1; flash = Math.max(flash, 0.6);
+  sfx("thunder"); hit("thunder", "#dfe8ff");
+}
+
+// ---------- per-frame arsenal logic ----------
+function arsenalHands(info, t) {
+  const now = performance.now();
+  // rocket lock: two fists close together
+  if (info.length === 2) {
+    const [a, b] = info, mid = { x: (a.palm.x + b.palm.x) / 2, y: (a.palm.y + b.palm.y) / 2 };
+    const close = dist(a.palm, b.palm) < Math.max(a.size, b.size) * 3.4;
+    const L = ARS[0];
+    if (a.fist && b.fist && close) {
+      if (!L.lock) speak("Target locked.");
+      L.lock = Math.min(1, (L.lock || 0) + modeDt / 0.7);
+      lockRing(mid.x, mid.y, L.lock, t);
+    } else if (L.lock >= 1 && (!a.fist || !b.fist)) {
+      fireRocket(mid.x, mid.y, Math.max(60, Math.min(W - 60, mid.x + (mid.x - W / 2) * 0.3)), Math.max(80, mid.y - H * 0.5));
+      L.lock = 0;
+    } else L.lock = 0;
+  } else ARS[0].lock = 0;
+  info.forEach((hd, i) => {
+    const { h, size, gesture, fist, palm } = hd, st = ARS[i];
+    // finger gun: index out, others curled; drop the thumb to fire
+    if (gesture === "point") {
+      const len = Math.hypot(h[8].x - h[5].x, h[8].y - h[5].y) || 1, dx = (h[8].x - h[5].x) / len, dy = (h[8].y - h[5].y) / len;
+      gunSight(h[8], dx, dy);
+      const thumb = dist(h[4], h[5]) / size;
+      if (st.thumbUp && thumb < 0.4) fireShot(h[8].x, h[8].y, dx, dy);
+      st.thumbUp = thumb > 0.55 ? true : thumb < 0.4 ? false : st.thumbUp;
+    } else st.thumbUp = false;
+    // cosmic stones on an open hand; snap thumb and middle finger
+    if (gesture === "open" || gesture === "peace") {
+      TIPS.forEach((k, j) => gem(h[k].x, h[k].y, 7.5, STONES[j], t));
+      gem(palm.x, palm.y, 11, STONES[5], t);
+    }
+    const sd = dist(h[4], h[12]) / size;
+    if (sd < 0.3) st.snapArm = now;
+    else if (st.snapArm && sd > 0.7 && now - st.snapArm < 350) { st.snapArm = 0; snap(palm.x, palm.y); }
+    // storm hammer: a raised fist; swing it down fast to slam
+    const vy = st.lastY != null ? (palm.y - st.lastY) / Math.max(0.001, modeDt) : 0;
+    st.lastY = palm.y;
+    if (fist && info.length === 1 || fist && !ARS[0].lock) {
+      if (palm.y < H * 0.45 || st.holding) {
+        if (!st.holding) { st.holding = true; speak("Lightning ready."); }
+        hammer(palm.x, palm.y, size * 1.1, t);
+        if (vy > H * 1.6 && now - (st.slamAt || 0) > 800) { st.slamAt = now; slam(palm.x, palm.y + size, t); }
+      }
+    } else st.holding = false;
+  });
+}
+// touch: tap to shoot, two fingers fire a rocket, three call the hammer, hold one still for the stones and lift to snap
+const tapInfo = new Map();
+function arsenalDown(e) {
+  tapInfo.set(e.pointerId, { x: e.clientX, y: e.clientY, t: performance.now() });
+  if (touches.size === 2) {
+    const [p, q] = [...touches.values()];
+    fireRocket(W / 2, H - 40, (p.x + q.x) / 2, (p.y + q.y) / 2);
+  }
+  if (touches.size === 3) {
+    const ps = [...touches.values()], cx = ps.reduce((s, p) => s + p.x, 0) / 3, cy = ps.reduce((s, p) => s + p.y, 0) / 3;
+    for (let b = 0; b < 3; b++) lightning({ x: cx + (b - 1) * 80, y: 0 }, { x: cx, y: cy }, performance.now() / 1000, b);
+    slam(cx, cy, performance.now() / 1000);
+  }
+}
+function arsenalUp(e) {
+  const ti = tapInfo.get(e.pointerId); tapInfo.delete(e.pointerId);
+  if (!ti) return;
+  const held = performance.now() - ti.t, moved = Math.hypot(e.clientX - ti.x, e.clientY - ti.y);
+  if (touches.size === 0 && held < 240 && moved < 14) {
+    const sx = W / 2, sy = H - 50, len = Math.hypot(e.clientX - sx, e.clientY - sy) || 1;
+    fireShot(sx, sy, (e.clientX - sx) / len, (e.clientY - sy) / len);
+  } else if (held > 800 && moved < 20) snap(e.clientX, e.clientY);
+}
+function arsenalTouch(pts, t) {
+  const now = performance.now();
+  for (const [id, p] of touches) {
+    const ti = tapInfo.get(id);
+    if (ti && now - ti.t > 500 && Math.hypot(p.x - ti.x, p.y - ti.y) < 20) {
+      STONES.forEach((c, j) => { const a = t * 1.4 + (j / 6) * Math.PI * 2; gem(p.x + Math.cos(a) * 46, p.y + Math.sin(a) * 46, 8, c, t); });
+    }
+  }
+  // gun turret at the bottom
+  g.save(); g.strokeStyle = "rgba(255,255,255,0.6)"; g.beginPath(); g.arc(W / 2, H - 50, 10, 0, Math.PI * 2); g.stroke(); g.restore();
+}
+function arsenalFx(now) {
+  drawBlasts(now); drawRockets(now); drawShots(); drawDust();
+  if (flash > 0.02) { g.fillStyle = `rgba(255,255,255,${flash * 0.75})`; g.fillRect(0, 0, W, H); flash *= 0.86; }
+}
+
+// ================= rock beat =================
+// An original E-minor hard-rock riff over a straight rock kit (not any existing song).
+const ROCK_KICK = [1,0,0,0, 0,0,0,0, 1,0,1,0, 0,0,0,0], ROCK_SNARE = [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,0];
+const ROOT = { C: 65.41, D: 73.42, E: 82.41, G: 98.0, A: 110.0, B: 123.47 };
+const RIFF = [[0, "E", 2, 0], [2, "E", 1, 1], [3, "E", 1, 1], [4, "G", 2, 0], [6, "A", 2, 0], [8, "E", 2, 0], [10, "E", 1, 1], [11, "E", 1, 1], [12, "D", 2, 0], [14, "C", 2, 0],
+  [16, "E", 2, 0], [18, "E", 1, 1], [19, "E", 1, 1], [20, "G", 2, 0], [22, "A", 4, 0], [26, "B", 2, 0], [28, "A", 2, 0], [30, "G", 2, 0]];
+let distCurve = null;
+function guitarAt(root, t, dur, mute) {
+  if (!distCurve) { distCurve = new Float32Array(1024); for (let i = 0; i < 1024; i++) { const x = (i / 1023) * 2 - 1; distCurve[i] = ((1 + 60) * x) / (1 + 60 * Math.abs(x)); } }
+  const mix = ac.createGain(), sh = ac.createWaveShaper(), lp = ac.createBiquadFilter(), env = ac.createGain();
+  sh.curve = distCurve; sh.oversample = "2x";
+  lp.type = "lowpass"; lp.frequency.value = mute ? 1100 : 3400; lp.Q.value = 0.8;
+  for (const [r, det] of [[1, 0], [1.4983, 4], [2, -5]]) {
+    const o = ac.createOscillator(); o.type = "sawtooth"; o.frequency.value = root * r; o.detune.value = det;
+    o.connect(mix); o.start(t); o.stop(t + dur + 0.25);
+  }
+  mix.gain.value = 0.35;
+  const len = mute ? 0.1 : dur * 0.92;
+  env.gain.setValueAtTime(0.0001, t); env.gain.exponentialRampToValueAtTime(0.16, t + 0.006);
+  env.gain.setValueAtTime(0.16, t + len * 0.7); env.gain.exponentialRampToValueAtTime(0.0008, t + len + 0.12);
+  mix.connect(sh).connect(lp).connect(env); env.connect(A.bus); env.connect(A.verb);
+}
+function rockStep(i32, t) {
+  const i = i32 % 16;
+  if (ROCK_KICK[i]) { kickAt(t, 0.95); kickTimes.push(t); }
+  if (ROCK_SNARE[i]) { clapAt(t, 0.45); noiseBurst(0.16, 1800, 0.55, t); }
+  if (i % 2 === 0) noiseBurst(0.04, 8000, i % 4 === 0 ? 0.18 : 0.1, t);
+  if (i32 === 0) noiseBurst(1.4, 5000, 0.3, t);              // crash at the top of the riff
+  for (const [s, n, len, mute] of RIFF) if (s === i32) guitarAt(ROOT[n], t, len * 0.125, !!mute);
 }
 
 // ================= loop =================
@@ -1113,6 +1454,10 @@ function frame(now) {
   if (ac) while (kickTimes.length && kickTimes[0] <= ac.currentTime) { kickTimes.shift(); beatPulse = 1; }
   const t = now / 1000;
   modeDt = Math.min(0.1, (now - modeLast) / 1000); modeLast = now;
+  // screen shake from blasts, shots and slams
+  const sk = reduced ? 0 : shake * 14;
+  g.setTransform(DPR, 0, 0, DPR, (Math.random() - 0.5) * sk * DPR, (Math.random() - 0.5) * sk * DPR);
+  shake *= 0.86;
   let based = false;
   if (state.mode === "gravity" && state.source) {
     // render the frame offscreen, then bend it (and a numbered grid) around each index finger
@@ -1140,6 +1485,7 @@ function frame(now) {
       drawHands(analyse(predict(lastHands, frac)), t);
     }
   } else drawSpace(t);
+  if (state.mode === "arsenal") arsenalFx(now);
   if (state.magic) { drawSpirals(now); drawSparks(); }
   if (beatPulse > 0.02 && !reduced) {
     const bg = g.createRadialGradient(W / 2, H / 2, H * 0.2, W / 2, H / 2, H * 0.8);
@@ -1153,6 +1499,7 @@ function frame(now) {
     g.fillStyle = hitText.col; g.fillText(hitText.text, W / 2, H * 0.62 - (1 - hitText.life) * 40);
     g.restore(); hitText.life *= 0.9;
   }
+  g.setTransform(DPR, 0, 0, DPR, 0, 0);
   if (rec) drawRecBadge(now);
   if (state.source) $("readout").innerHTML = `${MODE_NAMES[state.mode].toUpperCase()} · OSC <b>${Math.round(readout.freq) || "—"} Hz</b> · FILTER <b>${Math.round(readout.cut) || "—"} Hz</b> · <b>${Math.round(fps)}</b> FPS`;
   requestAnimationFrame(frame);
@@ -1248,10 +1595,19 @@ for (const b of document.querySelectorAll("[data-mode]")) b.onclick = () => {
   for (const o of document.querySelectorAll("[data-mode]")) o.setAttribute("aria-pressed", String(o === b));
   strings.clear(); sigils.length = 0;
   hit(MODE_NAMES[state.mode].toLowerCase(), "#ffffff");
+  if (state.mode === "arsenal") speak("Arsenal online. All systems ready.");
+  if (state.mode === "arsenal") status(state.source === "touch"
+    ? "Tap to shoot · two fingers fire a rocket · three fingers call thunder · hold one finger for the stones, lift to snap"
+    : "Finger gun: drop your thumb to fire · two fists to lock a rocket, open to launch · open hand for the stones, snap · raise a fist for the hammer, swing down", 8000);
 };
 $("m-more").onclick = () => {
   const open = $("more").hidden; $("more").hidden = !open;
   $("m-more").setAttribute("aria-expanded", String(open)); $("m-more").textContent = open ? "Less" : "More";
+};
+$("m-beatstyle").onclick = () => {
+  state.beatStyle = state.beatStyle === "rock" ? "electro" : "rock";
+  $("m-beatstyle").textContent = `Beat: ${state.beatStyle === "rock" ? "Rock" : "Electro"}`;
+  beatStep = 0;
 };
 $("m-voice").onclick = () => {
   const keys = Object.keys(VOICES); voiceKey = keys[(keys.indexOf(voiceKey) + 1) % keys.length]; VO = VOICES[voiceKey];
