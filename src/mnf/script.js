@@ -183,6 +183,9 @@ export function buildFilm(scene, fx) {
   // keep the S6 camera's path clear of fighters
   for (let i = 2; i < slots.length; i++) if (Math.hypot(slots[i][0] + 1, slots[i][1] - 7.5) < 2.6 || Math.hypot(slots[i][0] + 0.5, slots[i][1] - 10.6) < 2.2) slots[i][0] += 3.6;
   slots.forEach(([x, z]) => CLEAR.push([x, z, 1.15]));
+  // clearings for the close-ups of the war-movie cut (convoy.js)
+  CLEAR.push([slots[13][0] + 1.4, slots[13][1] - 1.7, 2.6], [slots[1][0] - 0.9, slots[1][1] - 1.8, 2.4], [-2, 4.6, 2.6], [slots[5][0] + 1.6, slots[5][1] - 1.2, 2.4],
+    [19, -5.6, 3.4], [slots[1][0] - 1.6, slots[1][1] - 2.6, 2.4], [slots[13][0] + 2.8, slots[13][1] - 0.5, 2.4], [13, 2.4, 2.0], [-6.5, -4.8, 2.6]);
   CLEAR.push([CMD[0] + 1, CMD[1] - 2, 3.4], [CMD[0] + 1.6, CMD[1] + 1.6, 3.4], [26.6, 8.6, 3.6], [-8.5, 9.2, 3.4], [-5.5, 9.8, 3.4], [-2.5, 10.4, 3.4]);
   for (let x = -14; x <= 10; x += 2.2) CLEAR.push([x, -5.0, 2.8]);            // crossfire / overrun cameras
   for (let x = -50; x <= -4; x += 2.5) CLEAR.push([x, 4.4, 2.8]);             // tracking shot beside the trucks
