@@ -260,6 +260,32 @@ export function pose(a, mode, t, p) {
       a.armR.rotation.set(-1.3, 0, 0.5 * k); a.armL.rotation.set(-1.3, 0, -0.5 * k);
       break;
     }
+    case 'rope':
+      a.armR.rotation.set(-2.95, 0, -0.1); a.armL.rotation.set(-2.85, 0, 0.1);
+      a.legs[0].rotation.set(-0.25, 0, 0.12); a.legs[1].rotation.set(-0.15, 0, -0.12);
+      a.torso.rotation.x = 0.08; a.neck.rotation.x = 0.35;
+      if (a.weapon) a.weapon.visible = false;
+      break;
+    case 'sitEdge':
+      a.legs[0].rotation.x = -0.35 + 0.08 * Math.sin(p * 2); a.legs[1].rotation.x = -0.25 + 0.08 * Math.sin(p * 2 + 1);
+      a.armR.rotation.set(-0.9, 0, 0.1); a.armL.rotation.set(-0.8, 0, -0.1);
+      if (a.weapon) a.weapon.rotation.x = 1.0;
+      a.neck.rotation.y = 0.25 * Math.sin(p * 0.5); a.torso.rotation.x = 0.05 * Math.sin(p * 11);
+      break;
+    case 'sitFloor':
+      a.legs[0].rotation.x = -1.5; a.legs[1].rotation.x = -1.5; a.armR.rotation.set(-0.5, 0, 0.3); a.armL.rotation.set(-0.5, 0, -0.3);
+      a.torso.rotation.x = -0.05;
+      break;
+    case 'sitChair':
+      a.legs[0].rotation.x = -1.45; a.legs[1].rotation.x = -1.45; a.armR.rotation.set(-0.7, 0, 0.35); a.armL.rotation.set(-0.7, 0, -0.35);
+      a.neck.rotation.x = 0.1 * Math.sin(p * 0.6);
+      break;
+    case 'gunnerFire': {
+      crouchLegs(a); a.armR.rotation.set(-1.45, 0, 0.3); a.armL.rotation.set(-1.4, 0, -0.3);
+      if (a.weapon) a.weapon.rotation.x = W.alongArm;
+      const burst = (t % 1.4) < 0.9; if (burst) a.torso.rotation.x = -0.04 * Math.abs(Math.sin(p * 50));
+      break;
+    }
     case 'plant': {
       crouchLegs(a); a.torso.rotation.x = 0.5; a.neck.rotation.x = -0.1;
       const c = (p * 1.6) % 1, k = c < 0.6 ? c / 0.6 : 1 - (c - 0.6) / 0.4;

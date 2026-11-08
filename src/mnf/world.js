@@ -161,7 +161,8 @@ function makeVegetation(scene) {
   // bushes & trees around the village
   for (let i = 0; i < 260; i++) {
     const a = R() * Math.PI * 2, r = 40 + R() * 40;
-    trees.push([VILLAGE.x + Math.cos(a) * r, VILLAGE.z + Math.sin(a) * r, 0.7 + R() * 0.6, R() * 6]);
+    const tx = VILLAGE.x + Math.cos(a) * r, tz = VILLAGE.z + Math.sin(a) * r;
+    if (!isClear(tx, tz) && !inVillage(tx, tz)) trees.push([tx, tz, 0.7 + R() * 0.6, R() * 6]);
   }
   const bambooVariants = [bambooGeo(rng(1)), bambooGeo(rng(2)), bambooGeo(rng(3))];
   bambooVariants.forEach((g, k) => scatter(scene, g, bamboo.filter((_, i) => i % 3 === k), 0.035));
