@@ -123,6 +123,7 @@ for sh in plan['shots']:
     if sh['name'] == 'The Room': place(braam(6.0, 65.4), sh['start'] + 1.0, 0.15)
     if sh['name'] == 'Fast Rope': place(whoosh(1.2), sh['start'], 0.6)
     if sh['name'] == 'Dawn': place(braam(7.0, 55.0), sh['start'] + 0.3, 0.5)
+    if sh['name'] == 'Dawn': place(braam(5.0, 41.2), sh['start'] + 4.9, 0.55)   # 'Geronimo'
     if sh['name'] == 'End': place(braam(5.0, 41.2), sh['start'] + 0.2, 0.5)
     if sh['name'] == 'Secure Line': place(ring(), sh['start'] + 0.1, 0.7); place(ring(), sh['start'] + 0.75, 0.7); place(click(), sh['start'] + 1.5, 0.9)
     if sh['name'] == 'Decision': place(braam(4.5, 49.0), sh['start'] + 0.2, 0.55)
