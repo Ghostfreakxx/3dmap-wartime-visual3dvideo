@@ -11,6 +11,7 @@ placed by distance and pan relative to the camera; slow-motion cues are pitched 
 import json, sys
 import numpy as np
 from scipy import signal
+from scipy.ndimage import uniform_filter1d
 
 SR = 44100
 rng = np.random.default_rng(7)
@@ -100,18 +101,38 @@ for k, e in enumerate(plan['events']):
     if e['slow'] < 0.9: x = slowmo(x, e['slow'])
     place(x, e['t'] + d / 343.0 * (0 if typ in ('supp', 'hit') else 1), g, e['pan'])
 
-# radio squelch before radio lines (not for the VIP)
-for s in plan['subs']:
-    if s['who'] in ('Team leader', 'Ranger', 'Pilot'): place(squelch(), max(0, s['t'] - 0.25), 0.8, 0.0)
+# radio squelch before radio lines (call signs), a phone line for New Delhi
+RADIO = ('Vanapa', 'Dawn', 'Overwatch', 'Team leader', 'Ranger', 'Pilot')
+for sub in plan['subs']:
+    if sub['who'].startswith(RADIO): place(squelch(), max(0, sub['t'] - 0.25), 0.8, 0.0)
+
+def ring():
+    t = np.arange(int(1.6 * SR)) / SR
+    tone = (np.sin(2 * np.pi * 440 * t) + np.sin(2 * np.pi * 480 * t)) * 0.18
+    gate = ((t % 0.4) < 0.2) & (t < 1.0)
+    return tone * gate * np.minimum(1, (1.6 - t) / 0.2)
+def click():
+    n = noise(0.06); return hp(n, 1500) * env(len(n), 0, 0.006) * 0.6
+def tick():
+    n = noise(0.03); return bp(n, 2500, 7000) * env(len(n), 0, 0.003) * 0.25
 
 # big moments: title, breach slow motion, the rescue, lift-off
 for sh in plan['shots']:
     if sh['title']: place(braam(5.0, 49.0), sh['start'] + 3.3, 0.9)
     if sh['name'] == 'Breach': place(whoosh(1.0), sh['start'] + 1.0, 0.8); place(braam(4.0, 41.2), sh['start'] + 1.4, 0.8)
-    if sh['name'] == 'The Room': place(braam(6.0, 65.4), sh['start'] + 1.0, 0.35)
+    if sh['name'] == 'The Room': place(braam(6.0, 65.4), sh['start'] + 1.0, 0.15)
     if sh['name'] == 'Fast Rope': place(whoosh(1.2), sh['start'], 0.6)
     if sh['name'] == 'Dawn': place(braam(7.0, 55.0), sh['start'] + 0.3, 0.5)
     if sh['name'] == 'End': place(braam(5.0, 41.2), sh['start'] + 0.2, 0.5)
+    if sh['name'] == 'Secure Line': place(ring(), sh['start'] + 0.1, 0.7); place(ring(), sh['start'] + 0.75, 0.7); place(click(), sh['start'] + 1.5, 0.9)
+    if sh['name'] == 'Decision': place(braam(4.5, 49.0), sh['start'] + 0.2, 0.55)
+    if sh['name'] == 'Aizawl': place(braam(5.0, 36.7), sh['start'] + 0.3, 0.4)
+
+# a wall clock ticking through the cabinet scenes
+ROOMSHOTS = ('Cabinet', 'Home Minister', 'Chief Minister', 'The Colonel', 'Secure Line', 'Decision')
+for sh in plan['shots']:
+    if sh['name'] in ROOMSHOTS:
+        for k in range(int(sh['dur'])): place(tick(), sh['start'] + k + 0.3, 0.5)
 
 # ---------------------------------------------------------------- continuous beds (per video frame -> per sample)
 fr = plan['frames']; rate = plan['rate']
@@ -121,10 +142,13 @@ def curve(fn):
     v = np.array([fn(f) for f in fr], dtype=float)
     return np.interp(tt * rate, np.arange(len(v)), v)
 
+# beds and rotors fade out on the black cards; one-shot hits (braams) carry over them
+cardg = uniform_filter1d(curve(lambda f: 0.0 if f['card'] else 1.0), int(0.25 * SR))
+
 # helicopters: blade-slap pulses + turbine whine + rumble, per helicopter
 def heli_bed(key, seed):
     r = np.random.default_rng(seed)
-    g = curve(lambda f: 0 if f['card'] else (14 / (14 + f[key]['d'])) * (0.35 if f['interior'] else 1.0))
+    g = curve(lambda f: 0 if f['card'] else (14 / (14 + f[key]['d'])) * (0.18 if f['interior'] else 1.0))
     pan = curve(lambda f: 0 if f['card'] else f[key]['pan'])
     slow = curve(lambda f: f['slow'])
     phase = np.cumsum(17.5 * np.clip(slow, 0.35, 1.2) / SR)     # 4 blades x ~4.4 rev/s
@@ -132,7 +156,7 @@ def heli_bed(key, seed):
     slap = lp(r.standard_normal(N), 260) * pulse * 3.0
     rumble = lp(r.standard_normal(N), 90) * 1.4
     whine = (np.sin(2 * np.pi * np.cumsum(1900 * np.clip(slow, 0.5, 1.1) / SR)) * 0.06 + np.sin(2 * np.pi * np.cumsum(3800 / SR)) * 0.02)
-    x = (slap + rumble + whine) * g
+    x = (slap + rumble + whine) * g * cardg
     a = (pan + 1) * np.pi / 4
     return x * np.cos(a), x * np.sin(a)
 for key, seed in (('h1', 1), ('h2', 2)):
@@ -148,15 +172,15 @@ dawn = curve(lambda f: 1.0 if (f['mood'] == 'dawn' and not f['card']) else 0.0)
 wind = lp(rng.standard_normal(N), 400) * (0.6 + 0.4 * np.sin(2 * np.pi * 0.13 * tt)) * 0.12
 fireg = curve(lambda f: 0 if (f['fire'] is None or f['card']) else 10 / (10 + f['fire']['d']))
 crack = np.zeros(N)
-for i in rng.integers(0, N - 800, int(plan['total'] * 40)): crack[i:i + 800] += hp(rng.standard_normal(800), 1500) * env(800, 0, 0.003) * rng.uniform(0.05, 0.3)
+clicks = [hp(rng.standard_normal(800), 1500) * env(800, 0, 0.003) for _ in range(8)]
+for j, i in enumerate(rng.integers(0, N - 800, int(plan['total'] * 40))): crack[i:i + 800] += clicks[j % 8] * rng.uniform(0.05, 0.3)
 crack = crack * 0.6 + lp(rng.standard_normal(N), 250) * 0.15
-bed = insects * night + room * inter + wind * dawn + crack * fireg
+drone = curve(lambda f: 1.0 if f.get('drone') else 0.0)
+static = bp(rng.standard_normal(N), 800, 6000) * 0.05 + np.sin(2 * np.pi * 120 * tt) * 0.01
+bed = (insects * night + room * inter + wind * dawn + crack * fireg + static * drone) * cardg
 L += bed; Rr += bed
 
 # ---------------------------------------------------------------- master: fades on the cards, glue, limit
-cardg = curve(lambda f: 0.0 if f['card'] else 1.0)
-cardg = np.convolve(cardg, np.ones(int(0.25 * SR)) / int(0.25 * SR), mode='same')
-L *= np.maximum(cardg, 0.0); Rr *= np.maximum(cardg, 0.0)
 # keep the braams audible over the cards
 mix = np.stack([L, Rr], axis=1)
 mix = np.tanh(mix * 1.4) / np.tanh(1.4)

@@ -12,6 +12,7 @@ import { heightAt, pathY, RIVER_Z } from '../mnf/terrain.js';
 import { makeHeli, Flight } from './heli.js';
 import { makeCompound, animateCompound, CPD, cy, BLD } from './compound.js';
 import { CLEAR } from '../mnf/world.js';
+import { makeCabinetRoom, makeSecretariat, ROOM } from './cabinet.js';
 import { ease, rng } from '../toon.js';
 
 const V = (x, y, z) => new THREE.Vector3(x, y, z);
@@ -32,12 +33,14 @@ fx.tracer = function (t, from, to) {
   this.p.push({ t0: t, life: 0.14, pos: from.clone(), vel: d.multiplyScalar(1 / 0.14), g: 0, r0: 0.07, r1: 0.07, col: 0xffb040, a0: 1, a1: 1 });
 };
 for (let x = X - 30; x <= X + 30; x += 4) for (let z = Z - 34; z <= Z + 24; z += 4) CLEAR.push([x, z, 3]); // no bamboo inside / around the compound
-CLEAR.push([-28, RIVER_Z - 3, 9], [-24, RIVER_Z - 10, 8]);
+CLEAR.push([-28, RIVER_Z - 3, 9], [-24, RIVER_Z - 10, 8], [ROOM.x, ROOM.z, 14], [ROOM.x + 8, ROOM.z, 10], [ROOM.x - 8, ROOM.z, 10]);
 const world = buildWorld(scene);
 world.town.post.visible = false;
 MOODS.dawn = { ...MOODS.sunset, top: 0x48598c, horizon: 0xf3a46a, sunDir: [0.9, 0.12, -0.35], sun: 0xffd8a0, fog: 0xb58a7c };
 MOODS.nightOps = { ...MOODS.night, top: 0x16204a, horizon: 0x34447a, bottom: 0x1c2444, fog: 0x26305a, fogDensity: 0.004, hemiSky: 0x8090c8, hemiGround: 0x1a2030, hemiI: 1.55, sunLight: 0xb8c8f4, sunI: 1.25, sunDir: [-0.4, 0.7, -0.5], sun: 0xe8eeff };
 const cpd = makeCompound(scene);
+const room = makeCabinetRoom(scene);
+const secretariat = makeSecretariat(scene);
 const yc = cpd.y0;
 
 // ------------------------------------------------------------ helicopters
@@ -119,6 +122,14 @@ vip.track.at(0, X + 2, Z + 7.4, 'sitChair', PI).at(44.9, X + 2, Z + 7.4, 'idle',
 vip.rides.push({ h: H1, f: f1, seat: [0, 0.68, 0.6, PI], from: 51.0, to: 999, mode: 'sitFloor' });
 vip.liftUntil = 44.9;
 
+// ------------------------------------------------------------ the cabinet (fictional state government)
+const inRoom = (a, x, z) => { a.fixedY = room.fy; a.vis = [-60, -5]; return [ROOM.x + x, ROOM.z + z]; };
+const cm = add('pol', 'cm'); { const [x, z] = inRoom(cm, 4.9, 0); cm.track.at(-60, x, z, 'lean', -PI / 2).at(-40, x, z, 'talk', -PI / 2).at(-34, x, z, 'lean', -PI / 2).at(-29, x, z, 'talk', -PI / 2).at(-23, x, z, 'lean', -PI / 2).at(-13.5, x, z, 'talk', -PI / 2).at(-10.2, x, z, 'idle', -PI / 2); }
+const homeMin = add('pol', 'minister'); { const [x, y0, ry] = room.seats[7]; const [wx, wz] = inRoom(homeMin, x, y0); homeMin.lift = 0.17; homeMin.track.at(-60, wx, wz, 'sitChair', ry); }
+[[6, 'minister'], [4, 'minister'], [3, 'cm']].forEach(([si, v]) => { const a = add('pol', v === 'cm' ? 'minister' : v); const [x, z, ry] = room.seats[si]; const [wx, wz] = inRoom(a, x, z); a.lift = 0.17; a.track.at(-60, wx, wz, 'sitChair', ry); });
+const colonel = add('pol', 'colonel'); { const [x, z] = inRoom(colonel, -0.9, -3.4); colonel.track.at(-60, x, z, 'idle', 0.9).at(-23, x, z, 'talk', 0.9).at(-19.5, x, z, 'point', 0.9); }
+const aide = add('pol', 'aide'); { const [x, z] = inRoom(aide, 6.0, -3.0); aide.track.at(-60, x, z, 'idle', -PI / 2 - 0.4); }
+
 // ------------------------------------------------------------ the junta guards
 const junta = [];
 const H = CPD.half - 1;
@@ -164,6 +175,7 @@ deaths.forEach(([i, t]) => SND.push({ T: t, type: 'hit', pos: posAt(junta[i], t)
 actors.forEach((a) => { if (!a.track.k.length) a.track.at(0, 0, -900, 'idle'); a.track.finalize(); });
 const FIRE = { kneelBurst: 1, autoFire: 1 };
 const aliveAt = (list, T) => list.filter((a) => !(a.td && T >= a.td) && !(a.vis && T < a.vis[0]));
+const REACH = new Set(['ranger', 'junta']);
 for (const a of [...rangers, ...junta]) {
   let next = 0, burst = 0;
   for (let T = 31; T < 57; T += 0.03) {
@@ -205,34 +217,58 @@ fx.build(scene);
 const C_ = (pos, look, fov = 42) => ({ pos, look, fov });
 const L = (a, b, k) => ({ pos: a.pos.clone().lerp(b.pos, k), look: a.look.clone().lerp(b.look, k), fov: a.fov + (b.fov - a.fov) * k });
 const hpos = (f, T) => f.pos(T);
+const RW_ = (x, y, z) => room.W2(x, y, z);
 const SHOTS = [
   { name: 'Disclaimer', s: [0, 0.01], dur: 4.5, card: 'disclaimer', mood: 'nightOps', cam: () => C_(V(0, 200, -300), V(0, 0, 0)) },
+  { name: 'Aizawl', s: [-46, -42], dur: 5, mood: 'nightOps', loc: 'AIZAWL, MIZORAM — 2300 HRS',
+    cam: (T, k) => L(C_(V(-80 + 20, heightAt(-80, 170) + 11, 170 - 44), V(-80, heightAt(-80, 170) + 6, 158), 42), C_(V(-80 + 15, heightAt(-80, 170) + 8, 170 - 37), V(-80, heightAt(-80, 170) + 6, 158), 40), ease.inOut(k)) },
+  { name: 'Cabinet', s: [-40, -34], dur: 6, mood: 'nightOps', room: true,
+    subs: [[0.5, 5.6, 'Chief Minister', 'Since the coup, thousands of families have fled across the Tiau into Mizoram.']],
+    cam: (T, k) => L(C_(RW_(-6.3, 2.5, 3.6), RW_(3.5, 1.1, -0.4), 50), C_(RW_(-5.6, 2.2, 3.2), RW_(3.8, 1.2, -0.3), 46), k) },
+  { name: 'Home Minister', s: [-34, -29], dur: 5, mood: 'nightOps', room: true,
+    subs: [[0.4, 4.7, 'Home Minister', 'They locked her up because the people voted for her. Free her, and they get their voice back.']],
+    cam: (T, k) => L(C_(RW_(1.2, 1.45, -1.0), RW_(2.4, 1.05, 1.45), 46), C_(RW_(1.4, 1.4, -0.8), RW_(2.4, 1.05, 1.45), 40), k) },
+  { name: 'Chief Minister', s: [-29, -23], dur: 6, mood: 'nightOps', room: true,
+    subs: [[0.4, 5.7, 'Chief Minister', 'This is not about power. It is about democracy — and a better future for the people on both sides of the river.']],
+    cam: (T, k) => L(C_(RW_(2.3, 1.35, 0.7), RW_(4.9, 1.15, 0), 42), C_(RW_(2.7, 1.3, 0.5), RW_(4.9, 1.2, 0), 36), k) },
+  { name: 'The Colonel', s: [-23, -18.5], dur: 4.5, mood: 'nightOps', room: true,
+    subs: [[0.3, 4.3, 'Colonel, Vanapa Ranger Bn', 'The battalion is ready, sir. We only need the Centre’s approval.']],
+    cam: (T, k) => L(C_(RW_(0.4, 2.25, -0.2), RW_(-1.3, 1.3, -3.6), 46), C_(RW_(0.1, 2.1, -0.5), RW_(-1.4, 1.35, -3.7), 42), k) },
+  { name: 'Secure Line', s: [-18.5, -13.5], dur: 5, mood: 'nightOps', room: true, loc: 'SECURE LINE — NEW DELHI',
+    subs: [[1.8, 4.9, 'New Delhi (secure line)', 'The Centre approves. Operation Freedom is a go.']],
+    cam: (T, k) => L(C_(RW_(2.7, 1.55, 0.5), RW_(3.9, 0.95, -0.4), 50), C_(RW_(3.0, 1.35, 0.2), RW_(3.8, 0.95, -0.5), 40), k) },
+  { name: 'Decision', s: [-13.5, -9.5], dur: 4, mood: 'nightOps', room: true,
+    subs: [[0.3, 3.8, 'Chief Minister', 'Then bring her home. Bring them all home.']],
+    cam: (T, k) => L(C_(RW_(1.6, 1.4, 0.4), RW_(4.9, 1.2, 0), 36), C_(RW_(2.2, 1.35, 0.3), RW_(4.9, 1.25, 0), 31), k) },
   { name: 'Flight', s: [0, 10], dur: 9, mood: 'nightOps', loc: 'CHAMPHAI, MIZORAM — 0200 HRS', title: true,
     cam: (T, k) => { const p = hpos(f1, T); return C_(p.clone().add(V(-10 + 3 * k, 3.5, -15 + 4 * k)), p.clone().add(V(0, 0.5, 12)), 46); } },
-  { name: 'Cabin', s: [10, 16], dur: 6, mood: 'nightOps', subs: [[0.6, 5.6, 'Team leader', 'Twelve minutes. In, grab the package, out. Nobody gets left behind.']],
+  { name: 'Cabin', s: [10, 16], dur: 6, mood: 'nightOps', subs: [[0.6, 5.6, 'Vanapa 1-1', 'Twelve minutes. In, grab the package, out. Nobody gets left behind.']],
     cam: (T, k) => { f1.apply(H1, T); const m = H1.body.matrixWorld; return C_(V(3.6, 1.9, 0.9 - 0.4 * k).applyMatrix4(m), V(0.6, 1.4, 0.2).applyMatrix4(m), 50); } },
-  { name: 'River', s: [17.6, 21.6], dur: 5, mood: 'nightOps', loc: 'TIAU RIVER — INDIA / MYANMAR BORDER',
+  { name: 'River', s: [17.6, 21.6], dur: 5, mood: 'nightOps', loc: 'TIAU RIVER — INDIA / MYANMAR BORDER', subs: [[2.4, 4.8, 'Dawn 1', 'Crossing phase line Tiau. Lights out.']],
     cam: (T, k) => { const y = heightAt(-27, RIVER_Z - 4); return C_(V(-27, y + 3.0, RIVER_Z - 6), hpos(f1, Math.min(T, 20.6)).add(V(0, -1, 0)), 64); } },
-  { name: 'Target', s: [24, 30], dur: 6, mood: 'nightOps', loc: 'TARGET COMPOUND — 0214 HRS',
+  { name: 'Drone', s: [22, 26.5], dur: 4.5, mood: 'nightOps', drone: true,
+    subs: [[0.5, 4.3, 'Overwatch', 'Ten Tatmadaw guards, two towers manned. Package confirmed in House One.']],
+    cam: (T, k) => C_(V(X + 0.3, yc + 42 - 4 * k, Z - 3), V(X, yc, Z), 40 - 6 * k) },
+  { name: 'Target', s: [24, 30], dur: 6, mood: 'nightOps', loc: 'TARGET: TATMADAW DETENTION SITE — 0214 HRS',
     cam: (T, k) => L(C_(V(X + 20, yc + 13, Z - 25), V(X, yc + 2, Z), 46), C_(V(X + 16, yc + 9, Z - 21), V(X, yc + 2.5, Z + 1), 42), ease.inOut(k)) },
-  { name: 'Rotor Wash', s: [30.0, 31.7], dur: 3.5, mood: 'nightOps',
+  { name: 'Rotor Wash', s: [30.0, 31.7], dur: 3.5, mood: 'nightOps', subs: [[0.6, 3.3, 'Tatmadaw guard (in Burmese)', 'Helicopters! Wake the barracks!']],
     cam: (T, k) => { const g = junta[4], s = g.track.sample(T), x = s.x, z = s.z; return C_(V(x + 1.3, yc + 1.05, z - 2.8), V(x, yc + 1.7, z), 40 - 4 * k); } },
-  { name: 'Fast Rope', s: [30.9, 33.4], dur: 6, mood: 'nightOps',
+  { name: 'Fast Rope', s: [30.9, 33.4], dur: 6, mood: 'nightOps', subs: [[0.2, 2.2, 'Dawn 1', 'Ropes! Ropes! Ropes!']],
     cam: (T, k) => L(C_(V(X + 7, yc + 2.2, Z - 13), V(X, yc + 6.5, Z - 6), 54), C_(V(X + 6.5, yc + 2.0, Z - 12.5), V(X, yc + 3.5, Z - 6), 52), k) },
-  { name: 'NVG', s: [33.4, 37.6], dur: 5, mood: 'nightOps', nvg: true, handheld: 1, subs: [[0.6, 4.4, 'Ranger', 'Tower two down! Moving!']],
+  { name: 'NVG', s: [33.4, 37.6], dur: 5, mood: 'nightOps', nvg: true, handheld: 1, subs: [[0.6, 4.4, 'Vanapa 1-2', 'Tower two down! Moving!']],
     cam: (T, k) => L(C_(V(X - 3, yc + 1.4, Z - 13), V(X - 1, yc + 2.6, Z + 4), 50), C_(V(X - 4, yc + 1.5, Z - 12), V(X - 2, yc + 2.8, Z + 4), 50), k) },
-  { name: 'Door Gun', s: [37.6, 39.0], dur: 4, mood: 'nightOps', handheld: 0.6,
+  { name: 'Door Gun', s: [37.6, 39.0], dur: 4, mood: 'nightOps', handheld: 0.6, subs: [[0.3, 3.6, 'Dawn 2', 'Engaging northeast tower!']],
     cam: (T, k) => { f2.apply(H2, T); const m = H2.body.matrixWorld; return C_(V(7.5 - 1.5 * k, 2.4, 6.5 - 1.0 * k).applyMatrix4(m), V(0.4, 1.7, -1.2).applyMatrix4(m), 44); } },
-  { name: 'Breach', s: [40.0, 42.3], dur: 5, mood: 'nightOps', slowFrom: [41.3, 41.9],
+  { name: 'Breach', s: [40.0, 42.3], dur: 5, mood: 'nightOps', slowFrom: [41.3, 41.9], subs: [[0.2, 1.4, 'Vanapa 1-1', 'Breaching — breaching!']],
     cam: (T, k) => C_(V(X + 3.8, yc + 1.5, Z - 1.6), V(X, yc + 1.3, Z + 1), 44) },
   { name: 'The Room', s: [42.3, 46.6], dur: 8.5, mood: 'nightOps', interior: true,
-    subs: [[1.2, 4.6, 'Team leader', 'Ma’am — Mizo Rangers. We’re here to take you home.'], [5.0, 8.2, 'She', 'Then let us not keep them waiting.']],
+    subs: [[1.2, 4.6, 'Vanapa 1-1', 'Ma’am — Vanapa Rangers, 75th Mizo Rangers. We’re here to take you home.'], [5.0, 8.2, 'Daw Aung San Suu Kyi', 'Then let us not keep them waiting.']],
     cam: (T, k) => L(C_(V(X - 3.6, yc + 1.55, Z + 3.0), V(X + 2, yc + 1.0, Z + 7.4), 44), C_(V(X - 2.4, yc + 1.4, Z + 3.6), V(X + 1.8, yc + 1.25, Z + 7.2), 36), ease.inOut(k)) },
-  { name: 'Exfil', s: [46.6, 52.6], dur: 7, mood: 'nightOps', handheld: 1, subs: [[3.4, 6.6, 'Ranger', 'Man down! I got him — keep moving!']],
+  { name: 'Exfil', s: [46.6, 52.6], dur: 7, mood: 'nightOps', handheld: 1, subs: [[3.4, 6.6, 'Vanapa 1-4', 'Man down! I got him — keep moving!']],
     cam: (T, k) => { const s = vip.track.sample(Math.min(T, 50.9)); return C_(V(X - 6.5 + 1.5 * k, yc + 1.7, Z - 1.5 - 2 * k), V(s.x, yc + 1.0, s.z), 50); } },
-  { name: 'Lift Off', s: [53.2, 59.2], dur: 7, mood: 'nightOps', handheld: 0.5, subs: [[1.0, 5.6, 'Pilot', 'Package aboard! Pulling pitch!']],
+  { name: 'Lift Off', s: [53.2, 59.2], dur: 7, mood: 'nightOps', handheld: 0.5, subs: [[0.6, 3.6, 'Vanapa 1-1', 'Package aboard! All Vanapas accounted for — go!'], [3.9, 6.6, 'Dawn 1', 'Pulling pitch!']],
     cam: (T, k) => C_(V(X + 10, yc + 1.8, Z - 11.5), hpos(f1, T).add(V(0, 1.5, 0)), 52) },
-  { name: 'Dawn', s: [64, 76], dur: 9, mood: 'dawn', subs: [[1.5, 7.5, 'Pilot', 'Package secure. Bringing her home.']],
+  { name: 'Dawn', s: [64, 76], dur: 9, mood: 'dawn', subs: [[0.8, 4.8, 'Dawn 1', 'Vanapa Actual, Dawn 1 — package secure. Bringing her home.'], [5.2, 8.4, 'Vanapa Actual', 'Copy, Dawn 1. Welcome home.']],
     cam: (T, k) => { const p = hpos(f1, T); return C_(p.clone().add(V(11 - 4 * k, 3, 9)), p.clone().add(V(-3, 0, -8)), 46); } },
   { name: 'End', s: [76, 76.01], dur: 6.5, card: 'end', mood: 'dawn', cam: (T) => { const p = hpos(f1, 76); return C_(p.clone().add(V(7, 3, 9)), p.clone().add(V(-3, 0, -8)), 46); } },
 ];
@@ -253,6 +289,7 @@ function storyOf(t) {
 
 // ------------------------------------------------------------ per-frame scene
 const q = new THREE.Quaternion(), e = new THREE.Euler(), m4 = new THREE.Matrix4(), tmp = new THREE.Vector3();
+const lasers = Array.from({ length: 8 }, () => { const m = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 1, 4).translate(0, 0.5, 0).rotateX(Math.PI / 2), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.8, fog: false, depthWrite: false })); m.visible = false; scene.add(m); return m; });
 const ropes = [-1, 1].map(() => { const r = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 1, 6), new THREE.MeshToonMaterial({ color: 0x2a2a2a })); scene.add(r); return r; });
 function scene3d(T, shot, k, tScreen) {
   world.applyMood(MOODS[shot.mood]);
@@ -261,9 +298,27 @@ function scene3d(T, shot, k, tScreen) {
   animateCompound(cpd, T);
   cpd.door.visible = T < 41.62;
   cpd.int.visible = !!shot.interior; cpd.ext.visible = !shot.interior;
+  room.g.visible = !!shot.room;
+  // lamps only where the shot can see them (each light costs every pixel in the software renderer)
+  const nearCompound = !shot.room && shot.name !== 'Aizawl' && shot.name !== 'Flight' && shot.name !== 'Cabin' && shot.name !== 'Dawn' && shot.name !== 'River';
+  room.lights.forEach((l) => (l.visible = !!shot.room));
+  secretariat.userData.light.visible = shot.name === 'Aizawl';
+  cpd.lights.forEach((l) => (l.visible = nearCompound && !shot.interior));
+  cpd.lamp.visible = !!shot.interior;
+  room.phoneLed.visible = T > -18.6 && T < -13.5 && Math.sin(T * 14) > 0;
+  room.clockHand.rotation.z = -0.4 - T * 0.002;
   // ropes hang from H1 while the team slides
   ropes.forEach((r, i) => { const side = i ? 1 : -1, top = hoverAnchor(side); r.visible = T > 30.7 && T < 36.5; r.position.set(top.x, (top.y + yc) / 2, top.z); r.scale.y = top.y - yc; });
 
+  // IR aiming lasers: only visible through night vision
+  rangers.forEach((a, i) => {
+    const L = lasers[i]; L.visible = false;
+    if (!shot.nvg || a.rides.some((r) => T >= r.from && T < r.to)) return;
+    const s = a.track.sample(T); if (s.mode !== 'kneelBurst' && s.mode !== 'aim') return;
+    const kneel = s.mode === 'kneelBurst';
+    L.visible = true; L.position.set(s.x - Math.cos(s.ry) * 0.2, heightAt(s.x, s.z) + (kneel ? 0.78 : 1.08), s.z + Math.sin(s.ry) * 0.2);
+    L.rotation.set(-0.12 + 0.03 * Math.sin(T * 3 + i), s.ry + 0.04 * Math.sin(T * 2.3 + i), 0, 'YXZ'); L.scale.set(1, 1, 26);
+  });
   const c = shot.cam(T, k);
   camera.position.copy(c.pos);
   const hh = shot.handheld ?? 0.25;
@@ -273,7 +328,7 @@ function scene3d(T, shot, k, tScreen) {
   camera.lookAt(c.look); camera.fov = c.fov; camera.updateProjectionMatrix();
 
   for (const a of actors) {
-    if (a.vis && T < a.vis[0]) { a.root.visible = false; continue; }
+    if (a.vis && (T < a.vis[0] || T >= a.vis[1])) { a.root.visible = false; continue; }
     const ride = a.rides.find((r) => T >= r.from && T < r.to);
     if (ride) {
       const [lx, ly, lz, lr] = ride.seat;
@@ -293,7 +348,7 @@ function scene3d(T, shot, k, tScreen) {
     const near = Math.hypot(s.x - camera.position.x, s.z - camera.position.z) < 200;
     a.root.visible = near; if (!near) continue;
     const lift = (a.lift ?? 0) * (a.liftUntil === undefined || T < a.liftUntil ? 1 : 0);
-    a.root.quaternion.identity(); a.root.position.set(s.x, heightAt(s.x, s.z) + lift, s.z); a.root.rotation.set(0, s.ry, 0);
+    a.root.quaternion.identity(); a.root.position.set(s.x, (a.fixedY ?? heightAt(s.x, s.z)) + lift, s.z); a.root.rotation.set(0, s.ry, 0);
     pose(a, s.mode, s.mt, T + a.phase);
   }
   fx.update(T);
@@ -311,7 +366,7 @@ const reel = Object.assign(document.createElement('canvas'), { width: 720, heigh
 
 function grade(g, T, shot, t) {
   g.save();
-  g.filter = shot.nvg ? 'grayscale(1) brightness(1.9) contrast(1.25) sepia(1) hue-rotate(58deg) saturate(2.6)'
+  g.filter = shot.drone ? 'grayscale(1) brightness(1.5) contrast(1.6)' : shot.nvg ? 'grayscale(1) brightness(1.3) contrast(1.35) sepia(1) hue-rotate(58deg) saturate(2.6)'
     : shot.mood === 'dawn' ? 'contrast(1.12) saturate(0.9) sepia(0.12)' : 'contrast(1.15) saturate(0.75) brightness(1.22)';
   g.drawImage(renderer.domElement, 0, 0, W, Hh); g.restore();
   if (!shot.nvg) { g.save(); g.globalCompositeOperation = 'soft-light'; g.fillStyle = shot.mood === 'dawn' ? 'rgba(255,150,70,0.25)' : 'rgba(30,70,110,0.3)'; g.fillRect(0, 0, W, Hh); g.restore(); }
@@ -337,8 +392,8 @@ function card(g, kind, lt, dur, cx, cy, size, wrapW) {
   const a = Math.min(clamp((lt - 0.4) / 0.6), clamp((dur - 0.3 - lt) / 0.5));
   g.save(); g.globalAlpha = a; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = '#efe9dc';
   const lines = kind === 'disclaimer'
-    ? ['THE FOLLOWING IS A WORK OF FICTION', 'made purely for entertainment.', '', '“Operation Freedom”, the “Mizo Rangers” and every event shown', 'are imaginary. No such operation has taken place.']
-    : ['FICTION — Operation Freedom never happened.', '', 'Aung San Suu Kyi, Myanmar’s former State Counsellor,', 'was detained by the military after the February 2021 coup.', '', 'All units, insignia and dialogue are invented.'];
+    ? ['THE FOLLOWING IS A WORK OF FICTION', 'made purely for entertainment.', '', 'The state government, the Vanapa Ranger Battalion, the 75th Mizo Rangers', 'Regiment, “Operation Freedom” and every event shown are imaginary.', 'No such operation has taken place.']
+    : ['FICTION — Operation Freedom never happened.', '', 'Aung San Suu Kyi, Myanmar’s former State Counsellor,', 'was detained by the Myanmar military (Tatmadaw) after the February 2021 coup.', '', 'The government, units, insignia and dialogue shown are invented.'];
   const wrap = (txt) => { const out = []; let l = ''; for (const w of txt.split(' ')) { const s = l ? l + ' ' + w : w; g.font = `600 ${size}px "DejaVu Serif", Georgia, serif`; if (g.measureText(s).width > wrapW && l) { out.push(l); l = w; } else l = s; } out.push(l); return out; };
   const all = lines.flatMap((l) => (l ? wrap(l) : ['']));
   all.forEach((l, i) => { g.font = `${i === 0 ? 800 : 500} ${size}px "DejaVu Serif", Georgia, serif`; g.fillText(l, cx, cy + (i - (all.length - 1) / 2) * size * 1.55); });
@@ -353,6 +408,13 @@ function compose(t) {
     grade(g, T, shot, t);
     const fa = clamp(Math.max(i === 1 ? 1 - lt / 1.5 : 0, lt < 0.05 ? 0 : 0));
     if (fa > 0) { g.fillStyle = `rgba(0,0,0,${fa})`; g.fillRect(0, 0, W, Hh); }
+    if (shot.drone) {
+      g.save(); g.strokeStyle = 'rgba(255,255,255,0.85)'; g.lineWidth = 2; g.fillStyle = 'rgba(255,255,255,0.9)'; g.font = '600 16px "DejaVu Sans Mono", monospace';
+      const cx = W / 2, cyy = Hh / 2; g.beginPath(); g.moveTo(cx - 60, cyy); g.lineTo(cx - 15, cyy); g.moveTo(cx + 15, cyy); g.lineTo(cx + 60, cyy); g.moveTo(cx, cyy - 60); g.lineTo(cx, cyy - 15); g.moveTo(cx, cyy + 15); g.lineTo(cx, cyy + 60); g.stroke();
+      g.strokeRect(cx - 120, cyy - 90, 240, 180);
+      g.fillText('UAV-2  IR  WHT-HOT', 120, BAR + 36); g.fillText('ALT 18,500 FT', 120, BAR + 58); g.fillText('TGT: DETENTION SITE', W - 330, BAR + 36); g.fillText(`02:1${Math.floor(2 + lt)}:${String(Math.floor((lt * 37) % 60)).padStart(2, '0')}`, W - 330, BAR + 58);
+      g.fillText('GUARDS 10   VIP: HOUSE 1', W - 330, Hh - BAR - 24); g.restore();
+    }
     if (shot.nvg) { g.save(); g.font = '600 18px "DejaVu Sans Mono", monospace'; g.fillStyle = 'rgba(190,255,190,0.8)'; g.fillText('NV  ●REC  02:16:4' + Math.floor(lt % 10), 120, BAR + 40); g.restore(); }
   }
   g.fillStyle = '#000'; g.fillRect(0, 0, W, BAR); g.fillRect(0, Hh - BAR, W, BAR);
@@ -365,7 +427,8 @@ function compose(t) {
     if (ta > 0) {
       g.save(); g.globalAlpha = ta; g.drawImage(emblem, W / 2 - 340, Hh / 2 - 100, 170, 170);
       g.textAlign = 'left'; g.fillStyle = '#efe9dc'; g.font = '800 76px "DejaVu Serif", Georgia, serif'; g.fillText('OPERATION', W / 2 - 150, Hh / 2 - 20);
-      g.fillText('FREEDOM', W / 2 - 150, Hh / 2 + 56); g.restore();
+      g.fillText('FREEDOM', W / 2 - 150, Hh / 2 + 56);
+      g.font = '600 19px "DejaVu Sans", sans-serif'; g.fillText('VANAPA RANGER BATTALION  ·  75TH MIZO RANGERS REGIMENT', W / 2 - 150, Hh / 2 + 98); g.restore();
     }
   }
   subtitle(g, shot, lt, W / 2, Hh - BAR / 2, 24, W - 80);
@@ -378,7 +441,8 @@ function compose(t) {
   const bandH = Hh - 2 * BAR, ph = Math.round(RW * bandH / W), py0 = 440;
   r.drawImage(wide, 0, BAR, W, bandH, 0, py0, RW, ph);
   r.font = '700 42px "DejaVu Sans", Arial, sans-serif'; r.textAlign = 'center'; r.textBaseline = 'middle';
-  const TITLE = ['Operation Freedom | Mizo', 'Rangers Rescue Mission', '(Fiction)'];
+  r.font = '700 34px "DejaVu Sans", Arial, sans-serif';
+  const TITLE = ['Operation Freedom | Vanapa', 'Ranger Bn, 75th Mizo Rangers', '(Fiction)'];
   TITLE.forEach((l, j) => { const w = r.measureText(l).width + 40; r.fillStyle = '#fff'; r.beginPath(); r.roundRect(RW / 2 - w / 2, 230 + j * 60 - 32, w, 64, 12); r.fill(); });
   r.fillStyle = '#111'; TITLE.forEach((l, j) => r.fillText(l, RW / 2, 232 + j * 60));
   subtitle(r, shot, lt, RW / 2, py0 + ph + 56, 24, RW - 40);
@@ -396,7 +460,7 @@ window.__audioPlan = (rate = 24) => {
     f1.apply(H1, T); f2.apply(H2, T);
     const o2 = storyOf(t + 1 / rate), slow = o2.i === o.i ? (o2.T - T) * rate : 1;
     const fire = cpd.towers[3].burnAt >= 0 && T >= cpd.towers[3].burnAt ? rel(cpd.towers[3].top) : null;
-    out.frames.push({ shot: o.shot.name, card: !!o.shot.card, interior: !!o.shot.interior, nvg: !!o.shot.nvg, mood: o.shot.mood, slow: +slow.toFixed(3), h1: rel(H1.root.position), h2: rel(H2.root.position), fire, lt: +o.lt.toFixed(3) });
+    out.frames.push({ shot: o.shot.name, card: !!o.shot.card, interior: !!(o.shot.interior || o.shot.room), drone: !!o.shot.drone, nvg: !!o.shot.nvg, mood: o.shot.mood, slow: +slow.toFixed(3), h1: rel(H1.root.position), h2: rel(H2.root.position), fire, lt: +o.lt.toFixed(3) });
   }
   // discrete cues: walk screen time finely and fire each story event as story time passes it
   const step = 1 / 240; let prev = null;
@@ -412,7 +476,7 @@ window.__audioPlan = (rate = 24) => {
   out.shots = SHOTS.map((s) => ({ name: s.name, start: s.start, dur: s.dur, slowFrom: s.slowFrom ?? null, title: !!s.title }));
   return out;
 };
-window.__film = { TOTAL, SHOTS };
+window.__film = { TOTAL, SHOTS, lasers, rangers, storyOf };
 if (!new URLSearchParams(location.search).has('still')) {
   const view = document.createElement('canvas'); view.width = W; view.height = Hh; stageEl.appendChild(view); renderer.domElement.style.display = 'none';
   const t0 = performance.now();

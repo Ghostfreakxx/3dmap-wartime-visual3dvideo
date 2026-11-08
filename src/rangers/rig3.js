@@ -69,7 +69,29 @@ function vip() {
   [[0.13, 0.02, 0xffffff], [0.18, -0.08, 0xf2c23a], [0.09, -0.12, 0xf08aa0], [0.2, 0.06, 0xffffff]].forEach(([x, dy, c]) => head.push(P(S(0.055, 8, 6), c, [x, y + dy, -0.36])));
   return { leg: leg(0xe6c09a, 0x6a4a2a), torso: merge(torso), arm: arm(0xf3dcd6, 0xe6c09a), head: merge(head), weapon: null };
 }
-Object.assign(KINDS, { ranger, junta, vip });
+function pol(v) {
+  const suit = { cm: 0x1f2a3e, minister: 0x4a4e56, colonel: R.green, aide: 0xf2efe8 }[v];
+  const torso = [P(Cy(0.2, 0.25, 0.5, 16), suit, [0, 0.25, 0]), P(Cy(0.17, 0.2, 0.06, 12), v === 'colonel' ? R.green : 0xf4f2ee, [0, 0.5, 0])];
+  if (v === 'cm' || v === 'minister') {
+    torso.push(P(B(0.12, 0.3, 0.03), 0xf4f2ee, [0, 0.36, 0.205]), P(B(0.05, 0.28, 0.035), v === 'cm' ? 0x8a1f2a : 0x2a4a8a, [0, 0.33, 0.215]));
+    for (const s of [-1, 1]) torso.push(P(B(0.07, 0.3, 0.03), suit, [s * 0.07, 0.36, 0.212], [0, 0, s * 0.35]));
+  }
+  if (v === 'cm') { // Mizo puan stole: white with black and red stripes
+    for (const s of [-1, 1]) { torso.push(P(B(0.08, 0.5, 0.03), 0xf2efe6, [s * 0.13, 0.26, 0.22])); torso.push(P(B(0.08, 0.04, 0.035), 0x1a1a1a, [s * 0.13, 0.1, 0.225])); torso.push(P(B(0.08, 0.03, 0.035), 0xb3282d, [s * 0.13, 0.05, 0.225])); }
+  }
+  if (v === 'colonel') { torso.push(P(Cy(0.26, 0.26, 0.07, 16), R.coyoteD, [0, 0.08, 0])); for (const s of [-1, 1]) torso.push(P(B(0.12, 0.03, 0.12), 0xd8b04a, [s * 0.2, 0.49, 0])); }
+  if (v === 'aide') torso.push(P(Cy(0.26, 0.31, 0.6, 18), 0x1a1a1a, [0, -0.05, 0]), P(Cy(0.27, 0.31, 0.04, 18), 0xb3282d, [0, -0.2, 0]), P(Cy(0.28, 0.315, 0.03, 18), 0xf0ebe0, [0, -0.28, 0]));
+  const skin = 0xd5a070, y = 0.32;
+  const head = [...face(skin, { brows: v === 'cm' ? 'calm' : v === 'aide' ? 'worried' : 'angry', mustache: v === 'minister' || v === 'colonel' ? 0x1a1410 : null })];
+  const hair = v === 'cm' ? 0x8a8680 : 0x1a1412;
+  head.push(P(S(0.378, 22, 12, 0, Math.PI * 2, 0, Math.PI * 0.42), hair, [0, y + 0.02, -0.03], [-0.28, 0, 0]));
+  if (v === 'cm') { for (const s of [-1, 1]) head.push(P(new C.TorusGeometry(0.08, 0.015, 6, 14), 0x1a1a1a, [s * 0.12, y + 0.02, 0.35])); head.push(P(B(0.06, 0.015, 0.015), 0x1a1a1a, [0, y + 0.03, 0.36])); }
+  if (v === 'colonel') { head.push(P(S(0.4, 20, 10, 0, Math.PI * 2, 0, Math.PI * 0.42), 0x6a1f2a, [0.06, y + 0.12, 0], [0, 0, -0.25], [1.05, 0.6, 1.05])); head.push(P(Cy(0.05, 0.05, 0.02, 8), 0xd8b04a, [-0.13, y + 0.3, 0.3], [Math.PI / 2 - 0.4, 0, 0])); }
+  if (v === 'aide') head.push(P(S(0.15, 10, 8), hair, [0, y - 0.02, -0.38]));
+  const legC = v === 'aide' ? skin : suit;
+  return { leg: leg(legC, 0x1a1a1a), torso: merge(torso), arm: arm(suit, skin), head: merge(head), weapon: null };
+}
+Object.assign(KINDS, { ranger, junta, vip, pol });
 
 // the fictional unit emblem, as a texture (shoulder patch + title card)
 export function emblemCanvas(size = 256) {
@@ -79,12 +101,13 @@ export function emblemCanvas(size = 256) {
   // scroll tab
   g.fillStyle = '#111'; g.strokeStyle = '#d8b04a'; g.lineWidth = 6;
   g.beginPath(); g.moveTo(16, 70); g.quadraticCurveTo(128, 22, 240, 70); g.lineTo(232, 108); g.quadraticCurveTo(128, 62, 24, 108); g.closePath(); g.fill(); g.stroke();
-  g.fillStyle = '#d8b04a'; g.font = '900 30px "DejaVu Sans", sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
-  g.fillText('MIZO RANGERS', 128, 82);
+  g.fillStyle = '#d8b04a'; g.font = '900 24px "DejaVu Sans", sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
+  g.fillText('75TH MIZO RANGERS', 128, 82);
   // shield with crossed daos
   g.fillStyle = '#1d2a1d'; g.beginPath(); g.moveTo(58, 118); g.lineTo(198, 118); g.lineTo(198, 170); g.quadraticCurveTo(198, 230, 128, 250); g.quadraticCurveTo(58, 230, 58, 170); g.closePath(); g.fill(); g.stroke();
   g.strokeStyle = '#e8e4da'; g.lineWidth = 10; g.lineCap = 'round';
-  g.beginPath(); g.moveTo(88, 220); g.lineTo(168, 140); g.moveTo(168, 220); g.lineTo(88, 140); g.stroke();
-  g.fillStyle = '#d8b04a'; g.font = '800 18px "DejaVu Sans", sans-serif'; g.fillText('VANAPA BN', 128, 196);
+  g.beginPath(); g.moveTo(92, 214); g.lineTo(164, 150); g.moveTo(164, 214); g.lineTo(92, 150); g.stroke();
+  g.fillStyle = '#1d2a1d'; g.fillRect(70, 166, 116, 34);
+  g.fillStyle = '#d8b04a'; g.font = '800 17px "DejaVu Sans", sans-serif'; g.fillText('VANAPA', 128, 176); g.font = '700 12px "DejaVu Sans", sans-serif'; g.fillText('RANGER BN', 128, 192);
   return c;
 }

@@ -260,6 +260,20 @@ export function pose(a, mode, t, p) {
       a.armR.rotation.set(-1.3, 0, 0.5 * k); a.armL.rotation.set(-1.3, 0, -0.5 * k);
       break;
     }
+    case 'point':
+      a.armR.rotation.set(-1.3 + 0.05 * Math.sin(p * 3), 0, -0.95); a.neck.rotation.y = -0.5;
+      break;
+    case 'lean': // hands on the table
+      a.torso.rotation.x = 0.35; a.armR.rotation.set(-0.7, 0, 0.25); a.armL.rotation.set(-0.7, 0, -0.25); a.neck.rotation.x = -0.25;
+      break;
+    case 'talk': {
+      const s = Math.sin(p * 3.2);
+      a.armR.rotation.set(-0.9 + 0.35 * s, 0, 0.3); a.armL.rotation.set(-0.3, 0, -0.1); a.neck.rotation.y = 0.15 * Math.sin(p * 0.8); a.torso.rotation.x = 0.04 * s;
+      break;
+    }
+    case 'phone':
+      a.armR.rotation.set(-2.6, 0, 0.9); a.neck.rotation.z = 0.15; a.neck.rotation.x = 0.1;
+      break;
     case 'rope':
       a.armR.rotation.set(-2.95, 0, -0.1); a.armL.rotation.set(-2.85, 0, 0.1);
       a.legs[0].rotation.set(-0.25, 0, 0.12); a.legs[1].rotation.set(-0.15, 0, -0.12);

@@ -78,7 +78,7 @@ export function makeCompound(scene) {
   [0xffffff, 0xf2c23a, 0xf08aa0].forEach((c, i) => furn(new C.SphereGeometry(0.07, 8, 6), c, [3.3 + (i - 1) * 0.06, 1.12, 2.7]));
   const lamp = new C.PointLight(0xffd090, 10, 12, 1.6); lamp.position.set(3.4, 1.6, 2.4); int.add(lamp);
   const bulbIn = new C.Mesh(new C.SphereGeometry(0.12, 8, 6), new C.MeshBasicMaterial({ color: 0xfff0c0 })); bulbIn.position.set(3.6, 1.35, 2.6); int.add(bulbIn);
-  return { g, towers, ext, int, door, y0 };
+  return { g, towers, ext, int, door, y0, lights: [yard, gateL], lamp };
 }
 
 export function animateCompound(c, T) {
