@@ -429,7 +429,7 @@ function card(g, shot, lt) {
   if (shot.card === 'black') return;
   if (shot.card === 'map') {
     g.save(); g.globalAlpha = clamp(lt / 0.5); drawLammualMap(g, Wd, Hd, { progress: 0.08 + 0.5 * clamp((lt - 0.4) / (shot.dur - 1.2)), layers: { axes: true, air: false, retreat: false, legend: true } }); g.restore();
-    shot.lines.forEach((l, i) => { const a = clamp((lt - 1.0 - i * 2.4) / 0.6); if (a <= 0) return; g.save(); g.globalAlpha = a; g.fillStyle = 'rgba(20,14,8,0.82)'; g.fillRect(0, Hd - 120 + i * 0, Wd, 120); g.fillStyle = '#f3ead6'; g.font = 'italic 600 26px "DejaVu Serif", Georgia, serif'; g.textAlign = 'center'; g.fillText(l, Wd / 2, Hd - 60, Wd - 80); g.restore(); });
+    shot.lines.forEach((l, i) => { const t0 = 1.0 + i * 2.8, t1 = i === shot.lines.length - 1 ? shot.dur : t0 + 2.8; const a = Math.min(clamp((lt - t0) / 0.5), clamp((t1 - lt) / 0.4)); if (a <= 0) return; g.save(); g.globalAlpha = a; g.fillStyle = 'rgba(20,14,8,0.82)'; g.fillRect(0, Hd - 120 + i * 0, Wd, 120); g.fillStyle = '#f3ead6'; g.font = 'italic 600 26px "DejaVu Serif", Georgia, serif'; g.textAlign = 'center'; g.fillText(l, Wd / 2, Hd - 60, Wd - 80); g.restore(); });
     return;
   }
   const a = Math.min(clamp((lt - 0.4) / 0.7), clamp((shot.dur - 0.3 - lt) / 0.6));
