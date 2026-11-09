@@ -64,7 +64,7 @@ Supporting files:
 - `src/jericho/layout.js` is the shared layout, and `set.js` is the 3D set.
 - `scripts/make-sfx-jericho.py` builds the sound design. There is no music.
 
-The MNF flag follows one disputed description: white over blue with a red disc. Sources disagree, so swap the texture in `set.js` if you have a better reference.
+The MNF flag is drawn from the reference in `docs/mnf-flag-reference.png`: a blue field with a red disc and a white cross.
 
 ## Run it
 

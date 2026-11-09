@@ -279,9 +279,9 @@ const SHOTS = [
     cam: (T, k) => L(C_(G(44, -52, 40), G(0, 0, 2), 44), C_(G(38, -46, 34), G(0, 2, 2), 42), ease.inOut(k)) },
   { name: 'Chopper', s: [103.4, 110.4], dur: 5.5, mood: 'siege', caption: 'Supply helicopters are driven off by MNA snipers.',
     cam: (T, k) => { const c = chopAt(T); return C_(G(LAM.helipad.x - 6, LAM.helipad.z - 6, 1.6), V(CEN.x + c.x, heightAt(CEN.x, CEN.z) + c.y + 1, CEN.z + c.z), 52); } },
-  { name: 'The Flag', s: [117.0, 127.0], dur: 8, mood: 'siege', loc: '4 MARCH · LAMMUAL NEARLY FALLS', slowFrom: [121.0, 124.4],
+  { name: 'The Flag', s: [118.0, 125.0], dur: 8, mood: 'siege', loc: '4 MARCH · LAMMUAL NEARLY FALLS', slowFrom: [121.0, 124.0],
     sub: [[4.4, 7.6, 'MNA volunteers (in Mizo)', 'For Mizoram!']],
-    cam: (T, k) => L(C_(G(b1.x + 7, b1.z - 7, 1.4), G(b1.x, b1.z, 2.6), 42), C_(G(b1.x + 5.2, b1.z - 5.6, 0.9), G(b1.x, b1.z, 4.2), 40), ease.inOut(k)) },
+    cam: (T, k) => L(C_(G(b1.x + 8, b1.z - 8, 1.5), G(b1.x, b1.z, 2.6), 44), C_(G(b1.x + 7.0, b1.z - 7.2, 1.0), G(b1.x - 0.4, b1.z, 4.3), 46), ease.inOut(k)) },
   { name: 'Request Air', s: [127.6, 132.2], dur: 4.5, mood: 'siege', sub: [[0.3, 4.3, 'Company commander', 'We cannot hold another day. Request air support — I say again, request air!']],
     cam: (T, k) => L(C_(G(8.0, 10.2, 1.55), G(9.6, 12.2, 1.45), 38), C_(G(8.6, 10.7, 1.5), G(9.6, 12.2, 1.45), 32), k) },
   { name: 'Jets', s: [200, 205], dur: 5, mood: 'strike', loc: '5 MARCH 1966 · 10:00 HRS',
@@ -293,7 +293,7 @@ const SHOTS = [
   { name: 'Retreat', s: [213.2, 217.0], dur: 4.5, mood: 'strike', handheld: 1.2, sub: [[0.4, 3.6, 'MNA commander (in Mizo)', 'Fall back! Into the jungle — go!']],
     cam: (T, k) => L(C_(G(-62, 4, 4.2), G(-34, 1, 1.4), 50), C_(G(-60, 5, 3.4), G(-38, 2, 1.2), 46), k) },
   { name: 'Flag Falls', s: [216.7, 218.6], dur: 3.2, mood: 'strike',
-    cam: (T, k) => C_(G(b1.x + 6, b1.z - 4, 1.0), G(b1.x, b1.z, 3.6), 40) },
+    cam: (T, k) => C_(G(b1.x + 7.5, b1.z - 6.5, 1.2), G(b1.x - 0.5, b1.z, 3.4), 46) },
   { name: 'Zama', s: [219.6, 236.0], dur: 16, mood: 'memory', dying: true,
     sub: [[0.4, 2.8, 'Mapuia (in Mizo)', 'Zama! Stay with me — look at me!'],
       [3.2, 7.2, 'Zama (in Mizo)', 'I hope my sacrifice for Mizoram will not be in vain…'],
@@ -335,7 +335,7 @@ function updateScene(T, shot) {
   // MNF flag: hoisted on 4 March, shot down on 5 March
   set.mnfPole.visible = T >= T_FLAG0 && T < 300;
   set.mnf.position.y = 0.9 + 3.3 * clamp((T - T_FLAG0) / (T_FLAG1 - T_FLAG0));
-  set.mnfPole.rotation.set(T > T_POLE ? -1.45 * ease.out(clamp((T - T_POLE) / 1.0)) : 0, 0.9, 0);
+  set.mnfPole.rotation.set(T > T_POLE ? -1.45 * ease.out(clamp((T - T_POLE) / 1.0)) : 0, 2.2, 0, 'YXZ');
   // helicopter
   const showChop = T > 99 && T < 113; chopper.root.visible = showChop;
   if (showChop) { const c = chopAt(T); chopper.root.position.copy(gpos(c.x, c.z)).setY(heightAt(CEN.x, CEN.z) + c.y); chopper.root.rotation.set(0, Math.atan2(c.vx, c.vz), 0); chopper.body.rotation.set(0.15, 0, T > 106.5 && T < 109 ? 0.45 : 0.05 * Math.sin(T)); chopper.rotor.rotation.y = T * 31; chopper.tr.rotation.x = T * 47; }

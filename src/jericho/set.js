@@ -23,9 +23,11 @@ export function makeFlag(kind, wid = 1.8, hei = 1.2) {
       [['#ff9933', 0], ['#ffffff', 1], ['#138808', 2]].forEach(([c, i]) => { g.fillStyle = c; g.fillRect(0, (i * h) / 3, w, h / 3 + 1); });
       g.strokeStyle = '#1f3a93'; g.lineWidth = 5; g.beginPath(); g.arc(w / 2, h / 2, h / 8, 0, 7); g.stroke();
       for (let i = 0; i < 24; i++) { const a = (i / 24) * Math.PI * 2; g.beginPath(); g.moveTo(w / 2, h / 2); g.lineTo(w / 2 + Math.cos(a) * h / 8, h / 2 + Math.sin(a) * h / 8); g.lineWidth = 1.5; g.stroke(); }
-    } else { // MNF flag (white over blue with a red disc; see README note on sources)
-      g.fillStyle = '#f4f2ee'; g.fillRect(0, 0, w, h / 2); g.fillStyle = '#1f4fa0'; g.fillRect(0, h / 2, w, h / 2);
-      g.fillStyle = '#c8202a'; g.beginPath(); g.arc(w / 2, h / 2, h * 0.22, 0, 7); g.fill();
+    } else { // MNF flag of the insurgency: blue field, red disc, white cross (reference: docs/mnf-flag-reference.png)
+      const k = h / 1000, cx = w / 2, cy = h / 2;
+      g.fillStyle = '#004cd3'; g.fillRect(0, 0, w, h);
+      g.fillStyle = '#b81232'; g.beginPath(); g.arc(cx, cy, 355 * k, 0, 7); g.fill();
+      g.fillStyle = '#e8e8e8'; g.fillRect(cx - 41 * k, cy - 176 * k, 89 * k, 350 * k); g.fillRect(cx - 134 * k, cy - 109 * k, 275 * k, 78 * k);
     }
   });
   const geo = new C.PlaneGeometry(wid, hei, 12, 6); geo.translate(wid / 2, 0, 0);
