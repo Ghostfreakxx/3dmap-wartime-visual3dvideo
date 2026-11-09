@@ -260,6 +260,27 @@ export function pose(a, mode, t, p) {
       a.armR.rotation.set(-1.3, 0, 0.5 * k); a.armL.rotation.set(-1.3, 0, -0.5 * k);
       break;
     }
+    case 'hoist': { // hauling a flag up a pole, hand over hand
+      const c = Math.sin(p * 5);
+      a.armR.rotation.set(-2.9 + 0.5 * Math.max(0, c), 0, -0.15); a.armL.rotation.set(-2.9 + 0.5 * Math.max(0, -c), 0, 0.15);
+      a.neck.rotation.x = -0.45; a.torso.rotation.x = -0.08;
+      if (a.weapon) a.weapon.visible = false;
+      break;
+    }
+    case 'dying': { // slumped against a wall; the head slowly drops at the end (t = seconds into the scene)
+      a.body.position.y = -0.18; a.hips.position.y = 0.24; a.legs[0].rotation.set(-1.45, 0, 0.12); a.legs[1].rotation.set(-1.25, 0, -0.1);
+      a.torso.rotation.x = -0.32;
+      const fade = Math.max(0, Math.min(1, (t - (a.dieAfter ?? 9)) / 1.6));
+      a.neck.rotation.x = 0.15 + 0.08 * Math.sin(p * 0.9) * (1 - fade) + 0.75 * fade; a.neck.rotation.z = 0.25 * fade;
+      a.armR.rotation.set(-0.5 + 0.35 * fade, 0, 0.35); a.armL.rotation.set(-0.9 * (1 - fade) - 0.2, 0, -0.2 - 0.3 * fade);
+      if (a.weapon) a.weapon.visible = false;
+      break;
+    }
+    case 'cradle': // kneeling by a wounded friend, holding him
+      crouchLegs(a); a.torso.rotation.x = 0.35; a.neck.rotation.x = 0.35;
+      a.armR.rotation.set(-1.2, 0, 0.2); a.armL.rotation.set(-1.0, 0, -0.3);
+      if (a.weapon) a.weapon.visible = false;
+      break;
     case 'point':
       a.armR.rotation.set(-1.3 + 0.05 * Math.sin(p * 3), 0, -0.95); a.neck.rotation.y = -0.5;
       break;

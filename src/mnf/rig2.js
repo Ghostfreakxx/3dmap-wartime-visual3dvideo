@@ -79,7 +79,7 @@ function mna(v) {
   for (let i = 0; i < 5; i++) torso.push(P(B(0.035, 0.06, 0.04), 0xd8b040, [-0.13 + i * 0.065, 0.15 + i * 0.07, 0.235], [0, 0, 0.6]));
   // puan scarf at the neck
   torso.push(P(new C.TorusGeometry(0.18, 0.045, 6, 14), v === 'khaki' ? 0xb3282d : 0xf0ebe0, [0, 0.5, 0.02], [Math.PI / 2 - 0.2, 0, 0]));
-  const y = 0.32, head = [...face(M.mizoSkin, { brows: 'angry', mouth: cmd ? 'grit' : 'flat' })];
+  const y = 0.32, head = [...face(M.mizoSkin, { brows: v === 'hurt' ? 'worried' : 'angry', mouth: cmd ? 'grit' : v === 'hurt' ? 'open' : 'flat' })];
   head.push(P(S(0.375, 20, 10, 0, Math.PI * 2, 0, Math.PI * 0.42), M.hair, [0, y + 0.02, -0.02], [-0.25, 0, 0]));
   if (cmd) head.push(P(S(0.39, 20, 10, 0, Math.PI * 2, 0, Math.PI * 0.42), 0x2c3320, [0.05, y + 0.12, 0], [0, 0, 0.25], [1.05, 0.6, 1.05]));
   else if (v === 'cap' || v === 'khaki') { // soft jungle cap

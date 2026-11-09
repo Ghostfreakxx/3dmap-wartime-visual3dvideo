@@ -49,6 +49,23 @@ The rendered film is [`video/rambuai-convoy.mp4`](video/rambuai-convoy.mp4). Its
 - `fx2.js`: rifle shots, bullet dust, sparks, explosions and smoke columns
 - `script.js`: the convoy, the ambush, the gunfire derived from each character's actions, and the shots
 
+## Film 5: Operation Jericho (about 2 min)
+
+`jericho.html` covers the MNF uprising in Aizawl, from 28 February to 7 March 1966:
+- the MNA night assault, the treasury and telephone exchange, and the siege of the 1st Assam Rifles at Lammual
+- the MNF flag raised on 4 March
+- the IAF strikes of 5 March and the MNA withdrawal
+- an emotional death scene
+
+It closes with non-partisan remembrance cards. Characters are fictional, and events are dramatised from historical accounts.
+
+Supporting files:
+- `docs/lammual-plan.png` is the reconstructed site plan. No official plan is public.
+- `src/jericho/layout.js` is the shared layout, and `set.js` is the 3D set.
+- `scripts/make-sfx-jericho.py` builds the sound design. There is no music.
+
+The MNF flag follows one disputed description: white over blue with a red disc. Sources disagree, so swap the texture in `set.js` if you have a better reference.
+
 ## Run it
 
 ```bash

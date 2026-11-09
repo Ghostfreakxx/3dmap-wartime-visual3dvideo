@@ -11,6 +11,6 @@ const fs = require('fs');
   const plan = await p.evaluate(() => window.__audioPlan(24));
   fs.writeFileSync(process.argv[3], JSON.stringify(plan));
   const counts = {}; plan.events.forEach((e) => (counts[e.type] = (counts[e.type] || 0) + 1));
-  console.log('frames', plan.frames.length, 'events', plan.events.length, counts, 'subs', plan.subs.length);
+  console.log('frames', plan.frames.length, 'events', plan.events.length, counts, 'subs', (plan.subs ?? []).length);
   await b.close();
 })();
