@@ -1,0 +1,17 @@
+{
+  "name": "mizo-hills-film",
+  "private": true,
+  "type": "module",
+  "description": "Renders a short animated 3D-map film about the Mizo defence of the Lushai Hills.",
+  "scripts": {
+    "audio": "python3 audio.py",
+    "render": "node render.mjs",
+    "build": "python3 audio.py && node render.mjs"
+  },
+  "dependencies": {
+    "three": "0.160.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.48.0"
+  }
+}
