@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Blame Fighter</title>
+<style>
+  html, body { margin: 0; background: #000; overflow: hidden; }
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #0b0820;
+    font-family: "JetBrains Mono", "DejaVu Sans Mono", monospace; font-weight: 800; color: #fff; text-transform: uppercase; }
+  .scene { position: absolute; inset: 0; display: none; padding: 170px 60px; box-sizing: border-box; text-align: center; }
+  .scene.on { display: block; }
+  #crt { position: absolute; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(to bottom, rgba(0,0,0,.22) 0 3px, rgba(0,0,0,0) 3px 6px),
+      radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(0,0,0,.6) 100%); }
+  .px { text-shadow: 6px 6px 0 #000; letter-spacing: .02em; }
+  .h1 { font-size: 128px; line-height: 1; }
+  .h2 { font-size: 72px; line-height: 1.08; }
+  .h3 { font-size: 48px; line-height: 1.2; }
+  .h4 { font-size: 36px; line-height: 1.3; }
+  .y { color: #ffe14d; } .r { color: #ff4b5c; } .g { color: #63f58a; } .c { color: #6ee7ff; } .dim { color: #8d86b8; }
+  .pop { animation: pop .3s steps(4) both; animation-delay: var(--d); }
+  .fade { animation: fade .3s steps(3) both; animation-delay: var(--d); }
+  .slide { animation: slide .35s steps(5) both; animation-delay: var(--d); }
+  .blink { animation: fade .3s steps(3) both, blink .7s steps(1) infinite; animation-delay: var(--d), var(--d); }
+  .shake { animation: pop .3s steps(4) both, shake .4s steps(4) both; animation-delay: var(--d), calc(var(--d) + .3s); }
+  @keyframes pop { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: none; } }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slide { from { opacity: 0; transform: translateY(80px); } to { opacity: 1; transform: none; } }
+  @keyframes blink { 0%, 49% { visibility: visible; } 50%, 100% { visibility: hidden; } }
+  @keyframes shake { 0%, 100% { translate: 0 0; } 25% { translate: -16px 8px; } 50% { translate: 14px -8px; } 75% { translate: -8px -6px; } }
+  @keyframes shoot { from { transform: translateX(0); opacity: 1; } 85% { opacity: 1; } to { transform: translateX(520px); opacity: 0; } }
+  @keyframes rise { from { transform: translateY(0); opacity: 1; } to { transform: translateY(-160px); opacity: 0; } }
+  @keyframes bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -14px; } }
+
+  .box { border: 8px solid #fff; background: #17123a; box-shadow: 12px 12px 0 #000; padding: 34px 30px; }
+  svg.sprite { image-rendering: pixelated; shape-rendering: crispEdges; }
+  .bob { animation: bob .6s steps(2) infinite; }
+
+  /* character select */
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 60px; }
+  .card { border: 8px solid #4b4580; background: #17123a; padding: 26px 8px 22px; }
+  .card.sel { border-color: #ffe14d; background: #2a2260; box-shadow: 0 0 0 8px #000, 0 0 60px #ffe14d88; }
+  .card .name { font-size: 42px; margin-top: 16px; }
+  .card svg { width: 200px; height: 240px; }
+  .stats { margin-top: 50px; text-align: left; font-size: 40px; line-height: 1.7; }
+  .stats span { float: right; }
+  /* arena */
+  .arena { position: absolute; left: 0; right: 0; bottom: 330px; height: 620px; }
+  .arena .floor { position: absolute; left: 0; right: 0; bottom: 0; height: 26px; background: #63f58a; box-shadow: 0 26px 0 #2c8a4a; }
+  .fighter { position: absolute; bottom: 26px; width: 300px; text-align: center; }
+  .fighter svg { width: 300px; height: 360px; }
+  .fighter .lab { font-size: 34px; background: #000; padding: 6px 12px; display: inline-block; margin-bottom: 14px; }
+  .shot { position: absolute; left: 300px; font-size: 44px; background: #ffe14d; color: #000; padding: 10px 18px; white-space: nowrap;
+    animation: shoot .9s steps(9) both; animation-delay: var(--d); opacity: 0; }
+  .moves { text-align: left; font-size: 42px; line-height: 1.25; margin-top: 44px; }
+  .moves div { padding: 22px 26px; border: 6px solid #4b4580; margin-top: 18px; background: #17123a; }
+  .moves .locked { color: #5d5788; text-decoration: line-through; }
+  .moves .new { border-color: #63f58a; }
+  .moves small { display: block; font-size: 28px; color: #8d86b8; margin-top: 6px; text-decoration: none; }
+  /* boss */
+  .hp { height: 56px; border: 8px solid #fff; background: #000; margin-top: 26px; }
+  .hp i { display: block; height: 100%; width: 100%; background: #ff4b5c; }
+  .boss { margin: 70px auto 0; width: 520px; }
+  .boss svg { width: 520px; height: 520px; }
+  .dmg { position: absolute; font-size: 90px; color: #fff; animation: rise .9s steps(8) both; animation-delay: var(--d); opacity: 0; }
+  .trio { position: absolute; left: 0; right: 0; bottom: 240px; display: flex; justify-content: space-around; }
+  .trio div { font-size: 34px; }
+  .trio svg { width: 170px; height: 204px; display: block; margin: 0 auto 10px; }
+  /* results */
+  .table { margin-top: 60px; text-align: left; font-size: 46px; line-height: 1.2; }
+  .table div { display: flex; justify-content: space-between; padding: 24px 0; border-bottom: 6px dashed #4b4580; }
+  #handle { position: absolute; left: 0; right: 0; bottom: 46px; text-align: center; font-size: 28px; letter-spacing: .3em; color: #8d86b8; }
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <div class="scene" id="s1" data-a="0" data-b="4">
+    <div style="margin-top:260px">
+      <div class="h3 c px fade" style="--d:.2s">Mizoram Edition</div>
+      <div class="h1 y px shake" style="--d:.5s; margin-top:40px">BLAME<br>FIGHTER</div>
+      <div class="h3 px fade" style="--d:1.3s; margin-top:50px">The corruption game where<br>everybody points and nobody loses</div>
+      <div class="h2 g px blink" style="--d:2.1s; margin-top:150px">Insert vote</div>
+      <div class="h4 dim fade" style="--d:2.4s; margin-top:30px">1 vote = 5 years of play</div>
+    </div>
+  </div>
+
+  <div class="scene" id="s2" data-a="4" data-b="11">
+    <div class="h2 y px pop" style="--d:4.1s">Choose your fighter</div>
+    <div class="cards">
+      <div class="card" id="k0"><svg class="sprite" data-c="#6ee7ff" viewBox="0 0 10 12"></svg><div class="name">MNF</div></div>
+      <div class="card" id="k1"><svg class="sprite" data-c="#ff8fd0" viewBox="0 0 10 12"></svg><div class="name">Congress</div></div>
+      <div class="card" id="k2"><svg class="sprite" data-c="#ffb347" viewBox="0 0 10 12"></svg><div class="name">ZPM</div></div>
+    </div>
+    <div class="box stats slide" style="--d:5.0s">
+      <div>Promises <span class="g">█████</span></div>
+      <div>Speeches <span class="g">█████</span></div>
+      <div>Follow-up <span class="r">█░░░░</span></div>
+      <div>Special move <span class="y">Blame</span></div>
+    </div>
+    <div class="h3 px c pop" style="--d:8.3s; margin-top:60px">Fun fact: all three fighters<br>have the exact same stats</div>
+  </div>
+
+  <div class="scene" id="s3" data-a="11" data-b="17">
+    <div class="h3 dim px fade" style="--d:11.1s">Round 1</div>
+    <div class="h2 y px pop" style="--d:11.3s; margin-top:10px">Opposition mode</div>
+    <div class="box h3 slide" style="--d:12.0s; margin-top:50px">Special move unlocked:<br><span class="y">"We demand a CBI probe!"</span></div>
+    <div class="arena">
+      <div class="floor"></div>
+      <div class="fighter" style="left:40px"><div class="lab c">Opposition</div><svg class="sprite bob" data-c="#6ee7ff" viewBox="0 0 10 12"></svg>
+        <div class="shot" style="--d:13.0s; top:150px">CBI probe!</div>
+        <div class="shot" style="--d:13.9s; top:230px">Scam!</div>
+        <div class="shot" style="--d:14.8s; top:150px">Resign!</div>
+      </div>
+      <div class="fighter" style="right:40px"><div class="lab r">Government</div><svg class="sprite" data-c="#ff8fd0" data-flip="1" viewBox="0 0 10 12"></svg></div>
+    </div>
+    <div class="h3 g px pop" style="--d:15.6s; position:absolute; left:0; right:0; bottom:170px">3-hit combo: press conference!</div>
+  </div>
+
+  <div class="scene" id="s4" data-a="17" data-b="24">
+    <div class="h3 dim px fade" style="--d:17.1s">Round 2</div>
+    <div class="h2 g px shake" style="--d:17.3s; margin-top:10px">You won the election!</div>
+    <div class="h3 y px pop" style="--d:18.4s; margin-top:40px">Move list updated</div>
+    <div class="moves">
+      <div class="locked slide" style="--d:19.0s">"We demand a CBI probe!"<small>Locked. Opposition only.</small></div>
+      <div class="new slide" style="--d:20.0s">"It was the previous government."</div>
+      <div class="new slide" style="--d:20.9s">"The matter is under process."</div>
+      <div class="new slide" style="--d:21.8s">"We will form a committee."</div>
+    </div>
+  </div>
+
+  <div class="scene" id="s5" data-a="24" data-b="31">
+    <div class="h3 r px blink" style="--d:24.1s">Warning! Final boss</div>
+    <div class="h2 px pop" style="--d:24.6s; margin-top:16px">The File</div>
+    <div class="hp fade" style="--d:25s"><i></i></div>
+    <div class="h4 dim fade" style="--d:25.2s; margin-top:14px; text-align:right">HP: under process</div>
+    <div class="boss pop" style="--d:25.3s"><svg class="sprite bob" id="file" viewBox="0 0 13 13"></svg></div>
+    <div class="dmg" style="--d:26.6s; left:200px; top:820px">0</div>
+    <div class="dmg" style="--d:27.4s; left:760px; top:860px">0</div>
+    <div class="dmg" style="--d:28.2s; left:480px; top:780px">0</div>
+    <div class="trio">
+      <div><svg class="sprite" data-c="#6ee7ff" viewBox="0 0 10 12"></svg>Probe!</div>
+      <div><svg class="sprite" data-c="#ff8fd0" viewBox="0 0 10 12"></svg>Probe!</div>
+      <div><svg class="sprite" data-c="#ffb347" viewBox="0 0 10 12"></svg>Probe!</div>
+    </div>
+    <div class="h4 y px pop" style="--d:29.2s; position:absolute; left:0; right:0; bottom:130px">Everyone demands it. Nobody opens it.</div>
+  </div>
+
+  <div class="scene" id="s6" data-a="31" data-b="37.5">
+    <div class="h2 y px pop" style="--d:31.1s">Match results</div>
+    <div class="box table">
+      <div class="slide" style="--d:31.8s"><span>Accusations</span><span class="g" id="n1">0</span></div>
+      <div class="slide" style="--d:32.6s"><span>Press meets</span><span class="g" id="n2">0</span></div>
+      <div class="slide" style="--d:33.4s"><span>Probes demanded</span><span class="g" id="n3">0</span></div>
+      <div class="slide" style="--d:34.2s"><span>Probes finished</span><span class="r blink" style="--d:34.4s">loading…</span></div>
+    </div>
+    <div class="h2 px pop" style="--d:35.4s; margin-top:70px">Winner: <span class="y">nobody</span></div>
+    <div class="h3 px pop" style="--d:36.2s; margin-top:24px">Loser: <span class="r">the public (again)</span></div>
+  </div>
+
+  <div class="scene" id="s7" data-a="37.5" data-b="44">
+    <div style="margin-top:230px">
+      <div class="h1 r px shake" style="--d:37.7s">GAME<br>OVER</div>
+      <div class="h2 px fade" style="--d:38.8s; margin-top:80px">Continue?</div>
+      <div class="h1 y px" id="count" style="margin-top:20px">9</div>
+      <div class="h3 g px blink" style="--d:39.4s; margin-top:50px">Insert vote · 2028</div>
+      <div class="h4 px fade" style="--d:41.4s; margin-top:110px">Same game. New player one.</div>
+      <div class="h4 dim fade" style="--d:42.4s; margin-top:70px">— anonymous</div>
+    </div>
+  </div>
+
+  <div id="crt"></div>
+  <div id="handle">ANONYMOUS</div>
+</div>
+<script>
+  const DURATION = 44;
+  // 10x12 pixel fighter: . empty, B body colour, S skin, K black
+  const FIGHTER = ['...SSSS...', '...SKSK...', '...SSSS...', '..BBBBBB..', '.BBBBBBBB.', 'SSBBBBBBSS', 'S.BBBBBB.S',
+    '..BBBBBB..', '..BB..BB..', '..BB..BB..', '..BB..BB..', '.KKK..KKK.'];
+  const FILE = ['.............', '.YYYYY.......', 'YYYYYYYYYYYYY', 'YOOOOOOOOOOOY', 'YOWWWWWWWWWOY', 'YOWKKWWWKKWOY', 'YOWKKWWWKKWOY',
+    'YOWWWWWWWWWOY', 'YOWWKKKKKWWOY', 'YOWWWWWWWWWOY', 'YOOOOOOOOOOOY', 'YYYYYYYYYYYYY', '.............'];
+  function paint(svg, rows, map, flip) {
+    let h = '';
+    rows.forEach((row, y) => [...row].forEach((ch, x) => {
+      if (map[ch]) h += `<rect x="${flip ? row.length - 1 - x : x}" y="${y}" width="1.02" height="1.02" fill="${map[ch]}"/>`;
+    }));
+    svg.innerHTML = h;
+  }
+  for (const s of document.querySelectorAll('svg.sprite[data-c]'))
+    paint(s, FIGHTER, { B: s.dataset.c, S: '#ffd9a8', K: '#111' }, s.dataset.flip);
+  paint(document.getElementById('file'), FILE, { Y: '#c98a1b', O: '#ffcf66', W: '#fff7dc', K: '#111' });
+
+  const scenes = [...document.querySelectorAll('.scene')];
+  const smooth = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+
+  window.renderFrame = function (t) {
+    for (const s of scenes) s.classList.toggle('on', t >= +s.dataset.a && t < +s.dataset.b);
+    for (const a of document.getAnimations()) { a.pause(); a.currentTime = t * 1000; }
+
+    // character select: the cursor hops along the three cards, then gives up and selects all of them
+    const sel = t < 8.3 ? Math.floor(Math.max(0, t - 4.4) / 0.65) % 3 : -1;
+    for (let i = 0; i < 3; i++) document.getElementById('k' + i).classList.toggle('sel', sel === i || sel === -1);
+
+    document.getElementById('n1').textContent = Math.floor(9999 * smooth(31.8, 32.6, t));
+    document.getElementById('n2').textContent = Math.floor(999 * smooth(32.6, 33.4, t));
+    document.getElementById('n3').textContent = Math.floor(99 * smooth(33.4, 34.2, t));
+    document.getElementById('count').textContent = Math.max(0, 9 - Math.floor(Math.max(0, t - 39) / 0.5));
+    document.getElementById('count').style.visibility = t >= 38.8 ? 'visible' : 'hidden';
+  };
+
+  window.FILM = { duration: DURATION, ready: true };
+  if (new URLSearchParams(location.search).has('play')) {
+    const start = performance.now();
+    const loop = () => { window.renderFrame(((performance.now() - start) / 1000) % DURATION); requestAnimationFrame(loop); };
+    loop();
+  } else {
+    window.renderFrame(Number(new URLSearchParams(location.search).get('t') || 0));
+  }
+</script>
+</body>
+</html>
