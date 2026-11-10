@@ -36,6 +36,16 @@ git clone --recurse-submodules https://github.com/Ghostfreakxx/3dmap-wartime-vis
 cd 3dmap-wartime-visual3dvideo
 ```
 
+## Try it in your browser
+
+Nothing to install: the 3D view runs on built-in demo data right in the
+browser, with no server and no token.
+
+**<https://ghostfreakxx.github.io/3dmap-wartime-visual3dvideo/>**
+
+This is a demonstration only. It plays scripted scenarios and does not sense
+anything real; for that you need the server and sensor hardware below.
+
 ## Running it
 
 No sensing hardware is needed for the demo — the server generates simulated

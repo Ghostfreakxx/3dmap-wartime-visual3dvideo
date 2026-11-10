@@ -1,0 +1,45 @@
+# Publishes the browser-only GhostView demo (the ui/ folder) to GitHub Pages.
+# The 3D view runs on built-in demo data in the visitor's browser: no server,
+# no install and no API token.
+name: Publish demo site
+
+on:
+  push:
+    branches: [main]
+    paths: ['ui/**', '.github/workflows/pages.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp -r ui _site/ui
+          cat > _site/index.html <<'HTML'
+          <!doctype html>
+          <meta charset="utf-8">
+          <title>GhostView</title>
+          <meta http-equiv="refresh" content="0; url=ui/observatory.html">
+          <a href="ui/observatory.html">Open the GhostView demo</a>
+          HTML
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
