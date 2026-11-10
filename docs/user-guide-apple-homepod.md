@@ -1,17 +1,17 @@
-# RuView ↔ HomePod Integration Guide
+# GhostView ↔ HomePod Integration Guide
 
-**Ambient intelligence for Apple Home.** Run RuView as a native HomeKit accessory so your HomePod discovers it, Siri understands it, and Apple Home automations govern it — no Home Assistant required.
+**Ambient intelligence for Apple Home.** Run GhostView as a native HomeKit accessory so your HomePod discovers it, Siri understands it, and Apple Home automations govern it — no Home Assistant required.
 
 ---
 
 ## Architecture Overview
 
-RuView turns WiFi radio reflections into spatial intelligence (presence, breathing, fall risk, activity patterns). When paired with a HomePod or Apple TV acting as your Home Hub, RuView becomes an invisible sensor that feeds Siri, automations, and scenes:
+GhostView turns WiFi radio reflections into spatial intelligence (presence, breathing, fall risk, activity patterns). When paired with a HomePod or Apple TV acting as your Home Hub, GhostView becomes an invisible sensor that feeds Siri, automations, and scenes:
 
 ```
 ESP32-C6 CSI node (living room)
   ↓ (UDP feature stream)
-RuView Sensing Server (announces presence, vital signs, BFLD events)
+GhostView Sensing Server (announces presence, vital signs, BFLD events)
   ↓ (HTTP polling)
 HAP Bridge (advertises HomeKit accessory on mDNS)
   ↓ (Bonjour discovery)
@@ -22,7 +22,7 @@ iPhone, iPad, Mac, Watch, Apple Home automations
 
 The integration leverages HomeKit Accessory Protocol (HAP-1.1) — the same standard that Philips Hue, Eve, and Nanoleaf use. Your HomePod discovers the bridge within seconds of launch, pairing is one-tap from the Home app, and Siri queries work immediately: *"Hey Siri, is anyone in the living room?"*
 
-For design rationale and privacy safeguards, see [ADR-125 — RuView ↔ Apple Home native HAP bridge](docs/adr/ADR-125-ruview-apple-home-native-hap-bridge.md).
+For design rationale and privacy safeguards, see [ADR-125 — GhostView ↔ Apple Home native HAP bridge](docs/adr/ADR-125-ruview-apple-home-native-hap-bridge.md).
 
 ---
 
@@ -43,11 +43,11 @@ Eight incremental iterations landed in PR #797 on the `feat/adr-125-apple-fabric
 
 **What you can do today:**
 
-- Pair a RuView bridge into your Home app on iPhone, iPad, or Mac.
+- Pair a GhostView bridge into your Home app on iPhone, iPad, or Mac.
 - Ask Siri room-specific presence questions ("is anyone home", "is the office occupied", "did someone fall").
 - Trigger automations on presence detection, breathing presence, fall risk, or activity pattern anomalies.
-- Stream RuView events to HomePod announcements via the Shortcuts-as-glue path (Tier 2).
-- Query RuView data programmatically through the agentic MCP interface (Claude Code integration).
+- Stream GhostView events to HomePod announcements via the Shortcuts-as-glue path (Tier 2).
+- Query GhostView data programmatically through the agentic MCP interface (Claude Code integration).
 
 ---
 
@@ -87,7 +87,7 @@ source venv/bin/activate
 pip install HAP-python
 ```
 
-### Step 3: Copy the RuView bridge scripts to the Mac
+### Step 3: Copy the GhostView bridge scripts to the Mac
 
 From the repository (e.g., cloned on your Mac), copy these files:
 
@@ -134,7 +134,7 @@ Output: Look for setup code in the terminal output, e.g., `Setup code: 200-70-91
 1. Open the **Home** app on your iPhone.
 2. Tap the **+** icon (top right) → **Add Accessory**.
 3. Scan the setup code (or tap **Don't Have a Code or Can't Scan?** → **More Options**).
-4. Select the **RuView Sense** bridge from the list (should appear within 10 seconds).
+4. Select the **GhostView Sense** bridge from the list (should appear within 10 seconds).
 5. Assign to a room (e.g., "Living Room").
 6. Tap **Done**.
 
@@ -173,7 +173,7 @@ The HAP bridge auto-discovers `*.json` files in `/tmp/ruview-state*` and creates
 
 ## Privacy Semantics
 
-RuView's BFLD (Beamforming Feedback Layer for Detection) uses a **privacy class** gate that enforces what data can cross the HomeKit boundary. Only Classes 2 and 3 (Anonymous and Restricted) are eligible; Class 0/1 (Raw identity information) is never exposed.
+GhostView's BFLD (Beamforming Feedback Layer for Detection) uses a **privacy class** gate that enforces what data can cross the HomeKit boundary. Only Classes 2 and 3 (Anonymous and Restricted) are eligible; Class 0/1 (Raw identity information) is never exposed.
 
 ### The Three Semantic Events
 
@@ -230,7 +230,7 @@ Each room also exposes a **StatelessProgrammableSwitch** that fires on semantic-
 
 ## HomePod Announcements via Shortcuts (Tier 2 Path)
 
-The easiest way to announce RuView events on a HomePod is through **Shortcuts-as-glue** — a native macOS launchd job that watches RuView's semantic events and triggers a Shortcut you define.
+The easiest way to announce GhostView events on a HomePod is through **Shortcuts-as-glue** — a native macOS launchd job that watches GhostView's semantic events and triggers a Shortcut you define.
 
 This path **bypasses the Bonjour reflector blocker** that can prevent HomePod discovery in some mesh networks. Instead of direct mDNS, the Mac uses the Home graph (iCloud-paired) to reach the HomePod.
 
@@ -242,16 +242,16 @@ This path **bypasses the Bonjour reflector blocker** that can prevent HomePod di
 2. Click **+** (top left) → **Create Shortcut**.
 3. Click **Add Action** → search for **"Speak Text"** → add it.
 4. In the **"Speak Text"** action, click the **speaker icon** → select your **HomePod** (or HomePod mini).
-5. Name the Shortcut **`RuView Announce`** (exact name).
+5. Name the Shortcut **`GhostView Announce`** (exact name).
 6. **Save** (top right).
 
 #### 2. Test the Shortcut from the terminal
 
 ```bash
-osascript -e 'tell application "Shortcuts Events" to run shortcut "RuView Announce" with input "Test from RuView"'
+osascript -e 'tell application "Shortcuts Events" to run shortcut "GhostView Announce" with input "Test from GhostView"'
 ```
 
-Your HomePod should speak "Test from RuView" in your chosen voice.
+Your HomePod should speak "Test from GhostView" in your chosen voice.
 
 #### 3. Install the launchd job
 
@@ -277,7 +277,7 @@ tail -f /tmp/ruview-watcher.log
 In another terminal, walk past the C6 and trigger a presence detection. The log should show:
 
 ```
-[17:10:12] unknown_presence rising-edge → running 'RuView Announce'
+[17:10:12] unknown_presence rising-edge → running 'GhostView Announce'
 ```
 
 And your HomePod should announce the event in its configured voice.
@@ -286,8 +286,8 @@ And your HomePod should announce the event in its configured voice.
 
 To announce different events in different rooms, create multiple Shortcuts in Shortcuts.app:
 
-- `RuView Announce Kitchen`
-- `RuView Announce Bedroom`
+- `GhostView Announce Kitchen`
+- `GhostView Announce Bedroom`
 
 Then run multiple watcher jobs with different `--shortcut-name` flags:
 
@@ -295,13 +295,13 @@ Then run multiple watcher jobs with different `--shortcut-name` flags:
 # Kitchen events on HomePod mini in kitchen
 scripts/macos-shortcuts/announce-via-homepod.sh \
   --node-id 1 --event unknown_presence \
-  --shortcut-name "RuView Announce Kitchen" \
+  --shortcut-name "GhostView Announce Kitchen" \
   --poll-interval 2 &
 
 # Bedroom events on HomePod in bedroom
 scripts/macos-shortcuts/announce-via-homepod.sh \
   --node-id 2 --event unknown_presence \
-  --shortcut-name "RuView Announce Bedroom" \
+  --shortcut-name "GhostView Announce Bedroom" \
   --poll-interval 2 &
 ```
 
@@ -315,7 +315,7 @@ Because the Shortcut is operator-editable in Shortcuts.app, you can extend it to
 - **Send a message** to another person's iPhone
 - **Trigger a HomeKit secure camera recording**
 
-This is the flexibility of the Shortcuts-as-glue approach — no code change needed in RuView, all customization in the operator's own Shortcuts library.
+This is the flexibility of the Shortcuts-as-glue approach — no code change needed in GhostView, all customization in the operator's own Shortcuts library.
 
 For complete setup details and troubleshooting, see [`scripts/macos-shortcuts/README.md`](scripts/macos-shortcuts/README.md).
 
@@ -323,7 +323,7 @@ For complete setup details and troubleshooting, see [`scripts/macos-shortcuts/RE
 
 ## Agentic Consumption via MCP
 
-RuView's sensing stream is also available through Model Context Protocol (MCP) — the standard interface for Claude Code and other AI agents to query RuView data.
+GhostView's sensing stream is also available through Model Context Protocol (MCP) — the standard interface for Claude Code and other AI agents to query GhostView data.
 
 ### The `@ruvnet/rvagent` npm package (v0.1.0)
 
@@ -465,7 +465,7 @@ These items are intentionally deferred or beyond the current release:
 
 ## References
 
-- [ADR-125 — RuView ↔ Apple Home native HAP bridge](docs/adr/ADR-125-ruview-apple-home-native-hap-bridge.md) — Design spec, privacy rationale, sequencing
+- [ADR-125 — GhostView ↔ Apple Home native HAP bridge](docs/adr/ADR-125-ruview-apple-home-native-hap-bridge.md) — Design spec, privacy rationale, sequencing
 - [ADR-118 — Beamforming Feedback Layer for Detection](docs/adr/ADR-118-bfld-beamforming-feedback-layer-for-detection.md) — BFLD privacy gate and identity-risk semantics
 - [ADR-124 — rvagent MCP / RuVector npm integration](docs/adr/ADR-124-rvagent-mcp-ruvector-npm-integration.md) — MCP tool specification
 - [Issue #796](https://github.com/ruvnet/RuView/issues/796) — Tier 1+2 sprint tracking (close-out comments have per-iter empirical data)

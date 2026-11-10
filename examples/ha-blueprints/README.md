@@ -1,7 +1,7 @@
-# RuView starter Home Assistant Blueprints
+# GhostView starter Home Assistant Blueprints
 
 8 ready-to-import HA Blueprints covering the highest-leverage automations
-RuView's HA-MIND semantic primitives unlock. Drop the YAML files into
+GhostView's HA-MIND semantic primitives unlock. Drop the YAML files into
 `<HA config>/blueprints/automation/ruvnet/` and import from the HA UI
 (**Settings → Automations & Scenes → Blueprints → Import Blueprint**).
 
@@ -16,7 +16,7 @@ RuView's HA-MIND semantic primitives unlock. Drop the YAML files into
 | 7 | [Escalate on fall-risk crossing](07-fall-risk-escalation.yaml)       | `fall_risk_elevated`         | AAL / preventive intervention         | ✅ |
 | 8 | [Auto-arm security when room not active](08-auto-arm-security-when-not-active.yaml) | `room_active` + `no_movement` | Self-arming security | ✅ |
 
-"Published today?" means the RuView server's MQTT discovery planner has a
+"Published today?" means the GhostView server's MQTT discovery planner has a
 source for the primitive. `bed_exit`, `meeting_in_progress` and
 `bathroom_occupied` don't yet, so their entities stay unavailable. Each of
 those blueprints says so in its description. ✅ is conditional too: every

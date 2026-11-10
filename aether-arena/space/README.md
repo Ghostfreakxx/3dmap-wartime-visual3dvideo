@@ -24,7 +24,7 @@ tags:
 The field's standard yardstick for camera-free **spatial intelligence** (pose, presence,
 occupancy, tracking, vitals) from RF/WiFi and, over time, mmWave / UWB / multimodal.
 
-- **Project-agnostic** — any team, framework, or modality enters; RuView donated the seed
+- **Project-agnostic** — any team, framework, or modality enters; GhostView donated the seed
   scorer and is scored like everyone else.
 - **Benchmark-first** — the board starts empty; every row is a real scoring-pipeline
   **witness** (`inputs_sha256` + `proof_sha256` + `harness_version`) in an append-only,

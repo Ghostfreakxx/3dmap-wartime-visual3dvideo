@@ -1,6 +1,6 @@
 # ADR-270 Vendor RF Providers
 
-RuView exposes a capability-safe Rust provider layer for vendor sensing and RF
+GhostView exposes a capability-safe Rust provider layer for vendor sensing and RF
 telemetry. It never converts RSSI, occupancy, location or network inventory into
 complex CSI.
 
@@ -57,4 +57,4 @@ test-covered provider outcomes—not simulated integrations.
 All descriptors remain `hardware_validated: false` until exact hardware/cloud
 versions, lawful access, repeatable captures, calibration where applicable, and
 fixture publication rights have been verified. Passing the simulator and API
-tests validates RuView software only.
+tests validates GhostView software only.

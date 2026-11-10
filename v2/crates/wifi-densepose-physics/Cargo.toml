@@ -5,7 +5,7 @@ edition.workspace = true
 authors.workspace = true
 license.workspace = true
 repository.workspace = true
-description = "Bounded, provenance-preserving pose physics assessment for RuView"
+description = "Bounded, provenance-preserving pose physics assessment for GhostView"
 
 [features]
 default = ["kinematic"]

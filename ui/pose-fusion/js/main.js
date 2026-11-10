@@ -1,5 +1,5 @@
 /**
- * RuView — Dual-Modal Pose Estimation Demo
+ * GhostView — Dual-Modal Pose Estimation Demo
  *
  * Main orchestration: video capture → CNN embedding → CSI processing → fusion → rendering
  */

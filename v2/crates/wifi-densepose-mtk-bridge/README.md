@@ -1,6 +1,6 @@
 # wifi-densepose-mtk-bridge
 
-Bridges MediaTek MT7981 (`mt76`) vendor CSI into RuView's ADR-267 MTC1 frames and
+Bridges MediaTek MT7981 (`mt76`) vendor CSI into GhostView's ADR-267 MTC1 frames and
 sends them to the sensing server's UDP ingest (default `127.0.0.1:5005`).
 
 Developed in whitsentry, a RuView-based project. User guide:

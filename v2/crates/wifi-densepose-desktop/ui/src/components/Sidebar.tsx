@@ -84,7 +84,7 @@ export function Sidebar({ items, activeId, onNavigate }: SidebarProps) {
           letterSpacing: "-0.02em",
         }}
       >
-        RuView
+        GhostView
       </div>
 
       {/* Nav items */}

@@ -1,5 +1,5 @@
 blueprint:
-  name: RuView — auto-arm security when room not active
+  name: GhostView — auto-arm security when room not active
   description: >
     Auto-arm the home alarm when room_active flips to OFF for all
     monitored rooms AND no_movement is ON in the primary room. Lets the
@@ -10,7 +10,7 @@ blueprint:
   input:
     room_active_group:
       name: Group of room_active binary_sensors (one per room)
-      description: A `group.*` entity containing every RuView room_active sensor.
+      description: A `group.*` entity containing every GhostView room_active sensor.
       selector:
         entity:
           domain: group

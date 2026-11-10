@@ -9,11 +9,11 @@ estimate skeletal pose — using only the WiFi signal already in your home.**
 
 No cameras. No wearables. Works through walls and in the dark.
 
-`wifi-densepose` is the Python binding for the [RuView](https://github.com/ruvnet/RuView)
+`wifi-densepose` is the Python binding for the [GhostView](https://github.com/ruvnet/RuView)
 sensing stack: a Rust core that turns the Channel State Information (CSI)
 emitted by ordinary WiFi chips into ambient-intelligence signals. The wheel
 ships compiled DSP for fast offline analysis, plus an opt-in Python client
-for talking to a live RuView sensing-server over WebSocket or MQTT.
+for talking to a live GhostView sensing-server over WebSocket or MQTT.
 
 ## Features
 
@@ -157,7 +157,7 @@ print(frame.n_subcarriers, frame.mean_amplitude)
 
 Works with any WiFi chip that exposes CSI. Reference setups (ESP-IDF firmware,
 build scripts, witness-verified test bundles) are in the
-[RuView repo](https://github.com/ruvnet/RuView):
+[GhostView repo](https://github.com/ruvnet/RuView):
 
 | Device | Cost | Role |
 |---|---|---|

@@ -1,4 +1,4 @@
-# RuView Calibration Service (reference implementation)
+# GhostView Calibration Service (reference implementation)
 
 Fit a room-specific **~11 KB LoRA adapter** for a shared WiFi-CSI pose base from a short **labeled
 capture**. This is a measured MM-Fi reference path for cross-subject / cross-environment adaptation

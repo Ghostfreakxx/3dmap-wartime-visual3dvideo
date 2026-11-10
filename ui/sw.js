@@ -1,4 +1,4 @@
-// RuView Service Worker - Offline caching for the dashboard shell
+// GhostView Service Worker - Offline caching for the dashboard shell
 // Strategy: Network-first for API calls, Cache-first for static assets
 
 // Bumped from v1: an older SW cached `/oauth/status` cache-first, so browsers

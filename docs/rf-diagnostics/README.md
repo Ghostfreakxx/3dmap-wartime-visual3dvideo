@@ -1,4 +1,4 @@
-# RuView RF diagnostics viewer
+# GhostView RF diagnostics viewer
 
 Open [index.html](index.html) in a modern browser, or use the deployed documentation page. This is a standalone local JSONL viewer, not a hardware connection. It has no runtime dependencies, telemetry, external assets, uploads or network API.
 

@@ -625,7 +625,7 @@ pub struct EspNodeConnection {
 
 ### ESP32 Protocol ACL (CSI Bridge)
 
-The WiFi CSI Bridge translates validated chipset-specific CSI formats into a versioned RuView envelope. Nexmon is the established Linux example; rtw88 and mt76 require a verified complex-CSI export before implementation. Virtual node IDs (200-254) prevent collision with physical ESP32 IDs but are otherwise treated identically by the ingestion context.
+The WiFi CSI Bridge translates validated chipset-specific CSI formats into a versioned GhostView envelope. Nexmon is the established Linux example; rtw88 and mt76 require a verified complex-CSI export before implementation. Virtual node IDs (200-254) prevent collision with physical ESP32 IDs but are otherwise treated identically by the ingestion context.
 
 ### Armbian Platform ACL
 

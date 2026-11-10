@@ -2,7 +2,7 @@
 name = "ruview-kernel"
 version = "0.1.0"
 edition.workspace = true
-description = "RuView portable compute kernel (ADR-368): bounded JSON ABI over the ADR-021 vitals pipeline, shared by the WASM and napi-rs npm backends"
+description = "GhostView portable compute kernel (ADR-368): bounded JSON ABI over the ADR-021 vitals pipeline, shared by the WASM and napi-rs npm backends"
 license.workspace = true
 authors = ["rUv <ruv@ruv.net>", "WiFi-DensePose Contributors"]
 repository.workspace = true

@@ -20,13 +20,13 @@
   bundle's capability map. `npx wifi-veil-harness guidance
   --topic optimization`.
 
-The crate is intentionally a **leaf with no internal RuView dependencies**
+The crate is intentionally a **leaf with no internal GhostView dependencies**
 (mirrors `wifi-densepose-aether`), so it can be reasoned about, fuzzed, and
 ported independently, and so it can never accidentally acquire a path to a radio.
 
 ---
 
-## 2. Reuse map (how VEIL composes with existing RuView)
+## 2. Reuse map (how VEIL composes with existing GhostView)
 
 | Existing subsystem | Relationship |
 |---|---|

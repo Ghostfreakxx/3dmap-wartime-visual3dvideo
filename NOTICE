@@ -20,3 +20,10 @@ firmware/openwrt-wn586x3/patches/1001-mtk-mt76-mt7915-csi-implement-csi-support-
 
 See firmware/openwrt-wn586x3/README.md for the other patches in that
 directory and the licence each one keeps.
+
+GhostView fork
+
+GhostView is a rebranded fork of RuView (https://github.com/ruvnet/RuView,
+commit 61150313dec90f6d093d9ee93643257938c603bc), copyright (c) 2024 rUv.
+The upstream licence and the notices above continue to apply to all code and
+documentation taken from RuView.

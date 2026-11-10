@@ -1,6 +1,6 @@
 # 05 — Experiment Protocol: Attacker vs. Protector
 
-This is the "start today" deliverable from the brief: **make one RuView node the
+This is the "start today" deliverable from the brief: **make one GhostView node the
 attacker and one the protector, and measure whether protection drives identity
 recognition toward chance while keeping throughput above 95%.** It is realized as
 a deterministic, reproducible experiment in

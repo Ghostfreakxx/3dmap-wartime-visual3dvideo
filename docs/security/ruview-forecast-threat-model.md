@@ -1,9 +1,9 @@
-# RuView Forecast security and privacy threat model
+# GhostView Forecast security and privacy threat model
 
 - **Status:** normative implementation and release gate
 - **Date:** 2026-09-01
 - **Scope:** `ruview-forecast-core`, `ruview-forecast-model`,
-  `ruview-forecast-train`, RuView API integration, RuVector retrieval, and hosted
+  `ruview-forecast-train`, GhostView API integration, RuVector retrieval, and hosted
   training on fal
 - **Extends:** ADR-260, ADR-262, ADR-271, ADR-295, ADR-299, ADR-304, ADR-305,
   ADR-319, and ADR-348
@@ -13,13 +13,13 @@
 ## Security decision
 
 Forecasting may be implemented only as a bounded, advisory, derived-evidence
-subsystem. Real RF data remains subject to RuView's person-data rules even when
+subsystem. Real RF data remains subject to GhostView's person-data rules even when
 it is converted into a time series. Hosted training is an external trust
-boundary, not an extension of the RuView edge.
+boundary, not an extension of the GhostView edge.
 
 The initial release MUST enforce these rules:
 
-1. **Hosted v1 is synthetic-pretraining only.** No real RuView RF-derived data
+1. **Hosted v1 is synthetic-pretraining only.** No real GhostView RF-derived data
    of any privacy class, external dataset path/bytes, `DataPolicy`, tenant/site/
    device/session identifier, split membership, or RuVector record may be sent
    to fal. All real-data training runs stay on the operator-controlled Linux
@@ -31,10 +31,10 @@ The initial release MUST enforce these rules:
    present. The deployment build context is part of this egress boundary: it
   MUST be produced from an exact-file/three-Rust-source-tree clean tracked-source archive and MUST
    NOT upload the operator's working tree, untracked files, local requests,
-   datasets, credentials, or unrelated RuView fixtures.
+   datasets, credentials, or unrelated GhostView fixtures.
 3. A fal result is untrusted input. It MUST be downloaded into quarantine,
    size-bounded, hashed, schema-checked, evaluated locally, and signed by a
-   RuView release key that never leaves RuView control before activation.
+   GhostView release key that never leaves GhostView control before activation.
 4. Forecasts MUST remain `DERIVED_FORECAST` evidence. They MUST NOT overwrite
    observations, become `MEASURED`, raise the evidence level of an unauthenticated
    RF source, or independently authorize a life-safety or physical action.
@@ -47,13 +47,13 @@ The initial release MUST enforce these rules:
 
 ## Review and clean-room exposure statement
 
-This review inspected RuView repository policy, privacy, authentication,
+This review inspected GhostView repository policy, privacy, authentication,
 attestation, evidence, witness, artifact-verification, dataset-ingest, and CI
 code, together with fal's public operational documentation. It did **not**
 inspect, copy, download, execute, or query Google TimesFM source code,
 configuration, tests, checkpoints, weights, activations, or outputs. No Google
 model output or similarity oracle was used. ADR-348's independently authored
-RuView requirements are the forecasting specification for this review.
+GhostView requirements are the forecasting specification for this review.
 
 The review was read-only until this document was requested. The checked base
 state was commit `e04f269f1a76eb6ed4e8cd33e2ccfeda6fd391a3`; the reviewed
@@ -218,7 +218,7 @@ or signing authority.
 
 ## Repository security anchors
 
-The forecast implementation MUST preserve these existing RuView contracts:
+The forecast implementation MUST preserve these existing GhostView contracts:
 
 | Contract | Repository evidence | Forecast consequence |
 |---|---|---|
@@ -241,7 +241,7 @@ The forecast implementation MUST preserve these existing RuView contracts:
 | Raw and derived RF windows | Confidentiality, tenant isolation, consent, minimization, bounded retention, lineage |
 | Labels and future covariates | Integrity, rights provenance, no future leakage, no subject crossover |
 | Fal API credential | Confidentiality, least scope, rotation, no client/log/artifact exposure |
-| RuView release signing key | Local-only custody, non-exportability where practical, separate dev/prod keys |
+| GhostView release signing key | Local-only custody, non-exportability where practical, separate dev/prod keys |
 | Training configuration and code | Immutable identity, clean-room provenance, reproducibility |
 | Checkpoint and release model | Byte integrity, signer authenticity, schema compatibility, anti-rollback |
 | Forecast and quantiles | Finite/bounded values, calibration identity, source/evidence honesty |
@@ -287,11 +287,11 @@ its tensor format contains no explicit identifier.
 
 ```mermaid
 flowchart TD
-    S["RF sensor / capture"] --> I["RuView ingest + privacy gate"]
+    S["RF sensor / capture"] --> I["GhostView ingest + privacy gate"]
     I --> L["Local dataset + Linux trainer"]
     G["Synthetic recipe"] --> F["fal external processor"]
     C["Clean source archive"] --> F
-    F --> Q["RuView quarantine + verification"]
+    F --> Q["GhostView quarantine + verification"]
     L --> Q
     Q --> R["Signed local runtime"]
     R --> D["Evidence / RuVector / RuVLLM consumers"]
@@ -301,8 +301,8 @@ flowchart TD
 |---|---|---|
 | TB1 sensor to ingest | UDP frame/source | Source state, frame bounds, device attestation when available, replay/freshness; otherwise `LiveUnverified` |
 | TB2 ingest to dataset | Feature producer and labels | Schema, privacy/consent, tenant, timestamp, finiteness, split and provenance validation |
-| TB3 RuView to fal | Hosted provider, network, shared account resources | Synthetic-only DTO, approved app, least-scope key, storage/ACL/retention controls, cost authorization |
-| TB4 fal webhook/result to RuView | HTTP headers/body/URLs/provider state | Raw-body signature, timestamp, expected request/user, replay/idempotency, body cap, fixed JWKS |
+| TB3 GhostView to fal | Hosted provider, network, shared account resources | Synthetic-only DTO, approved app, least-scope key, storage/ACL/retention controls, cost authorization |
+| TB4 fal webhook/result to GhostView | HTTP headers/body/URLs/provider state | Raw-body signature, timestamp, expected request/user, replay/idempotency, body cap, fixed JWKS |
 | TB5 model bytes to parser/runtime | Downloaded bytes and manifest | Streaming length/hash, canonical Ed25519 signature, signer allowlist, schema/tensor/finite checks |
 | TB6 client to forecast/admin API | Bearer token and request | ES256 verifier, exact client/scope, tenant binding, rate/quota, strict DTO validation |
 | TB7 forecast to downstream systems | Model output and optional explanation | Derived-evidence label, uncertainty/abstention, no numeric mutation, no autonomous action |
@@ -404,7 +404,7 @@ metadata and body bytes first.
 
 ## Authentication, authorization, tenancy, and spend
 
-### RuView callers
+### GhostView callers
 
 - Reuse `ruview-auth`; do not add a second JWT implementation.
 - Fix ES256 as the accepted algorithm and require an access token, matching
@@ -444,7 +444,7 @@ metadata and body bytes first.
 
 Fal is an untrusted processor even when its cryptographic callback verifies.
 The provider signature authenticates delivery; it does not approve data use,
-prove training correctness, or sign a RuView release artifact.
+prove training correctness, or sign a GhostView release artifact.
 
 Hosted v1 deliberately retains only the bounded synthetic request and result
 metadata needed by Fal's queue/status/result protocol. It does not set
@@ -472,7 +472,7 @@ documents `/data` as shared across all apps/runners in the account and persisten
 until manual deletion. Hosted v1 generates its corpus in bounded process memory
 and writes only four fixed candidate outputs below a fresh opaque `/data`
 namespace. The worker schedules best-effort deletion at the digest-bound
-expiry, but a crash can defeat it. The candidate must be copied into RuView
+expiry, but a crash can defeat it. The candidate must be copied into GhostView
 quarantine before expiry, and provider-side lifecycle/deletion reconciliation
 is a blocking production gate.
 
@@ -609,7 +609,7 @@ license, source and build-script surface and therefore passes cargo-deny review.
 | Existing `ruview-attest`, `ruview-evidence`, `ruview-witness` | Provenance/evidence integration after local validation; do not deserialize their trusted domain objects from fal/API input |
 | `sha2` | SHA-256 for streamed artifact bytes, webhook body and interoperable manifest digests |
 | `ed25519-dalek` | Fal webhook and local release-signature verification; use strict fixed-width key/signature parsing and a signer allowlist |
-| `blake3` | Optional internal content/witness identity where the existing RuView contract already uses BLAKE3; do not silently substitute it for a declared SHA-256 field |
+| `blake3` | Optional internal content/witness identity where the existing GhostView contract already uses BLAKE3; do not silently substitute it for a declared SHA-256 field |
 | `subtle` | Constant-time comparison for secret-dependent tags where an upstream verification API does not already provide it |
 | `secrecy`, `zeroize` | Reduce accidental `FAL_KEY` exposure in `Debug` and memory; this does not guarantee erasure of copies held by HTTP/env libraries |
 | `url`, `ipnet` | Parse once and enforce exact scheme/host/port plus IPv4/IPv6 deny ranges; URL parsing alone is not SSRF protection |
@@ -689,7 +689,7 @@ Do not expose the same caller-constructible gap at the remote forecast boundary.
 
 Any failure leaves the candidate quarantined/rejected and the previous active
 model unchanged. Startup with no valid artifact disables forecasting but does
-not disable observed RuView sensing.
+not disable observed GhostView sensing.
 
 ## Fail-closed state machines
 

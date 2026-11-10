@@ -2,7 +2,7 @@
 name = "ruview-auth"
 version = "0.1.0"
 edition = "2021"
-description = "Cognitum OAuth access-token verification for RuView (ADR-271)"
+description = "Cognitum OAuth access-token verification for GhostView (ADR-271)"
 publish = false
 
 [dependencies]

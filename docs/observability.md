@@ -79,7 +79,7 @@ docker compose -f docker/otel-compose.yml up
 The collector and backend image tags are pinned to immutable multi-platform
 digests so the demo resolves to the reviewed images.
 
-Ourios derives the tenant from `service.name`, so all RuView logs land
+Ourios derives the tenant from `service.name`, so all GhostView logs land
 in tenant `ruview`.
 
 ## Example queries
@@ -88,7 +88,7 @@ Ourios mines every log line into a stable `template_id` online at
 ingest, which makes template-level questions cheap. Its query endpoint
 speaks a small logs DSL:
 
-Which log templates dominate RuView's output?
+Which log templates dominate GhostView's output?
 
 ```sh
 curl -s http://localhost:4319/v1/query \
@@ -106,7 +106,7 @@ curl -s http://localhost:4319/v1/query \
   -d 'severity >= warn | limit 50'
 ```
 
-Did a RuView deploy change what the service logs? Template drift between
+Did a GhostView deploy change what the service logs? Template drift between
 two time windows (new / vanished / changed templates):
 
 ```sh

@@ -5,7 +5,7 @@ edition.workspace = true
 authors.workspace = true
 license.workspace = true
 repository.workspace = true
-description = "Bounded, privacy-preserving Cognitum Spaces client for RuView"
+description = "Bounded, privacy-preserving Cognitum Spaces client for GhostView"
 publish = false
 
 [dependencies]

@@ -1,4 +1,4 @@
-# RuView — Extended Documentation
+# GhostView — Extended Documentation
 
 This document contains the detailed sections that were extracted from [README.md](../README.md) to keep the main README focused on overview, use cases, and support.
 
@@ -8,7 +8,7 @@ This document contains the detailed sections that were extracted from [README.md
 
 ### Real-Time Dense Point Cloud (NEW)
 
-RuView now generates **real-time 3D point clouds** by fusing camera depth + WiFi CSI + mmWave radar. All sensors stream simultaneously into a unified spatial model.
+GhostView now generates **real-time 3D point clouds** by fusing camera depth + WiFi CSI + mmWave radar. All sensors stream simultaneously into a unified spatial model.
 
 | Sensor | Data | Integration |
 |--------|------|-------------|
@@ -230,7 +230,7 @@ python firmware/esp32-csi-node/provision.py --port COM9 --hop-channels "1,6,11"
 <details>
 <summary><strong>Cognitum Seed Integration + Camera-Free Pose Training</strong></summary>
 
-**v0.5.4 transforms RuView from a real-time sensing tool into a persistent edge AI system.** Your ESP32 now remembers what it senses, learns without cameras, and proves its data cryptographically.
+**v0.5.4 transforms GhostView from a real-time sensing tool into a persistent edge AI system.** Your ESP32 now remembers what it senses, learns without cameras, and proves its data cryptographically.
 
 | Capability | Details | Hardware |
 |-----------|---------|----------|
@@ -370,8 +370,8 @@ The installer walks through 7 steps: system detection, toolchain check, WiFi har
 <summary><strong>From Source</strong> — Rust (primary) or Python</summary>
 
 ```bash
-git clone https://github.com/ruvnet/RuView.git
-cd RuView
+git clone --recurse-submodules https://github.com/Ghostfreakxx/3dmap-wartime-visual3dvideo.git
+cd 3dmap-wartime-visual3dvideo
 
 # Rust (primary — 810x faster)
 cd v2
@@ -706,7 +706,7 @@ cd dist/witness-bundle-ADR028-*/ && bash VERIFY.sh
 </details>
 
 <details>
-<summary><strong>📡 Multistatic Sensing (ADR-029/030/031 — Project RuvSense + RuView)</strong> — Multiple ESP32 nodes fuse viewpoints for production-grade pose, tracking, and exotic sensing</summary>
+<summary><strong>📡 Multistatic Sensing (ADR-029/030/031 — Project RuvSense + GhostView)</strong> — Multiple ESP32 nodes fuse viewpoints for production-grade pose, tracking, and exotic sensing</summary>
 
 A single WiFi receiver can track people, but has blind spots — limbs behind the torso are invisible, depth is ambiguous, and two people at similar range create overlapping signals. RuvSense solves this by coordinating multiple ESP32 nodes into a **multistatic mesh** where every node acts as both transmitter and receiver, creating N×(N-1) measurement links from N devices.
 
@@ -723,7 +723,7 @@ A single WiFi receiver can track people, but has blind spots — limbs behind th
 |-----|----------|-------------|
 | [ADR-029](../docs/adr/ADR-029-ruvsense-multistatic-sensing-mode.md) | **RuvSense** | Channel hopping, TDM protocol, multi-node fusion, coherence gating, 17-keypoint Kalman tracker |
 | [ADR-030](../docs/adr/ADR-030-ruvsense-persistent-field-model.md) | **RuvSense Field** | Room electromagnetic eigenstructure (SVD), RF tomography, longitudinal drift detection, intention prediction, gesture recognition, adversarial detection |
-| [ADR-031](../docs/adr/ADR-031-ruview-sensing-first-rf-mode.md) | **RuView** | Cross-viewpoint attention with geometric bias, viewpoint diversity optimization, embedding-level fusion |
+| [ADR-031](../docs/adr/ADR-031-ruview-sensing-first-rf-mode.md) | **GhostView** | Cross-viewpoint attention with geometric bias, viewpoint diversity optimization, embedding-level fusion |
 
 **Architecture**
 
@@ -1300,7 +1300,7 @@ The full RuVector ecosystem includes 90+ crates. See [github.com/ruvnet/ruvector
 <details>
 <summary><a id="ruv-neural"></a><strong>🧠 rUv Neural</strong> — Brain topology analysis ecosystem for neural decoding and medical sensing</summary>
 
-[**rUv Neural**](https://github.com/ruvnet/ruv-neural#readme) is a 12-crate Rust ecosystem that extends RuView's signal processing into brain network topology analysis. It transforms neural magnetic field measurements from quantum sensors (NV diamond magnetometers, optically pumped magnetometers) into dynamic connectivity graphs, using minimum cut algorithms to detect cognitive state transitions in real time. The ecosystem includes crates for signal processing (`ruv-neural-signal`), graph construction (`ruv-neural-graph`), HNSW-indexed pattern memory (`ruv-neural-memory`), graph embeddings (`ruv-neural-embed`), cognitive state decoding (`ruv-neural-decoder`), and ESP32/WASM edge targets. Medical and research applications include early neurological disease detection via topology signatures, brain-computer interfaces, clinical neurofeedback, and non-invasive biomedical sensing -- bridging RuView's RF sensing architecture with the emerging field of quantum biomedical diagnostics.
+[**rUv Neural**](https://github.com/ruvnet/ruv-neural#readme) is a 12-crate Rust ecosystem that extends GhostView's signal processing into brain network topology analysis. It transforms neural magnetic field measurements from quantum sensors (NV diamond magnetometers, optically pumped magnetometers) into dynamic connectivity graphs, using minimum cut algorithms to detect cognitive state transitions in real time. The ecosystem includes crates for signal processing (`ruv-neural-signal`), graph construction (`ruv-neural-graph`), HNSW-indexed pattern memory (`ruv-neural-memory`), graph embeddings (`ruv-neural-embed`), cognitive state decoding (`ruv-neural-decoder`), and ESP32/WASM edge targets. Medical and research applications include early neurological disease detection via topology signatures, brain-computer interfaces, clinical neurofeedback, and non-invasive biomedical sensing -- bridging GhostView's RF sensing architecture with the emerging field of quantum biomedical diagnostics.
 
 </details>
 
@@ -1773,8 +1773,8 @@ POSE_MAX_PERSONS=10              # Max tracked individuals
 <summary><strong>Dev setup, code standards, PR process</strong></summary>
 
 ```bash
-git clone https://github.com/ruvnet/RuView.git
-cd RuView
+git clone --recurse-submodules https://github.com/Ghostfreakxx/3dmap-wartime-visual3dvideo.git
+cd 3dmap-wartime-visual3dvideo
 
 # Rust development
 cd v2
@@ -1821,7 +1821,7 @@ Multistatic sensing, persistent field model, and cross-viewpoint fusion — the 
 
 - **Project RuvSense (ADR-029)** — Multistatic mesh: TDM protocol, channel hopping (ch1/6/11), multi-band frame fusion, coherence gating, 17-keypoint Kalman tracker with re-ID; 10 new signal modules (5,300+ lines)
 - **RuvSense Persistent Field Model (ADR-030)** — 7 exotic sensing tiers: field normal modes (SVD), RF tomography, longitudinal drift detection, intention prediction, cross-room identity, gesture classification, adversarial detection
-- **Project RuView (ADR-031)** — Cross-viewpoint attention with geometric bias, Geometric Diversity Index, viewpoint fusion orchestrator; 5 new ruvector modules (2,200+ lines)
+- **Project GhostView (ADR-031)** — Cross-viewpoint attention with geometric bias, Geometric Diversity Index, viewpoint fusion orchestrator; 5 new ruvector modules (2,200+ lines)
 - **TDM Hardware Protocol** — ESP32 sensing coordinator: sync beacons, slot scheduling, clock drift compensation (±10ppm), 20 Hz aggregate rate
 - **Channel-Hopping Firmware** — ESP32 firmware extended with hop table, timer-driven channel switching, NDP injection stub; NVS config for all TDM parameters; fully backward-compatible
 - **DDD Domain Model** — 6 bounded contexts, ubiquitous language, aggregate roots, domain events, full event bus specification

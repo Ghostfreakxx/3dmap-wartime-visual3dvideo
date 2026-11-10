@@ -1,9 +1,9 @@
 # MediaTek Router CSI (MT7981, experimental)
 
-RuView can take channel state information (CSI) from a MediaTek Filogic
+GhostView can take channel state information (CSI) from a MediaTek Filogic
 router, such as an MT7981B with an MT7976C radio running OpenWrt with
 MediaTek's vendor CSI patch. The router reports CSI. A host-side bridge
-converts it to RuView's MTC1 wire format (ADR-267). The sensing server ingests
+converts it to GhostView's MTC1 wire format (ADR-267). The sensing server ingests
 it like any other UDP source.
 
 **Status: experimental.** This page documents a working data path, measured
@@ -283,7 +283,7 @@ radio, carried end to end with provenance intact.
 - **Coherent across routers.** Each radio has its own oscillator. Cross-chain
   phase is meaningful within one radio, not between two boxes.
 - **Free of personal data.** A raw dump holds client transmitter addresses
-  (MACs) and channel samples that encode movement. RuView policy (ADR-299)
+  (MACs) and channel samples that encode movement. GhostView policy (ADR-299)
   forbids committing captures. Keep them out of the repository, and run
   `scripts/csi-data-policy-check.sh --staged` before committing near capture
   directories.

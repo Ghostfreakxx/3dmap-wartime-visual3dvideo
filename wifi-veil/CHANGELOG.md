@@ -7,7 +7,7 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
 ### Added
-- Standalone repository layout extracted from the RuView monorepo: the
+- Standalone repository layout extracted from the GhostView monorepo: the
   dependency-free `wifi-veil` Rust crate at the repo root, the `veil` terminal
   TUI, the self-contained WiFi Veil Console (`ui/veil-console.html`), the
   end-to-end `firmware/` hardware program (host-validated portable C core plus

@@ -5,7 +5,7 @@ edition.workspace = true
 authors.workspace = true
 license.workspace = true
 repository.workspace = true
-description = "Clean-room generalized off-axis (head-coupled) perspective projection for RuView demos (ADR-324)"
+description = "Clean-room generalized off-axis (head-coupled) perspective projection for GhostView demos (ADR-324)"
 readme = "README.md"
 
 [lib]

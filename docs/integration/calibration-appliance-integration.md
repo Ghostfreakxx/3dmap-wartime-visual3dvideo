@@ -1,6 +1,6 @@
 # Per-Room Calibration — Integration Overview (for `cognitum-one/v0-appliance`)
 
-**Audience:** integrators wiring the RuView per-room calibration system (ADR-151) into the
+**Audience:** integrators wiring the GhostView per-room calibration system (ADR-151) into the
 Cognitum V0 appliance (`cognitum-v0`, Pi 5 + Hailo). This document is the contract +
 deployment spec: data formats, API surface, crate API, and the appliance integration plan.
 

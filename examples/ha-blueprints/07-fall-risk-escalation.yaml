@@ -1,5 +1,5 @@
 blueprint:
-  name: RuView — escalate on fall-risk score crossing
+  name: GhostView — escalate on fall-risk score crossing
   description: >
     Send a notification when the fall_risk_elevated sensor crosses a
     configurable threshold (default 70) — the resident's near-fall

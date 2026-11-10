@@ -1,5 +1,5 @@
 blueprint:
-  name: RuView — bathroom fan while occupied
+  name: GhostView — bathroom fan while occupied
   description: >
     Run the bathroom exhaust fan while bathroom_occupied is ON, with a
     configurable run-on delay after the zone clears (humidity recovery).

@@ -1,4 +1,4 @@
-# RuView Forecast clean-room, data, and release protocol
+# GhostView Forecast clean-room, data, and release protocol
 
 **Status:** Proposed and mandatory for any artifact claiming independent
 development under ADR-348.
@@ -18,7 +18,7 @@ intermediate tensors, checkpoints, containers, CI caches, RuVector indexes,
 fal.ai jobs, benchmark results, model cards, and published artifacts.
 
 The protocol is intentionally stricter than the minimum conditions for using
-Apache-licensed source. Its purpose is to preserve evidence that the RuView
+Apache-licensed source. Its purpose is to preserve evidence that the GhostView
 implementation and weights were independently created. It is not a legal
 opinion. The legal release owner must approve the current licenses, contributor
 exposure record, patent review, trademark review, datasets, and intended launch
@@ -60,7 +60,7 @@ Only one of these paths may govern a source tree:
 
 | Path | Source basis | Required representation |
 |---|---|---|
-| Independent implementation | Approved abstract specification, public papers/articles, general literature, RuView requirements, approved data | "Independently developed and independently trained" after all gates pass |
+| Independent implementation | Approved abstract specification, public papers/articles, general literature, GhostView requirements, approved data | "Independently developed and independently trained" after all gates pass |
 | Apache-derived port | Apache-licensed Google source with full license and notice compliance | "Apache-derived Rust port" with attribution |
 
 There is no hybrid path. A permissive source license makes porting possible; it
@@ -73,8 +73,8 @@ whole affected component under the Apache-derived path.
 | Role | May access | Must not access or do |
 |---|---|---|
 | Clean-room custodian | Exposure records, allowlist, scan reports, quarantined evidence | Contribute core model implementation after reviewing prohibited source fragments |
-| Specification reviewer | Frozen public-paper/article allowlist, RuView requirements, generic literature | Google TimesFM implementation, tests, configs, checkpoint files, model outputs; contribute implementation |
-| Rust implementer | Approved independent specification, RuView schemas, approved generic dependencies | TimesFM source, tests, configs, weights, outputs, line-by-line/API translation, reference differential testing |
+| Specification reviewer | Frozen public-paper/article allowlist, GhostView requirements, generic literature | Google TimesFM implementation, tests, configs, checkpoint files, model outputs; contribute implementation |
+| Rust implementer | Approved independent specification, GhostView schemas, approved generic dependencies | TimesFM source, tests, configs, weights, outputs, line-by-line/API translation, reference differential testing |
 | Data steward | Dataset source, contracts, consent, privacy and transformation records | Approve unknown or incompatible rights; infer that a software license covers data |
 | Training operator | Signed code/container/config and approved dataset manifests | Change code/data/config outside a new receipt; add an unapproved parent checkpoint |
 | Independent evaluator | Frozen candidate, frozen evaluation manifests, approved baselines | Return reference predictions or implementation hints to developers; tune against the test set |
@@ -93,8 +93,8 @@ source cannot become a core implementer for the independent path.
   retrieval date, and SHA-256 digest.
 - General time-series, transformer, probabilistic forecasting, normalization,
   missing-data, and calibration literature.
-- RuView requirements, independently written feature schemas, and existing
-  RuView contracts whose provenance already satisfies repository policy.
+- GhostView requirements, independently written feature schemas, and existing
+  GhostView contracts whose provenance already satisfies repository policy.
 - Generic Rust dependencies whose license, source, and purpose are recorded and
   approved.
 - Public benchmark specifications and datasets after the dataset gate passes.
@@ -152,7 +152,7 @@ exposure intake covering:
 Each pull request also carries a signed attestation:
 
 ```text
-RuView Forecast clean-room attestation v1
+GhostView Forecast clean-room attestation v1
 
 Contributor:
 Employer or represented entity:
@@ -191,7 +191,7 @@ The specification may state mathematical functions, tensor roles, input/output
 invariants, resource bounds, and RuView-specific requirements. It must not
 include copied source, comments, tests, distinctive identifiers, constants,
 checkpoint dimensions extracted from files, API compatibility requirements, or
-Google diagrams. RuView API names must be derived from the local domain.
+Google diagrams. GhostView API names must be derived from the local domain.
 
 Changes to the specification after test evaluation receive a new version and
 must not encode held-out answers. A material architecture revision consumes a
@@ -205,7 +205,7 @@ reproducing reference code. For sessions contributing implementation:
 1. Disable web retrieval and repository indexing outside the approved local
    tree where the tool supports it.
 2. If a user describes the goal as a port, clone, reproduction, or emulation,
-   stop and restate the task as independently authored RuView functional
+   stop and restate the task as independently authored GhostView functional
    requirements. Record that wording in the exposure manifest; do not use it
    as permission to retrieve reference implementation material or pursue
    behavioral equivalence.
@@ -389,7 +389,7 @@ At minimum:
   checks and generate a CycloneDX or SPDX SBOM;
 - inspect container layers, CI and provider caches, mounted volumes, model/data
   buckets, notebooks, logs, and local tool indexes for restricted artifacts;
-- verify that every checkpoint parent is an approved RuView artifact or the
+- verify that every checkpoint parent is an approved GhostView artifact or the
   declared random initialization;
 - verify that model loading performs no network access and accepts no embedded
   executable operator or arbitrary path;
@@ -417,13 +417,13 @@ for a medical, emergency, security, or autonomous-action claim.
 
 ## 14. Naming, trademark, and comparative statements
 
-Approved project identities include `RuView Forecast` and crate names derived
-from the RuView domain. Do not use `TimesFM`, `Google`, or a confusingly similar
+Approved project identities include `GhostView Forecast` and crate names derived
+from the GhostView domain. Do not use `TimesFM`, `Google`, or a confusingly similar
 mark in crate names, binaries, model slugs, endpoints, logos, icons, or product
 headlines. Do not copy diagrams or visual branding.
 
 Comparative documentation may accurately identify an external model and its
-version when necessary, with a statement that RuView Forecast is independently
+version when necessary, with a statement that GhostView Forecast is independently
 developed and not affiliated with or endorsed by Google. Comparative claims
 need identical datasets, metric definitions, permitted model use, and evidence
 labels.

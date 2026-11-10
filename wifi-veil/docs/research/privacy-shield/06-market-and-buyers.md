@@ -63,9 +63,9 @@ assume RF denial — reinforcing the selective-coexistence positioning.
 
 ---
 
-## 5. Where VEIL fits RuView's positioning
+## 5. Where VEIL fits GhostView's positioning
 
-VEIL pairs with BFLD to make RuView the *both-sides* RF-perception platform:
+VEIL pairs with BFLD to make GhostView the *both-sides* RF-perception platform:
 BFLD/AETHER do sensing responsibly and detect leakage; VEIL is the customer-
 facing **privacy firewall** that protects a room from *others'* sensing. That is a
 defensible, standards-anchored, gap-filling story: the standards body left the

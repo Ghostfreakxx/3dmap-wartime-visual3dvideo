@@ -21,7 +21,7 @@
   ```
 - The target firmware blob present on the device: BCM43455c0
   (`brcmfmac43455-sdio.bin`), version **7_45_189** (Cypress) or 7_45_154
-  (Raspbian). Do **not** commit the blob or any extracted symbols/ROM to RuView.
+  (Raspbian). Do **not** commit the blob or any extracted symbols/ROM to GhostView.
 
 ## Where this patch would live in the Nexmon tree
 
@@ -38,7 +38,7 @@ $NEXMON_ROOT/patches/bcm43455c0/7_45_189/veil/
 └── ...
 ```
 
-Keep the RuView copies canonical; the Nexmon tree gets copies/symlinks so the
+Keep the GhostView copies canonical; the Nexmon tree gets copies/symlinks so the
 core stays byte-identical to `../core/`.
 
 ## Linking the portable core (MCU-friendly)

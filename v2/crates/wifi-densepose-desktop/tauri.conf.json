@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/tauri-apps/tauri/dev/crates/tauri-config-schema/schema.json",
-  "productName": "RuView Desktop",
+  "productName": "GhostView Desktop",
   "version": "0.4.4",
   "identifier": "net.ruv.ruview",
   "build": {
@@ -18,7 +18,7 @@
   "app": {
     "windows": [
       {
-        "title": "RuView Desktop",
+        "title": "GhostView Desktop",
         "width": 1200,
         "height": 800,
         "minWidth": 900,

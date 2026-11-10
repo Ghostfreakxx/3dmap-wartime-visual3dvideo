@@ -1,4 +1,4 @@
-# RuView Troubleshooting Guide
+# GhostView Troubleshooting Guide
 
 Known issues and fixes from the rebase-to-upstream branch (upstream #301).
 
@@ -110,13 +110,13 @@ ssh thyhack@100.90.238.87
 
 **Symptom:** Plugging into the right USB-C port (when facing the board with USB-C toward you) shows no serial device on the host.
 
-**Fix:** Use the left USB-C port. On most ESP32-S3-DevKitC boards, the left port is the USB-to-UART bridge (CP2102/CH340) used for flashing and serial monitor. The right port is the native USB (USB-JTAG) which requires different drivers and isn't used by the RuView firmware.
+**Fix:** Use the left USB-C port. On most ESP32-S3-DevKitC boards, the left port is the USB-to-UART bridge (CP2102/CH340) used for flashing and serial monitor. The right port is the native USB (USB-JTAG) which requires different drivers and isn't used by the GhostView firmware.
 
 ---
 
 ## 9. Docker Desktop on Windows drops UDP from multiple ESP32 nodes
 
-**Symptom:** Two or more ESP32 nodes are flashed, provisioned, and visibly transmit on the network — `tcpdump`/Wireshark on the Windows host shows datagrams from every node — but inside the Docker container only one source IP arrives. `/api/v1/sensing/latest` shows a single node and the live UI freezes or only tracks one body. Reported in #374 (4-node bench) and reproduced in #386 (6-node demo, RuView v0.7.0).
+**Symptom:** Two or more ESP32 nodes are flashed, provisioned, and visibly transmit on the network — `tcpdump`/Wireshark on the Windows host shows datagrams from every node — but inside the Docker container only one source IP arrives. `/api/v1/sensing/latest` shows a single node and the live UI freezes or only tracks one body. Reported in #374 (4-node bench) and reproduced in #386 (6-node demo, GhostView v0.7.0).
 
 **Root cause:** Docker Desktop on Windows runs the engine inside a WSL2 / Hyper-V VM. Inbound UDP from the host LAN is forwarded through `vpnkit` / `vEthernet` and the multi-source-IP datagrams are demultiplexed onto a single virtual socket. The first source-IP "wins"; subsequent unique sources are silently dropped at the VM boundary. This is a Docker Desktop limitation, not a sensing-server bug — `host.docker.internal` and `--network host` do not help (host networking is not implemented for the Linux engine on Windows).
 

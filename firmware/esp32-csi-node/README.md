@@ -113,7 +113,7 @@ do not establish physical-board qualification or sensing accuracy. The older
 
 ### Guided Mac onboarding (introduced in 0.8.12)
 
-Firmware 0.8.12 adds the protocol used by the RuView macOS Add
+Firmware 0.8.12 adds the protocol used by the GhostView macOS Add
 Sensor workflow. A directly attached S3 or C6 can identify itself through a
 nonce bound USB serial receipt, preserve its current WiFi settings, accept an
 unused node ID and private LAN server address, then reboot. The Mac app does
@@ -261,7 +261,7 @@ MSYS_NO_PATHCONV=1 docker run --rm \
 > **Display-less boards (ESP32-S3-DevKitC-1 and similar):** build with the
 > `sdkconfig.defaults.devkitc` overlay instead — the default build compiles
 > display support in, and the runtime panel probe false-positives on boards
-> with no panel, which disables the RuView#893 MGMT+DATA CSI upgrade and
+> with no panel, which disables the GhostView#893 MGMT+DATA CSI upgrade and
 > collapses CSI yield to 0 pps. See the header of
 > [`sdkconfig.defaults.devkitc`](sdkconfig.defaults.devkitc) for the exact
 > build command.

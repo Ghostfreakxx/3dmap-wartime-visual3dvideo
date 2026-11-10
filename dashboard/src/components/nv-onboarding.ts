@@ -127,7 +127,7 @@ const STEPS: TourStep[] = [
     icon: '🛍',
     title: 'App Store — 65 edge apps',
     body: `<p>Click the grid icon. The <b>App Store</b> catalogues every
-        hot-loadable WASM edge module RuView ships, organised by category:
+        hot-loadable WASM edge module GhostView ships, organised by category:
         medical, security, smart-building, retail, industrial, signal,
         learning, autonomy, exotic.</p>
       <p>Each card carries id / category / status / event IDs / compute budget /

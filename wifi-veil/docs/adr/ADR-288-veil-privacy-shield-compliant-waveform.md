@@ -40,10 +40,10 @@ these attacks abuse — and a 2023 proposal for a BFI secure-transmission mechan
 (802.11-23/0782) was **withdrawn**, so the standard shipped with no privacy
 protections.
 
-RuView already has a *detection* layer for this: **BFLD** (ADR-118/121) measures
+GhostView already has a *detection* layer for this: **BFLD** (ADR-118/121) measures
 the identity-leakage of each frame and gates what leaves the node. But BFLD
-protects *RuView's own outputs*; it does nothing about a **third-party sniffer**
-capturing the room's plaintext BFI off the air. There is no RuView component, and
+protects *GhostView's own outputs*; it does nothing about a **third-party sniffer**
+capturing the room's plaintext BFI off the air. There is no GhostView component, and
 per our market survey no shipping product anywhere, that prevents that.
 
 ### 1.2 Constraint: compliant waveform controls, never jamming
@@ -212,7 +212,7 @@ The derived, prioritized improvement backlog lives in the SOTA-update file (§4)
 
 ## 5. Consequences
 
-- RuView gains the *countermeasure* half of its RF-privacy story: BFLD detects
+- GhostView gains the *countermeasure* half of its RF-privacy story: BFLD detects
   leakage, VEIL acts on it — a defensible, standards-anchored, gap-filling
   position (see `docs/research/privacy-shield/06-market-and-buyers.md`).
 - The compliance audit gives regulators/auditors a machine-checkable "not jamming"

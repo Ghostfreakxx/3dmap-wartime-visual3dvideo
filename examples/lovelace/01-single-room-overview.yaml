@@ -12,7 +12,7 @@
 # room active, no movement). Pose visualisation is a placeholder for
 # the v0.7.1 picture-elements integration.
 
-title: RuView — Bedroom
+title: GhostView — Bedroom
 path: ruview-bedroom
 icon: mdi:home-thermometer
 cards:

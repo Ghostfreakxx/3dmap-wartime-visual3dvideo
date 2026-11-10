@@ -1,5 +1,5 @@
 blueprint:
-  name: RuView — notify on possible distress
+  name: GhostView — notify on possible distress
   description: >
     Send a push notification when RuView's HA-MIND inference layer
     detects sustained elevated heart rate + agitated motion without a
@@ -11,7 +11,7 @@ blueprint:
   input:
     distress_entity:
       name: Possible distress binary_sensor
-      description: The `binary_sensor.*_possible_distress` entity published by RuView.
+      description: The `binary_sensor.*_possible_distress` entity published by GhostView.
       selector:
         entity:
           domain: binary_sensor

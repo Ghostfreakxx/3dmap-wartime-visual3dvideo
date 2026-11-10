@@ -93,7 +93,7 @@ const MODULE_LIBRARY: LibraryModule[] = [
     author: "RuView Team", license: "Apache-2.0", rating: 5.0, downloads: 24500,
     chips: ["esp32", "esp32s2", "esp32s3", "esp32c3", "esp32c6"], memoryKb: 64,
     features: ["WASM3 interpreter", "Sandboxed execution", "Inter-module messaging", "Resource quotas", "Hot-reload support", "Signature verification"],
-    requirements: ["64KB RAM", "Pre-installed on all RuView nodes"],
+    requirements: ["64KB RAM", "Pre-installed on all GhostView nodes"],
     changelog: [
       { version: "1.0.0", date: "2024-01-01", notes: "Production-ready RVF runtime" },
     ],

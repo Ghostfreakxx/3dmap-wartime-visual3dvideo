@@ -1,6 +1,6 @@
 # Examples
 
-Real-time sensing applications built on the RuView platform.
+Real-time sensing applications built on the GhostView platform.
 
 ## Unified Dashboard (start here)
 

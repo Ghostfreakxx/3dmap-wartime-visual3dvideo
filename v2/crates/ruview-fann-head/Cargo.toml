@@ -1,6 +1,6 @@
 [package]
 name = "ruview-fann-head"
-description = "Default-off ruv-FANN presence head for RuView: parity, bounded fit, shadow scoring and replay (ADR-425)"
+description = "Default-off ruv-FANN presence head for GhostView: parity, bounded fit, shadow scoring and replay (ADR-425)"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true

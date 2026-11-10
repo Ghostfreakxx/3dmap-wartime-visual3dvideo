@@ -2,7 +2,7 @@
 name = "wifi-densepose-rufield"
 version = "0.3.0"
 edition = "2021"
-description = "ADR-262 anti-corruption bridge: converts RuView WiFi-CSI sensing output into signed RuField FieldEvents (P0–P5 privacy mapping + ed25519 provenance)"
+description = "ADR-262 anti-corruption bridge: converts GhostView WiFi-CSI sensing output into signed RuField FieldEvents (P0–P5 privacy mapping + ed25519 provenance)"
 license.workspace = true
 authors.workspace = true
 repository.workspace = true

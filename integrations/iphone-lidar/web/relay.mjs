@@ -160,7 +160,7 @@ if (directInvocation) {
   const relay = createLiDARRelay({ token: process.env.RUVIEW_LIDAR_TOKEN });
   await relay.listen(port, host);
   const encodedToken = encodeURIComponent(relay.accessToken);
-  console.log(`RuView iPhone LiDAR relay listening on ${host}:${port}`);
+  console.log(`GhostView iPhone LiDAR relay listening on ${host}:${port}`);
   console.log(`Browser: http://<host>:${port}/?token=${encodedToken}`);
   console.log(`Native endpoint: ws://<host>:${port}/ws/lidar?token=${encodedToken}`);
 }

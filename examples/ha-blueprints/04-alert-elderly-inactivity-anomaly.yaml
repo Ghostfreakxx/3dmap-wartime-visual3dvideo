@@ -1,5 +1,5 @@
 blueprint:
-  name: RuView — alert on elderly inactivity anomaly
+  name: GhostView — alert on elderly inactivity anomaly
   description: >
     Send a high-priority push notification when elderly_inactivity_anomaly
     fires — the resident has been still for unusually long given their

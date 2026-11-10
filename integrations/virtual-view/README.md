@@ -19,7 +19,7 @@ const adapter = createVirtualViewAdapter({ broker, privateKey, enabled: true });
 // adapter.observe(calibratedSnapshot) returns RENDER, SKIP or BLOCK plus authority:none.
 ```
 
-The example assumes sibling RuView and Dream Machine clones; adjust the import
+The example assumes sibling GhostView and Dream Machine clones; adjust the import
 from the executing module's location. Pass calibrated `virtual-view.v1` scene
 snapshots in room-local ENU metres. See Dream Machine ADR-0108 for every field,
 threshold, trust boundary, receipt and acceptance rule. The adapter does not

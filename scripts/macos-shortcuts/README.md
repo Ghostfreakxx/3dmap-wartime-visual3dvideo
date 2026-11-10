@@ -1,13 +1,13 @@
-# macOS Shortcuts ↔ RuView bridge (ADR-125 §1.4 "Tier 2 — Shortcuts-as-glue")
+# macOS Shortcuts ↔ GhostView bridge (ADR-125 §1.4 "Tier 2 — Shortcuts-as-glue")
 
 This directory ships the small set of glue you drop onto an always-on
-Mac (like `ruv-mac-mini`) so RuView's BFLD-gated sensing events can
+Mac (like `ruv-mac-mini`) so GhostView's BFLD-gated sensing events can
 trigger native Apple Home actions — including HomePod announcements,
 scene activations, cross-device notifications, and any third-party
 HomeKit accessory the operator has paired.
 
 It is the "Tier 2" lever from the ADR-125 strategy table: every
-RuView characteristic becomes addressable from Shortcuts and (by
+GhostView characteristic becomes addressable from Shortcuts and (by
 extension) from Siri, the Watch's "Run Shortcut" complication, and
 the iPhone/iPad Shortcut widgets.
 
@@ -21,7 +21,7 @@ real C6 (192.168.1.179, ruv.net)
         ↓
         ↓  HTTP poll loop in launchd job below
         ↓
-    macOS Shortcut "RuView Announce" (operator-defined in Shortcuts.app)
+    macOS Shortcut "GhostView Announce" (operator-defined in Shortcuts.app)
       → action: "Speak Text on HomePod"
         → HomePod (any room) audibly announces the event ← Siri voice
 ```
@@ -33,16 +33,16 @@ that activates the Shortcut by name via `osascript`.
 ## One-time setup on the Mac
 
 1. **Create the Shortcut** in `Shortcuts.app`:
-   - Name: `RuView Announce`
+   - Name: `GhostView Announce`
    - Input: accepts text
    - Action: **Speak Text** (set target → your HomePod / HomePod mini)
    - Save
 
 2. **Verify it runs from the command line**:
    ```sh
-   osascript -e 'tell application "Shortcuts Events" to run shortcut "RuView Announce" with input "Test from RuView"'
+   osascript -e 'tell application "Shortcuts Events" to run shortcut "GhostView Announce" with input "Test from GhostView"'
    ```
-   The HomePod should speak "Test from RuView".
+   The HomePod should speak "Test from GhostView".
 
 3. **Install the launchd job**:
    ```sh
@@ -72,10 +72,10 @@ that activates the Shortcut by name via `osascript`.
 
 ## Extending to multiple HomePods
 
-Edit `RuView Announce` in Shortcuts.app:
+Edit `GhostView Announce` in Shortcuts.app:
 - Add a "Choose from List" action with each HomePod target, OR
-- Create per-room Shortcuts (`RuView Announce Kitchen`,
-  `RuView Announce Bedroom`) and pass the room name into the
+- Create per-room Shortcuts (`GhostView Announce Kitchen`,
+  `GhostView Announce Bedroom`) and pass the room name into the
   script's `--shortcut-name` flag
 
 The script supports `--shortcut-name <name>` so multiple watchers can
@@ -84,7 +84,7 @@ target different shortcuts per room without changing this code.
 ## Connection to ADR-125
 
 This is the Tier 2 "Shortcuts-as-glue" implementation — it lets the
-operator wire RuView events to anything Apple Home + Siri can do,
+operator wire GhostView events to anything Apple Home + Siri can do,
 without needing the AirPlay 2 voice path (which is still blocked on
 the router's mDNS reflection on Nighthawk MR60 firmware). The
 HomePod doesn't need to be visible from `ruv-mac-mini` because the

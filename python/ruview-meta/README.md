@@ -6,7 +6,7 @@ using only the WiFi signal already in your home. No cameras. No
 wearables. Works through walls and in the dark.
 
 `ruview` is the brand-facing meta-package for the
-[RuView](https://github.com/ruvnet/RuView) sensing stack. It installs
+[GhostView](https://github.com/ruvnet/RuView) sensing stack. It installs
 the compiled PyO3 wheel published as
 [`wifi-densepose`](https://pypi.org/project/wifi-densepose/) and
 re-exports its full API under the `ruview` namespace — so you can

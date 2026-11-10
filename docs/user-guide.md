@@ -28,7 +28,7 @@ WiFi DensePose turns commodity WiFi signals into real-time human pose estimation
    - [Cognitum Seed Integration (ADR-069)](#cognitum-seed-integration-adr-069)
 5. [REST API Reference](#rest-api-reference)
 6. [WebSocket Streaming](#websocket-streaming)
-7. [RuView npm toolkit (`@ruvnet/ruview`)](#ruview-npm-toolkit-ruvnetruview)
+7. [GhostView npm toolkit (`@ruvnet/ruview`)](#ruview-npm-toolkit-ruvnetruview)
    - [Hardware from the command line](#hardware-from-the-command-line)
    - [MCP for agents, ChatGPT and MCP Apps](#mcp-for-agents-chatgpt-and-mcp-apps)
    - [Claude Code mod: live sensing pane](#claude-code-mod-live-sensing-pane)
@@ -130,7 +130,7 @@ sudo apt install -y \
 This prepares the native GTK/WebKit dependencies used by the desktop/Tauri crates in this workspace.
 
 ```bash
-git clone https://github.com/ruvnet/RuView.git
+git clone --recurse-submodules https://github.com/Ghostfreakxx/3dmap-wartime-visual3dvideo.git
 cd RuView/v2
 
 # Build
@@ -227,7 +227,7 @@ matrix on each `v*-pip` tag.
 To build the wheel from source (e.g. for a local change):
 
 ```bash
-git clone https://github.com/ruvnet/RuView.git
+git clone --recurse-submodules https://github.com/Ghostfreakxx/3dmap-wartime-visual3dvideo.git
 cd RuView/python
 pip install maturin>=1.7
 maturin develop --release
@@ -244,8 +244,8 @@ Full API + tests breakdown is on the PyPI front page:
 An interactive installer that detects your hardware and recommends a profile:
 
 ```bash
-git clone https://github.com/ruvnet/RuView.git
-cd RuView
+git clone --recurse-submodules https://github.com/Ghostfreakxx/3dmap-wartime-visual3dvideo.git
+cd 3dmap-wartime-visual3dvideo
 ./install.sh
 ```
 
@@ -527,12 +527,12 @@ If the ESP32 nodes are provisioned with `--target-ip <AGGREGATOR_HOST>`, that IP
 
 ### Cognitum Spaces activation
 
-Cognitum Spaces gives RuView a tenant/workspace-scoped semantic world model
+Cognitum Spaces gives GhostView a tenant/workspace-scoped semantic world model
 without uploading raw RF/CSI, recordings, pose frames, vital waveforms, or
 identity observations. It represents sites, buildings, floors, bounded
 rooms/spaces, zones, anonymous entities, semantic events, and alerts.
 
-Activate the public RuView OAuth client with Authorization Code + PKCE:
+Activate the public GhostView OAuth client with Authorization Code + PKCE:
 
 ```bash
 wifi-densepose login --spaces
@@ -685,7 +685,7 @@ Recording and model files live under the server's `--data-dir` (env `RUVIEW_DATA
 
 ### RuField surface (ADR-262 P3)
 
-RuView's live WiFi-CSI sensing now also speaks the standalone **RuField MFS** wire format. Each governed sensing cycle is converted (via the `wifi-densepose-rufield` anti-corruption bridge) into a **signed** `FieldEvent` (`Modality::WifiCsi`, ed25519 `ProvenanceRef`) and surfaced on two additive endpoints:
+GhostView's live WiFi-CSI sensing now also speaks the standalone **RuField MFS** wire format. Each governed sensing cycle is converted (via the `wifi-densepose-rufield` anti-corruption bridge) into a **signed** `FieldEvent` (`Modality::WifiCsi`, ed25519 `ProvenanceRef`) and surfaced on two additive endpoints:
 
 - `GET /api/field` — the most recent signed events (JSON).
 - `GET /ws/field` — a WebSocket that streams each cycle's signed event (mirrors `/ws/sensing`).
@@ -931,7 +931,7 @@ Full design + operator guide: [`docs/integrations/home-assistant.md`](integratio
    docker run --rm --net=host ruvnet/wifi-densepose:0.7.0 \
        --source esp32 --mqtt --mqtt-host <ha-host-ip>
    ```
-4. Within ~5 seconds HA auto-creates one **device** per RuView node with 21 entities: 11 raw signals (presence, person count, HR, BR, motion, fall, RSSI, zones, pose, …) plus 10 semantic primitives (someone-sleeping, possible-distress, room-active, elderly-inactivity-anomaly, meeting, bathroom, fall-risk, bed-exit, no-movement, multi-room-transition).
+4. Within ~5 seconds HA auto-creates one **device** per GhostView node with 21 entities: 11 raw signals (presence, person count, HR, BR, motion, fall, RSSI, zones, pose, …) plus 10 semantic primitives (someone-sleeping, possible-distress, room-active, elderly-inactivity-anomaly, meeting, bathroom, fall-risk, bed-exit, no-movement, multi-room-transition).
 
 ### Privacy mode for healthcare / AAL
 
@@ -1029,7 +1029,7 @@ Detailed surface: [`v2/crates/wifi-densepose-bfld/README.md`](../v2/crates/wifi-
 
 ### SENSE-BRIDGE — rvagent MCP server for AI agents (ADR-124)
 
-`@ruvnet/rvagent` is a dual-transport MCP server that makes RuView sensing primitives callable by Claude Code, Cursor, and ruflo swarms without bespoke HTTP client code.
+`@ruvnet/rvagent` is a dual-transport MCP server that makes GhostView sensing primitives callable by Claude Code, Cursor, and ruflo swarms without bespoke HTTP client code.
 
 **Install (Claude Code)**:
 
@@ -1062,9 +1062,9 @@ Source: [`tools/ruview-mcp/`](../tools/ruview-mcp/README.md). Tracking issue: [#
 
 ---
 
-## RuView npm toolkit (`@ruvnet/ruview`)
+## GhostView npm toolkit (`@ruvnet/ruview`)
 
-`@ruvnet/ruview` is RuView's operator toolkit on npm. It has no runtime
+`@ruvnet/ruview` is GhostView's operator toolkit on npm. It has no runtime
 dependencies and runs on Node 20+. It is tested on Windows and Linux. One tool
 registry serves:
 - a CLI;
@@ -1119,7 +1119,7 @@ npx @ruvnet/ruview@0.9.1 flash --port COM16 --bundle firmware/esp32-csi-node/rel
 |---|---|
 | `heartbeat-only sender` | A board is alive but sends no CSI. On a Realtek board, run `monitor --baud 1500000`. If it shows `lack of csi buf`, the board ran out of CSI report buffers (`csi_buffer_starvation`). Reset it. |
 | `port_in_use` | The sensing server already holds UDP 5005. Stop it, or capture on another port your nodes target. |
-| `no_decodable_packets` | Packets arrived, but none were in a known RuView format. Check the sender. |
+| `no_decodable_packets` | Packets arrived, but none were in a known GhostView format. Check the sender. |
 | `seqReordered` / `seqStrays` | Out-of-order or stray sequence numbers. These are not counted as loss. |
 
 **ESPHome radar kits** (for example the Seeed MR60BHA2): the kit's firmware
@@ -1152,7 +1152,7 @@ RUVIEW_MCP_GRANTS=device-access npx @ruvnet/ruview@0.9.1 mcp start --http --port
 - It never allows flashing or calibration, whatever grants are set.
 
 Node captures, radar reads, device scans and doctor results render in the
-**RuView console**: a widget that ChatGPT and other MCP Apps hosts show inline,
+**GhostView console**: a widget that ChatGPT and other MCP Apps hosts show inline,
 with a Refresh button that re-runs the tool.
 
 ### Claude Code mod: live sensing pane
@@ -1163,7 +1163,7 @@ beside the conversation, refreshed on a timer, showing:
 - an optional ESPHome radar;
 - alerts.
 
-It also keeps a status line such as `RuView · 2 nodes · radar present`.
+It also keeps a status line such as `GhostView · 2 nodes · radar present`.
 
 Keys `1`, `2` and `3` switch between three views (ADR-378):
 - **Overview**: the cards.
@@ -1178,7 +1178,7 @@ The two live views draw in terminal cells and animate in place.
 ```bash
 npx @ruvnet/ruview@0.9.1 mod           # prints the mod's path in your install and how to load it
 claude --plugin-dir "<that path>"       # try it for one session
-# or from the RuView marketplace, inside Claude Code:
+# or from the GhostView marketplace, inside Claude Code:
 #   /plugin marketplace add ruvnet/RuView
 #   /plugin install ruview-live@ruview
 ```
@@ -1248,7 +1248,7 @@ Both UIs update in real-time via WebSocket and auto-detect the sensing server on
 
 ## Dense Point Cloud (Camera + WiFi CSI Fusion)
 
-RuView can generate real-time 3D point clouds by fusing camera depth estimation with WiFi CSI spatial sensing. This creates a spatial model of the environment that updates in real-time.
+GhostView can generate real-time 3D point clouds by fusing camera depth estimation with WiFi CSI spatial sensing. This creates a spatial model of the environment that updates in real-time.
 
 ### Setup
 
@@ -1658,7 +1658,7 @@ Once trained, the adaptive model runs automatically:
 
 ## World Model Prediction (OccWorld)
 
-RuView integrates [OccWorld](https://github.com/wzzheng/OccWorld) (ECCV 2024) to predict
+GhostView integrates [OccWorld](https://github.com/wzzheng/OccWorld) (ECCV 2024) to predict
 future 3D occupancy from WiFi CSI — extending the Kalman tracker's 5-frame horizon to
 15 predicted frames (~7 s). See [ADR-147](adr/ADR-147-nvidia-cosmos-world-foundation-model-integration.md)
 and the [benchmark proof](adr/ADR-168-benchmark-proof.md) for full details.
@@ -1759,7 +1759,7 @@ Progressive loading enables instant startup (Layer A loads in <5ms with basic in
 
 Models trained in one room can lose substantial accuracy in a new room because the multipath
 distribution changes. ADR-027 proposes an automatic adaptation design, and the Rust tree contains
-individual research components, but RuView does **not** currently provide a validated command that
+individual research components, but GhostView does **not** currently provide a validated command that
 turns ~200 unlabeled frames into a working room adapter.
 
 Current, testable calibration is the separate **labeled** reference in
@@ -1835,7 +1835,7 @@ An RVF file contains: model weights, HNSW vector index, quantization codebooks, 
 
 ## Perception Certificate Spine (Developer Preview, ADR-300)
 
-RuView's perception substrate program (ADR-300) is building a `signal → observation →
+GhostView's perception substrate program (ADR-300) is building a `signal → observation →
 calibration → inference → uncertainty → evidence → certificate → policy → governed
 action` pipeline, where a downstream consumer either gets a calibrated, provenance-backed
 answer or an explicit `UNKNOWN` — never a confident-looking guess outside the sensor's
@@ -2190,7 +2190,7 @@ These are advanced setups. See the respective driver documentation for installat
 
 ## Camera-Free Pose Training
 
-RuView can train a 17-keypoint COCO pose model **without any camera** by fusing 10 sensor signals from the ESP32 nodes and Cognitum Seed:
+GhostView can train a 17-keypoint COCO pose model **without any camera** by fusing 10 sensor signals from the ESP32 nodes and Cognitum Seed:
 
 | Signal | Source | What it provides |
 |--------|--------|-----------------|
@@ -2950,7 +2950,7 @@ No. Run `docker run -p 3000:3000 ruvnet/wifi-densepose:latest` and open `http://
 No. Consumer WiFi exposes only RSSI (one number per access point), not CSI (56+ complex subcarrier values per frame). RSSI supports coarse presence and motion detection. Full pose estimation requires CSI-capable hardware like an ESP32-S3 ($8) or a research NIC.
 
 **Q: How accurate is the pose estimation?**
-The strongest published RuView result is the MM-Fi transformer benchmark (82.69% torso-PCK@20 on
+The strongest published GhostView result is the MM-Fi transformer benchmark (82.69% torso-PCK@20 on
 the matched `random_split` protocol), not a live ESP32 result. The committed cog model measured
 3.0% PCK@20 on its holdout, below the ≥35% target, and the viewer's live skeleton is a heuristic
 placeholder. No measured claim currently shows a 3-node ESP32 mesh reliably tracking 17 keypoints.

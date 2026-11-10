@@ -1,6 +1,6 @@
-# RuView README visual system
+# GhostView README visual system
 
-The README matches the RuView header palette: deep navy backgrounds, electric blue
+The README matches the GhostView header palette: deep navy backgrounds, electric blue
 RF fields, lime pose and signal accents, warm amber joints and soft white text,
 layered isometric geometry, moving scan planes, radar sweeps, articulated pose
 limbs, breathing curves and separated hardware layers. Each feature uses its own

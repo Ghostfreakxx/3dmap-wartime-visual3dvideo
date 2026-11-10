@@ -7,7 +7,7 @@
 # Replace `_bedroom`, `_living`, `_kitchen`, `_office`, `_bathroom`
 # with your actual room slugs from the friendly_name resolution.
 
-title: RuView — Whole house
+title: GhostView — Whole house
 path: ruview-house
 icon: mdi:home-search
 
