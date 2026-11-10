@@ -1,0 +1,26 @@
+# GhostView — run the simulated demo with Docker (no Rust install needed).
+#
+#   git submodule update --init --depth 1
+#   export RUVIEW_API_TOKEN=$(openssl rand -hex 32)
+#   docker compose up --build
+#
+# Then open http://localhost:3000/ui/index.html and paste the token into the
+# settings (gear) panel. For real ESP32 hardware use docker/docker-compose.yml.
+services:
+  ghostview:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.rust
+    image: ghostview:local
+    ports:
+      - "127.0.0.1:3000:3000"   # dashboard, 3D view and REST API
+      - "127.0.0.1:3001:3001"   # WebSocket
+    environment:
+      - CSI_SOURCE=${CSI_SOURCE:-simulated}
+      # Required: the container refuses to start without a token.
+      - RUVIEW_API_TOKEN
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    restart: unless-stopped

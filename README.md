@@ -38,15 +38,29 @@ cd 3dmap-wartime-visual3dvideo
 
 ## Running it
 
-You need [Rust](https://rustup.rs) and git. No sensing hardware is needed for
-the demo — the server generates simulated data.
+No sensing hardware is needed for the demo — the server generates simulated
+data, and the dashboard says so in a banner.
+
+### Option 1: Docker (nothing else to install)
+
+```bash
+export RUVIEW_API_TOKEN=$(openssl rand -hex 32)
+docker compose up --build
+```
+
+The first build compiles the server and takes a while. Print the token with
+`echo $RUVIEW_API_TOKEN`.
+
+### Option 2: From source (needs [Rust](https://rustup.rs))
 
 ```bash
 ./run-demo.sh
 ```
 
-The script fetches the submodules, builds the sensing server (several minutes
-the first time) and starts it. It prints an API token and two addresses:
+The script fetches the submodules, builds the sensing server and starts it,
+printing the API token.
+
+### Open it
 
 - Dashboard: <http://localhost:3000/ui/index.html>
 - 3D view: <http://localhost:3000/ui/observatory.html>
@@ -55,8 +69,17 @@ Open the dashboard, click the gear icon, paste the token and choose
 "Save & Apply". The browser remembers it. The 3D view loads three.js from the
 internet, so the machine needs to be online.
 
-For real hardware (ESP32 nodes) and everything else, see the
+Both options listen on your own computer only (`localhost`). For real hardware
+(ESP32 nodes), other machines on your network, and everything else, see the
 [user guide](docs/user-guide.md).
+
+## Using it responsibly
+
+With real sensors, GhostView detects people's presence, movement and
+breathing without a camera — including people who cannot see the sensor. Only
+run it in spaces you control, tell the people in them, and check the privacy
+and surveillance laws that apply where you live. Keep the API token private
+and do not expose the server to the internet without it.
 
 The published packages still belong to the upstream project and keep their
 upstream names — the Docker image `ruvnet/wifi-densepose`, the npm package
