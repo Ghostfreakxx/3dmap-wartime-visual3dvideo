@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Party Worker POV</title>
+<style>
+  html, body { margin: 0; background: #000; overflow: hidden; }
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #111;
+    font-family: "Inter", "Liberation Sans", Arial, sans-serif; font-weight: 900; color: #fff; }
+  .scene { position: absolute; inset: 0; display: none; padding: 150px 70px; box-sizing: border-box; }
+  .scene.on { display: block; }
+  .meme { font-size: 92px; line-height: 1.06; text-transform: uppercase; letter-spacing: -.01em;
+    -webkit-text-stroke: 14px #000; paint-order: stroke fill; text-align: center; }
+  .small { font-size: 54px; -webkit-text-stroke: 9px #000; }
+  .tag { display: inline-block; background: #fff; color: #000; font-size: 44px; padding: 10px 26px;
+    border-radius: 12px; -webkit-text-stroke: 0; text-transform: uppercase; }
+  .center { position: absolute; left: 70px; right: 70px; top: 50%; transform: translateY(-50%); }
+  .pop { animation: pop .38s cubic-bezier(.2, 1.6, .4, 1) both; animation-delay: var(--d); }
+  .slide { animation: slide .4s cubic-bezier(.2, .9, .3, 1) both; animation-delay: var(--d); }
+  .fade { animation: fade .35s ease both; animation-delay: var(--d); }
+  .shake { animation: pop .38s cubic-bezier(.2, 1.6, .4, 1) both, shake .5s linear both;
+    animation-delay: var(--d), calc(var(--d) + .38s); }
+  .zoom { animation: zoom var(--len, 4s) linear both; animation-delay: var(--d); }
+  @keyframes pop { from { opacity: 0; transform: scale(.3) rotate(-6deg); } to { opacity: 1; transform: none; } }
+  @keyframes slide { from { opacity: 0; transform: translateY(90px); } to { opacity: 1; transform: none; } }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes shake { 0%, 100% { translate: 0 0; } 20% { translate: -14px 6px; } 40% { translate: 12px -8px; }
+    60% { translate: -9px -5px; } 80% { translate: 8px 6px; } }
+  @keyframes zoom { from { scale: 1; } to { scale: 1.09; } }
+
+  .scene { color: #fff; }
+  #s1 { background: #0d0d0f; } #s2 { background: #dfeaf2; color: #111; } #s3 { background: #ffd84d; color: #111; }
+  #s4 { background: #f4ecd8; color: #1b1b1b; } #s5 { background: #7a1f1f; } #s6 { background: #1d2a44; }
+  #s7 { background: #101418; } #s8 { background: #fffdf4; color: #111; } #s9 { background: #0d0d0f; }
+  .bubble { position: absolute; background: #fff; color: #111; font-size: 46px; padding: 22px 32px; border-radius: 34px;
+    line-height: 1.15; max-width: 640px; border: 6px solid #111; }
+  .dark { color: #111; -webkit-text-stroke: 0; }
+  svg.art { position: absolute; left: 0; right: 0; bottom: 0; width: 1080px; }
+  /* starter pack */
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; margin-top: 60px; }
+  .tile { background: #fff; border: 6px solid #111; border-radius: 26px; box-shadow: 12px 12px 0 #111; padding: 34px 30px;
+    height: 470px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; }
+  .tile .big { font-size: 120px; line-height: 1; }
+  .tile .txt { font-size: 44px; line-height: 1.12; }
+  /* press statement */
+  .paper { background: #fffdf4; border: 6px solid #1b1b1b; border-radius: 10px; margin-top: 70px; padding: 56px;
+    box-shadow: 18px 18px 0 #1b1b1b; }
+  .paper h2 { margin: 0; font-size: 60px; letter-spacing: .14em; }
+  .paper .sub { font-size: 34px; font-weight: 600; color: #7a7466; margin: 8px 0 60px; }
+  .paper .line { font-size: 72px; line-height: 1.1; }
+  .slot { margin-top: 30px; background: #1b1b1b; color: #ffe14d; font-size: 70px; line-height: 1.1; padding: 34px 36px;
+    border-radius: 18px; min-height: 240px; display: flex; align-items: center; }
+  .note { margin-top: 60px; font-size: 40px; font-weight: 700; color: #7a7466; text-align: center; }
+  /* auction */
+  .bid { font-size: 66px; background: #fff; color: #111; border-radius: 22px; padding: 26px 34px; margin: 30px 0;
+    border: 6px solid #111; box-shadow: 10px 10px 0 #ffcf66; width: fit-content; }
+  .bid:nth-child(even) { margin-left: auto; }
+  .sold { position: absolute; left: 70px; right: 70px; bottom: 240px; text-align: center; }
+  /* switch */
+  .quote { background: rgba(255,255,255,.08); border-left: 14px solid var(--c); border-radius: 0 26px 26px 0; padding: 36px 40px; margin-top: 50px; }
+  .quote .yr { font-size: 48px; color: var(--c); letter-spacing: .08em; }
+  .quote .q { font-size: 62px; line-height: 1.12; margin-top: 12px; }
+  .prog { margin-top: 90px; font-size: 44px; text-align: center; }
+  .track { height: 54px; border: 6px solid #fff; border-radius: 30px; margin-top: 24px; overflow: hidden; }
+  .fill { height: 100%; background: #9be37a; width: 0; }
+  /* 80% */
+  .pct { font-size: 300px; line-height: 1; text-align: center; margin-top: 60px; color: #2f9e5b; }
+  .of { font-size: 62px; text-align: center; text-transform: uppercase; }
+  .fine { margin-top: 70px; font-size: 46px; font-weight: 700; line-height: 1.35; background: #111; color: #fff; border-radius: 24px; padding: 40px 44px; }
+  .fine b { color: #ffe14d; }
+  /* end */
+  .batt { width: 420px; height: 190px; border: 14px solid #fff; border-radius: 34px; margin: 0 auto 60px; position: relative; padding: 16px; box-sizing: border-box; }
+  .batt::after { content: ""; position: absolute; right: -44px; top: 50px; width: 26px; height: 64px; background: #fff; border-radius: 0 12px 12px 0; }
+  .batt i { display: block; height: 100%; width: 7%; background: #d22b2b; border-radius: 12px; }
+  #s4, #s7, #s8 { padding-top: 320px; }
+  #handle { position: absolute; left: 0; right: 0; bottom: 44px; text-align: center; font-size: 28px; font-weight: 700;
+    letter-spacing: .3em; color: rgba(255, 255, 255, .6); mix-blend-mode: difference; }
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <div class="scene" id="s1" data-a="0" data-b="3.4">
+    <div class="center zoom" style="--d:0s; --len:3.4s">
+      <div class="meme pop" style="--d:.15s; color:#ffe14d">POV:</div>
+      <div class="meme shake" style="--d:.7s; margin-top:30px">you're a party worker</div>
+      <div class="meme small pop" style="--d:1.7s; margin-top:60px">the election is 2 years away</div>
+      <div class="meme small pop" style="--d:2.4s; margin-top:24px; color:#9be37a">and you must stay relevant</div>
+    </div>
+  </div>
+
+  <div class="scene" id="s2" data-a="3.4" data-b="8.8">
+    <svg class="art fade" viewBox="0 0 1080 1100" style="--d:3.5s; height:1100px">
+      <g stroke="#111" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <circle cx="270" cy="330" r="70"/><path d="M270 400v300M270 700l-80 300M270 700l80 300M270 470l190 60"/>
+        <path d="M200 420h140v300H200z" fill="#fff"/><path d="M270 470l190 60"/>
+        <circle cx="820" cy="330" r="70"/><path d="M820 400v300M820 700l-80 300M820 700l80 300M820 470l-150 -20M820 470l120 110"/>
+        <path d="M786 330h68"/>
+      </g>
+      <path d="M750 262h140l-10-46H760z" fill="#8a8f98" stroke="#111" stroke-width="10"/>
+      <g class="pop" style="--d:4.2s; transform-origin:520px 520px; transform-box:view-box">
+        <path d="M455 520c-20-60 40-100 80-80 30-40 100-20 100 30 40 10 50 70 10 90 0 40-60 60-90 40-40 30-110 0-100-50-10-10-10-20 0-30z" fill="#f29bb4" stroke="#111" stroke-width="12"/>
+        <path d="M500 500c20-20 40 10 60-10M520 560c20-20 50 10 80-20M560 470c10 20 40 10 50 30" stroke="#111" stroke-width="9" fill="none" stroke-linecap="round"/>
+      </g>
+    </svg>
+    <div class="bubble pop" style="--d:4.5s; left:60px; top:170px">Sir, good news.<br>We found your brain.</div>
+    <div class="bubble pop" style="--d:6.2s; right:60px; top:420px; background:#ffe14d">No thanks.<br>I have the party WhatsApp group.</div>
+  </div>
+
+  <div class="scene" id="s3" data-a="8.8" data-b="14">
+    <div class="meme dark pop" style="--d:8.9s; font-size:80px">Party worker starter pack</div>
+    <div class="grid">
+      <div class="tile pop" style="--d:9.5s"><div class="big">47</div><div class="txt">WhatsApp groups. All "official".</div></div>
+      <div class="tile pop" style="--d:10.2s"><div class="big" style="color:#d22b2b">₹₹₹</div><div class="txt">Garland budget bigger than own salary.</div></div>
+      <div class="tile pop" style="--d:10.9s"><div class="big">1</div><div class="txt">Selfie with the leader. Leader is looking elsewhere.</div></div>
+      <div class="tile pop" style="--d:11.6s"><div class="big" style="color:#2f9e5b">XXL</div><div class="txt">Welcome banner. Own face bigger than the leader's.</div></div>
+    </div>
+  </div>
+
+  <div class="scene" id="s4" data-a="14" data-b="19.4">
+    <div class="tag pop" style="--d:14.1s; background:#1b1b1b; color:#fff">Daily duty, 9:00 AM</div>
+    <div class="paper slide" style="--d:14.3s">
+      <h2>PRESS STATEMENT</h2>
+      <div class="sub">for immediate release (same as yesterday)</div>
+      <div class="line">We strongly condemn</div>
+      <div class="slot" id="slot"></div>
+    </div>
+    <div class="note fade" style="--d:18.3s">Statement no. <span id="stno">0</span> this week</div>
+  </div>
+
+  <div class="scene" id="s5" data-a="19.4" data-b="24.2">
+    <div class="meme small pop" style="--d:19.5s">Every party, about every other party:</div>
+    <svg class="art fade" viewBox="0 0 1080 1300" style="--d:19.7s; height:1300px">
+      <g stroke="#fff" stroke-width="14" stroke-linecap="round" fill="none">
+        <circle cx="540" cy="330" r="62"/><path d="M540 392v170M540 562l-60 130M540 562l60 130M540 440l-150 250M540 440l150 250"/>
+        <circle cx="220" cy="830" r="62"/><path d="M220 892v170M220 1062l-60 130M220 1062l60 130M220 940l210 -260M220 940l330 60"/>
+        <circle cx="860" cy="830" r="62"/><path d="M860 892v170M860 1062l-60 130M860 1062l60 130M860 940l-210 -260M860 940l-330 60"/>
+      </g>
+    </svg>
+    <div class="bubble pop" style="--d:20.3s; left:270px; top:760px; font-size:40px">UNFULFILLED PROMISES!</div>
+    <div class="bubble pop" style="--d:21.0s; left:30px; top:1210px; font-size:34px; max-width:330px; text-align:center">UNFULFILLED PROMISES!</div>
+    <div class="bubble pop" style="--d:21.7s; right:30px; top:1210px; font-size:34px; max-width:330px; text-align:center; background:#ffe14d">UNFULFILLED PROMISES!</div>
+  </div>
+
+  <div class="scene" id="s6" data-a="24.2" data-b="29.6">
+    <div class="meme pop" style="--d:24.3s; font-size:84px; color:#ffcf66">Manifesto auction</div>
+    <div style="margin-top:50px">
+      <div class="bid pop" style="--d:24.9s">₹5 lakh for everyone!</div>
+      <div class="bid pop" style="--d:25.6s">₹15 lakh insurance!</div>
+      <div class="bid pop" style="--d:26.3s">Gas cylinder at ₹750!</div>
+      <div class="bid pop" style="--d:27.0s">Free WiFi on the moon!</div>
+    </div>
+    <div class="sold">
+      <div class="meme shake" style="--d:27.8s; color:#ff6b5a">Sold!</div>
+      <div class="meme small pop" style="--d:28.5s; margin-top:20px">…to nobody. The voters left the chat.</div>
+    </div>
+  </div>
+
+  <div class="scene" id="s7" data-a="29.6" data-b="35">
+    <div class="meme small pop" style="--d:29.7s">Loyalty speedrun</div>
+    <div class="quote slide" style="--d:30.1s; --c:#6ec1ff"><div class="yr">Before the results</div><div class="q">"I will die in this party."</div></div>
+    <div class="quote slide" style="--d:31.6s; --c:#ffcf66"><div class="yr">After the results</div><div class="q">"I have always believed in this party."<br><span style="font-size:40px; opacity:.7">(a different party)</span></div></div>
+    <div class="prog fade" style="--d:32.8s">Updating ideology… <span id="pc">0</span>%<div class="track"><div class="fill" id="fill"></div></div></div>
+  </div>
+
+  <div class="scene" id="s8" data-a="35" data-b="40">
+    <div class="tag pop" style="--d:35.1s; background:#111; color:#fff">Official claim</div>
+    <div class="pct shake" style="--d:35.4s">80%</div>
+    <div class="of pop" style="--d:36.1s">of the manifesto fulfilled*</div>
+    <div class="fine slide" style="--d:37.0s">*The 80%:<br><b>→</b> banners printed<br><b>→</b> ribbons cut<br><b>→</b> this announcement</div>
+  </div>
+
+  <div class="scene" id="s9" data-a="40" data-b="45">
+    <div class="center">
+      <div class="batt pop" style="--d:40.2s"><i id="cell"></i></div>
+      <div class="meme pop" style="--d:40.6s">Relevance: 2%</div>
+      <div class="meme small pop" style="--d:41.6s; margin-top:40px; color:#ffe14d">Election 2028 loading…</div>
+      <div class="meme small fade" style="--d:42.6s; margin-top:110px; color:#9be37a; text-transform:none">See you at the next foundation stone.</div>
+      <div class="fade" style="--d:43.3s; margin-top:90px; text-align:center; font-size:40px; font-weight:700; color:#8d8d93">— anonymous</div>
+    </div>
+  </div>
+
+  <div id="handle">ANONYMOUS</div>
+</div>
+<script>
+  const DURATION = 45;
+  const scenes = [...document.querySelectorAll('.scene')];
+  const smooth = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+  const TARGETS = ['the other party.', 'the other other party.', 'the potholes we promised to fix.', 'the weather.', 'last week\'s statement.', 'this reel.'];
+
+  window.renderFrame = function (t) {
+    for (const s of scenes) s.classList.toggle('on', t >= +s.dataset.a && t < +s.dataset.b);
+    for (const a of document.getAnimations()) { a.pause(); a.currentTime = t * 1000; }
+
+    // press statement: the target spins, then lands on the last one
+    const i = Math.min(TARGETS.length - 1, Math.max(0, Math.floor((t - 15.0) / 0.62)));
+    document.getElementById('slot').textContent = t < 15 ? '' : TARGETS[i];
+    document.getElementById('stno').textContent = Math.floor(312 * smooth(18.3, 19.2, t));
+
+    const p = Math.min(99, Math.floor(99 * smooth(32.8, 34.3, t)));
+    document.getElementById('pc').textContent = p;
+    document.getElementById('fill').style.width = p + '%';
+    document.getElementById('cell').style.opacity = Math.floor(t * 3) % 2 ? 1 : 0.25;
+  };
+
+  window.FILM = { duration: DURATION, ready: true };
+  if (new URLSearchParams(location.search).has('play')) {
+    const start = performance.now();
+    const loop = () => { window.renderFrame(((performance.now() - start) / 1000) % DURATION); requestAnimationFrame(loop); };
+    loop();
+  } else {
+    window.renderFrame(Number(new URLSearchParams(location.search).get('t') || 0));
+  }
+</script>
+</body>
+</html>
