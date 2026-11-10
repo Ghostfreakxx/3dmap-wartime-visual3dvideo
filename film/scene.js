@@ -150,12 +150,12 @@ function arrow(points, color, t0, t1, tEnd, radius = 0.07) {
 }
 const GOLD = 0xffc04d, RED = 0xff4b3a, GREY = 0xb9c2cc;
 
-// 18–30 s: pressure from every side, held at the border
+// 18–30 s: conflict in both directions: pressure from the east, Mizo raids to the west and north
 arrow([[94.1, 24.7], [93.75, 24.35], [93.42, 24.05]], GREY, 20.0, 22.5, 29.5, 0.05);   // from Manipur
-arrow([[91.35, 23.75], [91.8, 23.6], [92.2, 23.5]], GREY, 20.6, 23.1, 29.5, 0.05);     // from Tripura
+arrow([[92.3, 23.5], [91.85, 23.6], [91.4, 23.75]], GOLD, 20.6, 23.1, 29.5, 0.05);     // raid toward Tripura
 arrow([[94.2, 22.75], [93.8, 22.85], [93.45, 22.95]], GREY, 21.2, 23.7, 29.5, 0.05);   // from the Chin Hills
-arrow([[91.9, 22.25], [92.2, 22.4], [92.46, 22.55]], GREY, 21.8, 24.3, 29.5, 0.05);    // from Chittagong
-arrow([[92.85, 25.05], [92.8, 24.8], [92.78, 24.58]], GREY, 22.4, 24.9, 29.5, 0.05);   // from Cachar
+arrow([[92.5, 22.55], [92.2, 22.4], [91.9, 22.25]], GOLD, 21.8, 24.3, 29.5, 0.05);    // raid toward Chittagong
+arrow([[92.78, 24.45], [92.8, 24.7], [92.85, 24.98]], GOLD, 22.4, 24.9, 29.5, 0.05);   // raid toward Cachar
 // 36–42 s: raids on the plains
 arrow([[92.75, 24.2], [92.7, 24.45], [92.62, 24.72]], GOLD, 36.4, 38.6, 42.0);
 arrow([[92.95, 24.15], [93.0, 24.42], [92.95, 24.68]], GOLD, 37.0, 39.2, 42.0);
@@ -166,7 +166,7 @@ arrow([[91.83, 22.34], [92.17, 22.65], [92.48, 22.9], [92.85, 23.2]], RED, 44.6,
 // 54–66 s: Chin-Lushai Expedition, columns from three sides
 arrow([[92.8, 24.83], [92.74, 24.4], [92.72, 23.73]], RED, 56.0, 60.5, 80.0, 0.085);                 // to Aijal
 arrow([[91.83, 22.34], [92.17, 22.65], [92.48, 22.9], [92.73, 22.88]], RED, 56.4, 60.9, 80.0, 0.085); // to Lungleh
-arrow([[94.3, 22.9], [93.9, 22.92], [93.68, 22.91], [93.3, 23.05]], RED, 56.8, 61.3, 80.0, 0.085);    // from Burma
+arrow([[94.75, 22.45], [94.35, 22.72], [94.0, 22.87], [93.7, 22.91]], RED, 56.8, 61.3, 80.0, 0.085);  // Burma column, into the Chin Hills only
 
 // ---------- tea gardens (Cachar foothills) ----------
 const gardens = [];
@@ -197,7 +197,8 @@ label('Cachar column', 92.95, 24.6, 'place fort', 45, 53.6);
 label('Chittagong column', 92.05, 22.48, 'place fort', 45.6, 53.6);
 label('From Cachar', 92.8, 24.83, 'place fort', 56, 65.6);
 label('From Chittagong', 91.9, 22.3, 'place fort', 56.4, 65.6);
-label('From Burma', 94.25, 22.9, 'place fort', 56.8, 65.6);
+label('Burma column', 94.2, 22.62, 'place fort', 56.8, 65.6);
+label('CHIN HILLS', 93.85, 23.2, '', 56.8, 65.6);
 label('Fort Lungleh · 1889', 92.73, 22.88, 'place fort', 61, 86);
 label('Fort Aijal · 1890', 92.72, 23.73, 'place fort', 61.6, 86);
 label('Changsil', 92.63, 23.93, 'place gold', 68, 72.4, 0.9);
@@ -206,16 +207,16 @@ label('Rangamati', 92.17, 22.65, 'place gold', 72.8, 77.6);
 // ---------- story ----------
 const CAPTIONS = [
   [8.5, 18, 'On these ridges, Mizo chiefs ruled their own villages.<br>No outside power governed them.'],
-  [19, 30, 'For generations they guarded the hills<br>against rival powers on every side.'],
+  [19, 30, 'They fought and raided their neighbours, and each other.<br>But no rival power took the hills from them.'],
   [31, 36.2, 'Then British tea gardens pushed into the Cachar foothills,<br>onto land the chiefs counted as their own.'],
   [36.6, 42, 'The chiefs struck back, raiding the plains.'],
   [43, 48.4, 'Britain answered with two armed columns.<br>Villages were burned.'],
   [48.8, 53.6, 'Then the columns withdrew.<br>The chiefs still ruled the hills.'],
-  [55, 60.4, 'Eighteen years later the columns returned,<br>from three sides.'],
+  [55, 60.4, 'Eighteen years later the columns returned.<br>Another marched into the Chin Hills from Burma.'],
   [60.8, 65.6, 'This time they stayed.<br>Forts rose at Lungleh and Aijal.'],
   [67, 72.4, 'The chiefs rose against the forts.<br>The warrior Khuangchera fell fighting at Changsil.'],
   [72.8, 77.6, 'Chieftess Ropuiliani refused to submit.<br>Captured in 1893, she died in prison at Rangamati.'],
-  [79, 85.4, 'The Lushai Hills became a district of British India.'],
+  [79, 85.4, 'Annexed in stages from 1890, the Lushai Hills<br>were one district of British India by 1898.'],
   [86.2, 91, 'Today the land is Mizoram.<br>Those who defended it are remembered.'],
 ];
 const DATES = [
@@ -223,7 +224,7 @@ const DATES = [
   [43, 53.6, '1871 – 1872', 'THE LUSHAI EXPEDITION'],
   [55, 65.6, '1889 – 1890', 'THE CHIN-LUSHAI EXPEDITION'],
   [67, 77.6, '1890 – 1895', 'THE CHIEFS RISE'],
-  [79, 85.4, '1898', 'ANNEXED'],
+  [79, 85.4, '1890 – 1898', 'ANNEXED'],
 ];
 // camera keyframes: [time, eye lon, eye lat, eye height, target lon, target lat]
 const CAM = [

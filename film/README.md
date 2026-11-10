@@ -12,12 +12,12 @@ H.264 with a synthesised soundtrack.
 |------|---------|
 | 0:00 | Title |
 | 0:08 | Mizo chiefs rule their own ridge-top villages |
-| 0:19 | They hold the hills against rival powers on every side |
+| 0:19 | They fight and raid their neighbours and each other; no rival takes the hills |
 | 0:31 | 1850s–60s: British tea gardens push into the Cachar foothills; the chiefs raid the plains |
 | 0:43 | 1871–72: the Lushai Expedition, two columns, which then withdraw |
-| 0:55 | 1889–90: the Chin-Lushai Expedition; forts at Lungleh and Aijal |
+| 0:55 | 1889–90: the Chin-Lushai Expedition; forts at Lungleh and Aijal; a Burma column enters the Chin Hills |
 | 1:07 | 1890–95: the chiefs rise; Khuangchera falls at Changsil; Ropuiliani dies in prison |
-| 1:19 | 1898: the Lushai Hills become one district of British India |
+| 1:19 | 1890–98: annexed in stages; one district of British India by 1898 |
 | 1:26 | Today the land is Mizoram |
 
 ## Accuracy
