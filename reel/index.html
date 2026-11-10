@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Election Season POV</title>
+<style>
+  html, body { margin: 0; background: #000; overflow: hidden; }
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #111;
+    font-family: "Inter", "Liberation Sans", Arial, sans-serif; font-weight: 900; color: #fff; }
+  .scene { position: absolute; inset: 0; display: none; padding: 150px 70px; box-sizing: border-box; }
+  .scene.on { display: block; }
+  .meme { font-size: 92px; line-height: 1.06; text-transform: uppercase; letter-spacing: -.01em;
+    -webkit-text-stroke: 14px #000; paint-order: stroke fill; text-align: center; }
+  .small { font-size: 54px; -webkit-text-stroke: 9px #000; }
+  .tag { display: inline-block; background: #fff; color: #000; font-size: 44px; padding: 10px 26px;
+    border-radius: 12px; -webkit-text-stroke: 0; text-transform: uppercase; }
+  .center { position: absolute; left: 70px; right: 70px; top: 50%; transform: translateY(-50%); }
+  .pop { animation: pop .38s cubic-bezier(.2, 1.6, .4, 1) both; animation-delay: var(--d); }
+  .slide { animation: slide .4s cubic-bezier(.2, .9, .3, 1) both; animation-delay: var(--d); }
+  .fade { animation: fade .35s ease both; animation-delay: var(--d); }
+  .shake { animation: pop .38s cubic-bezier(.2, 1.6, .4, 1) both, shake .5s linear both;
+    animation-delay: var(--d), calc(var(--d) + .38s); }
+  .zoom { animation: zoom var(--len, 4s) linear both; animation-delay: var(--d); }
+  @keyframes pop { from { opacity: 0; transform: scale(.3) rotate(-6deg); } to { opacity: 1; transform: none; } }
+  @keyframes slide { from { opacity: 0; transform: translateY(90px); } to { opacity: 1; transform: none; } }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes shake { 0%, 100% { translate: 0 0; } 20% { translate: -14px 6px; } 40% { translate: 12px -8px; }
+    60% { translate: -9px -5px; } 80% { translate: 8px 6px; } }
+  @keyframes zoom { from { scale: 1; } to { scale: 1.09; } }
+
+  /* scene backgrounds */
+  #s1 { background: #0d0d0f; }
+  #s2 { background: #f4ecd8; color: #1b1b1b; }
+  #s3 { background: #18324a; padding: 0; }
+  #s4 { background: #101418; }
+  #s5 { background: #3b2a1c; }
+  #s6 { background: #f7f7f2; color: #111; }
+  #s7 { background: #0d0d0f; }
+
+  /* 2: manifesto */
+  .paper { background: #fffdf4; border: 6px solid #1b1b1b; border-radius: 10px; margin-top: 60px;
+    padding: 50px 56px 60px; box-shadow: 18px 18px 0 #1b1b1b; position: relative; }
+  .paper h2 { margin: 0 0 8px; font-size: 76px; letter-spacing: .04em; }
+  .paper .sub { font-size: 38px; font-weight: 600; color: #7a7466; margin-bottom: 30px; }
+  .paper li { list-style: none; font-size: 62px; margin: 22px 0; display: flex; gap: 26px; align-items: center; }
+  .paper ul { padding: 0; margin: 0; }
+  .box { width: 58px; height: 58px; border: 6px solid #1b1b1b; border-radius: 8px; flex: none;
+    display: flex; align-items: center; justify-content: center; font-size: 50px; color: #1c8c3c; }
+  .stamp { position: absolute; right: -34px; bottom: -70px; rotate: -14deg; border: 12px solid #d22b2b; color: #d22b2b;
+    font-size: 82px; padding: 12px 34px; border-radius: 18px; background: rgba(255, 253, 244, .9); letter-spacing: .04em; }
+  .counter { margin-top: 150px; text-align: center; font-size: 46px; font-weight: 700; color: #5c5648; }
+  .counter b { font-size: 84px; color: #d22b2b; font-weight: 900; display: block; }
+
+  /* 3: expectation / reality */
+  .half { position: absolute; left: 0; right: 0; height: 960px; box-sizing: border-box; padding: 60px 60px 0; }
+  .half.top { top: 0; background: #7a1f1f; }
+  .half.bot { top: 960px; background: #18324a; }
+  .half .tag { position: absolute; left: 60px; top: 60px; }
+  .half svg { position: absolute; left: 0; right: 0; bottom: 0; width: 1080px; height: 760px; }
+  .bubble { position: absolute; background: #fff; color: #111; font-size: 44px; padding: 20px 30px;
+    border-radius: 34px; -webkit-text-stroke: 0; line-height: 1.15; max-width: 620px; text-transform: none; }
+
+  /* 4: chat */
+  .phone { position: absolute; left: 110px; right: 110px; top: 330px; bottom: 150px; background: #e9edf1;
+    border-radius: 70px; border: 16px solid #2a3036; overflow: hidden; }
+  .bar { background: #1f6f5c; color: #fff; padding: 44px 44px 34px; font-size: 46px; }
+  .bar span { display: block; font-size: 30px; font-weight: 500; opacity: .85; margin-top: 6px; }
+  .msgs { padding: 36px 30px; display: flex; flex-direction: column; gap: 24px; }
+  .msg { background: #fff; color: #111; font-size: 42px; font-weight: 600; padding: 24px 30px; border-radius: 12px 34px 34px 34px;
+    max-width: 78%; align-self: flex-start; line-height: 1.2; box-shadow: 0 3px 0 rgba(0, 0, 0, .12); }
+  .msg.me { align-self: flex-end; background: #d8f5c6; border-radius: 34px 12px 34px 34px; }
+  .seen { align-self: flex-start; font-size: 32px; font-weight: 600; color: #3a84d6; margin-top: -8px; }
+
+  /* 5: then / now */
+  .row { margin-top: 70px; background: rgba(0, 0, 0, .34); border-radius: 30px; padding: 44px 48px; }
+  .row .who { font-size: 46px; color: #ffcf66; text-transform: uppercase; letter-spacing: .08em; }
+  .row .what { font-size: 64px; line-height: 1.12; margin-top: 14px; }
+  #s5 svg { position: absolute; left: 0; bottom: 0; width: 1080px; height: 470px; }
+  .days { margin-top: 80px; text-align: center; font-size: 44px; line-height: 1.2; }
+  .days b { font-size: 96px; color: #ffcf66; display: block; }
+
+  /* 6: chart */
+  #s6 h2 { font-size: 78px; line-height: 1.05; margin: 0; text-transform: uppercase; text-align: center; }
+  #s6 svg { display: block; margin: 70px auto 40px; width: 760px; height: 760px; }
+  .legend { font-size: 46px; font-weight: 800; display: flex; gap: 22px; align-items: center; margin: 22px 30px; line-height: 1.15; }
+  .sw { width: 56px; height: 56px; border-radius: 10px; flex: none; border: 5px solid #111; }
+
+  #satire { position: absolute; left: 0; right: 0; bottom: 44px; text-align: center; font-size: 28px; font-weight: 700;
+    letter-spacing: .3em; color: rgba(255, 255, 255, .6); mix-blend-mode: difference; }
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- 1: hook -->
+  <div class="scene" id="s1" data-a="0" data-b="3.2">
+    <div class="center zoom" style="--d:0s; --len:3.2s">
+      <div class="meme pop" style="--d:.15s; color:#ffe14d">POV:</div>
+      <div class="meme shake" style="--d:.7s; margin-top:30px">it's election season in Mizoram</div>
+      <div class="meme small pop" style="--d:1.9s; margin-top:70px; color:#9be37a">(again)</div>
+    </div>
+  </div>
+
+  <!-- 2: the manifesto -->
+  <div class="scene" id="s2" data-a="3.2" data-b="8.4">
+    <div class="tag pop" style="--d:3.3s; background:#1b1b1b; color:#fff">Every party. Every five years.</div>
+    <div class="paper slide" style="--d:3.5s">
+      <h2>MANIFESTO</h2>
+      <div class="sub">new and improved (same as last time)</div>
+      <ul>
+        <li class="slide" style="--d:4.1s"><span class="box">✓</span>Roads</li>
+        <li class="slide" style="--d:4.6s"><span class="box">✓</span>Jobs</li>
+        <li class="slide" style="--d:5.1s"><span class="box">✓</span>Roads, but again</li>
+        <li class="slide" style="--d:5.6s"><span class="box">✓</span>"Real change"</li>
+      </ul>
+      <div class="stamp pop" style="--d:6.5s">COPY · PASTE</div>
+    </div>
+    <div class="counter fade" style="--d:6.9s">Promises made so far<b id="promises">0</b></div>
+  </div>
+
+  <!-- 3: expectation vs reality -->
+  <div class="scene" id="s3" data-a="8.4" data-b="13.6">
+    <div class="half top">
+      <div class="tag pop" style="--d:8.5s">What parties expect</div>
+      <svg viewBox="0 0 1080 760" class="fade" style="--d:8.7s">
+        <g stroke="#fff" stroke-width="14" stroke-linecap="round" fill="none">
+          <circle cx="300" cy="330" r="62"/><path d="M300 392v190M300 582l-70 150M300 582l70 150M300 450l-110-90M300 450l120-110"/>
+          <circle cx="780" cy="330" r="62"/><path d="M780 392v190M780 582l-70 150M780 582l70 150M780 450l110-90M780 450l-120-110"/>
+          <path d="M420 340V150M660 340V150"/>
+        </g>
+        <path d="M420 150h150l-34 50 34 50H420z" fill="#ffcf66"/><path d="M660 150H510l34 50-34 50h150z" fill="#6ec1ff"/>
+        <g fill="#fff"><path d="M275 345l50 0-25 22z"/><path d="M755 345l50 0-25 22z"/></g>
+      </svg>
+      <div class="bubble pop" style="--d:9.3s; left:60px; top:210px">MY PARTY!!</div>
+      <div class="bubble pop" style="--d:9.7s; right:60px; top:210px">NO, MINE!!</div>
+    </div>
+    <div class="half bot">
+      <div class="tag pop" style="--d:10.9s">What they actually get</div>
+      <svg viewBox="0 0 1080 760" class="fade" style="--d:11.1s">
+        <g transform="translate(230 0)"><g stroke="#fff" stroke-width="14" stroke-linecap="round" fill="none">
+          <circle cx="540" cy="300" r="66"/><path d="M540 366v200M540 566l-80 160M540 566l80 160M540 440l-90 80 70 30M540 440l90 80-70 30"/>
+          <path d="M508 300h64" /><path d="M500 268h26M554 268h26"/>
+        </g>
+        <rect x="496" y="520" width="88" height="140" rx="14" fill="#6ec1ff" stroke="#fff" stroke-width="10"/></g>
+      </svg>
+      <div class="bubble pop" style="--d:11.6s; left:70px; top:200px">Cool. So who fixes the road?</div>
+      <div class="bubble pop" style="--d:12.5s; left:70px; top:420px; background:#ffcf66">…anyone? Hello?</div>
+    </div>
+  </div>
+
+  <!-- 4: left on read -->
+  <div class="scene" id="s4" data-a="13.6" data-b="19.4">
+    <div class="meme small pop" style="--d:13.7s">Parties: "the youth are with us"</div>
+    <div class="meme small pop" style="--d:14.2s; margin-top:16px; color:#ffe14d">The youth:</div>
+    <div class="phone slide" style="--d:14.4s">
+      <div class="bar">Every Party (official)<span>online · typing a lot</span></div>
+      <div class="msgs">
+        <div class="msg pop" style="--d:14.9s">Vote for us. We are different this time.</div>
+        <div class="msg pop" style="--d:15.6s">Like, really different.</div>
+        <div class="msg pop" style="--d:16.3s">Same team, brand new jersey.</div>
+        <div class="msg pop" style="--d:17.0s">Hello?? You there?</div>
+        <div class="seen fade" style="--d:17.5s">Seen ✓✓</div>
+        <div class="msg me pop" style="--d:18.2s">k</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5: then / now -->
+  <div class="scene" id="s5" data-a="19.4" data-b="24.8">
+    <div class="row slide" style="--d:19.5s; margin-top:0">
+      <div class="who">Back then</div>
+      <div class="what">Loyal to one party for forty years.</div>
+    </div>
+    <div class="row slide" style="--d:21.0s">
+      <div class="who" style="color:#9be37a">Us now</div>
+      <div class="what">Loyal to whoever fixes the pothole outside my house.</div>
+    </div>
+    <div class="days fade" style="--d:22.6s">Days this pothole has outlasted governments<b id="days">0</b></div>
+    <svg viewBox="0 0 1080 520" class="fade" style="--d:22.2s">
+      <path d="M0 520L260 120h560l260 400z" fill="#55585c"/>
+      <path d="M540 120v60M540 230v70M540 360v90" stroke="#f4ecd8" stroke-width="12" stroke-dasharray="1 0"/>
+      <ellipse cx="400" cy="330" rx="150" ry="52" fill="#1c1a17"/><ellipse cx="400" cy="322" rx="150" ry="46" fill="#2b2620"/>
+      <ellipse cx="740" cy="230" rx="90" ry="30" fill="#1c1a17"/><ellipse cx="640" cy="440" rx="120" ry="40" fill="#1c1a17"/>
+    </svg>
+  </div>
+
+  <!-- 6: the chart -->
+  <div class="scene" id="s6" data-a="24.8" data-b="30.2">
+    <h2 class="pop" style="--d:24.9s">Who Mizo youth actually trust</h2>
+    <svg viewBox="-110 -110 220 220">
+      <circle r="100" fill="#2f9e5b" stroke="#111" stroke-width="3"/>
+      <path id="slice" d="" fill="#d22b2b" stroke="#111" stroke-width="3"/>
+    </svg>
+    <div class="legend slide" style="--d:26.4s"><span class="sw" style="background:#d22b2b"></span>Party speeches</div>
+    <div class="legend slide" style="--d:27.2s"><span class="sw" style="background:#2f9e5b"></span>The uncle who fills the pothole himself</div>
+  </div>
+
+  <!-- 7: end card -->
+  <div class="scene" id="s7" data-a="30.2" data-b="35">
+    <div class="center">
+      <div class="meme pop" style="--d:30.4s">Not anti-politics.</div>
+      <div class="meme shake" style="--d:31.3s; margin-top:36px; color:#ffe14d">Just anti-nonsense.</div>
+      <div class="meme small fade" style="--d:32.6s; margin-top:120px; color:#9be37a; text-transform:none">
+        We read the fine print now.</div>
+      <div class="fade" style="--d:33.2s; margin-top:90px; text-align:center; font-size:32px; font-weight:600; color:#8d8d93; line-height:1.4">
+        Satire. No real party or person is depicted.<br>Any resemblance to your MLA is your MLA's problem.</div>
+    </div>
+  </div>
+
+  <div id="satire">SATIRE</div>
+</div>
+<script>
+  const DURATION = 35;
+  const scenes = [...document.querySelectorAll('.scene')];
+  const smooth = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+
+  window.renderFrame = function (t) {
+    for (const s of scenes) s.classList.toggle('on', t >= +s.dataset.a && t < +s.dataset.b);
+    // seek every CSS animation to the same absolute time, so a frame depends only on t
+    for (const a of document.getAnimations()) { a.pause(); a.currentTime = t * 1000; }
+
+    document.getElementById('promises').textContent = Math.floor(4781 * smooth(6.9, 8.2, t)).toLocaleString('en-IN');
+    document.getElementById('days').textContent = Math.floor(2190 * smooth(22.6, 24.4, t)).toLocaleString('en-IN');
+
+    // pie: the red slice shrinks from a hopeful half down to a sliver
+    const frac = 0.5 - 0.47 * smooth(25.4, 27.4, t);
+    const ang = frac * 2 * Math.PI, x = 100 * Math.sin(ang), y = -100 * Math.cos(ang);
+    document.getElementById('slice').setAttribute('d', `M0 0L0 -100A100 100 0 ${frac > 0.5 ? 1 : 0} 1 ${x.toFixed(2)} ${y.toFixed(2)}Z`);
+  };
+
+  window.FILM = { duration: DURATION, ready: true };
+  if (new URLSearchParams(location.search).has('play')) {
+    const start = performance.now();
+    const loop = () => { window.renderFrame(((performance.now() - start) / 1000) % DURATION); requestAnimationFrame(loop); };
+    loop();
+  } else {
+    window.renderFrame(Number(new URLSearchParams(location.search).get('t') || 0));
+  }
+</script>
+</body>
+</html>
